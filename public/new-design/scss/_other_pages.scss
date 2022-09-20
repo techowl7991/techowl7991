@@ -1,0 +1,186 @@
+@charset "UTF-8";
+
+@import "variables";
+@import "main";
+
+.signUpPage {
+  height: 100vh;
+
+  & .innerPage {
+     background: #f2f2f2;
+    & .Sign_Up {
+      z-index: 5;
+      & .card {
+        border-radius: 8px;
+
+        & .Account {
+         & .heading, a{
+            font-weight: 600;
+          }
+          
+            & a {
+              color: #ff4e00;
+            }
+        }
+
+        & form {
+          & .eye-icon {
+            color: #777;
+            top: 13px;
+            right: 25px;
+          }
+
+          & .Inpt {
+            border-bottom: 2px solid #757575 !important;
+            background: #f2f2f2;
+            border-bottom-left-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+            color: #000000;
+
+            &:focus-visible {
+              outline: none !important;
+            }
+
+          }
+
+          & .form-check {
+            & .form-check-input {
+              box-shadow: none;
+            }
+
+            & .form-check-label {
+              font-weight: 600;
+
+            }
+          }
+
+          & .sign_up {
+            & a {
+              font-weight: 600;
+              color: #ff4e00;
+            }
+          }
+        }
+      }
+      .back_img {
+        width: 100px;
+        position: absolute;
+      }
+      & .back_img1 {
+        right: 100px;
+      }
+      & .back_img2 {
+        left: -87px;
+        top: 40px;
+      }
+      & .back_img3 {
+        top: -32px;
+        right: -14px;
+        z-index: -1;
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+
+@mixin xxxxxx-xxxxx-mixin-min-sm() {}
+
+// Medium devices (tablets, 768px and up)
+@mixin xxxxxx-xxxxx-mixin-min-md() {}
+
+// Large devices (desktops, 992px and up)
+@mixin xxxxxx-xxxxx-mixin-min-lg() {}
+
+// X-Large devices (large desktops, 1200px and up)
+@mixin xxxxxx-xxxxx-mixin-min-xl() {}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@mixin xxxxxx-xxxxx-mixin-min-xxl() {}
+
+// X-Small devices (portrait phones, less than 576px)
+@mixin xxxxxx-xxxxx-mixin-max-xs() {
+  .back_img {
+    width: 70px !important;
+  }
+  .back_img1 {
+    right: 50px !important;
+  }
+  .back_img2{
+    left: -58px !important;
+  }
+  .back_img3{
+    top: -22px !important;
+    right: -6px !important;
+  }
+
+}
+// 
+
+
+// Small devices (landscape phones, less than 768px)
+@mixin xxxxxx-xxxxx-mixin-max-sm() {}
+
+// Medium devices (tablets, less than 992px)
+@mixin xxxxxx-xxxxx-mixin-max-md() {}
+
+// Large devices (desktops, less than 1200px)
+@mixin xxxxxx-xxxxx-mixin-max-lg() {}
+
+// X-Large devices (large desktops, less than 1400px)
+@mixin xxxxxx-xxxxx-mixin-max-xl() {}
+
+
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {
+  @include xxxxxx-xxxxx-mixin-min-sm();
+}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+  @include xxxxxx-xxxxx-mixin-min-md();
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  @include xxxxxx-xxxxx-mixin-min-lg();
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {
+  @include xxxxxx-xxxxx-mixin-min-xl();
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) {
+  @include xxxxxx-xxxxx-mixin-min-xxl();
+}
+
+// X-Large devices (large desktops, less than 1400px)
+@media (max-width: 1399.98px) {
+  @include xxxxxx-xxxxx-mixin-max-xl();
+}
+
+// Large devices (desktops, less than 1200px)
+@media (max-width: 1199.98px) {
+  @include xxxxxx-xxxxx-mixin-max-lg();
+}
+
+// Medium devices (tablets, less than 992px)
+@media (max-width: 991.98px) {
+  @include xxxxxx-xxxxx-mixin-max-md();
+}
+
+// Small devices (landscape phones, less than 768px)
+@media (max-width: 767.98px) {
+  @include xxxxxx-xxxxx-mixin-max-sm();
+}
+
+// X-Small devices (portrait phones, less than 576px)
+@media (max-width: 575.98px) {
+  @include xxxxxx-xxxxx-mixin-max-xs();
+}
+
+// XX-Large devices (larger desktops)
+// No media query since the xxl breakpoint has no upper bound on its width

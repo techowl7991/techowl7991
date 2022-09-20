@@ -40,3 +40,7 @@ Route::any('/view_anyalyticdetail_dt', [AboutController::class, 'view_anyalyticd
 Route::any('/exportdataanalytics/{id}',[AboutController::class,'exportdataanalytics'])->name('exportdataanalytics');
 
 // Route::get('/login',function(){});
+
+Route::any('/new',function(){return view('new-design/index');});
+Route::any('/sign-up',function(){return view('new-design/auth/sign_up');});
+Route::any('/sign-in',function(){return view('new-design/auth/sign_in');});
