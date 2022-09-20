@@ -35,14 +35,16 @@ class AboutController extends Controller
     public function index(Request $request, $mid)
     {
         if (!empty($request->session()->get('uid')) && $request->session()->get('uid') == $mid) {
-            // self::$firestoreProjectId = 'guest-app-2eb59';
-            // self::$firestoreClient = new FirestoreClient([
-            //     'projectId' => self::$firestoreProjectId,
-            // ]);
-
-            // $snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->documents();
-            // dd($snapshot);
-            return view('tableview', compact('mid'));
+            self::$firestoreProjectId = 'guest-app-2eb59';
+            self::$firestoreClient = new FirestoreClient([
+                'projectId' => self::$firestoreProjectId,
+            ]);
+            $date = date('Y-m-d');
+            $up_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate','>=',$date)->documents();
+            $upcoming_count = iterator_count($up_snapshot);
+            $pas_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate','<=',$date)->documents();
+            $past_count = iterator_count($pas_snapshot);
+            return view('tableview', compact('mid','upcoming_count','past_count'));
         } else {
             $request->session()->forget('uid');
             return redirect('/login');
@@ -448,13 +450,18 @@ public function login(Request $request)
                 $action = "<a href=".$b." class='btn btn-primary shadow printBtn py-1 px-3'>Detail</a>";
                 $actionQR = '<a class="btn btn-primary text-white shadow printBtn py-1 px-3" data-toggle="modal" data-target="#exampleModal'.$title->id().'">View QR</a><div class="modal fade" id="exampleModal'.$title->id().'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>'.$c.'</div></div></div></div>';
                 
-
+                $route = action('AboutController@singledelete', $title->id());
+                $editroute = action('AboutController@edit', $title->id());
+                $delbtn = "<a href=".$route." class='text-danger py-5 px-3'><i class='fa fa-trash' aria-hidden='true'></i></a>";
+                $edtbtn = "<a href=".$editroute." class='text-danger py-5 px-3'><i class='fa fa-edit' aria-hidden='true'></i></a>";
             	$nestedData['id'] = $count;
+                $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="'.$title->id().'" >';
+                $nestedData['singledel'] = $delbtn;
             	$nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
                 $nestedData['event_name'] = $title['event_name'];                
                 $nestedData['event_startdate'] = date('m/d/Y h:i:s A', strtotime($title['event_startdate']));                
                 $nestedData['event_enddate'] = date('m/d/Y h:i:s A', strtotime($title['event_enddate']));                
-                $nestedData['address'] = $title['address'];                
+                $nestedData['address'] = $edtbtn;                
                 $nestedData['total'] = $title['total'];        
                 $nestedData['vip'] = $title['vip'];        
                 $nestedData['Reg'] = $title['Reg'];        
@@ -475,6 +482,44 @@ public function login(Request $request)
         );
         echo json_encode($json_data);
     }
+
+    public function edit(Request $request, $id) {
+        $mid = $request->session()->get('uid');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->snapshot()->data();
+        // dd($snapshot);
+        return view('editevent', compact('snapshot','id'));
+    }
+
+    public function singledelete(Request $request,$id){
+        // dd($id);
+        $mid = $request->session()->get('uid');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->delete();
+        return redirect()->back()->with('message','Event Successfully Deleted');
+    }
+
+    public function multi_delete(Request $request) {
+        $ids = $request->id;
+        $mid = $request->session()->get('uid');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        foreach($ids as $id){
+            // dd($ids);
+            $snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->delete();
+        }
+        return response()->json(['message'=>'Selected Event Successfully Deleted']);
+        
+    }
+
 
     public function view_eventdetail_dt(Request $request) {
 		$columns = array(
