@@ -1,0 +1,175 @@
+/* nav */
+li.nav-item a.nav-link {
+    font-size: 14px;
+    font-weight: 600;
+}
+li.nav-item a.nav-link:hover,
+li.nav-item a.nav-link:focus {
+    color: #734cd9;
+}
+
+/* login & register page */
+.mainOuter {
+    height: calc(100vh - 55px);
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.loginHeader,
+.registerHeader {
+    background: #734cd9;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.customBtn {
+    width: 100px;
+    background: #734cd9;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.customBtn:hover {
+    background: transparent;
+    color: #734cd9;
+    border-color: #734cd9;
+}
+.form-control.loginInput {
+    background-color: transparent;
+    font-size: 16px;
+}
+.form-control.loginInput:focus {
+    color: #212529;
+    background-color: #f8fafc;
+    border-color: #734cd9;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgb(115 76 217 / 25%);
+}
+
+/* Dashboard */
+
+.dashboard{
+    width: 100%;
+    height: 100vh;
+}
+.sectionheader h2{
+    font-size: 20px;
+    font-weight: 600;
+}
+.sideBar {
+    width: 120px;
+}
+.sideBar ul li{
+    border-bottom: 2px solid transparent;
+    padding: 12px 0;
+    transition: border .3s;
+}
+.sideBar ul li a{
+    color: #212529;
+    font-weight: 600;
+    transition: color .3s;
+}
+.sideBar ul li a span{
+    line-height: normal;
+}
+.sideBar ul li:hover, .sideBar ul li.active{
+    border-bottom: 2px solid #734cd9;
+}
+.sideBar ul li:hover a, .sideBar ul li.active a{
+    color: #734cd9;
+}
+.sideBar ul li a .menuIcon{
+    width: 20px;
+    position: relative;
+}
+.sideBar ul li a .menuIcon img{
+    object-fit: cover;
+    width: 100%;
+    position: absolute;
+    inset: 0;
+    transition: .3s;
+}
+.sideBar ul li:hover img, .sideBar ul li.active img{
+    display: none;
+}
+.sideBar ul li:hover img.img-2, .sideBar ul li.active img.img-2{
+    display: block !important;
+}
+
+
+.events {
+    font-size: 13px;
+    font-weight: 600;
+}
+.events span {
+    font-weight: normal;
+}
+.card.eventCard {
+    transition: all 0.3s;
+    cursor: pointer;
+    overflow: hidden;
+}
+.card.eventCard:hover {
+    border: 1px solid transparent;
+    box-shadow: 0 0.5rem 1rem rgb(115 76 217 / 15%);
+}
+
+.events.print {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: #0000005c;
+    backdrop-filter: blur(6px);
+    transition: all 0.3s;
+}
+.card.eventCard:hover .events.print {
+    opacity: 1;
+}
+.btnAddEvent,
+.btnLogOut {
+    color: #fff;
+    padding: 4px 16px !important;
+    /* margin-bottom: 15px; */
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+}
+.btnAddEvent {
+    background: #734cd9;
+    /* color: #fff; */
+    /* padding: 6px 7px; */
+    /* margin-bottom: 15px; */
+    /* text-decoration: none; */
+    /* border-radius: 10px;
+    font-weight: 600; */
+}
+.btnLogOut {
+    background: black;
+    /* color: #fff; */
+    /* padding: 6px 7px;
+    margin-bottom: 15px;
+    text-decoration: none;
+    border-radius: 10px;
+    font-weight: 600; */
+}
+
+.fs-16 {
+    font-size: 16px;
+}
+.bg-theme1 {
+    background-color: #734cd9;
+}
+.bg-white {
+    background-color: #fff;
+}
+.text-theme1 {
+    color: #734cd9;
+}
