@@ -189,6 +189,14 @@ margin-right: 25px;">Add Event</a> -->
                                         </ul>
                                     </div>
                                 </div>
+                                <div class="div">
+                                    <div class="div">
+                                        Upcoming Event  : {{$upcoming_count}}
+                                    </div>
+                                    <div class="div">
+                                        Past Event  : {{$past_count}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="container-fluid">
@@ -241,6 +249,7 @@ margin-right: 25px;">Add Event</a> -->
                                     </div>
                                 </div> --}}
                                 <div class="card-body">
+                                <div class="text-right m-2"><button type="button" class="btn btn-danger delbtn">Delete</button></div>
                                     <link rel="stylesheet" type="text/css"
                                         href="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.css">
                                     <div class="datatable table-responsive">
@@ -250,12 +259,13 @@ margin-right: 25px;">Add Event</a> -->
                                             <thead style="background-color:#CCCCCC">
                                                 <tr>
                                                     <th style="text-align:center;" class="text-capitalize">Event ID</th>
-                                                    <!--<th class="text-capitalize">Unique Id</th>-->
+                                                    <th class="text-capitalize"><input class="" type="checkbox" value="" name="select-all" id="flexCheckIndeterminate"></th>
                                                     <th class="text-capitalize">Title</th>
                                                     <th style="text-align:center;" class="text-capitalize">Start Date</th>
                                                     <!--<th class="text-capitalize">End Date</th>-->
                                                     <th style="text-align:center;" style="width:50px" class="text-capitalize">Edit</th>
-                                                    <th style="text-align:center;" style="width:50px" class="text-capitalize">Delete</th>
+                                                    <!-- <th style="text-align:center;" style="width:50px" class="text-capitalize">Delete</th> -->
+                                                    <th style="text-align:center;" style="width:50px" class="text-capitalize">Single Delete</th>
                                                     <!--<th class="text-capitalize">Vip</th>-->
                                                     <!--<th class="text-capitalize">Regular</th>-->
                                                     <th style="text-align:center;width:120px" class="text-capitalize">QRcode</th>
@@ -392,26 +402,27 @@ margin-right: 25px;">Add Event</a> -->
                                                 "data": "id",
                                                 orderable: false
                                             },
-                                            // {
-                                            //     "data": "uniqueid",
-                                            //     orderable: false
-                                            // },
+                                            {
+                                                "data": "checkb",
+                                                orderable: false
+                                            },
                                             {
                                                 "data": "event_name"
                                             },
                                             {
                                                 "data": "event_startdate"
                                             },
-                                            // {
-                                            //     "data": "event_enddate"
-                                            // },
+                                            
                                             {
                                                 "data": "address",
                                                 orderable: false
                                             },
+                                            // {
+                                            //     "data": "total",
+                                            //     orderable: false
+                                            // },
                                             {
-                                                "data": "total",
-                                                orderable: false
+                                                "data": "singledel"
                                             },
                                             // {
                                             //     "data": "vip",
@@ -439,7 +450,52 @@ margin-right: 25px;">Add Event</a> -->
                 </div>
             </div>
     </section>
+ <script>
+     $('#flexCheckIndeterminate').click(function(event) {
+        if (this.checked) {
+            $(':checkbox').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function() {
+                this.checked = false;
+            });
+        }
+    });
+    $('.delbtn').on('click', function(){
+        var arr = $("input[name='id[]']:checked").map(function() {
+            return this.value;
+        }).get();
+        console.log(arr);
+        // return false;
+        if(arr.length != 0){
+            $.ajax({
+                    type: "POST",
+                    data: {
+                        id: arr
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    url: '{{route("multidelete")}}',
+                    //  beforeSend: function() {
+                    // $('.preloader').removeClass('d-none');
+                    // },
+                    // complete: function () {
+                    //   $('.preloader').addClass('d-none');
+                    // },
+                    success: function(msg) {
 
+                        // $('#basic-datatable1').DataTable().destroy();
+                        // fill_datatable();
+                        // toastr.success(msg => 'Users Deleted, Successfully!');
+                        window.location.reload()
+                    }
+
+                });
+        }
+    })
+ </script>
 </body>
 
 </html>

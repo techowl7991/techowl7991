@@ -376,7 +376,4 @@
         </div>
     </body>
 
-    </html>
-
-    <!--
-{{-- @endsection--> --}}
+{{--@endsection--}}
