@@ -7,20 +7,21 @@
   height: 100vh;
 
   & .innerPage {
-     background: #f2f2f2;
+    background: #f2f2f2;
     & .Sign_Up {
       z-index: 5;
       & .card {
         border-radius: 8px;
 
         & .Account {
-         & .heading, a{
+          & .heading,
+          a {
             font-weight: 600;
           }
-          
-            & a {
-              color: #ff4e00;
-            }
+
+          & a {
+            color: #ff4e00;
+          }
         }
 
         & form {
@@ -40,7 +41,6 @@
             &:focus-visible {
               outline: none !important;
             }
-
           }
 
           & .form-check {
@@ -50,7 +50,6 @@
 
             & .form-check-label {
               font-weight: 600;
-
             }
           }
 
@@ -84,19 +83,24 @@
 
 // Small devices (landscape phones, 576px and up)
 
-@mixin xxxxxx-xxxxx-mixin-min-sm() {}
+@mixin xxxxxx-xxxxx-mixin-min-sm() {
+}
 
 // Medium devices (tablets, 768px and up)
-@mixin xxxxxx-xxxxx-mixin-min-md() {}
+@mixin xxxxxx-xxxxx-mixin-min-md() {
+}
 
 // Large devices (desktops, 992px and up)
-@mixin xxxxxx-xxxxx-mixin-min-lg() {}
+@mixin xxxxxx-xxxxx-mixin-min-lg() {
+}
 
 // X-Large devices (large desktops, 1200px and up)
-@mixin xxxxxx-xxxxx-mixin-min-xl() {}
+@mixin xxxxxx-xxxxx-mixin-min-xl() {
+}
 
 // XX-Large devices (larger desktops, 1400px and up)
-@mixin xxxxxx-xxxxx-mixin-min-xxl() {}
+@mixin xxxxxx-xxxxx-mixin-min-xxl() {
+}
 
 // X-Small devices (portrait phones, less than 576px)
 @mixin xxxxxx-xxxxx-mixin-max-xs() {
@@ -106,43 +110,149 @@
   .back_img1 {
     right: 50px !important;
   }
-  .back_img2{
+  .back_img2 {
     left: -58px !important;
   }
-  .back_img3{
+  .back_img3 {
     top: -22px !important;
     right: -6px !important;
   }
-
 }
-// 
-
+//
 
 // Small devices (landscape phones, less than 768px)
-@mixin xxxxxx-xxxxx-mixin-max-sm() {}
+@mixin xxxxxx-xxxxx-mixin-max-sm() {
+}
 
 // Medium devices (tablets, less than 992px)
-@mixin xxxxxx-xxxxx-mixin-max-md() {}
+@mixin xxxxxx-xxxxx-mixin-max-md() {
+}
 
 // Large devices (desktops, less than 1200px)
-@mixin xxxxxx-xxxxx-mixin-max-lg() {}
+@mixin xxxxxx-xxxxx-mixin-max-lg() {
+}
 
 // X-Large devices (large desktops, less than 1400px)
-@mixin xxxxxx-xxxxx-mixin-max-xl() {}
-
-
-
-table.dataTable thead>tr>th.sorting_asc:before, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc:before, table.dataTable thead>tr>td.sorting_desc:after {
-  opacity: .6;
-  display: none;
-}
-table.dataTable thead>tr>th.sorting:after, table.dataTable thead>tr>th.sorting_asc:after, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>th.sorting_asc_disabled:after, table.dataTable thead>tr>th.sorting_desc_disabled:after, table.dataTable thead>tr>td.sorting:after, table.dataTable thead>tr>td.sorting_asc:after, table.dataTable thead>tr>td.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc_disabled:after, table.dataTable thead>tr>td.sorting_desc_disabled:after {
-  display: none;
-}
-table.dataTable thead>tr>th.sorting:before, table.dataTable thead>tr>th.sorting_asc:before, table.dataTable thead>tr>th.sorting_desc:before, table.dataTable thead>tr>th.sorting_asc_disabled:before, table.dataTable thead>tr>th.sorting_desc_disabled:before, table.dataTable thead>tr>td.sorting:before, table.dataTable thead>tr>td.sorting_asc:before, table.dataTable thead>tr>td.sorting_desc:before, table.dataTable thead>tr>td.sorting_asc_disabled:before, table.dataTable thead>tr>td.sorting_desc_disabled:before {
-  display: none;
+@mixin xxxxxx-xxxxx-mixin-max-xl() {
 }
 
+// table.dataTable thead>tr>th.sorting:after, table.dataTable thead>tr>th.sorting_asc:after, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>th.sorting_asc_disabled:after, table.dataTable thead>tr>th.sorting_desc_disabled:after, table.dataTable thead>tr>td.sorting:after, table.dataTable thead>tr>td.sorting_asc:after, table.dataTable thead>tr>td.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc_disabled:after, table.dataTable thead>tr>td.sorting_desc_disabled:after {
+//   display: none;
+// }
+// table.dataTable thead>tr>th.sorting:before, table.dataTable thead>tr>th.sorting_asc:before, table.dataTable thead>tr>th.sorting_desc:before, table.dataTable thead>tr>th.sorting_asc_disabled:before, table.dataTable thead>tr>th.sorting_desc_disabled:before, table.dataTable thead>tr>td.sorting:before, table.dataTable thead>tr>td.sorting_asc:before, table.dataTable thead>tr>td.sorting_desc:before, table.dataTable thead>tr>td.sorting_asc_disabled:before, table.dataTable thead>tr>td.sorting_desc_disabled:before {
+//   display: none;
+// }
+
+// table.dataTable.table-striped>tbody>tr.even>*, table.dataTable.table-striped>thead>tr.even>* {
+//   box-shadow: inset 0 0 0 9999px rgb(0 0 0 / 5%);
+// }
+// table.dataTable.table-striped>tbody>tr.odd>* {
+//   box-shadow: none;
+// }
+
+// table.dataTable thead td.select-checkbox:before, table.dataTable thead th.select-checkbox:before {
+//   content: " ";
+//   margin-top: -6px;
+//   margin-left: -6px;
+//   border: 1px solid black;
+//   border-radius: 3px;
+// }
+// table.dataTable tbody td.select-checkbox, table.dataTable thead th.select-checkbox {
+//   position: relative;
+// }
+// table.dataTable tbody td.select-checkbox:before, table.dataTable tbody td.select-checkbox:after, table.dataTable thead th.select-checkbox:before, table.dataTable tbody th.select-checkbox:after {
+//   display: block;
+//   position: absolute;
+//   top: 1.4em;
+//   left: 50%;
+//   width: 12px;
+//   height: 12px;
+//   box-sizing: border-box;
+// }
+// table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after {
+//   content: "✓";
+//   font-size: 10px;
+//    margin-top: 0;
+//   margin-left: -6px;
+//   text-align: center;
+//   text-shadow: 1px 1px #b0bed9, -1px -1px #b0bed9, 1px -1px #b0bed9, -1px 1px #b0bed9;
+// }
+// table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-striped>tbody>tr.even.selected>* {
+//   box-shadow: inset 0 0 0 9999px $theme2;
+
+// }
+
+// #example_wrapper{
+//   & .row{
+//     &:nth-child(1){
+//       display: none;
+//     }
+//     &:nth-child(3){
+//       display: none;
+//     }
+//   }
+// }
+
+// My Account
+.myAccount {
+  background-color: #f2f2f2;
+  & form {
+    & .eye-icon {
+      color: #777;
+      top: 13px;
+      right: 25px;
+    }
+
+    & .Inpt {
+      border-bottom: 2px solid #757575 !important;
+      background: #fff !important;
+      border-bottom-left-radius: 0px !important;
+      border-bottom-right-radius: 0px !important;
+      color: #000000;
+
+      &:focus-visible {
+        outline: none !important;
+      }
+    }
+
+    & .form-check {
+      & .form-check-input {
+        box-shadow: none;
+      }
+
+      & .form-check-label {
+        font-weight: 600;
+      }
+    }
+
+    & .sign_up {
+      & a {
+        font-weight: 600;
+        color: #ff4e00;
+      }
+    }
+  }
+  & .profileImg {
+    width: 200px;
+    height: 200px;
+    cursor: pointer;
+    & .changeProfile {
+      & img {
+        object-fit: cover;
+        width: 100%;
+      }
+      & .imgOverlay {
+        opacity: 0;
+        inset: 0;
+        background: #0000007a;
+        transition: opacity .3s;
+      }
+      &:hover{
+        opacity: 1;
+      }
+    }
+  }
+}
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
@@ -182,7 +292,7 @@ table.dataTable thead>tr>th.sorting:before, table.dataTable thead>tr>th.sorting_
 // Medium devices (tablets, less than 992px)
 @media (max-width: 991.98px) {
   @include xxxxxx-xxxxx-mixin-max-md();
-  @include sidebar-toggle-mixin-max-md()
+  @include sidebar-toggle-mixin-max-md();
 }
 
 // Small devices (landscape phones, less than 768px)
