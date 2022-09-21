@@ -36,9 +36,8 @@
 @endpush
 @section('content')
 
-<section class="myEvent">
-    <div class="container-fluid">
-        <div class="topBar py-4 pb-2 pb-sm-4">
+<section class="container-fluid myEvent">
+        <div class="topBar py-3 pb-2 py-sm-4">
             <div class="row justify-content-between mx-0">
                 <div class="col-auto">
                     <div class="title text-theme1 fs-16 fs-sm-20 fs-md-24 fw-bold ">My Event</div>
@@ -51,12 +50,12 @@
         <div class="totalEvents py-2 py-sm-3">
             <div class="row mx-0">
                 <div class="col-auto">
-                    <button type="button" class="btn btn-dark fw-500 fs-12 fs-sm-16 p-1 px-sm-2">
+                    <button type="button" class="btn btn-dark fw-500 fs-10 fs-sm-16 p-1 px-sm-2">
                         Upcoming <span class="badge text-bg-light ms-2">3</span>
                     </button>
                 </div>
-                <div class="col-auto ps-0">
-                    <button type="button" class="btn btn-outline-dark fw-500 fs-12 fs-sm-16 p-1 px-sm-2">
+                <div class="col-auto">
+                    <button type="button" class="btn btn-outline-dark fw-500 fs-10 fs-sm-16 p-1 px-sm-2">
                         Post Events <span class="badge text-bg-secondary ms-2">0</span>
                     </button>
                 </div>
@@ -118,7 +117,6 @@
                 </div>
             </div>
         </div>
-    </div>
 </section>
 
 @endsection

@@ -254,7 +254,7 @@ body{
     & .eye-icon {
       color: #777;
       top: 13px;
-      right: 25px;
+      right: 12px;
     }
 
     & .Inpt {
@@ -287,8 +287,8 @@ body{
     }
   }
   & .profileImg {
-    width: 200px;
-    height: 200px;
+    width: 210px;
+    height: 210px;
     cursor: pointer;
     & .changeProfile {
       & img {
@@ -302,7 +302,9 @@ body{
         transition: opacity .3s;
       }
       &:hover{
-        opacity: 1;
+        & .imgOverlay{
+          opacity: 1;
+        }
       }
     }
   }
