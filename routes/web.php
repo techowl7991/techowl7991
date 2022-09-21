@@ -29,6 +29,7 @@ Route::get('/divprnt/{email}',[AboutController::class,'divprnt']);
 Route::post('/sendata',[AboutController::class,'senddata'])->name('sendata');
 Route::post('/printbadge',[AboutController::class,'printbadge'])->name('printbadge');
 Route::any('/view_event_dt', [AboutController::class, 'view_event_dt']);
+Route::any('/view_event_dt_past', [AboutController::class, 'view_event_dt_past']);
 Route::any('/multidelete', [AboutController::class, 'multi_delete'])->name('multidelete');
 Route::any('/singledel/{id}', [AboutController::class, 'singledelete']);
 Route::any('/dataedit/{id}', [AboutController::class, 'edit']);

@@ -298,22 +298,22 @@ margin-right: 25px;">Add Event</a> -->
                                     </div>
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
-
-
-
-
-                            <div class="container-fluid">
-                                <div class="card mb-4">
-                                    <div class="card-header">Past Events</div>
-                                    {{-- <div class="row">
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                             <div class="container-fluid">
+                            <!-- <div class="card mb-4">
+                                <div class="card-header">Past Events</div>
+                                {{-- <div class="row">
                                     <div class="col-md-12">
                                       <div class="card mb-3">
                                         <div class="card-heading p-3">
@@ -354,31 +354,35 @@ margin-right: 25px;">Add Event</a> -->
                                             href="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.css">
                                         <div class="datatable table-responsive">
 
-                                            <table style="border:none"
-                                                class="table table-bordered table-striped table-hover text-nowrap"
-                                                id="allmatches_datatable" width="100%" cellspacing="0">
-                                                <thead style="background-color:#CCCCCC">
-                                                    <tr>
-                                                        <th class="text-capitalize">Event ID</th>
-                                                        <!--<th class="text-capitalize">Unique Id</th>-->
-                                                        <th class="text-capitalize">Title</th>
-                                                        <th class="text-capitalize">Start Date</th>
-                                                        <!--<th class="text-capitalize">End Date</th>-->
-                                                        <!--<th class="text-capitalize">Address</th>-->
-                                                        <!--<th class="text-capitalize">Total</th>-->
-                                                        <!--<th class="text-capitalize">Vip</th>-->
-                                                        <!--<th class="text-capitalize">Regular</th>-->
-                                                        <!--<th class="text-capitalize">QrCode</th>-->
-                                                        <!--<th class="text-capitalize">Action</th>-->
-                                                    </tr>
-                                                </thead>
-
-                                                <tbody>
-                                                </tbody>
-                                            </table>
-                                        </div>
+                                        <table style="border:none" class="table table-bordered table-striped table-hover text-nowrap"
+                                            id="allmatches_datatable1" width="100%" cellspacing="0">
+                                            <thead style="background-color:#CCCCCC">
+                                                <tr>
+                                                    <th class="text-capitalize">Event ID</th>
+                                                    <th class="text-capitalize"><input class="" type="checkbox" value="" name="select-all" id="flexCheckIndeterminate1"></th>
+                                                    <th class="text-capitalize">Title</th>
+                                                    <th class="text-capitalize">Start Date</th>
+                                                    <th class="text-capitalize">Edit</th>
+                                                    <th class="text-capitalize">Delete</th>
+                                                    <th class="text-capitalize">QRcode</th>
+                                                    <th class="text-capitalize">Guest</th>
+                                                    <th class="text-capitalize">Regular</th>-->
+                                                    <!--<th class="text-capitalize">QrCode</th>-->
+                                                    <!--<th class="text-capitalize">Action</th>-->
+                                               <!-- </tr>
+                                            </thead>
+                                            
+                                            <tbody>
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
+                            </div> -->
+                            
+                            
+                            
+                            
+                            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
 
 
 
@@ -470,26 +474,37 @@ margin-right: 25px;">Add Event</a> -->
                     </div>
                 </div>
     </section>
-    <script>
-        $('#flexCheckIndeterminate').click(function(event) {
-            if (this.checked) {
-                $(':checkbox').each(function() {
-                    this.checked = true;
-                });
-            } else {
-                $(':checkbox').each(function() {
-                    this.checked = false;
-                });
-            }
-        });
-        $('.delbtn').on('click', function() {
-            var arr = $("input[name='id[]']:checked").map(function() {
-                return this.value;
-            }).get();
-            console.log(arr);
-            // return false;
-            if (arr.length != 0) {
-                $.ajax({
+ <script>
+     $('#flexCheckIndeterminate').click(function(event) {
+        if (this.checked) {
+            $(':checkbox').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function() {
+                this.checked = false;
+            });
+        }
+    });
+    $('#flexCheckIndeterminate1').click(function(event) {
+        if (this.checked) {
+            $(':checkbox').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function() {
+                this.checked = false;
+            });
+        }
+    });
+    $('.delbtn').on('click', function(){
+        var arr = $("input[name='id[]']:checked").map(function() {
+            return this.value;
+        }).get();
+        console.log(arr);
+        // return false;
+        if(arr.length != 0){
+            $.ajax({
                     type: "POST",
                     data: {
                         id: arr
