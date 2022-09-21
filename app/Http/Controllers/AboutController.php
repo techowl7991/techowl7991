@@ -82,7 +82,9 @@ class AboutController extends Controller
 
                 $database = $factory->createDatabase();
                 $userProperties = [
-                    'displayName' => $request->name,
+                    // 'displayName' => $request->name,
+                    'FirstName' => $request->fname,
+                    'LastName' => $request->lname,
                     'email' => $request->email,
                     'emailVerified' => false,
                     'password' => $request->password,
@@ -150,6 +152,9 @@ class AboutController extends Controller
         $request->session()->forget('uid');
         return redirect('/login');
     }
+
+    
+
 
     public function addEvent(Request $request)
     {
@@ -506,21 +511,79 @@ class AboutController extends Controller
         echo json_encode($json_data);
     }
 
+
     public function edit(Request $request, $id)
     {
+        
         $mid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
         $snapshot1 = self::$firestoreClient->collection('timezone')->documents();
-            $data = $snapshot1->rows();
-            
+        $data = $snapshot1->rows();
+
         $snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->snapshot()->data();
-        // $docref1 = self::$firestoreClient->collection('visitor')->document($docref->id())->collection('visitor_details')->document($id);
+
+
+        // $docref1 = self::$firestoreClient->collection('visitor')->document($id)->collection('visitor_details')->documents();
         // dd($docref1);
         return view('editevent', compact('snapshot', 'id', 'data'));
     }
+
+    public function update(Request $request, $id)
+    {
+        
+        // dd($id);
+        if ($request->isMethod('put')) {
+            $USERID = $request->session()->get('uid');
+            self::$firestoreProjectId = 'guest-app-2eb59';
+            self::$firestoreClient = new FirestoreClient([
+                'projectId' => self::$firestoreProjectId,
+            ]);
+
+            if (date('m/d/Y h:i:s A', strtotime($request->eventstartdate)) < date('m/d/Y h:i:s A')) {
+                return redirect()->back()->with('alert', 'Start Date Should Be greater then Today Date');
+            }
+            if (date('m/d/Y h:i:s A', strtotime($request->eventenddate)) < date('m/d/Y h:i:s A')) {
+                return redirect()->back()->with('alert', 'End Date Should Be greater then Today Date');
+            }
+
+            $totalvip = 0;
+            $totalreg = 0;
+
+
+            $data1 = [
+                'event_startdate' => $request->eventstartdate,
+                'event_enddate' => $request->eventenddate,
+                'event_name' => $request->eventname,
+                'Reg' => $totalreg,
+                'total' => $totalreg + $totalvip,
+                'vip' => $totalvip,
+                'password' => $request->eventpassword,
+                'event_url' => $request->eventurl,
+                'event_location' => $request->eventlocation,
+                'event_starttime' => $request->eventstarttime,
+                'event_endtime' => $request->eventendtime,
+                'event_timezone' => $request->eventtimezone,
+            ];            
+
+            // dd($data1);
+            $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->document($id)->set($data1);
+            return redirect('/index/' . $request->session()->get('uid'));
+        }
+        else {
+        
+            self::$firestoreProjectId = 'guest-app-2eb59';
+            self::$firestoreClient = new FirestoreClient([
+                'projectId' => self::$firestoreProjectId,
+            ]);
+            $snapshot = self::$firestoreClient->collection('timezone')->documents();
+            $data = $snapshot->rows();
+            return view('editevent', compact('data'));
+        }
+    }
+
 
     public function singledelete(Request $request, $id)
     {

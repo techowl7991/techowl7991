@@ -14,7 +14,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    
+
 
     <!-- <style>
     table {
@@ -34,49 +34,53 @@
       background-color: #dddddd;
     }
   </style> -->
-  
+
     <style>
-        .events_table{
-            color:#FF4E00;
+        .events_table {
+            color: #FF4E00;
             /*font-size:60px;*/
-             font-weight: 800;
+            font-weight: 800;
         }
-        .card-header{
-            color:black;
-            font-size:25px;
-            font-weight:700;
+
+        .card-header {
+            color: black;
+            font-size: 25px;
+            font-weight: 700;
         }
-        
-        
-        td,th{
-            border:none;
+
+
+        td,
+        th {
+            border: none;
         }
-        .printBtn{
-            background-color:#302D2F;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            border:none;
-            
+
+        .printBtn {
+            background-color: #302D2F;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+
         }
-        .printBtn:hover{
-            background-color:#FF4E00;
+
+        .printBtn:hover {
+            background-color: #FF4E00;
         }
-        .printBtn:active{
-            background-color:#FF4E00;
+
+        .printBtn:active {
+            background-color: #FF4E00;
         }
-        .current{
-            background-color:white;
-            height:40px;
-            width:60px;
-            border-radius:25px;
-            
+
+        .current {
+            background-color: white;
+            height: 40px;
+            width: 60px;
+            border-radius: 25px;
+
         }
-        
-        
     </style>
-  
-  
+
+
 
 </head>
 
@@ -99,34 +103,38 @@ text-decoration: none;
 border-radius: 10px;
 font-weight: 600;
 margin-right: 25px;">Add Event</a> -->
-<nav style="background-color:#302D2F" class="navbar navbar-expand-lg">
-  <a class="navbar-brand" href="#"><img src="https://i.ibb.co/Ny6rmJV/logo1.png" alt="logo" border="0"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+    <nav style="background-color:#302D2F" class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#"><img src="https://i.ibb.co/Ny6rmJV/logo1.png" alt="logo"
+                border="0"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-       
-     
-      <div class="dropdown show dropleft">
-  <!--<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-     <i class="material-icons" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:30px;color:black;background-color:white;border-radius:15px">person</i>
-  <!--</a>-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
 
-  <div style="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Profile</a>
-    <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
-    
-  </div>
-</div>
-       
-    </form>
-  </div>
-</nav>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+
+
+                <div class="dropdown show dropleft">
+                    <!--<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <i class="material-icons" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                        aria-expanded="false"
+                        style="font-size:30px;color:black;background-color:white;border-radius:15px">person</i>
+                    <!--</a>-->
+
+                    <div style="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                        <a class="dropdown-item" href="#">Profile</a>
+                        <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </nav>
 
 
     <section class="dashboard">
@@ -163,7 +171,8 @@ margin-right: 25px;">Add Event</a> -->
                                             src="{{ asset('public/img/analytics-color.png') }}" alt=""></div>
                                     <span class="align-items-center d-flex">Analytics</span>
                                 </a></li>
-                            <li class="align-item-center"><a href="" class="text-decoration-none fs-16 d-flex">
+                            <li class="align-item-center"><a href=""
+                                    class="text-decoration-none fs-16 d-flex">
                                     <div class="menuIcon me-2"><img src="{{ asset('public/img/settings.png') }}"
                                             alt=""><img class="d-none img-2"
                                             src="{{ asset('public/img/settings-color.png') }}" alt=""></div>
@@ -191,10 +200,10 @@ margin-right: 25px;">Add Event</a> -->
                                 </div>
                                 <div class="div">
                                     <div class="div">
-                                        Upcoming Event  : {{$upcoming_count}}
+                                        Upcoming Event : {{ $upcoming_count }}
                                     </div>
                                     <div class="div">
-                                        Past Event  : {{$past_count}}
+                                        Past Event : {{ $past_count }}
                                     </div>
                                 </div>
                             </div>
@@ -249,52 +258,62 @@ margin-right: 25px;">Add Event</a> -->
                                     </div>
                                 </div> --}}
                                 <div class="card-body">
-                                <div class="text-right m-2"><button type="button" class="btn btn-danger delbtn">Delete</button></div>
+                                    <div class="text-right m-2"><button type="button"
+                                            class="btn btn-danger delbtn">Delete</button></div>
                                     <link rel="stylesheet" type="text/css"
                                         href="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.css">
                                     <div class="datatable table-responsive">
 
-                                        <table style="border:none" class="table table-bordered table-striped table-hover text-nowrap"
+                                        <table style="border:none"
+                                            class="table table-bordered table-striped table-hover text-nowrap"
                                             id="allmatches_datatable" width="100%" cellspacing="0">
                                             <thead style="background-color:#CCCCCC">
                                                 <tr>
-                                                    <th style="text-align:center;" class="text-capitalize">Event ID</th>
-                                                    <th class="text-capitalize"><input class="" type="checkbox" value="" name="select-all" id="flexCheckIndeterminate"></th>
+                                                    <th style="text-align:center;" class="text-capitalize">Event ID
+                                                    </th>
+                                                    <th class="text-capitalize"><input class="" type="checkbox"
+                                                            value="" name="select-all"
+                                                            id="flexCheckIndeterminate"></th>
                                                     <th class="text-capitalize">Title</th>
-                                                    <th style="text-align:center;" class="text-capitalize">Start Date</th>
+                                                    <th style="text-align:center;" class="text-capitalize">Start Date
+                                                    </th>
                                                     <!--<th class="text-capitalize">End Date</th>-->
-                                                    <th style="text-align:center;" style="width:50px" class="text-capitalize">Edit</th>
+                                                    <th style="text-align:center;" style="width:50px"
+                                                        class="text-capitalize">Edit</th>
                                                     <!-- <th style="text-align:center;" style="width:50px" class="text-capitalize">Delete</th> -->
-                                                    <th style="text-align:center;" style="width:50px" class="text-capitalize">Single Delete</th>
+                                                    <th style="text-align:center;" style="width:50px"
+                                                        class="text-capitalize">Single Delete</th>
                                                     <!--<th class="text-capitalize">Vip</th>-->
                                                     <!--<th class="text-capitalize">Regular</th>-->
-                                                    <th style="text-align:center;width:120px" class="text-capitalize">QRcode</th>
-                                                    <th style="text-align:center;width:120px" class="text-capitalize">Guests</th>
+                                                    <th style="text-align:center;width:120px" class="text-capitalize">
+                                                        QRcode</th>
+                                                    <th style="text-align:center;width:120px" class="text-capitalize">
+                                                        Guests</th>
                                                 </tr>
                                             </thead>
-                                           
+
                                             <tbody>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                            
-                             <div class="container-fluid">
-                            <div class="card mb-4">
-                                <div class="card-header">Past Events</div>
-                                {{-- <div class="row">
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="container-fluid">
+                                <div class="card mb-4">
+                                    <div class="card-header">Past Events</div>
+                                    {{-- <div class="row">
                                     <div class="col-md-12">
                                       <div class="card mb-3">
                                         <div class="card-heading p-3">
@@ -330,146 +349,147 @@ margin-right: 25px;">Add Event</a> -->
                                       </div>
                                     </div>
                                 </div> --}}
-                                <div class="card-body">
-                                    <link rel="stylesheet" type="text/css"
-                                        href="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.css">
-                                    <div class="datatable table-responsive">
+                                    <div class="card-body">
+                                        <link rel="stylesheet" type="text/css"
+                                            href="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.css">
+                                        <div class="datatable table-responsive">
 
-                                        <table style="border:none" class="table table-bordered table-striped table-hover text-nowrap"
-                                            id="allmatches_datatable" width="100%" cellspacing="0">
-                                            <thead style="background-color:#CCCCCC">
-                                                <tr>
-                                                    <th class="text-capitalize">Event ID</th>
-                                                    <!--<th class="text-capitalize">Unique Id</th>-->
-                                                    <th class="text-capitalize">Title</th>
-                                                    <th class="text-capitalize">Start Date</th>
-                                                    <!--<th class="text-capitalize">End Date</th>-->
-                                                    <!--<th class="text-capitalize">Address</th>-->
-                                                    <!--<th class="text-capitalize">Total</th>-->
-                                                    <!--<th class="text-capitalize">Vip</th>-->
-                                                    <!--<th class="text-capitalize">Regular</th>-->
-                                                    <!--<th class="text-capitalize">QrCode</th>-->
-                                                    <!--<th class="text-capitalize">Action</th>-->
-                                                </tr>
-                                            </thead>
-                                            
-                                            <tbody>
-                                            </tbody>
-                                        </table>
+                                            <table style="border:none"
+                                                class="table table-bordered table-striped table-hover text-nowrap"
+                                                id="allmatches_datatable" width="100%" cellspacing="0">
+                                                <thead style="background-color:#CCCCCC">
+                                                    <tr>
+                                                        <th class="text-capitalize">Event ID</th>
+                                                        <!--<th class="text-capitalize">Unique Id</th>-->
+                                                        <th class="text-capitalize">Title</th>
+                                                        <th class="text-capitalize">Start Date</th>
+                                                        <!--<th class="text-capitalize">End Date</th>-->
+                                                        <!--<th class="text-capitalize">Address</th>-->
+                                                        <!--<th class="text-capitalize">Total</th>-->
+                                                        <!--<th class="text-capitalize">Vip</th>-->
+                                                        <!--<th class="text-capitalize">Regular</th>-->
+                                                        <!--<th class="text-capitalize">QrCode</th>-->
+                                                        <!--<th class="text-capitalize">Action</th>-->
+                                                    </tr>
+                                                </thead>
+
+                                                <tbody>
+                                                </tbody>
+                                            </table>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            
-                            
-                            
-                            
-                            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
 
-                            <script type="text/javascript">
-                                $(document).ready(function() {
-                                    $.fn.dataTable.ext.errMode = 'none';
 
-                                    var mid = $('#mid').val();
-                                    var event_name = $('#event_name').val();
-                                    var event_startdate = $('#event_startdate').val();
-                                    $('#allmatches_datatable').DataTable({
-                                        'bFilter': false,
-                                        "processing": true,
-                                        "serverSide": true,
-                                        "searching": false,
-                                        "ajax": {
-                                            "url": '<?php echo URL::asset('view_event_dt'); ?>?event_name=' + event_name + '&event_startdate=' +
-                                                event_startdate + '&mid=' + mid,
-                                            "dataType": "json",
-                                            "type": "POST",
-                                            "data": {
-                                                _token: "{{ csrf_token() }}"
-                                            }
-                                        },
-                                        "dom": 'lBfrtip',
-                                        "buttons": [{
-                                            extend: 'collection',
-                                            text: 'Export',
-                                            buttons: [
-                                                'copy',
-                                                'excel',
-                                                'csv',
-                                                'pdf',
-                                                'print'
+
+
+                                <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
+
+                                <script type="text/javascript">
+                                    $(document).ready(function() {
+                                        $.fn.dataTable.ext.errMode = 'none';
+
+                                        var mid = $('#mid').val();
+                                        var event_name = $('#event_name').val();
+                                        var event_startdate = $('#event_startdate').val();
+                                        $('#allmatches_datatable').DataTable({
+                                            'bFilter': false,
+                                            "processing": true,
+                                            "serverSide": true,
+                                            "searching": false,
+                                            "ajax": {
+                                                "url": '<?php echo URL::asset('view_event_dt'); ?>?event_name=' + event_name + '&event_startdate=' +
+                                                    event_startdate + '&mid=' + mid,
+                                                "dataType": "json",
+                                                "type": "POST",
+                                                "data": {
+                                                    _token: "{{ csrf_token() }}"
+                                                }
+                                            },
+                                            "dom": 'lBfrtip',
+                                            "buttons": [{
+                                                extend: 'collection',
+                                                text: 'Export',
+                                                buttons: [
+                                                    'copy',
+                                                    'excel',
+                                                    'csv',
+                                                    'pdf',
+                                                    'print'
+                                                ]
+                                            }],
+                                            "columns": [{
+                                                    "data": "id",
+                                                    orderable: false
+                                                },
+                                                {
+                                                    "data": "checkb",
+                                                    orderable: false
+                                                },
+                                                {
+                                                    "data": "event_name"
+                                                },
+                                                {
+                                                    "data": "event_startdate"
+                                                },
+
+                                                {
+                                                    "data": "address",
+                                                    orderable: false
+                                                },
+                                                // {
+                                                //     "data": "total",
+                                                //     orderable: false
+                                                // },
+                                                {
+                                                    "data": "singledel"
+                                                },
+                                                // {
+                                                //     "data": "vip",
+                                                //     orderable: false
+                                                // },
+                                                // {
+                                                //     "data": "Reg",
+                                                //     orderable: false
+                                                // },
+                                                {
+                                                    "data": "qrcode",
+                                                    orderable: false
+                                                },
+                                                {
+                                                    "data": "action",
+                                                    orderable: false
+                                                },
                                             ]
-                                        }],
-                                        "columns": [{
-                                                "data": "id",
-                                                orderable: false
-                                            },
-                                            {
-                                                "data": "checkb",
-                                                orderable: false
-                                            },
-                                            {
-                                                "data": "event_name"
-                                            },
-                                            {
-                                                "data": "event_startdate"
-                                            },
-                                            
-                                            {
-                                                "data": "address",
-                                                orderable: false
-                                            },
-                                            // {
-                                            //     "data": "total",
-                                            //     orderable: false
-                                            // },
-                                            {
-                                                "data": "singledel"
-                                            },
-                                            // {
-                                            //     "data": "vip",
-                                            //     orderable: false
-                                            // },
-                                            // {
-                                            //     "data": "Reg",
-                                            //     orderable: false
-                                            // },
-                                            {
-                                                "data": "qrcode",
-                                                orderable: false
-                                            },
-                                            {
-                                                "data": "action",
-                                                orderable: false
-                                            },
-                                        ]
-                                    });
+                                        });
 
-                                });
-                            </script>
+                                    });
+                                </script>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
     </section>
- <script>
-     $('#flexCheckIndeterminate').click(function(event) {
-        if (this.checked) {
-            $(':checkbox').each(function() {
-                this.checked = true;
-            });
-        } else {
-            $(':checkbox').each(function() {
-                this.checked = false;
-            });
-        }
-    });
-    $('.delbtn').on('click', function(){
-        var arr = $("input[name='id[]']:checked").map(function() {
-            return this.value;
-        }).get();
-        console.log(arr);
-        // return false;
-        if(arr.length != 0){
-            $.ajax({
+    <script>
+        $('#flexCheckIndeterminate').click(function(event) {
+            if (this.checked) {
+                $(':checkbox').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $(':checkbox').each(function() {
+                    this.checked = false;
+                });
+            }
+        });
+        $('.delbtn').on('click', function() {
+            var arr = $("input[name='id[]']:checked").map(function() {
+                return this.value;
+            }).get();
+            console.log(arr);
+            // return false;
+            if (arr.length != 0) {
+                $.ajax({
                     type: "POST",
                     data: {
                         id: arr
@@ -477,7 +497,7 @@ margin-right: 25px;">Add Event</a> -->
                     headers: {
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
-                    url: '{{route("multidelete")}}',
+                    url: '{{ route('multidelete') }}',
                     //  beforeSend: function() {
                     // $('.preloader').removeClass('d-none');
                     // },
@@ -493,9 +513,9 @@ margin-right: 25px;">Add Event</a> -->
                     }
 
                 });
-        }
-    })
- </script>
+            }
+        })
+    </script>
 </body>
 
 </html>

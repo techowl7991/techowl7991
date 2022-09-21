@@ -32,6 +32,7 @@ Route::any('/view_event_dt', [AboutController::class, 'view_event_dt']);
 Route::any('/multidelete', [AboutController::class, 'multi_delete'])->name('multidelete');
 Route::any('/singledel/{id}', [AboutController::class, 'singledelete']);
 Route::any('/dataedit/{id}', [AboutController::class, 'edit']);
+Route::any('/dataupdate/{id}', [AboutController::class, 'update'])->name('update');
 Route::any('/view_eventdetail_dt', [AboutController::class, 'view_eventdetail_dt']);
 
 Route::any('/addVisitor/{id}',[AboutController::class,'addVisitor'])->name('addVisitor');
@@ -41,6 +42,7 @@ Route::any('/view_analytics_dt', [AboutController::class, 'view_analytics_dt']);
 Route::get('/analyticsview/{id}',[AboutController::class,'analyticsview']);
 Route::any('/view_anyalyticdetail_dt', [AboutController::class, 'view_anyalyticdetail_dt']);
 Route::any('/exportdataanalytics/{id}',[AboutController::class,'exportdataanalytics'])->name('exportdataanalytics');
+
 
 // Route::get('/login',function(){});
 
