@@ -1,0 +1,52 @@
+.DashBoardSection {
+    & .fixedHeader {
+        height: 60px;
+    }
+    & .bodyScrollPart {
+        height: calc(100vh - 60px);
+        & .sidebarSide {
+            width: 200px;
+            background-color: red;
+            height: 100%;
+        }
+        & .contentSide {
+            width: calc(100% - 200px);
+            overflow-y: auto;
+        }
+    }
+}
+.nonDashBoardSection {
+    & .fixedHeader {
+        height: 60px;
+    }
+    & .bodyScrollPart {
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+}
+@mixin sidebar-toggle-mixin-max-md() {
+    .DashBoardSection {
+        & .fixedHeader {
+        }
+        & .bodyScrollPart {
+            position: relative;
+            & .sidebarSide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translateX(-100%);
+                transition: 0.5s all ease-in-out;
+            }
+            & .contentSide {
+                width: 100% !important;
+                overflow-y: auto;
+            }
+            &.show {
+                & .sidebarSide {
+                    transform: translateX(0);
+                }
+
+            }
+        }
+    }   
+}

@@ -38,7 +38,9 @@
                 <div class="d-flex justify-content-center align-items-center pt-3 pb-4">
                     <div class="w-sm-100px w-80px"><img src="{{ asset('/public/new-design/img/logo.png') }}" alt="" class="w-100"></div>
                 </div>
-                <div class="d-flex justify-content-center align-items-center  Account gap-2"><h4 class="m-0 heading fs-md-20 fs-sm-18 fs-16">Don't have an account?</h4> <div><a href="" class="text-decoration-none fs-md-20 fs-sm-18 fs-16">Sign Up!</a></div>
+                <div class="d-flex justify-content-center align-items-center  Account gap-2">
+                    <h4 class="m-0 heading fs-md-20 fs-sm-18 fs-16">Don't have an account?</h4>
+                    <div><a href="" class="text-decoration-none fs-md-20 fs-sm-18 fs-16">Sign Up!</a></div>
                 </div>
                 <form action="" class="needs-validation pt-sm-5 pt-3 pb-3" id="form2" novalidate>
                     <div class="row">

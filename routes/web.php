@@ -44,3 +44,6 @@ Route::any('/exportdataanalytics/{id}',[AboutController::class,'exportdataanalyt
 Route::any('/new',function(){return view('new-design/index');});
 Route::any('/sign-up',function(){return view('new-design/auth/sign_up');});
 Route::any('/sign-in',function(){return view('new-design/auth/sign_in');});
+Route::any('/add-event',function(){return view('new-design/add-event');});
+Route::any('/create-event',function(){return view('new-design/create-event');});
+

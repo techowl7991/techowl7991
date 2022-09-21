@@ -170,6 +170,7 @@
 // Medium devices (tablets, less than 992px)
 @media (max-width: 991.98px) {
   @include xxxxxx-xxxxx-mixin-max-md();
+  @include sidebar-toggle-mixin-max-md()
 }
 
 // Small devices (landscape phones, less than 768px)

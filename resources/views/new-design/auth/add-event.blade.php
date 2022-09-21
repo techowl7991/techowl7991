@@ -48,7 +48,7 @@
                             <input type="text" placeholder="First Name" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
                         </div>
                         <div class="col-6 mb-3">
-                            <input type="text" placeholder="Last Name" class="  form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
+                        <input type="text" placeholder="Last Name" class="  form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
                         </div>
                         <div class="col-12 mb-3">
                             <input type="email" placeholder="Email Address" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
@@ -68,11 +68,12 @@
                             </div>
                         </div>
                         <div class="col-12 form-check d-flex align-items-center justify-content-center">
-                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="form-check-label fs-sm-16 fs-14" for="flexCheckDefault">
-                                I agree to Vue's Trems of Service and Privacy Policy
-                            </label>
-                        </div>
+                                    <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label fs-sm-16 fs-14" for="flexCheckDefault">
+                                       I agree to Vue's Trems of Service and Privacy Policy
+                                    </label>
+                                </div>
+                        
                         <div class="col-12 mt-5 mb-3 text-center">
                             <button type="submit" class="shadow-none border-0 login_btn fs-16 px-3 py-1">SIGN UP</button>
                         </div>
