@@ -6,6 +6,15 @@ SideClick.addEventListener('click', ()=>{
 })
 
 
+// calendar
+$("#basicDate").flatpickr({
+    dateFormat: "Y-m-d"
+});
+$("#endDate").flatpickr({
+    dateFormat: "Y-m-d"
+});
+
+// Time
 $(document).ready(function() {
     $('#example').DataTable({
         columnDefs: [ {

@@ -2,7 +2,9 @@
 
 @import "variables";
 @import "main";
-
+body{
+  font-family: 'Poppins', sans-serif !important;
+}
 .signUpPage {
   height: 100vh;
 
@@ -33,10 +35,10 @@
 
           & .Inpt {
             border-bottom: 2px solid #757575 !important;
-            background: #f2f2f2;
+            background-color: #f2f2f2;
             border-bottom-left-radius: 0px !important;
             border-bottom-right-radius: 0px !important;
-            color: #000000;
+            color: #757575;
 
             &:focus-visible {
               outline: none !important;
@@ -77,6 +79,58 @@
         right: -14px;
         z-index: -1;
       }
+    }
+  }
+}
+
+.Create_Event {
+  & .innerPage {
+    & .Sign_Up {
+      & .card {
+        & .Account.event_info {
+        background-color: #757575;
+      
+        }
+
+      & form {
+        & .calendar,.clock {
+            background-repeat: no-repeat;
+            background-position: center right 0.63em;
+            background-size: 1.2em;
+        }
+        & .calendar {
+          background-image: url(../img/calendar.png);
+        }
+       & .clock {
+          position: relative;
+          }
+          & .clock::-webkit-calendar-picker-indicator {
+              background-image: url(../img/clock.png);
+              background-size: 1.2em;
+          }
+
+     
+        & .Url_example {
+          color: #757575;
+        }
+        & .input-group  {
+          & .form-select {
+            color: #757575;
+            & .choose {
+              transition: 0.3s all ease-in-out;
+              &:hover{
+                background-color: $theme1 !important;
+                color: $theme2 !important;
+              }
+            }
+          }
+        }
+     & .chooseFile {
+      cursor: pointer;
+     }
+      }
+      }
+     
     }
   }
 }
