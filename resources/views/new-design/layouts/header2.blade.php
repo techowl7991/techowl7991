@@ -4,7 +4,7 @@
     <div class="nav-body d-flex align-items-center" id="navbarSupportedContent">
         <!-- SideClick Button -->
         <div class="me-3">
-        <button id="SideClick" class="show_sidebar_btn shadow-none border-0 rounded p-1 bg-theme1 fs-16 fw-normal text-white" >click</button>
+        <button id="SideClick" class="show_sidebar_btn shadow-none border-0 rounded bg-theme2 d-flex justify-content-center align-items-center" ><i class="imgs img-bars fs-25 text-white"></i></button>
         </div>
         <!-- SideClick Button End-->
       <ul class="navbar-nav me-auto mb-0">

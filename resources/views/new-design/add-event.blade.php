@@ -30,7 +30,8 @@
 @push('styles')
 @endpush
 @section('content')
-<div>start here</div>
+
+
 
 @endsection
 @push('scripts')

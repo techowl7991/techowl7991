@@ -1,39 +1,153 @@
 @extends('new-design.main3')
 
 @push('meta')
-    <title>page_title</title>
+<title>page_title</title>
 
-    <meta name="title" content="page_title" />
-    <meta name="description" content="page_description" />
-    <meta name="keywords" content="page_keywords" />
+<meta name="title" content="page_title" />
+<meta name="description" content="page_description" />
+<meta name="keywords" content="page_keywords" />
 
-    <meta name="robots" content="index, follow" />
-    
-    <meta name="twitter:title" content="page_title">
-    <meta name="twitter:description" content="page_description">
-    <meta name="twitter:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+<meta name="robots" content="index, follow" />
 
-    
-    <meta property="og:url" content="{{ asset('/') }}">
-    <meta property="og:title" content="page_title">
-    <meta property="og:description" content="page_description">
-    <meta property="og:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
-    <meta property="og:image:secure_url" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
-    <meta name="classification" content="page_title" />
-    
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" />
-    <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-original.png') }}" id="light-scheme-icon">
-    <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" id="dark-scheme-icon">
-    <link rel="canonical" href="{{ asset('/') }}" />
+<meta name="twitter:title" content="page_title">
+<meta name="twitter:description" content="page_description">
+<meta name="twitter:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+
+
+<meta property="og:url" content="{{ asset('/') }}">
+<meta property="og:title" content="page_title">
+<meta property="og:description" content="page_description">
+<meta property="og:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+<meta property="og:image:secure_url" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+<meta name="classification" content="page_title" />
+
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" />
+<link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-original.png') }}" id="light-scheme-icon">
+<link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" id="dark-scheme-icon">
+<link rel="canonical" href="{{ asset('/') }}" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
 @endpush
 @push('styles')
 @endpush
 @section('content')
-<div class="p-5">
-</div>
-Lorem ipsum dolor sit amet consectetur, adipisicing elit. Amet aperiam odio sit quas obcaecati quis quidem officiis, mollitia nemo error architecto aut dignissimos tempora aliquid debitis, laudantium velit esse qui odit, cum expedita saepe perspiciatis. Animi voluptatibus earum sint quis soluta accusantium velit magnam incidunt labore eaque aspernatur odit voluptas et laborum rerum, ut, adipisci non blanditiis qui dolore, ducimus vitae exercitationem. Dolores quae, ea molestias, nihil temporibus similique veniam sapiente asperiores vero consectetur voluptate eos. Optio laborum quaerat quis magni repudiandae voluptatum exercitationem cumque minus facere quibusdam libero ipsum ipsa vitae nam amet perferendis aspernatur, deserunt nemo architecto id veritatis? Suscipit earum magni accusamus! Possimus aperiam tempora aspernatur minima expedita reiciendis vero fugiat incidunt corporis, repudiandae veniam ipsum quod nam repellendus blanditiis id atque culpa qui! Eius saepe tempore velit ipsa, laboriosam commodi veritatis in nihil iure vitae beatae. Quaerat sint quos ipsam molestias hic deleniti, iste delectus, ad, quo quia alias incidunt eius earum quas nemo sunt maiores ullam ipsum ducimus eum corporis tenetur eveniet quam exercitationem! Ullam, non veniam beatae perspiciatis laudantium reiciendis doloribus enim tempora distinctio dicta autem nulla sed ex totam dolor aperiam numquam quaerat officia itaque mollitia adipisci. Eum qui labore, facilis molestiae ad architecto odit corporis earum, aliquid optio ex quis? Facilis, quisquam distinctio deserunt, nulla eius, saepe ex voluptate cupiditate reiciendis quibusdam facere commodi nihil ratione? Suscipit modi debitis omnis nostrum voluptates mollitia quod reiciendis quasi tempore! Dolorem mollitia culpa numquam qui atque maxime totam! Rerum iure veritatis odit dolorum velit sequi quia, nobis, illum accusamus vero, dolorem eos impedit voluptas iste at ipsam adipisci! Unde, sequi? Necessitatibus nisi possimus, ipsam vitae quas numquam aliquid totam dolorum nemo magni quasi, animi amet, iure ducimus similique! Itaque laudantium ut obcaecati sunt sequi? Fuga, aspernatur repudiandae sed inventore tempore neque atque odit quisquam repellat quas laboriosam ratione assumenda quod nam, corrupti quis unde ipsa. Nihil quaerat, nobis eius veritatis porro quo fuga officiis hic, iste praesentium recusandae culpa. Aut debitis explicabo, maiores doloremque eaque, iusto repellendus, vitae libero aliquam amet reiciendis deleniti quis? Aperiam iure sapiente ullam doloribus dolore quis ipsa quas in non amet. Magni iste officiis, consequatur distinctio ea placeat nostrum ipsa doloribus totam expedita corrupti debitis quaerat rem numquam, at nisi deleniti nemo? Vel dignissimos nemo voluptatibus hic quibusdam, repudiandae, nostrum maiores deleniti soluta accusantium, tempora praesentium ipsam aperiam nobis error? Nulla molestiae obcaecati nisi asperiores iure quaerat impedit animi quidem aliquid illum maiores maxime molestias ratione laboriosam, ad architecto distinctio nobis similique ea rem. Dolores minima perferendis, provident tempore quia praesentium a, ratione ea, laboriosam veniam possimus iure. Dicta omnis esse laboriosam soluta cupiditate velit voluptatibus, sapiente deserunt, maiores, officia eaque nesciunt! Assumenda repellat in odit iure nostrum debitis eius tenetur natus, ducimus cupiditate accusantium, expedita fugiat rerum tempore quasi laudantium corporis, sunt laboriosam quam voluptatum dignissimos quas et soluta commodi? Sunt eaque earum ad? Aliquid nesciunt ipsum rerum possimus ex dicta quo, dignissimos porro eius magnam velit. Soluta nihil nostrum laboriosam saepe eveniet nisi maiores corrupti autem, cumque eum assumenda animi facilis minus pariatur magnam eligendi quia! Veniam quibusdam quis perferendis iure corrupti repellat deleniti iusto ut porro accusamus excepturi neque aperiam ea expedita accusantium repudiandae minus repellendus error voluptas distinctio, harum illum! Fugiat magnam ad velit suscipit impedit in assumenda tempora excepturi ducimus at. Ipsa vel dolore explicabo repellendus debitis totam dignissimos distinctio accusamus. Velit dolores alias ad! Id est pariatur excepturi ea! Ipsa vitae inventore laudantium libero, velit ut vel. Repellendus dolorem temporibus repellat facilis voluptates alias, provident aliquam unde, possimus tenetur explicabo modi, suscipit quod! Perspiciatis, itaque eius, delectus illum voluptates cupiditate voluptas saepe quia architecto corrupti veniam nam, labore error quidem debitis at cumque atque? Laboriosam laudantium in, suscipit iste magni minima doloremque id modi voluptate eveniet. Quasi magnam quibusdam non cupiditate debitis dolorem facilis voluptas amet, dolor odit aliquid doloribus vitae sed reprehenderit fugiat impedit reiciendis fuga consectetur qui aspernatur necessitatibus? Expedita cupiditate temporibus eos, aliquam distinctio delectus ratione quidem iste dignissimos dolores minima officia facilis cumque aperiam maiores nulla praesentium similique quisquam consequatur facere. Earum eveniet placeat incidunt amet eligendi. Accusantium, cumque natus commodi reprehenderit consectetur aspernatur fugit. Quam, porro voluptatum commodi dolor dignissimos quasi quo provident quis repellat facere possimus voluptate nulla? Tempora, magnam. Perspiciatis dignissimos perferendis assumenda cumque nihil vitae fugit repellat praesentium iste excepturi tempora inventore tempore alias, ut deleniti maiores in sequi dolore itaque debitis incidunt temporibus eveniet eligendi suscipit? Laudantium veritatis voluptatum deleniti sint eaque tempora nam nobis. Veritatis alias possimus dolores totam ullam, minima, dicta necessitatibus accusamus iusto ipsam ut illo eum optio consectetur sequi vel nesciunt nihil aut enim molestias cumque, id distinctio. Nam esse possimus perferendis ab quas reprehenderit, consequatur alias voluptas fuga vitae nulla, itaque atque similique modi consectetur sit magnam dolores sequi fugit quia quae earum saepe molestiae! Fuga porro mollitia dolorum repellat dolore, iste id dicta accusamus quidem nostrum a laborum doloremque temporibus consectetur, earum similique voluptatibus? Architecto quo similique commodi ipsum. Magnam, tempora! Vel ullam odio optio neque est sint! Ipsum excepturi molestiae vitae nesciunt fugit mollitia exercitationem, culpa, at necessitatibus cupiditate error a quibusdam. Cum, at itaque! Eaque ducimus vero est, architecto, explicabo pariatur commodi voluptatem excepturi perspiciatis laudantium dolor atque doloribus aperiam enim voluptates veniam asperiores recusandae laboriosam earum ullam? Magni, cumque? Molestias at molestiae doloremque commodi, iste minus assumenda ab sed impedit, dolores iusto enim cum soluta dolore quo optio repellat quod odio omnis necessitatibus! Ea adipisci necessitatibus impedit nesciunt soluta? Eius minus repellat aliquid autem corporis ullam exercitationem adipisci, veritatis recusandae rerum unde similique, illo quam dolor repellendus ipsum qui sint! Provident earum expedita modi aut excepturi tempora dolorum! Ipsum tempore unde ratione odit voluptates laudantium veritatis, laboriosam, repellat facilis nisi autem ipsa itaque accusamus commodi voluptate, vel at architecto doloribus nam quod deleniti nesciunt? Aperiam dolor dolores cupiditate molestiae repellendus quidem iure error ex eum nulla eligendi maxime harum suscipit laborum reprehenderit sed saepe tenetur accusamus, animi debitis. Eveniet porro perspiciatis vero error quae veritatis numquam placeat aspernatur. Quos neque voluptate aliquid esse ipsum velit eligendi, commodi in. Reprehenderit debitis aliquid quisquam a nihil nulla minima, maxime voluptate recusandae consequatur non mollitia alias fugit ipsa necessitatibus sint at! Officia ea, delectus, itaque inventore alias sequi culpa cum minima esse blanditiis consequuntur debitis odit mollitia, nam saepe. Excepturi inventore, dignissimos vero tempora eos ex iste nesciunt sed eius consequatur eaque quasi ratione sit quos placeat exercitationem, facilis a cupiditate tenetur quidem nemo quas? Itaque, praesentium ex aliquam nesciunt dolore maxime expedita dolorem similique. Beatae repellendus, minus quae placeat facilis excepturi ut ipsum! Rem nam, enim, suscipit odio aliquam doloremque consequatur beatae error autem quibusdam impedit vitae corporis quos facilis blanditiis voluptates fugit distinctio! Nesciunt commodi omnis dicta facilis nemo corrupti vero voluptates mollitia rerum accusamus laboriosam sapiente consequatur et tenetur ea ad eius non, illum consequuntur dolores modi. Ab est libero saepe? Sint minus ipsum recusandae tempora atque temporibus qui dolor possimus eaque hic, accusantium voluptatem pariatur quasi explicabo sequi quidem nobis earum, est obcaecati tenetur in. Enim tempora saepe laudantium aspernatur, necessitatibus itaque? Illo assumenda, mollitia sit deleniti accusantium nam perspiciatis. Porro deleniti perferendis facilis numquam, deserunt iure accusantium officiis voluptatem omnis ullam laudantium in fuga error! Alias consequatur similique laudantium pariatur reiciendis nemo ratione repudiandae vitae, sequi mollitia, velit iusto laboriosam quidem doloremque. Sit similique nobis error eum eos, iure ratione? Sit fugiat nulla soluta explicabo mollitia error esse perferendis minus impedit totam culpa recusandae similique, tempora voluptas nostrum? Odit praesentium dolores nostrum iure cumque veniam voluptate, in, perspiciatis, nihil amet quibusdam. Maxime, inventore! Blanditiis error nemo dolores quos cupiditate corrupti, ducimus sequi in fugiat earum molestiae officiis cumque deleniti, mollitia deserunt voluptate qui nulla optio non? Ut culpa error nesciunt officia? Neque exercitationem qui at repellat maiores asperiores et quo! Quas nemo corporis sequi, voluptatibus maxime vel necessitatibus sint nam consequatur neque vero quibusdam autem excepturi, quo facere optio aliquid libero odit ipsum doloribus, alias expedita? Est dicta distinctio, incidunt adipisci tenetur laudantium minus dignissimos soluta voluptates repudiandae molestias nostrum temporibus impedit, doloremque debitis explicabo molestiae cum sapiente inventore possimus aliquam? Voluptatum dolorem hic consequatur. Culpa quidem voluptates fugiat facere ipsam, iste velit sapiente reiciendis dolor rem dolore, fuga id tenetur officia, consectetur quisquam ea pariatur assumenda quae facilis necessitatibus. Numquam, culpa. Nulla vel, ad commodi odio illo error optio eum asperiores id animi aliquam ut tempora quod ipsa illum tenetur quaerat molestias deleniti voluptates repudiandae eaque cupiditate, dolores ea laborum! Praesentium modi quidem laboriosam suscipit laborum repellat. Ipsam nesciunt atque a soluta, dignissimos sit sunt cum aspernatur commodi, vitae temporibus fugit voluptatem nobis dicta voluptas ex. Porro eos illum distinctio, quasi voluptates molestiae iure animi voluptatum necessitatibus explicabo placeat veniam nihil ipsam recusandae laborum autem mollitia aliquam nam commodi accusantium nostrum, repellendus exercitationem odit. Molestias impedit voluptatem voluptatibus libero ipsa, placeat alias nemo dolores. Ipsam, optio nisi. Autem voluptatum nobis tempora sit ut, nisi labore eveniet velit inventore repellat atque facere doloremque harum tenetur, animi esse. Esse deleniti repellendus, vitae quasi, aliquam sint, ratione facilis corporis sit accusamus illum. Dolorum aliquid rem et reprehenderit eligendi adipisci, vitae qui animi. Obcaecati, doloremque nam nesciunt ex earum beatae veritatis voluptatem neque labore, eaque sit impedit vero doloribus, ab a reprehenderit tempora culpa quia maiores laborum natus sunt assumenda praesentium? Quam, tempora. Quos corrupti dolores magni quam quae, nobis nam distinctio similique voluptates minus tempora laborum veritatis. Exercitationem quasi aperiam sed magni placeat vitae dolorem laudantium molestiae quibusdam, ipsam, cum odio fuga hic officia architecto eius assumenda? Iusto ducimus eveniet corrupti cupiditate veniam inventore quas, asperiores nisi ex at illo est, nesciunt tenetur. Temporibus maiores alias repellat veniam praesentium accusantium iusto? Eaque, voluptas consequuntur ut dolores at accusantium, deleniti in sunt, qui magnam quaerat est aliquid consequatur? Iste ab libero, ipsum veritatis tempora ea perferendis fuga amet in sit ex expedita corrupti quasi! Architecto nemo aliquid sit sed neque, qui accusantium quaerat cum ducimus reprehenderit, nulla repellendus officiis! Quibusdam nihil natus, et explicabo sunt placeat fugiat cum, nesciunt velit impedit eum autem corrupti! Atque, provident placeat! Repudiandae voluptates deserunt veritatis quasi laudantium harum voluptas tenetur necessitatibus esse aliquam voluptate minus nisi aspernatur, ea vitae, cumque reprehenderit enim repellat accusamus dolores minima! Aspernatur pariatur culpa commodi neque voluptatum quis, repudiandae dolore. Molestias, rerum? Dolore dolores dolorem, id laudantium nesciunt consequatur temporibus aperiam, eius nisi omnis unde modi cum incidunt, quidem facere! Totam cumque voluptas mollitia optio omnis quod in illo? Quos, tenetur quo ea distinctio non recusandae ducimus laudantium reiciendis blanditiis ex molestiae necessitatibus sint reprehenderit mollitia eveniet nam. Excepturi nostrum doloribus deserunt sed molestiae earum. Qui vitae nam, aliquam placeat cupiditate labore, possimus, cumque nemo inventore ratione earum aperiam quod numquam eligendi necessitatibus enim veritatis! Commodi aliquam similique veniam, quos cupiditate excepturi blanditiis repellendus reprehenderit dignissimos facilis, explicabo itaque quae! Quas nihil dolorum amet recusandae libero! Dolorem deserunt ab itaque voluptatibus, rerum cupiditate et odio maxime ad veritatis assumenda illo amet sit, dolor dolore ea voluptatem quae nesciunt nulla voluptatum atque, quisquam accusantium hic? Dolores qui veritatis nemo at porro architecto? Ipsa officiis illum eos! Culpa consequuntur esse fugiat perferendis porro iste distinctio laborum, minus enim assumenda impedit ipsum atque pariatur architecto fuga vero quos! Sequi vero molestias voluptatem deleniti animi labore odio cumque aperiam ex minus quam molestiae pariatur eaque beatae id maiores, illum veritatis ab unde et quod repellat officia praesentium? Assumenda exercitationem, cupiditate nesciunt nam magni velit esse. Sequi amet necessitatibus quis vel repudiandae ut in quam ex illo inventore iure mollitia pariatur, corrupti laboriosam praesentium vero nesciunt placeat nobis aperiam a illum distinctio rerum! Esse, doloribus harum, ex eius ea repudiandae odit dolorem molestias placeat temporibus itaque quisquam inventore libero iste alias numquam. Maxime repellat ad animi nostrum, at error sed nam? Sequi repellendus nihil corrupti ab quos reiciendis ipsum laborum? Dolore, magni accusantium. Voluptatem ex ipsam nulla perspiciatis nobis ducimus id, excepturi reiciendis odit nesciunt enim exercitationem quam voluptatum molestiae quasi minus, numquam distinctio fugit. Provident illum, repudiandae odio laudantium nihil consectetur debitis, nulla asperiores dignissimos eveniet at adipisci voluptas iste, corrupti recusandae expedita quis? Distinctio reprehenderit nihil maxime porro possimus.
+<div class="container-fluid signUpPage d-flex justify-content-center align-items-center Create_Event px-0">
+    <div class="row innerPage justify-content-center align-items-center h-100 w-100">
+        <div class="col-xl-5 col-lg-6 col-md-7 col-sm-8 col-12 Sign_Up">
+            <div class="card border-0 px-0 py-2 bg-white ">
+                <div class="row mx-0">
+                    <div class="col-12 Account px-4 py-2">
+                        <h4 class="m-0 heading text-theme2 fw-bold fs-md-20 fs-18">Create Event</h4>
+                    </div>
+                    <div class="col-12 Account event_info px-4 py-2">
+                        <h4 class="m-0 heading fw-bold text-white fs-16">Event Information</h4>
+                    </div>
+                </div>
+                <form action="" class="needs-validation px-4 py-3" id="form2" novalidate>
+                    <div class="row">
+                        <div class="col-12 mb-3">
+                            <input type="text" placeholder="Event Name" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                        </div>
+                        <div class="col-12 mb-3 password-field position-relative">
+                            <input type="password" placeholder="Confirm Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                            <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                            <div class="invalid-feedback fs-14">
+                                Please enter your phone number or email
+                            </div>
+                        </div>
+                        <div class="col-12 mb-3">
+                            <input type="url" placeholder="Enter a Location" class="  form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
+                        </div>
+                        <div class="col-12 input-group mb-3">
+                            <input type="text" class="form-control shadow-none rouded-0 Inpt border-0 p-2 fs-16 fw-normal" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                            <span class="input-group-text Inpt border-0 fs-16 Url_example" id="basic-addon2">.nowvue.com</span>
+                        </div>
+                        <div class="col-6 mb-3 flatpickr ">
+                            <input type="text" placeholder="Start Date" class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="basicDate" required>
+                            <div class="invalid-feedback fs-14">
+                                Please enter your phone number or email
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3 flatpickr ">
+                            <input type="text" placeholder="End Date" class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="endDate" required>
+                            <div class="invalid-feedback fs-14">
+                                Please enter your phone number or email
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <input type="time" placeholder="Start Time" class="form-control clock shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
+                            <div class="invalid-feedback fs-14">
+                                Please enter your phone number or email
+                            </div>
+                        </div>
+                        <div class="col-6 mb-3">
+                            <input type="time" placeholder="End Time" class="form-control clock shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
+                            <div class="invalid-feedback fs-14">
+                                Please enter your phone number or email
+                            </div>
+                        </div>
+                        <div class="col-12 input-group mb-3">
+                            <select class="form-select shadow-none Inpt border-0" id="inputGroupSelect01">
+                                <option class="choose py-1" selected>Select Timezone</option>
+                                <option class="choose py-1" value="1">One</option>
+                                <option class="choose py-1" value="2">Two</option>
+                                <option class="choose py-1" value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-12 text-theme2 fs-16 fw-bold mb-3">Add Attendees List</div>
+                        <div class="col-12 mb-3 d-flex align-items-center gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                <label class="form-check-label fw-normal text-theme2" for="flexRadioDefault1">
+                                    Excel File
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                                <label class="form-check-label fw-normal text-theme2" for="flexRadioDefault2">
+                                    Manually
+                                </label>
+                            </div>
+                        </div>
 
+                        <div class="col-12">
+                            <input class="form-control d-none" type="file" id="chooseFile">
+                            <label for="chooseFile" class="bg-theme2 chooseFile px-4 py-2 text-white fw-bold rounded text-uppercase fs-14">Upload File</label>
+                        </div>
+
+                        <div class="col-12 manually_tab">
+                            <div class="row">
+                                <div class="col-12">
+                                    <table class="table caption-top">
+                                        <caption>List of users</caption>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"  class="">First Name</th>
+                                                <th scope="col"  class="">Last Name</th>
+                                                <th scope="col"  class="">Type</th>
+                                                <th scope="col"  class="">Organisation</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                                <td>@mdo</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 @endsection
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 @endpush

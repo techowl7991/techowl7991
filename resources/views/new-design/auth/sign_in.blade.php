@@ -45,10 +45,10 @@
                 <form action="" class="needs-validation pt-sm-5 pt-3 pb-3" id="form2" novalidate>
                     <div class="row">
                         <div class="col-6 mb-3">
-                            <input type="text" placeholder="First Name" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
+                            <input type="text" placeholder="First Name" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
                         </div>
                         <div class="col-6 mb-3">
-                            <input type="text" placeholder="Last Name" class="  form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
+                            <input type="text" placeholder="Last Name" class="  form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
                         </div>
                         <div class="col-12 mb-3">
                             <input type="email" placeholder="Email Address" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
@@ -92,7 +92,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @endsection
