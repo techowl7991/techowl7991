@@ -3,24 +3,30 @@
 @import "variables";
 @import "main";
 
+body {
+  font-family: 'Poppins', sans-serif !important;
+}
+
 .signUpPage {
   height: 100vh;
 
   & .innerPage {
-     background: #f2f2f2;
+    background: #f2f2f2;
     & .Sign_Up {
       z-index: 5;
+
       & .card {
         border-radius: 8px;
 
         & .Account {
-         & .heading, a{
+          & .heading,
+          a {
             font-weight: 600;
           }
-          
-            & a {
-              color: #ff4e00;
-            }
+
+          & a {
+            color: #ff4e00;
+          }
         }
 
         & form {
@@ -32,15 +38,14 @@
 
           & .Inpt {
             border-bottom: 2px solid #757575 !important;
-            background: #f2f2f2;
+            background-color: #f2f2f2;
             border-bottom-left-radius: 0px !important;
             border-bottom-right-radius: 0px !important;
-            color: #000000;
+            color: #757575;
 
             &:focus-visible {
               outline: none !important;
             }
-
           }
 
           & .form-check {
@@ -50,7 +55,6 @@
 
             & .form-check-label {
               font-weight: 600;
-
             }
           }
 
@@ -62,17 +66,21 @@
           }
         }
       }
+
       .back_img {
         width: 100px;
         position: absolute;
       }
+
       & .back_img1 {
         right: 100px;
       }
+
       & .back_img2 {
         left: -87px;
         top: 40px;
       }
+
       & .back_img3 {
         top: -32px;
         right: -14px;
@@ -82,104 +90,410 @@
   }
 }
 
+.Create_Event {
+  height: auto !important;
+  & .innerPage {
+    & .Sign_Up {
+      & .card {
+        & .Account.event_info {
+          background-color: #757575;
+
+        }
+
+        & form {
+
+          & .calendar {
+            background-repeat: no-repeat;
+            background-position: center right 0.63em;
+            background-size: 1.2em;
+          }
+
+          & .calendar {
+            background-image: url(../img/calendar.png);
+          }
+
+          & .clock {
+            position: relative;
+            
+          }
+
+          & .clock::-webkit-calendar-picker-indicator {
+            background-image: url(../img/clock.png);
+            background-size: 1.2em;
+            cursor: pointer;
+          }
+
+
+          & .Url_example {
+            color: #757575;
+          }
+
+          & .input-group {
+            & .form-select {
+              color: #757575;
+
+              & .choose {
+                transition: 0.3s all ease-in-out;
+
+                &:hover {
+                  background-color: $theme1  !important;
+                  color: $theme2  !important;
+                }
+              }
+            }
+          }
+
+          & .chooseFile {
+            cursor: pointer;
+          }
+          & .manually_tab {
+            & .table-responsive {
+              white-space: nowrap;
+              & .table {
+                & thead {
+                  & tr {
+                    background-color: #757575;
+                    & th {
+                      color: #F2F2F2;
+                    }
+                  }
+                }
+                & tbody {
+                 
+                  & tr {
+                    & td {
+                      background-color: #e2e2e2;
+                   & .form-control {
+                    color: #757575 !important;
+                   }
+                    }
+                  }
+                }
+              }
+            }
+           
+          }
+
+        }
+      }
+
+    }
+  }
+}
+
 // Small devices (landscape phones, 576px and up)
 
-@mixin xxxxxx-xxxxx-mixin-min-sm() {}
+@mixin xxxxxx-xxxxx-mixin-min-sm() {
+}
 
 // Medium devices (tablets, 768px and up)
-@mixin xxxxxx-xxxxx-mixin-min-md() {}
+@mixin xxxxxx-xxxxx-mixin-min-md() {
+}
 
 // Large devices (desktops, 992px and up)
-@mixin xxxxxx-xxxxx-mixin-min-lg() {}
+@mixin xxxxxx-xxxxx-mixin-min-lg() {
+}
 
 // X-Large devices (large desktops, 1200px and up)
-@mixin xxxxxx-xxxxx-mixin-min-xl() {}
+@mixin xxxxxx-xxxxx-mixin-min-xl() {
+}
 
 // XX-Large devices (larger desktops, 1400px and up)
-@mixin xxxxxx-xxxxx-mixin-min-xxl() {}
+@mixin xxxxxx-xxxxx-mixin-min-xxl() {
+}
 
 // X-Small devices (portrait phones, less than 576px)
 @mixin xxxxxx-xxxxx-mixin-max-xs() {
   .back_img {
     width: 70px !important;
   }
+
   .back_img1 {
     right: 50px !important;
   }
-  .back_img2{
+  .back_img2 {
     left: -58px !important;
   }
-  .back_img3{
+  .back_img3 {
     top: -22px !important;
     right: -6px !important;
   }
-
 }
-// 
-
+//
 
 // Small devices (landscape phones, less than 768px)
-@mixin xxxxxx-xxxxx-mixin-max-sm() {}
+@mixin xxxxxx-xxxxx-mixin-max-sm() {
+}
 
 // Medium devices (tablets, less than 992px)
-@mixin xxxxxx-xxxxx-mixin-max-md() {}
+@mixin xxxxxx-xxxxx-mixin-max-md() {
+}
 
 // Large devices (desktops, less than 1200px)
-@mixin xxxxxx-xxxxx-mixin-max-lg() {}
+@mixin xxxxxx-xxxxx-mixin-max-lg() {
+}
 
 // X-Large devices (large desktops, less than 1400px)
-@mixin xxxxxx-xxxxx-mixin-max-xl() {}
+@mixin xxxxxx-xxxxx-mixin-max-xl() {
+}
 
+// table.dataTable thead>tr>th.sorting:after, table.dataTable thead>tr>th.sorting_asc:after, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>th.sorting_asc_disabled:after, table.dataTable thead>tr>th.sorting_desc_disabled:after, table.dataTable thead>tr>td.sorting:after, table.dataTable thead>tr>td.sorting_asc:after, table.dataTable thead>tr>td.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc_disabled:after, table.dataTable thead>tr>td.sorting_desc_disabled:after {
+//   display: none;
+// }
+// table.dataTable thead>tr>th.sorting:before, table.dataTable thead>tr>th.sorting_asc:before, table.dataTable thead>tr>th.sorting_desc:before, table.dataTable thead>tr>th.sorting_asc_disabled:before, table.dataTable thead>tr>th.sorting_desc_disabled:before, table.dataTable thead>tr>td.sorting:before, table.dataTable thead>tr>td.sorting_asc:before, table.dataTable thead>tr>td.sorting_desc:before, table.dataTable thead>tr>td.sorting_asc_disabled:before, table.dataTable thead>tr>td.sorting_desc_disabled:before {
+//   display: none;
+// }
 
+// table.dataTable.table-striped>tbody>tr.even>*, table.dataTable.table-striped>thead>tr.even>* {
+//   box-shadow: inset 0 0 0 9999px rgb(0 0 0 / 5%);
+// }
+// table.dataTable.table-striped>tbody>tr.odd>* {
+//   box-shadow: none;
+// }
+
+// table.dataTable thead td.select-checkbox:before, table.dataTable thead th.select-checkbox:before {
+//   content: " ";
+//   margin-top: -6px;
+//   margin-left: -6px;
+//   border: 1px solid black;
+//   border-radius: 3px;
+// }
+// table.dataTable tbody td.select-checkbox, table.dataTable thead th.select-checkbox {
+//   position: relative;
+// }
+// table.dataTable tbody td.select-checkbox:before, table.dataTable tbody td.select-checkbox:after, table.dataTable thead th.select-checkbox:before, table.dataTable tbody th.select-checkbox:after {
+//   display: block;
+//   position: absolute;
+//   top: 1.4em;
+//   left: 50%;
+//   width: 12px;
+//   height: 12px;
+//   box-sizing: border-box;
+// }
+// table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after {
+//   content: "✓";
+//   font-size: 10px;
+//    margin-top: 0;
+//   margin-left: -6px;
+//   text-align: center;
+//   text-shadow: 1px 1px #b0bed9, -1px -1px #b0bed9, 1px -1px #b0bed9, -1px 1px #b0bed9;
+// }
+// table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-striped>tbody>tr.even.selected>* {
+//   box-shadow: inset 0 0 0 9999px $theme2;
+
+// }
+
+// #example_wrapper{
+//   & .row{
+//     &:nth-child(1){
+//       display: none;
+//     }
+//     &:nth-child(3){
+//       display: none;
+//     }
+//   }
+// }
+
+// My Account
+.myAccount {
+  background-color: #f2f2f2;
+  min-height: calc(100vh - 60px);
+  & form {
+    & .eye-icon {
+      color: #777;
+      top: 13px;
+      right: 12px;
+    }
+
+    & .Inpt {
+      border-bottom: 2px solid #757575 !important;
+      background: #fff !important;
+      border-bottom-left-radius: 0px !important;
+      border-bottom-right-radius: 0px !important;
+      color: #000000;
+
+      &:focus-visible {
+        outline: none !important;
+      }
+    }
+
+    & .form-check {
+      & .form-check-input {
+        box-shadow: none;
+      }
+
+      & .form-check-label {
+        font-weight: 600;
+      }
+    }
+
+    & .sign_up {
+      & a {
+        font-weight: 600;
+        color: #ff4e00;
+      }
+    }
+  }
+  & .profileImg {
+    width: 210px;
+    height: 210px;
+    cursor: pointer;
+    & .changeProfile {
+      & img {
+        object-fit: cover;
+        width: 100%;
+      }
+      & .imgOverlay {
+        opacity: 0;
+        inset: 0;
+        background: #0000007a;
+        cursor: pointer;
+        transition: opacity .3s;
+      }
+      &:hover{
+        & .imgOverlay{
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+// Small devices (landscape phones, 576px and up)
+
+@mixin myAccount-mixin-min-sm() {
+}
+
+// Medium devices (tablets, 768px and up)
+@mixin myAccount-mixin-min-md() {
+}
+
+// Large devices (desktops, 992px and up)
+@mixin myAccount-mixin-min-lg() {
+}
+
+// X-Large devices (large desktops, 1200px and up)
+@mixin myAccount-mixin-min-xl() {
+}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@mixin myAccount-mixin-min-xxl() {
+}
+
+// X-Small devices (portrait phones, less than 576px)
+@mixin myAccount-mixin-max-xs() {
+}
+//
+
+// Small devices (landscape phones, less than 768px)
+@mixin myAccount-mixin-max-sm() {
+}
+
+// Medium devices (tablets, less than 992px)
+@mixin myAccount-mixin-max-md() {
+  .myAccount {
+    & form {
+      & .eye-icon {
+      }
+      & .Inpt {
+        &:focus-visible {
+        }
+      }
+      & .form-check {
+        & .form-check-input {
+        }
+        & .form-check-label {
+        }
+      }
+      & .sign_up {
+        & a {
+        }
+      }
+    }
+    & .profileImg {
+      width: 160px;
+      height: 160px;
+      & .changeProfile {
+        & img {
+        }
+        & .imgOverlay {
+        }
+        &:hover{
+          & .imgOverlay{
+          }
+        }
+      }
+    }
+  }
+}
+
+// Large devices (desktops, less than 1200px)
+@mixin myAccount-mixin-max-lg() {
+}
+
+// X-Large devices (large desktops, less than 1400px)
+@mixin myAccount-mixin-max-xl() {
+}
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   @include xxxxxx-xxxxx-mixin-min-sm();
+  @include myAccount-mixin-min-sm();
 }
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
   @include xxxxxx-xxxxx-mixin-min-md();
+  @include myAccount-mixin-min-md();
 }
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   @include xxxxxx-xxxxx-mixin-min-lg();
+  @include myAccount-mixin-min-lg();
 }
 
 // X-Large devices (large desktops, 1200px and up)
 @media (min-width: 1200px) {
   @include xxxxxx-xxxxx-mixin-min-xl();
+  @include myAccount-mixin-min-xl();
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
 @media (min-width: 1400px) {
   @include xxxxxx-xxxxx-mixin-min-xxl();
+  @include myAccount-mixin-min-xxl();
 }
 
 // X-Large devices (large desktops, less than 1400px)
 @media (max-width: 1399.98px) {
   @include xxxxxx-xxxxx-mixin-max-xl();
+  @include myAccount-mixin-max-xl();
 }
 
 // Large devices (desktops, less than 1200px)
 @media (max-width: 1199.98px) {
   @include xxxxxx-xxxxx-mixin-max-lg();
+  @include myAccount-mixin-max-lg();
 }
 
 // Medium devices (tablets, less than 992px)
 @media (max-width: 991.98px) {
   @include xxxxxx-xxxxx-mixin-max-md();
+  @include myAccount-mixin-max-md();
+  @include sidebar-toggle-mixin-max-md();
 }
 
 // Small devices (landscape phones, less than 768px)
 @media (max-width: 767.98px) {
   @include xxxxxx-xxxxx-mixin-max-sm();
+  @include myAccount-mixin-max-sm();
 }
 
 // X-Small devices (portrait phones, less than 576px)
 @media (max-width: 575.98px) {
   @include xxxxxx-xxxxx-mixin-max-xs();
+  @include myAccount-mixin-max-xs();
 }
 
 // XX-Large devices (larger desktops)

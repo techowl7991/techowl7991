@@ -1,0 +1,68 @@
+
+.DashBoardSection {
+    & .fixedHeader {
+        height: 60px;
+    }
+    & .bodyScrollPart {
+        height: calc(100vh - 60px);
+        position: relative;
+        & .sidebarSide {
+            width: 200px;
+            background-color: $theme2;
+            height: 100%;
+            transition: 0.5s all ease-in-out;
+        }
+        & .contentSide {
+            width: calc(100% - 200px);
+            overflow-y: auto;
+            transition: 0.5s all ease-in-out;
+            margin-left: auto;
+        }
+        &.show {
+            & .sidebarSide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translateX(-100%);
+            }
+            & .contentSide {
+                width: 100%;
+                transition: 0.5s all ease-in-out;
+            }   
+        }
+    }
+}
+.nonDashBoardSection {
+    & .fixedHeader {
+        height: 60px;
+    }
+    & .bodyScrollPart {
+        height: calc(100vh - 60px);
+        overflow-y: auto;
+    }
+}
+@mixin sidebar-toggle-mixin-max-md() {
+    .DashBoardSection {
+        & .fixedHeader {
+        }
+        & .bodyScrollPart {
+            & .sidebarSide {
+                position: absolute;
+                top: 0;
+                left: 0;
+                transform: translateX(-100%);
+                transition: 0.5s all ease-in-out;
+            }
+            & .contentSide {
+                width: 100% !important;
+                overflow-y: auto;
+            }
+            &.show {
+                & .sidebarSide {
+                    transform: translateX(0);
+                }
+
+            }
+        }
+    }   
+}

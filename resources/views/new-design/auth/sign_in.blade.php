@@ -45,39 +45,34 @@
                 <form action="" class="needs-validation pt-sm-5 pt-3 pb-3" id="form2" novalidate>
                     <div class="row">
                         <div class="col-6 mb-3">
-                            <input type="text" placeholder="First Name" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
+                            <input type="text" placeholder="First Name" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
                         </div>
                         <div class="col-6 mb-3">
-                        <input type="text" placeholder="Last Name" class="  form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
+                            <input type="text" placeholder="Last Name" class="  form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
                         </div>
                         <div class="col-12 mb-3">
                             <input type="email" placeholder="Email Address" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
                         </div>
                         <div class="col-12 mb-3 password-field position-relative">
-                            <input type="password" placeholder="Create Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
-                            <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                            <input type="password" placeholder="Confirm Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="password-field1" autocomplete="off" required>
+                            <span><i toggle="#password-field1" id="eye1" class="imgs img-eye position-absolute eye-icon"></i></span>
                             <div class="invalid-feedback fs-14">
                                 Please enter your phone number or email
                             </div>
                         </div>
                         <div class="col-12 mb-3 password-field position-relative">
-                            <input type="password" placeholder="Confirm Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
-                            <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                            <input type="password" placeholder="Confirm Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="password-field2" autocomplete="off" required>
+                            <span><i toggle="#password-field2" id="eye2" class="imgs img-eye position-absolute eye-icon"></i></span>
                             <div class="invalid-feedback fs-14">
                                 Please enter your phone number or email
                             </div>
                         </div>
                         <div class="col-12 form-check d-flex align-items-center justify-content-center">
-                                    <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
-                                    <label class="form-check-label fs-sm-16 fs-14" for="flexCheckDefault">
-                                       I agree to Vue's Trems of Service and Privacy Policy
-                                    </label>
-                                </div>
-                            <!-- <div class="row align-items-center mx-0 CheckMe">
-                              
-                                <div class="col-auto sign_up px-0"><a href="" class="text-decoration-none fs-sm-16 fs-14">Recover Password</a> </div>
-                            </div> -->
-                        
+                            <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
+                            <label class="form-check-label fs-sm-16 fs-14" for="flexCheckDefault">
+                                I agree to Vue's Trems of Service and Privacy Policy
+                            </label>
+                        </div>
                         <div class="col-12 mt-5 mb-3 text-center">
                             <button type="submit" class="shadow-none border-0 login_btn fs-16 px-3 py-1">SIGN UP</button>
                         </div>
@@ -97,9 +92,31 @@
             </div>
         </div>
     </div>
-
 </div>
 
 @endsection
 @push('scripts')
+<script>
+    $("#eye1").click(function() {
+
+$(this).toggleClass("img-eye img-eye-slash");
+var input1 = $($(this).attr("toggle"));
+if (input1.attr("type") == "password") {
+  input1.attr("type", "text");
+} else {
+  input1.attr("type", "password");
+}
+});
+
+$("#eye2").click(function() {
+
+$(this).toggleClass("img-eye img-eye-slash");
+var input2 = $($(this).attr("toggle"));
+if (input2.attr("type") == "password") {
+  input2.attr("type", "text");
+} else {
+  input2.attr("type", "password");
+}
+});
+</script>
 @endpush

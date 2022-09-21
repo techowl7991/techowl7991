@@ -38,7 +38,9 @@
                 <div class="d-flex justify-content-center align-items-center pt-3 pb-4">
                     <div class="w-sm-100px w-80px"><img src="{{ asset('/public/new-design/img/logo.png') }}" alt="" class="w-100"></div>
                 </div>
-                <div class="d-flex justify-content-center align-items-center  Account gap-2"><h4 class="m-0 heading fs-md-20 fs-sm-18 fs-16">Don't have an account?</h4> <div><a href="" class="text-decoration-none fs-md-20 fs-sm-18 fs-16">Sign Up!</a></div>
+                <div class="d-flex justify-content-center align-items-center  Account gap-2">
+                    <h4 class="m-0 heading fs-md-20 fs-sm-18 fs-16">Don't have an account?</h4>
+                    <div><a href="" class="text-decoration-none fs-md-20 fs-sm-18 fs-16">Sign Up!</a></div>
                 </div>
                 <form action="" class="needs-validation pt-sm-5 pt-3 pb-3" id="form2" novalidate>
                     <div class="row">
@@ -46,8 +48,8 @@
                             <input type="email" placeholder="Email Address" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
                         </div>
                         <div class="col-12 mb-3 password-field position-relative">
-                            <input type="password" placeholder="Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
-                            <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                            <input type="password" placeholder="Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="password-field3" required>
+                            <span><i toggle="#password-field3" id="eye3" class="imgs img-eye position-absolute eye-icon"></i></span>
                             <div class="invalid-feedback fs-14">
                                 Please enter your phone number or email
                             </div>
@@ -87,4 +89,16 @@
 
 @endsection
 @push('scripts')
+<script>
+    $("#eye3").click(function() {
+
+$(this).toggleClass("img-eye img-eye-slash");
+var input3 = $($(this).attr("toggle"));
+if (input3.attr("type") == "password") {
+  input3.attr("type", "text");
+} else {
+  input3.attr("type", "password");
+}
+});
+</script>
 @endpush
