@@ -65,11 +65,9 @@
     <div class="d-flex flex-column">
     @include('new-design.layouts.header2')
     <div class="bodyScrollPart d-flex" id="bodyScrollPart">
-        <div class="contentSide">
-            <main class="main-scrollbar">
+            <main class="main-scrollbar w-100">
                 @yield('content')
             </main>
-        </div>
     </div>
     </div>
 
