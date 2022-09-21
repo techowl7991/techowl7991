@@ -1,0 +1,38 @@
+.navbar {
+    & .container-fluid {
+        & .nav-body {
+            & .navbar-nav {
+                & .nav-item {
+                    & .nav-link {}
+                    & .dropdown-menu {
+                        position: absolute !important;
+                        left: -120px !important;
+                        & .dropdown-item {
+                            transition: 0.3s all ease-in-out;
+                            &:hover{
+                                background: $theme1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.sidebar {
+    border-top: 1px solid #ccc;
+    & ul {
+        & li {
+            & a {
+                transition: 0.3s all ease-in-out;
+                &:hover{
+                    background: $theme1;
+                }
+                &.active{
+                    background: $theme1;
+                }
+            }
+        }
+    }
+}
