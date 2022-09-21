@@ -1,20 +1,22 @@
-<nav class="navbar navbar-expand-lg bg-light fixedHeader">
+<nav class="navbar navbar-expand-lg bg-theme2 fixedHeader">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Navbar</a>
-    <div class="" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li>
-            <button id="SideClick">click</button>
-        </li>
+    <a class="navbar-brand" href="#"><img src="{{ asset('/public/new-design/img/logo-1.png') }}" alt="" class="w-100"></a>
+    <div class="nav-body d-flex align-items-center" id="navbarSupportedContent">
+        <!-- SideClick Button -->
+        <div class="me-3">
+        <button id="SideClick" class="show_sidebar_btn shadow-none border-0 rounded p-1 bg-theme1 fs-16 fw-normal text-white" >click</button>
+        </div>
+        <!-- SideClick Button End-->
+      <ul class="navbar-nav me-auto mb-0">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Dropdown
+          <a class="nav-link h-35px w-35px  rounded-circle bg-white d-flex justify-content-center align-items-center ms-auto" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="imgs img-user text-theme2 fs-22"></i>
+          <!-- <img src="{{ asset('/public/new-design/img/guests.png') }}" alt="" class="w-25px" > -->
           </a>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          <ul class="dropdown-menu rounded-0 p-0 bg-theme2 top-lg-45px top-41px">
+            <li><a class="dropdown-item text-white d-flex justify-content-start align-items-center gap-2" href="#"><i class="imgs img-user text-white fs-18"></i> <span class="fs-16">My Account</span> </a></li>
+            <li><a class="dropdown-item text-white d-flex justify-content-start align-items-center gap-2" href="#"><i class="imgr img-power-off text-white fs-18"></i> <span class="fs-16">Log out</span> </a></li>
+          
           </ul>
         </li>
       </ul>
