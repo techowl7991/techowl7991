@@ -292,7 +292,7 @@ margin-right: 25px;">Add Event</a> -->
                             
                             
                              <div class="container-fluid">
-                            <div class="card mb-4">
+                            <!-- <div class="card mb-4">
                                 <div class="card-header">Past Events</div>
                                 {{-- <div class="row">
                                     <div class="col-md-12">
@@ -336,21 +336,21 @@ margin-right: 25px;">Add Event</a> -->
                                     <div class="datatable table-responsive">
 
                                         <table style="border:none" class="table table-bordered table-striped table-hover text-nowrap"
-                                            id="allmatches_datatable" width="100%" cellspacing="0">
+                                            id="allmatches_datatable1" width="100%" cellspacing="0">
                                             <thead style="background-color:#CCCCCC">
                                                 <tr>
                                                     <th class="text-capitalize">Event ID</th>
-                                                    <!--<th class="text-capitalize">Unique Id</th>-->
+                                                    <th class="text-capitalize"><input class="" type="checkbox" value="" name="select-all" id="flexCheckIndeterminate1"></th>
                                                     <th class="text-capitalize">Title</th>
                                                     <th class="text-capitalize">Start Date</th>
-                                                    <!--<th class="text-capitalize">End Date</th>-->
-                                                    <!--<th class="text-capitalize">Address</th>-->
-                                                    <!--<th class="text-capitalize">Total</th>-->
-                                                    <!--<th class="text-capitalize">Vip</th>-->
-                                                    <!--<th class="text-capitalize">Regular</th>-->
+                                                    <th class="text-capitalize">Edit</th>
+                                                    <th class="text-capitalize">Delete</th>
+                                                    <th class="text-capitalize">QRcode</th>
+                                                    <th class="text-capitalize">Guest</th>
+                                                    <th class="text-capitalize">Regular</th>-->
                                                     <!--<th class="text-capitalize">QrCode</th>-->
                                                     <!--<th class="text-capitalize">Action</th>-->
-                                                </tr>
+                                               <!-- </tr>
                                             </thead>
                                             
                                             <tbody>
@@ -358,7 +358,7 @@ margin-right: 25px;">Add Event</a> -->
                                         </table>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             
                             
                             
@@ -442,7 +442,76 @@ margin-right: 25px;">Add Event</a> -->
                                             },
                                         ]
                                     });
-
+                                    // $('#allmatches_datatable1').DataTable({
+                                    //     'bFilter': false,
+                                    //     "processing": true,
+                                    //     "serverSide": true,
+                                    //     "searching": false,
+                                    //     "ajax": {
+                                    //         "url": '<?php echo URL::asset('view_event_dt_past'); ?>?event_name=' + event_name + '&event_startdate=' +
+                                    //             event_startdate + '&mid=' + mid,
+                                    //         "dataType": "json",
+                                    //         "type": "POST",
+                                    //         "data": {
+                                    //             _token: "{{ csrf_token() }}"
+                                    //         }
+                                    //     },
+                                    //     "dom": 'lBfrtip',
+                                    //     "buttons": [{
+                                    //         extend: 'collection',
+                                    //         text: 'Export',
+                                    //         buttons: [
+                                    //             'copy',
+                                    //             'excel',
+                                    //             'csv',
+                                    //             'pdf',
+                                    //             'print'
+                                    //         ]
+                                    //     }],
+                                    //     "columns": [{
+                                    //             "data": "id",
+                                    //             orderable: false
+                                    //         },
+                                    //         {
+                                    //             "data": "checkb",
+                                    //             orderable: false
+                                    //         },
+                                    //         {
+                                    //             "data": "event_name"
+                                    //         },
+                                    //         {
+                                    //             "data": "event_startdate"
+                                    //         },
+                                            
+                                    //         {
+                                    //             "data": "address",
+                                    //             orderable: false
+                                    //         },
+                                    //         // {
+                                    //         //     "data": "total",
+                                    //         //     orderable: false
+                                    //         // },
+                                    //         {
+                                    //             "data": "singledel"
+                                    //         },
+                                    //         // {
+                                    //         //     "data": "vip",
+                                    //         //     orderable: false
+                                    //         // },
+                                    //         // {
+                                    //         //     "data": "Reg",
+                                    //         //     orderable: false
+                                    //         // },
+                                    //         {
+                                    //             "data": "qrcode",
+                                    //             orderable: false
+                                    //         },
+                                    //         {
+                                    //             "data": "action",
+                                    //             orderable: false
+                                    //         },
+                                    //     ]
+                                    // });
                                 });
                             </script>
                         </div>
@@ -452,6 +521,17 @@ margin-right: 25px;">Add Event</a> -->
     </section>
  <script>
      $('#flexCheckIndeterminate').click(function(event) {
+        if (this.checked) {
+            $(':checkbox').each(function() {
+                this.checked = true;
+            });
+        } else {
+            $(':checkbox').each(function() {
+                this.checked = false;
+            });
+        }
+    });
+    $('#flexCheckIndeterminate1').click(function(event) {
         if (this.checked) {
             $(':checkbox').each(function() {
                 this.checked = true;

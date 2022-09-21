@@ -43,7 +43,7 @@ class AboutController extends Controller
             $date = date('Y-m-d');
             $up_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate','>=',$date)->documents();
             $upcoming_count = iterator_count($up_snapshot);
-            $pas_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate','<=',$date)->documents();
+            $pas_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate','<',$date)->documents();
             $past_count = iterator_count($pas_snapshot);
             return view('tableview', compact('mid','upcoming_count','past_count'));
         } else {
@@ -153,7 +153,7 @@ class AboutController extends Controller
 
     public function addEvent(Request $request)
     {
-
+        // dd($request->all());
         if ($request->isMethod('post')) {
 
             // $eve = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->add($evedata);
@@ -224,10 +224,29 @@ class AboutController extends Controller
                     }
                 }
             } else {
-                for ($i = 0; $i < count($request->evename); $i++) {
+                for ($i = 0; $i < count($request->evefirstname); $i++) {
+                    if($request->picture && $request->picture[$i]){
+                        $file = $request->Picture[$i];
+                        // dump(base_path());
+                        $file->move(base_path('public\images'), $file->getClientOriginalName());
+                        // dd($file ,$file->getClientOriginalName());
+                        $image = 'public/images/'.$file->getClientOriginalName();
+                    }else{
+                        $image = '';
+                    }
+                    
                     $evedata = [
-                        'name' => $request->evename[$i],
+                        'nmtitle' => $request->nmtitle[$i],
+                        'firstname' => $request->evefirstname[$i],
+                        'lastname' => $request->evelastname[$i],
                         'email' => $request->eveemail[$i],
+                        'phoneno' => $request->phoneno[$i],
+                        'mobileno' => $request->mobileno[$i],
+                        'address' => $request->address[$i],
+                        'organization' => $request->organization[$i],
+                        'twitter' => $request->twitter[$i],
+                        'linkedin' => $request->linkedin[$i],
+                        'picture' => $image,
                         'type' => $request->evetype[$i],
                         'company' => $request->evencname[$i],
                         'visit' => 'No',
@@ -506,6 +525,92 @@ class AboutController extends Controller
         echo json_encode($json_data);
     }
 
+
+    public function view_event_dt_past(Request $request)
+    {
+        $columns = array(
+            0 => 'event_startdate',
+            1 => 'event_name',
+            2 => 'event_enddate',
+        );
+        $input = $request->all();
+        $date = date('Y-m-d');
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        // dd($order);
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+
+        $snapshot = self::$firestoreClient->collection('events')->document($_GET['mid'])->collection('events_data')->where('event_startdate','<',$date)->offset($start)->limit($limit)->orderBy($order, $dir);
+
+        // if(isset($_GET['event_name'])){
+        //    if($_GET['event_name']!=""){
+        //       $snapshot=$snapshot->where('event_name', 'LIKE', '%'.$_GET['event_name'].'%');
+        //     }
+        // }
+        // if(isset($_GET['event_startdate'])){
+        //    if($_GET['event_startdate']!=""){
+        //       $snapshot=$snapshot->where('event_startdate', 'LIKE', '%'.$_GET['event_startdate'].'%');
+        //     }
+        // }
+
+        $snapshot = $snapshot->documents();
+        $query = $snapshot->rows();
+        $totalTitles = count($query);
+        $totalFiltered = $totalTitles;
+        
+        $titles = $query;
+        // dd($titles);
+
+        if ($totalTitles != 0) {
+            $data = array();
+            $count = 1;
+            foreach ($titles as $title) {
+                $b = action('AboutController@printdata', $title->id());
+                $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
+
+                $action = "<a href=".$b." class='btn btn-primary shadow printBtn py-1 px-3'>Detail</a>";
+                $actionQR = '<a class="btn btn-primary text-white shadow printBtn py-1 px-3" data-toggle="modal" data-target="#exampleModal'.$title->id().'">View QR</a><div class="modal fade" id="exampleModal'.$title->id().'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>'.$c.'</div></div></div></div>';
+                
+                $route = action('AboutController@singledelete', $title->id());
+                $editroute = action('AboutController@edit', $title->id());
+                $delbtn = "<a href=".$route." class='text-danger py-5 px-3'><i class='fa fa-trash' aria-hidden='true'></i></a>";
+                $edtbtn = "<a href=".$editroute." class='text-danger py-5 px-3'><i class='fa fa-edit' aria-hidden='true'></i></a>";
+            	$nestedData['id'] = $count;
+                $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="'.$title->id().'" >';
+                $nestedData['singledel'] = $delbtn;
+            	$nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
+                $nestedData['event_name'] = $title['event_name'];                
+                $nestedData['event_startdate'] = date('m/d/Y h:i:s A', strtotime($title['event_startdate']));                
+                $nestedData['event_enddate'] = date('m/d/Y h:i:s A', strtotime($title['event_enddate']));                
+                $nestedData['address'] = $edtbtn;                
+                $nestedData['total'] = $title['total'];        
+                $nestedData['vip'] = $title['vip'];        
+                $nestedData['Reg'] = $title['Reg'];        
+                $nestedData['qrcode'] = $actionQR;        
+                $nestedData['action'] = $action;
+                $data[] = $nestedData;
+                $count++;
+            }
+        } else {
+            $data = array();
+        }
+
+        $json_data = array(
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($totalTitles),
+            "recordsFiltered" => intval($totalFiltered),
+            "data" => $data,
+        );
+        echo json_encode($json_data);
+    }
+
+
     public function edit(Request $request, $id) {
         $mid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
@@ -524,7 +629,7 @@ class AboutController extends Controller
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
-        self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->delete();
+        $d = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->delete();
         return redirect()->back()->with('message','Event Successfully Deleted');
     }
 

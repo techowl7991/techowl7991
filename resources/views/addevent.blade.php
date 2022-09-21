@@ -93,7 +93,8 @@
                             <div class="col-md-12">
                                 <label for="validationCustom01" class="form-label">Event URL</label>
                                 <input type="url" class="form-control" name="eventurl" required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none" placeholder="http://www.nowvue.com">
+                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none"
+                                    placeholder="http://www.nowvue.com">
                                 <div class="valid-feedback">
                                     Looks good!
                                 </div>
@@ -101,7 +102,8 @@
 
                             <div class="col-md-12">
                                 <label for="validationCustom01" class="form-label">Enter a Location</label>
-                                <input type="text" class="form-control" name="eventlocation" id="eventlocation" required
+                                <input type="text" class="form-control" name="eventlocation" id="eventlocation"
+                                    required
                                     style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none">
                                 <div class="valid-feedback">
                                     Looks good!
@@ -149,8 +151,9 @@
                                 <label for="validationCustom02" class="form-label">Select Timezone</label>
                                 <select class="form-select" name="eventtimezone" aria-label="Default select example">
                                     <option selected>Select Timezone</option>
-                                    @foreach($data as $timez)
-                                    <option value="{{$timez['timezonename']}}">{{$timez['timezonename']}}</option>
+                                    @foreach ($data as $timez)
+                                        <option value="{{ $timez['timezonename'] }}">{{ $timez['timezonename'] }}
+                                        </option>
                                     @endforeach
                                 </select>
                                 <div class="valid-feedback">
@@ -192,15 +195,48 @@
                                             <table id="displaytable2" cellpadding="1" cellspacing="0" border="3"
                                                 class="table">
                                                 <tr align="center" class="bg-dark text-white">
-                                                    <td class="lbl">Name</td>
+                                                    <td class="lbl">Title</td>
+                                                    <td class="lbl">First Name</td>
+                                                    <td class="lbl">Last Name</td>
                                                     <td class="lbl">Email</td>
+                                                    <td class="lbl">Phone Number</td>
+                                                    <td class="lbl">Mobile number</td>
+                                                    <td class="lbl">Address</td>
+                                                    <td class="lbl">Organization</td>
+                                                    <td class="lbl">Twitter</td>
+                                                    <td class="lbl">Linkedin</td>
+                                                    <td class="lbl">Picture</td>
                                                     <td class="lbl">Type</td>
                                                     <td class="lbl">Company Name</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input class="form-control" type="text" name="evename[]">
+                                                    <td>
+                                                        <select class="form-select" name="nmtitle[]" id="">
+                                                            <option value="0">Choose</option>
+                                                            <option value="Mr">Mr</option>
+                                                            <option value="Mrs">Mrs</option>
+                                                            <option value="Dr">Dr</option>
+                                                        </select>
                                                     </td>
-                                                    <td><input class="form-control" type="email" name="eveemail[]">
+                                                    <td><input class="form-control" type="text"
+                                                            name="evefirstname[]" required></td>
+                                                    <td><input class="form-control" type="text"
+                                                            name="evelastname[]" required></td>
+                                                    <td><input class="form-control" type="email" name="eveemail[]"
+                                                            required></td>
+                                                    <td><input class="form-control" type="number" name="phoneno[]">
+                                                    </td>
+                                                    <td><input class="form-control" type="number" name="mobileno[]">
+                                                    </td>
+                                                    <td><input class="form-control" type="text" name="address[]">
+                                                    </td>
+                                                    <td><input class="form-control" type="text"
+                                                            name="organization[]"></td>
+                                                    <td><input class="form-control" type="text" name="twitter[]">
+                                                    </td>
+                                                    <td><input class="form-control" type="text" name="linkedin[]">
+                                                    </td>
+                                                    <td><input class="form-control" type="file" name="Picture[]">
                                                     </td>
                                                     <td><select class="form-select" name="evetype[]" id="">
                                                             <option value="VIP">Choose</option>
@@ -281,11 +317,33 @@
         event.preventDefault();
         $('#displaytable2 tr:last').after(
             `<tr>
-                                            <td><input class="form-control" type="text" name="evename[]"></td>
-                                            <td><input class="form-control" type="email" name="eveemail[]"></td><td><select class="form-select" name="evetype[]" id="">
-                                                    <option value="VIP">Choose</option>
-                                                    <option value="VIP">VIP</option>
-                                                    <option value="Reg">Reg</option></select></td><td><input class="form-control" type="text" name="evencname[]"><td></tr>`
+                <td>
+                    <select class="form-select" name="nmtitle[]" id="">
+                        <option value="0">Choose</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Dr">Dr</option>
+                    </select>
+                </td>
+                <td><input class="form-control" type="text" name="evefirstname[]" required></td>
+                <td><input class="form-control" type="text" name="evelastname[]" required></td>
+                <td><input class="form-control" type="email" name="eveemail[]" required></td>
+                <td><input class="form-control" type="number" name="phoneno[]"></td>
+                <td><input class="form-control" type="number" name="mobileno[]"></td>
+                <td><input class="form-control" type="text" name="address[]"></td>
+                <td><input class="form-control" type="text" name="organization[]"></td>
+                <td><input class="form-control" type="text" name="twitter[]"></td>
+                <td><input class="form-control" type="text" name="linkedin[]"></td>
+                <td><input class="form-control" type="file" name="Picture[]"></td>
+                <td>
+                    <select class="form-select" name="evetype[]" id="">
+                        <option value="VIP">Choose</option>
+                        <option value="VIP">VIP</option>
+                        <option value="Reg">Reg</option>
+                    </select>
+                </td>
+                <td><input class="form-control" type="text" name="evencname[]"><td>
+            </tr>`
         );
     }
 </script>
@@ -306,31 +364,36 @@
 <script>
     /*** Geo Location For Address Start ***/
 
-    var center = { lat: 50.064192, lng: -130.605469 };
-            // Create a bounding box with sides ~10km away from the center point
-            var defaultBounds = {
-                north: center.lat + 0.1,
-                south: center.lat - 0.1,
-                east: center.lng + 0.1,
-                west: center.lng - 0.1,
-            };
-            
-            var input = document.getElementById("eventlocation");
-            var options = {
-                bounds: defaultBounds,
-                componentRestrictions: { country: "in" },
-                fields: ["address_components", "geometry", "icon", "name"],
-                strictBounds: false,
-                types: ["establishment"],
-            };
-            var autocomplete = new google.maps.places.Autocomplete(input, options);
+    var center = {
+        lat: 50.064192,
+        lng: -130.605469
+    };
+    // Create a bounding box with sides ~10km away from the center point
+    var defaultBounds = {
+        north: center.lat + 0.1,
+        south: center.lat - 0.1,
+        east: center.lng + 0.1,
+        west: center.lng - 0.1,
+    };
 
-            // Set initial restriction to the greater list of countries.
-            autocomplete.setComponentRestrictions({
-                country: ["in"],
-            });
+    var input = document.getElementById("eventlocation");
+    var options = {
+        bounds: defaultBounds,
+        componentRestrictions: {
+            country: "in"
+        },
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+        types: ["establishment"],
+    };
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
 
-         /*** Geo Location For Address End ***/
+    // Set initial restriction to the greater list of countries.
+    autocomplete.setComponentRestrictions({
+        country: ["in"],
+    });
+
+    /*** Geo Location For Address End ***/
 </script>
 
 </html>
