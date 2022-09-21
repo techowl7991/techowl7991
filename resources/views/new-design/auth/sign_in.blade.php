@@ -54,15 +54,15 @@
                             <input type="email" placeholder="Email Address" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
                         </div>
                         <div class="col-12 mb-3 password-field position-relative">
-                            <input type="password" placeholder="Create Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
-                            <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                            <input type="password" placeholder="Confirm Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="password-field1" autocomplete="off" required>
+                            <span><i toggle="#password-field1" id="eye1" class="imgs img-eye position-absolute eye-icon"></i></span>
                             <div class="invalid-feedback fs-14">
                                 Please enter your phone number or email
                             </div>
                         </div>
                         <div class="col-12 mb-3 password-field position-relative">
-                            <input type="password" placeholder="Confirm Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required>
-                            <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                            <input type="password" placeholder="Confirm Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="password-field2" autocomplete="off" required>
+                            <span><i toggle="#password-field2" id="eye2" class="imgs img-eye position-absolute eye-icon"></i></span>
                             <div class="invalid-feedback fs-14">
                                 Please enter your phone number or email
                             </div>
@@ -96,4 +96,27 @@
 
 @endsection
 @push('scripts')
+<script>
+    $("#eye1").click(function() {
+
+$(this).toggleClass("img-eye img-eye-slash");
+var input1 = $($(this).attr("toggle"));
+if (input1.attr("type") == "password") {
+  input1.attr("type", "text");
+} else {
+  input1.attr("type", "password");
+}
+});
+
+$("#eye2").click(function() {
+
+$(this).toggleClass("img-eye img-eye-slash");
+var input2 = $($(this).attr("toggle"));
+if (input2.attr("type") == "password") {
+  input2.attr("type", "text");
+} else {
+  input2.attr("type", "password");
+}
+});
+</script>
 @endpush

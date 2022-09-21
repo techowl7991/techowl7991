@@ -1,16 +1,16 @@
 <nav class="navbar navbar-expand-lg bg-theme2 fixedHeader">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"><img src="{{ asset('/public/new-design/img/logo-1.png') }}" alt="" class="w-100"></a>
+    <a class="navbar-brand w-sm-60px w-45px py-0" href="#"><img src="{{ asset('/public/new-design/img/logo-1.png') }}" alt="" class="w-100"></a>
     <div class="nav-body d-flex align-items-center" id="navbarSupportedContent">
         <!-- SideClick Button -->
         <div class="me-3">
-        <button id="SideClick" class="show_sidebar_btn shadow-none border-0 rounded bg-theme2 d-flex justify-content-center align-items-center" ><i class="imgs img-bars fs-25 text-white"></i></button>
+        <button id="SideClick" class="show_sidebar_btn shadow-none border-0 rounded bg-theme2 d-flex justify-content-center align-items-center" ><i class="imgs img-bars fs-sm-25 fs-20 text-white"></i></button>
         </div>
         <!-- SideClick Button End-->
       <ul class="navbar-nav me-auto mb-0">
         <li class="nav-item dropdown">
-          <a class="nav-link h-35px w-35px  rounded-circle bg-white d-flex justify-content-center align-items-center ms-auto" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="imgs img-user text-theme2 fs-22"></i>
+          <a class="nav-link h-sm-35px h-30px w-sm-35px w-30px  rounded-circle bg-white d-flex justify-content-center align-items-center ms-auto" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="imgs img-user text-theme2 fs-sm-22 fs-18"></i>
           <!-- <img src="{{ asset('/public/new-design/img/guests.png') }}" alt="" class="w-25px" > -->
           </a>
           <ul class="dropdown-menu rounded-0 p-0 bg-theme2 top-lg-45px top-41px">
