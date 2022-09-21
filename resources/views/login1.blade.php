@@ -1,311 +1,378 @@
-<?php session_start(); ?>
+{{-- @extends('layouts.app') --}}
+<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Authentication</title>
-    <link
-      href="https://fonts.googleapis.com/css?family=Fira+Sans&display=swap"
-      rel="stylesheet"
-    />
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, maximum-scale=1"
-    />
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link
-      rel="shortcut icon"
-      type="image/png"
-      href="https://naishare.com/images/favicon.png"
-    />
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+
+    <script src="{{ asset('public/js/app.js') }}" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!--Login Page links-->
+    <!-- Scripts -->
+    <script src="http://console.techowl.in/guest/public/js/app.js" defer></script>
+
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="http://console.techowl.in/guest/public/css/app.css" rel="stylesheet">
+    <link href="http://console.techowl.in/guest/public/css/login.css" rel="stylesheet">
+
+    <!-- Styles -->
+    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/css/login.css') }}" rel="stylesheet">
+
+
     <style>
-      .forms-out {
-        margin: 0 auto;
-        font-family: "Fira Sans", sans-serif;
-        padding: 15px 0;
-      }
-      .forms-in {
-        width: 93%;
-        margin: 0 auto;
-        color: white;
-        padding: 15px 0;
-      }
-      .forms-in div {
-        padding: 30px 20px;
-        max-width: 350px;
-        margin: 0 auto;
-        background: #168ab8;
-        border-radius: 5px;
-        margin-bottom: 15px;
-      }
-      .forms-in h3 {
-        text-align: center;
-      }
-      .forms-in input {
-        border: none;
-        width: 100%;
-        margin-bottom: 15px;
-        padding: 10px;
-        box-sizing: border-box;
-        border-radius: 3px;
-      }
+        .loginheader {
+            background: #ff4e00;
+        }
 
-      .forms-in button {
-        border: none;
-        padding: 7px 20px;
-        background: #e8f8ff;
-        color: #168ab8;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: bold;
-      }
+        .custombtn {
+            width: 100px;
+            background: #ff4e00;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
 
-      .forms-in button:hover {
-        opacity: 0.7;
-      }
+        .f-18 {
+            font-size: 18px;
+        }
 
-      .hide {
-        display: none;
-      }
+        .black-tri {
+            position: absolute;
+            /*bottom: -10px;*/
+            right: 124px;
+        }
 
-      #forgot-password {
-        text-align: center;
-        font-size: 13px;
-        cursor: pointer;
-      }
+        .pos-rel {
+            position: relative;
+        }
 
-      #forgot-password:hover {
-        opacity: 0.7;
-      }
+        .orange-tri {
+            width: 80px;
+            position: absolute;
+            left: -65px;
+            top: 70px;
+
+        }
+
+        .shadow-1 {
+            position: absolute;
+            top: -37px;
+            right: -19px;
+        }
+
+        .shadow-2 {
+            position: absolute;
+            top: -23px;
+            right: 13px;
+        }
+
+        .bg-grey {
+            background: #f2f2f2;
+        }
+
+        /* .swicth {
+            position: relative;
+            display: inline-block;
+            width: 110px;
+            height: 60px;
+            margin: 0 10px;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        } */
+        .view-swtich-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .spectrum-ToggleSwitch {
+            display: inline-flex;
+            -ms-flex-align: start;
+            align-items: flex-start;
+            position: relative;
+            min-height: 32px;
+            max-width: 100%;
+            /* margin-right: 16px; */
+            vertical-align: bottom;
+        }
+
+        .spectrum-ToggleSwitch-input {
+            margin: 0;
+            box-sizing: border-box;
+            padding: 0;
+            position: absolute;
+            width: 55%;
+            height: 75%;
+            top: 0;
+            left: 0;
+            /* opacity: .0001; */
+            z-index: 1;
+            cursor: pointer;
+        }
+
+        .spectrum-ToggleSwitch-switch {
+            display: inline-block;
+            position: relative;
+            height: 14px;
+            width: 26px;
+            margin: 9px 0;
+            -ms-flex-positive: 0;
+            flex-grow: 0;
+            -ms-flex-negative: 0;
+            flex-shrink: 0;
+            vertical-align: middle;
+        }
+
+        .justcon-spaaro {
+            justify-content: space-around;
+            padding: 5px 38px 20px 0px;
+        }
+
+        .pass-rec {
+            color: #ff4e00;
+        }
     </style>
-  </head>
-  <body>
-    <div class="forms-out">
-      <div class="forms-in">
-        <div id="registration-page" class="hide">
-          <button id="show-login">Sign In</button>
-          <h3>Sign Up</h3>
-          Email <br />
-          <input type="email" id="registration-email" /><br />
-          Confirm Email <br />
-          <input
-            type="email"
-            id="registration-reemail"
-            autocomplete="disable"
-          /><br />
-          Password <br />
-          <input type="password" id="registration-password" /><br />
-          <center><button id="register">Sign Up</button></center>
+
+
+
+
+
+
+
+</head>
+
+<body style="background-color:#FFFFFF">
+
+
+
+
+
+    <!--@section('content')
+    -->
+        <!--<section class="mainOuter">-->
+        <!--    <div class="container">-->
+        <!--        <div class="row justify-content-center">-->
+        <!--            <div class="col-md-6">-->
+        <!--                <div class="card border-0 shadow">-->
+        <!--                    <div class="card-header loginHeader text-center">{{ __('Login') }}</div>-->
+
+        <!--                    <div class="card-body p-4">-->
+        <!--                        <form method="POST" action="{{ route('login') }}">-->
+        <!--                            @csrf-->
+
+        <!--                            <div class="row mb-3 justify-content-center">-->
+        <!--                                <div class="col-md-8">-->
+        <!--                                    <label for="email" class=" col-form-label fs-16 p-0">{{ __('Email Address') }}</label>-->
+        <!--                                    <input id="email" type="email" class="form-control CustomInput shadow-none @error('email') is-invalid @enderror" name="email" placeholder="Enter Your E-mail" value="{{ old('email') }}" required autocomplete="email" autofocus>-->
+
+        <!--                                    @error('email')
+        -->
+            <!--                                    <span class="invalid-feedback" role="alert">-->
+            <!--                                        <strong>{{ $message }}</strong>-->
+            <!--                                    </span>-->
+            <!--
+    @enderror-->
+        <!--                                </div>-->
+        <!--                            </div>-->
+
+        <!--                            <div class="row mb-3 justify-content-center">-->
+        <!--                                <div class="col-md-8">-->
+        <!--                                    <label for="password" class="col-form-label fs-16 p-0">{{ __('Password') }}</label>-->
+        <!--                                    <input id="password" type="password" class="form-control CustomInput shadow-none @error('password') is-invalid @enderror" name="password" placeholder="Ender Password" required autocomplete="current-password">-->
+
+        <!--                                    @error('password')
+        -->
+            <!--                                    <span class="invalid-feedback" role="alert">-->
+            <!--                                        <strong>{{ $message }}</strong>-->
+            <!--                                    </span>-->
+            <!--
+    @enderror-->
+        <!--                                </div>-->
+        <!--                            </div>-->
+
+        <!--                            {{-- <div class="row mb-3">-->
+<!--                            <div class="col-md-6 offset-md-4">-->
+<!--                                <div class="form-check">-->
+<!--                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>-->
+
+<!--                            <label class="form-check-label" for="remember">-->
+<!--                                {{ __('Remember Me') }}-->
+<!--                            </label>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div> --}}-->
+
+        <!--            <div class="row mb-0 justify-content-center">-->
+        <!--                <div class="col-md-8 text-center">-->
+        <!--                    <button type="submit" class="btn customBtn">-->
+        <!--                        {{ __('Login') }}-->
+        <!--                    </button>-->
+
+        <!--                    @if (Route::has('password.request'))
+    -->
+        <!--                    <a class="btn btn-link" href="{{ route('password.request') }}">-->
+        <!--                        {{ __('Forgot Your Password?') }}-->
+        <!--                    </a>-->
+        <!--
+    @endif-->
+        <!--                </div>-->
+        <!--            </div>-->
+        <!--            </form>-->
+        <!--        </div>-->
+        <!--    </div>-->
+        <!--    </div>-->
+        <!--    </div>-->
+        <!--    </div>-->
+
+
+
+        <div id="app">
+            <!--<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">-->
+            <!-- <div class="container">
+                        <a class="navbar-brand" href="http://console.techowl.in/guest">
+                            Laravel
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            Left Side Of Navbar
+                            <ul class="navbar-nav me-auto">
+
+                            </ul>
+
+                            Right Side Of Navbar
+                            <ul class="navbar-nav ms-auto">
+                                Authentication Links
+                                                                                            <li class="nav-item">
+                                            <a class="nav-link" href="http://console.techowl.in/guest/login">Login</a>
+                                        </li>
+                                    
+                                                                    <li class="nav-item">
+                                            <a class="nav-link" href="http://console.techowl.in/guest/register">Register</a>
+                                        </li>
+                                                                                     </ul>
+                        </div>
+                    </div> -->
+            <!--</nav>-->
+
+            <main class="">
+                <section class="mainOuter bg-grey">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-md-6 pos-rel">
+                                <div class="card border-0 shadow">
+                                    <div class="text-center p-4"><img src="https://i.ibb.co/wh09ybR/logo.png" alt="Logo"
+                                            width="95"></div>
+                                    <div class="text-center f-18">Don't have an account? <a href="/guest/register"
+                                            target="" style="text-decoration: none;"><span
+                                                style="color: #ff4e00;">Sign Up!</span></a></div>
+
+                                    <div class="card-body p-4">
+
+                                        <input type="hidden" name="_token"
+                                            value="tT2lMN8ugIhmM3tDIPDVmNSOali4xKcP9ZLFEPss">
+                                        <form method="POST" action="{{ route('login') }}">
+                                            @csrf
+                                            <div class="row mb-3 justify-content-center">
+                                                <div class="col-md-8">
+                                                    <label for="email" class=" col-form-label fs-16 p-0"></label>
+                                                    <input id="email" type="email"
+                                                        class="form-control CustomInput shadow-none @error('email') is-invalid @enderror"
+                                                        name="email" placeholder="Enter Your E-mail"
+                                                        value="{{ old('email') }}" required autocomplete="email"
+                                                        autofocus>
+                                                </div>
+                                            </div>
+
+                                            <div class="row mb-3 justify-content-center">
+                                                <div class="col-md-8">
+                                                    <label for="password" class="col-form-label fs-16 p-0"></label>
+                                                    <input id="password" type="password"
+                                                        class="form-control CustomInput shadow-none @error('password') is-invalid @enderror"
+                                                        name="password" placeholder="Ender Password" required
+                                                        autocomplete="current-password">
+
+                                                </div>
+                                            </div>
+                                            <!-- <label for="" class="switch">
+                                        <input type="checkbox">
+                                        <span class="slider"></span>
+                                    </label> -->
+                                            <div class="d-flex justcon-spaaro">
+
+                                                <div class="view-swtich-wrapper">
+                                                    <!-- <div class="spectrum-ToggleSwitch is-disabled">
+                                            <input type="checkbox" class="spectrum-ToggleSwitch-input" disabled="" role="switch" id="ccx-comments-switch-view" aria-checked="true" value="" checked="">
+                                            <span class="spectrum-ToggleSwitch-switch"></span>
+                                        </div> -->
+                                                    <input type="checkbox" class="m-1" role="switch"
+                                                        id="ccx-comments-switch-view" aria-checked="true" value=""
+                                                        checked="">
+
+                                                    <label class="switch-label"
+                                                        for="ccx-comments-switch-view">{{ __('Remember Me') }}</label>
+                                                </div>
+                                                <div class="pass-rec">Recover Password</div>
+                                            </div>
+
+                                            <div class="row mb-0 justify-content-center">
+                                                <div class="col-md-8 text-center">
+                                                    <button type="submit" class="btn custombtn"
+                                                        style="background-color:#FF4E00;color:white">
+                                                        {{ __('Login') }}
+                                                    </button>
+                                                    @if (Route::has('password.request'))
+                                                        <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                            {{ __('Forgot Your Password?') }}
+                                                        </a>
+                                                    @endif
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div><img src="https://i.ibb.co/gtkSL0G/black-tri.png" class="black-tri"
+                                        width="75" /></div>
+                                <div><img src="https://i.ibb.co/BtDBgk5/orange-tri.png" class="orange-tri" /></div>
+                                <div><img src="https://i.ibb.co/x3bWC2n/shadow-1.png" class="shadow-1"></div>
+                                <div><img src="https://i.ibb.co/qY7Jj7S/shadow-2.png" class="shadow-2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
         </div>
 
-        <div id="login-page">
-          {{-- <button id="show-register">Sign Up</button> --}}
-          <h3>Sign In</h3>
-          Email <br />
-          <input type="email" id="login-email" /><br />
-          Password <br />
-          <input type="password" id="login-password" /><br />
-          {{-- <p id="forgot-password">Forgot Password</p> --}}
-          <center><button id="login">Sign In</button></center>
+        </section>
         </div>
+    </body>
 
-        
-      </div>
-    </div>
-    <div id="homepage" class="hide">
-        <button id="signout">Sign Out</button>
-        <h3 id="uid"></h3>
-        <h3 id="email"></h3>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use-->
-    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
-
-    <script>
-    console.log(sessionStorage.getItem("email"))
-    // setCookie('username',sessionStorage.getItem("email"));
-    document.cookie = "username=Max Brown;";
-      // Your web app's Firebase configuration
-    const firebaseConfig = {
-      apiKey: "AIzaSyBLnF1PZcgvdPCOmdvQ5vAqJHVjG8lTork",
-      authDomain: "guest-app-2eb59.firebaseapp.com",
-      databaseURL: "https://guest-app-2eb59-default-rtdb.firebaseio.com",
-      projectId: "guest-app-2eb59",
-      storageBucket: "guest-app-2eb59.appspot.com",
-      messagingSenderId: "694925461009",
-      appId: "1:694925461009:web:98fd21d2262397b46813b0",
-      measurementId: "G-9C2GHYQP2S"
-    };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
-    </script>
-
-    <script>
-      //invokes firebase authentication.
-      const auth = firebase.auth();
-
-    //   document.querySelector("#show-register").addEventListener("click", () => {
-    //     showRegistration();
-    //   });
-
-      const showRegistration = () => {
-        document.querySelector("#registration-page").classList.remove("hide");
-        document.querySelector("#login-page").classList.add("hide");
-        document.querySelector("#homepage").classList.add("hide");
-      };
-
-      document.querySelector("#show-login").addEventListener("click", () => {
-        showLogin();
-      });
-
-      const showLogin = () => {
-        document.querySelector("#registration-page").classList.add("hide");
-        document.querySelector("#login-page").classList.remove("hide");
-        document.querySelector("#homepage").classList.add("hide");
-      };
-
-      document.querySelector("#signout").addEventListener("click", () => {
-        signOut();
-      });
-
-      const register = () => {
-        const email = document.querySelector("#registration-email").value;
-        const reemail = document.querySelector("#registration-reemail").value;
-        const password = document.querySelector("#registration-password").value;
-
-        if (email.trim() == "") {
-          alert("Enter Email");
-        } else if (password.trim().length < 7) {
-          alert("Password must be at least 7 characters");
-        } else if (email != reemail) {
-          alert("emails do not match");
-        } else {
-          auth
-            .createUserWithEmailAndPassword(email, password)
-            .catch(function (error) {
-              // Handle Errors here.
-              var errorCode = error.code;
-              var errorMessage = error.message;
-              alert(errorMessage);
-              // ...
-            });
-        }
-      };
-
-      document.querySelector("#register").addEventListener("click", () => {
-        register();
-      });
-
-      //register when you hit the enter key
-      document
-        .querySelector("#registration-password")
-        .addEventListener("keyup", (e) => {
-          if (event.keyCode === 13) {
-            e.preventDefault();
-
-            register();
-          }
-        });
-
-      const login = () => {
-        const email = document.querySelector("#login-email").value;
-        const password = document.querySelector("#login-password").value;
-
-        if (email.trim() == "") {
-          alert("Enter Email");
-        } else if (password.trim() == "") {
-          alert("Enter Password");
-        } else {
-          authenticate(email, password);
-        }
-      };
-
-      document.querySelector("#login").addEventListener("click", () => {
-        login();
-      });
-
-      //sign in when you hit enter
-      document
-        .querySelector("#login-password")
-        .addEventListener("keyup", (e) => {
-          if (event.keyCode === 13) {
-            e.preventDefault();
-
-            login();
-          }
-        });
-
-      const authenticate = (email, password) => {
-        const auth = firebase.auth();
-        auth.signInWithEmailAndPassword(email, password);
-        firebase
-          .auth()
-          .signInWithEmailAndPassword(email, password)
-          .catch(function (error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            alert(errorMessage);
-          });
-      };
-
-      const showHomepage = () => {
-        document.querySelector("#registration-page").classList.add("hide");
-        document.querySelector("#login-page").classList.add("hide");
-        document.querySelector("#homepage").classList.remove("hide");
-      };
-
-      const signOut = () => {
-        firebase
-          .auth()
-          .signOut()
-          .then(function () {
-            location.reload();
-          })
-          .catch(function (error) {
-            alert("error signing out, check network connection");
-          });
-      };
-      auth.onAuthStateChanged((firebaseUser) => {
-        if (firebaseUser) {
-            var email = firebaseUser.email;
-            var uid = firebaseUser.uid;
-            // alert(uid);
-            sessionStorage.setItem("email", email);
-            sessionStorage.setItem("uid", uid);
-            document.getElementById("uid").innerText = uid;
-            document.getElementById("email").innerText = email;
-            window.location.href = `{{url('index/${uid}')}}`;
-          // showHomepage();
-        }
-      });
-
-      document
-        .querySelector("#forgot-password")
-        .addEventListener("click", () => {
-          const email = document.querySelector("#login-email").value;
-          if (email.trim() == "") {
-            alert("Enter Email");
-          } else {
-            forgotPassword(email);
-          }
-        });
-
-      const forgotPassword = (email) => {
-        auth
-          .sendPasswordResetEmail(email)
-          .then(function () {
-            alert("email sent");
-          })
-          .catch(function (error) {
-            alert("invalid email or bad network connection");
-          });
-      };
-    </script>
-  </body>
-</html>
+{{--@endsection--}}

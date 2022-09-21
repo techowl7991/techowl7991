@@ -1,295 +1,119 @@
-@extends('layouts.app')
+@extends('new-design.main')
+
+@push('meta')
+    <title>page_title</title>
+
+    <meta name="title" content="page_title" />
+    <meta name="description" content="page_description" />
+    <meta name="keywords" content="page_keywords" />
+
+    <meta name="robots" content="index, follow" />
+
+    <meta name="twitter:title" content="page_title">
+    <meta name="twitter:description" content="page_description">
+    <meta name="twitter:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
 
 
+    <meta property="og:url" content="{{ asset('/') }}">
+    <meta property="og:title" content="page_title">
+    <meta property="og:description" content="page_description">
+    <meta property="og:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+    <meta property="og:image:secure_url" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+    <meta name="classification" content="page_title" />
 
-<style>
-        .loginheader {
-            background:#ff4e00 ;
-        }
-        .custombtn {
-            width: 100px;
-    background: #ff4e00;
-    color: #fff;
-    font-size: 13px;
-    font-weight: 800;
-    text-transform: uppercase;
-        }
-        .f-18 {
-            font-size: 18px;
-        }
-        .black-tri {
-            position: absolute;
-            bottom: -54px;
-            right: 124px;
-        }
-        .pos-rel {
-            position: relative;
-        }
-        .orange-tri {
-            position: absolute;
-            left: -51px;
-            top: 50px   ;
-        }
-        .shadow-1 {
-            position: absolute;
-            top: -37px;
-            right: -19px;
-        }
-        .shadow-2 {
-            position: absolute;
-            top: -23px;
-            right: 13px;
-        }
-        .bg-grey {
-            background: #f2f2f2;
-        }
-        /* .swicth {
-            position: relative;
-            display: inline-block;
-            width: 110px;
-            height: 60px;
-            margin: 0 10px;
-        } 
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
-        } */
-        .view-swtich-wrapper {
-            display: flex;
-            align-items: center;
-        }
-        .spectrum-ToggleSwitch {
-            display: inline-flex;
-    -ms-flex-align: start;
-    align-items: flex-start;
-    position: relative;
-    min-height: 32px;
-    max-width: 100%;
-    /* margin-right: 16px; */
-    vertical-align: bottom;
-        }
-        .spectrum-ToggleSwitch-input {
-            margin: 0;
-    box-sizing: border-box;
-    padding: 0;
-    position: absolute;
-    width: 55%;
-    height: 75%;
-    top: 0;
-    left: 0;
-    /* opacity: .0001; */
-    z-index: 1;
-    cursor: pointer;
-        }
-        .spectrum-ToggleSwitch-switch {
-        display: inline-block;
-    position: relative;
-    height: 14px;
-    width: 26px;
-    margin: 9px 0;
-    -ms-flex-positive: 0;
-    flex-grow: 0;
-    -ms-flex-negative: 0;
-    flex-shrink: 0;
-    vertical-align: middle;}
-     
-    .justcon-spaaro {
-        justify-content: space-around;
-        padding:10px 0px 15px 0px;
-    }
-    .pass-rec {
-        color: #ff4e00;
-    }
-    .mr-1 {
-        margin-right: 10px;
-    }
-
-    </style>
-
-
-
-
-
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" />
+    <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-original.png') }}" id="light-scheme-icon">
+    <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" id="dark-scheme-icon">
+    <link rel="canonical" href="{{ asset('/') }}" />
+@endpush
+@push('styles')
+@endpush
 @section('content')
-<section class="mainOuter">
-    <!--<div class="container">-->
-    <!--    <div class="row justify-content-center">-->
-    <!--        <div class="col-md-6">-->
-    <!--            <div class="card border-0 shadow">-->
-    <!--                <div class="card-header registerHeader text-center">{{ __('Register') }}</div>-->
-
-    <!--                <div class="card-body p-4">-->
-    <!--                    <form method="POST" action="{{ route('register') }}">-->
-    <!--                        @csrf-->
-
-    <!--                        <div class="row mb-3 justify-content-center">-->
-
-    <!--                            <div class="col-md-8">-->
-    <!--                                <label for="name" class="col-form-label fs-16 p-0">{{ __('Name') }}</label>-->
-    <!--                                <input id="name" type="text" class="form-control CustomInput shadow-none @error('name') is-invalid @enderror" name="name" placeholder="Enter Your Name" value="{{ old('name') }}" required autocomplete="name" autofocus>-->
-
-    <!--                                @error('name')-->
-    <!--                                <span class="invalid-feedback" role="alert">-->
-    <!--                                    <strong>{{ $message }}</strong>-->
-    <!--                                </span>-->
-    <!--                                @enderror-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-
-    <!--                        <div class="row mb-3 justify-content-center">-->
-
-    <!--                            <div class="col-md-8">-->
-    <!--                                <label for="email" class="col-form-label fs-16 p-0">{{ __('Email Address') }}</label>-->
-    <!--                                <input id="email" type="email" class="form-control CustomInput shadow-none @error('email') is-invalid @enderror" name="email" placeholder="Enter Your E-mail" value="{{ old('email') }}" required autocomplete="email">-->
-
-    <!--                                @error('email')-->
-    <!--                                <span class="invalid-feedback" role="alert">-->
-    <!--                                    <strong>{{ $message }}</strong>-->
-    <!--                                </span>-->
-    <!--                                @enderror-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-
-    <!--                        <div class="row mb-3 justify-content-center">-->
-
-    <!--                            <div class="col-md-8">-->
-    <!--                                <label for="password" class="col-form-label fs-16 p-0">{{ __('Password') }}</label>-->
-    <!--                                <input id="password" type="password" class="form-control CustomInput shadow-none @error('password') is-invalid @enderror" name="password" placeholder="Create Password" required autocomplete="new-password">-->
-
-    <!--                                @error('password')-->
-    <!--                                <span class="invalid-feedback" role="alert">-->
-    <!--                                    <strong>{{ $message }}</strong>-->
-    <!--                                </span>-->
-    <!--                                @enderror-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-
-    <!--                        <div class="row mb-3 justify-content-center">-->
-
-    <!--                            <div class="col-md-8">-->
-    <!--                                <label for="password-confirm" class="col-form-label fs-16 p-0">{{ __('Confirm Password') }}</label>-->
-    <!--                                <input id="password-confirm" type="password" class="form-control CustomInput shadow-none" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-
-    <!--                        <div class="row mb-0 justify-content-center">-->
-    <!--                            <div class="col-md-8 text-center">-->
-    <!--                                <button type="submit" class="btn customBtn">-->
-    <!--                                    {{ __('Register') }}-->
-    <!--                                </button>-->
-    <!--                            </div>-->
-    <!--                        </div>-->
-    <!--                    </form>-->
-    <!--                </div>-->
-    <!--            </div>-->
-    <!--        </div>-->
-    <!--    </div>-->
-    <!--</div>-->
-    
-    
-    
-    
-     <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6 pos-rel">
-                <div class="card border-0 ">
-                    <div class="text-center p-4"><img src="https://i.ibb.co/wh09ybR/logo.png" alt="Logo" width="95"></div>
-                    <div class="text-center f-18">Have an account? <a href="/guest/login" target="" style="text-decoration: none;"><span style="color: #ff4e00;">Sign In!</span></a></div>
-
-                    <div class="card-body p-4">
-                       
-                            <input type="hidden" name="_token" value="tT2lMN8ugIhmM3tDIPDVmNSOali4xKcP9ZLFEPss">
-                             <form method="POST" action="{{ route('register') }}">
-                            @csrf
-                            <div class="row justify-content-center" >
-                                <div class="col-md-8 d-flex">
-                                    
-                                    <label for="name" class=" col-form-label fs-16 p-0"></label>
-                                    <input id="name" type="text" class="form-control CustomInput shadow-none @error('name') is-invalid @enderror" name="name" placeholder="Enter Your Name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                    <!--<label for="lname" class=" col-form-label fs-16 p-0"></label>-->
-                                    <!--<input id="lname" type="text" placeholder="Enter Your Name" required autocomplete="name" autofocus>-->
-                                                                    @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                 </div>
-                            </div>
-                            <div class="row justify-content-center" style="margin-top:15px">
-                                <div class="col-md-8">
-                                    <label for="email" class=" col-form-label fs-16 p-0"></label>
-                                    <input id="email" type="email" class="form-control CustomInput shadow-none @error('email') is-invalid @enderror" name="email" placeholder="Enter Your E-mail" value="{{ old('email') }}" required autocomplete="email">
-                                    
-                                    
-                                                                    @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                 </div>
+    <div class="container-fluid signUpPage d-flex justify-content-center align-items-center px-0">
+        <div class="row innerPage justify-content-center align-items-center h-100 w-100">
+            <div class="col-xl-5 col-lg-6 col-md-7 col-sm-8 col-12 Sign_Up position-relative">
+                <div class="card border-0 bg-white py-4 px-md-5 px-3">
+                    <div class="d-flex justify-content-center align-items-center pt-3 pb-4">
+                        <div class="w-sm-100px w-80px"><img src="{{ asset('/public/new-design/img/logo.png') }}"
+                                alt="" class="w-100"></div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center  Account gap-2">
+                        <h4 class="m-0 heading fs-md-20 fs-sm-18 fs-16">Have an account?</h4>
+                        <div><a href="{{route('login')}}" class="text-decoration-none fs-md-20 fs-sm-18 fs-16">Sign In!</a></div>
+                    </div>
+                    <form method="POST" action="{{ route('register') }}" class="needs-validation pt-sm-5 pt-3 pb-3" id="form2" novalidate>
+                        @csrf
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <input type="text" placeholder="First Name"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}"
+                                    required>
                             </div>
 
-                            <div class="row justify-content-center" style="margin-top:15px">
-                                <div class="col-md-8">
-                                    <label for="password" class="col-form-label fs-16 p-0"></label>
-                                    <input id="password" type="password" class="form-control CustomInput shadow-none @error('password') is-invalid @enderror" name="password" placeholder="Create Password" required autocomplete="new-password">
-                                    
-                                    
-                                    @error('password')-->
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                  </div>
+                            <div class="col-6 mb-3">
+                                <input type="text" placeholder="Last Name"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}"
+                                    required>
                             </div>
 
-                            <div class="row justify-content-center" style="margin-top:15px">
-                                <div class="col-md-8">
-                                    <label for="password" class="col-form-label fs-16 p-0"></label>
-                                    <input id="password" type="password" class="form-control CustomInput shadow-none" name="password_confirmation" placeholder="Confirm Password" required autocomplete="new-password">
-
-                                  </div>
-                            </div>
-                            <div class="d-flex justcon-spaaro" style="margin-top:15px">
-                                
-                            <div class="view-swtich-wrapper">
-                                <input type="checkbox" class="m-1" role="switch" id="ccx-comments-switch-view" aria-checked="true" value="" checked="">
-                                    
-                                <label class="switch-label" for="ccx-comments-switch-view"> I agree to Vue's Term of service and privacy policy</label>
-                            </div>
+                            <div class="col-12 mb-3">
+                                <input type="email" placeholder="Email Address"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
+                                    required>
                             </div>
 
-            <div class="row mb-0 justify-content-center" style="margin-top:15px">
-                <div class="col-md-8 text-center">
-                    <button type="submit" class="btn custombtn" style="background-color:#FF4E00">
-                        {{ __('Register') }}
-                    </button>
+                            <div class="col-12 mb-3 password-field position-relative">
+                                <input type="password" placeholder="Create Password"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('password') is-invalid @enderror" name="password"
+                                    required>
+                                <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                                <div class="invalid-feedback fs-14">
+                                    Please enter your phone number or email
+                                </div>
+                            </div>
 
-                                    </div>
+
+                            <div class="col-12 mb-3 password-field position-relative">
+                                <input type="password" placeholder="Confirm Password"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('cpassword') is-invalid @enderror" name="cpassword"
+                                    required>
+                                <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                                <div class="invalid-feedback fs-14">
+                                    Please enter your phone number or email
+                                </div>
+                            </div>
+                            <div class="col-12 form-check d-flex align-items-center justify-content-center">
+                                <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label fs-sm-16 fs-14" for="flexCheckDefault">
+                                    I agree to Vue's Trems of Service and Privacy Policy
+                                </label>
+                            </div>
+                            <!-- <div class="row align-items-center mx-0 CheckMe">
+                                        <div class="col-auto sign_up px-0"><a href="" class="text-decoration-none fs-sm-16 fs-14">Recover Password</a> </div>
+                                    </div> -->
+
+                            <div class="col-12 mt-5 mb-3 text-center">
+                                <button type="submit" class="shadow-none border-0 login_btn fs-16 px-3 py-1">SIGN
+                                    UP</button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="back_img1 back_img">
+                    <img src="{{ asset('/public/new-design/img/bottom-right.png') }}" alt="" class="w-100">
+                </div>
+                <div class="back_img2 back_img">
+                    <img src="{{ asset('/public/new-design/img/top-left.png') }}" alt="" class="w-100">
+                </div>
+                <div class="back_img3 back_img">
+                    <img src="{{ asset('/public/new-design/img/top-right.png') }}" alt="" class="w-100">
+                </div>
             </div>
-            </form>
         </div>
+
     </div>
-    <div><img src="https://i.ibb.co/PF6cVcb/black-tri-removebg-preview.png" alt="black-tri-removebg-preview" class="black-tri" width="75"></div>
-    <div><img src="https://i.ibb.co/d2gBwXH/orange-tri-removebg-preview.png" alt="orange-tri-removebg-preview" class="orange-tri" width="63"></div>
-    <div><img src="https://i.ibb.co/6wdySXs/shadow-1-removebg-preview.png" class="shadow-1"></div>
-    <div><img src="https://i.ibb.co/qY7Jj7S/shadow-2.png" class="shadow-2"></div>
-    </div>
-    </div>
-    </div>
-    
-    
-    
-    
-    
-    
-</section>
 @endsection
+@push('scripts')
+@endpush
