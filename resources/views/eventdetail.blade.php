@@ -1,113 +1,43 @@
-<!DOCTYPE html>
-<html>
+@extends('main2')
 
-<head>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('public/css/login.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <style>
-    html,body{
-        height:100%;
-    }
-        .custom-checkbox .custom-control-input:indeterminate~.custom-control-label::before {
-            background-color: #dee2e6 !important;
-        }
-        .custom-checkbox .custom-control-input:indeterminate~.custom-control-label::after {
-            background-image: none !important;
-        }
-        .text-uppercase{
-            background-color:black;
-            color:white;
-            border:none;
-        }
-        .text-uppercase:hover{
-            background-color:#FF4E00;
-            color:white;
-            border:none;
-        }
-    </style>
-</head>
+@push('meta')
+<title>page_title</title>
 
-<body>
-    <nav style="background-color:#302D2F" class="navbar navbar-expand-lg">
-  <a class="navbar-brand" href="#"><img src="https://i.ibb.co/Ny6rmJV/logo1.png" alt="logo" border="0"></a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
+<meta name="title" content="page_title" />
+<meta name="description" content="page_description" />
+<meta name="keywords" content="page_keywords" />
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-       
-     
-      <div class="dropdown show dropleft">
-  <!--<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-     <i class="material-icons" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-size:30px;color:black;background-color:white;border-radius:15px">person</i>
-  <!--</a>-->
+<meta name="robots" content="index, follow" />
 
-  <div style="" class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Profile</a>
-    <a class="dropdown-item" href="{{ route('logout') }}">Logout</a>
+<meta name="twitter:title" content="page_title">
+<meta name="twitter:description" content="page_description">
+<meta name="twitter:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+
+
+<meta property="og:url" content="{{ asset('/') }}">
+<meta property="og:title" content="page_title">
+<meta property="og:description" content="page_description">
+<meta property="og:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+<meta property="og:image:secure_url" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+<meta name="classification" content="page_title" />
+
+<link rel="shortcut icon" type="image/x-icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" />
+<link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-original.png') }}" id="light-scheme-icon">
+<link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" id="dark-scheme-icon">
+<link rel="canonical" href="{{ asset('/') }}" />
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+@endpush
+@push('styles')
+<link rel="stylesheet" href="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.css') }}">
+@endpush
+@section('content')
     
-  </div>
-</div>
-       
-    </form>
-  </div>
-</nav>
+{{-- <input type="hidden" value="{{$mid}}" id="mid"> --}}
     <div class="container-fluid">
         <div class="row" style="height:100%">
 
-            <div class="col-1" style="background-color:#302D2F;color:white;border-top:1px solid white;">
-                <div class="sideBar py-3 h-300" >
-                    {{-- <input type="hidden" value="{{$mid}}" id="mid"> --}}
-                    <ul class="p-0 m-0 list-unstyled gap-3">
-                        <li class="align-item-center {{ Request::routeIs('index') ? 'active' : '' }}"><a href="{{route('index',[session()->get('uid')])}}"
-                                class="text-decoration-none fs-16 d-flex">
-                                <div class="menuIcon me-2"><img src="{{ asset('public/img/event.png') }}"
-                                        alt=""><img class="d-none img-2"
-                                        src="{{ asset('public/img/event-color.png') }}" alt="" style="color:white"></div><span
-                                    class="align-items-center d-flex" style="color:white" >Event</span>
-                            </a></li>
-                        <li class="align-item-center"><a href="" class="text-decoration-none fs-16 d-flex">
-                                <div class="menuIcon me-2"><img src="{{ asset('public/img/guests.png') }}"
-                                        alt=""><img class="d-none img-2"
-                                        src="{{ asset('public/img/guests-color.png') }}" alt="" style="color:white"></div><span
-                                    class="align-items-center d-flex" style="color:white">Guest</span>
-                            </a></li>
-                        <li class="align-item-center"><a href="/email" class="text-decoration-none fs-16 d-flex">
-                                <div class="menuIcon me-2"><img src="{{ asset('public/img/email.png') }}"
-                                        alt=""><img class="d-none img-2"
-                                        src="{{ asset('public/img/email-color.png') }}" alt="" style="color:white"></div><span
-                                    class="align-items-center d-flex" style="color:white">Email</span>
-                            </a></li>
-                        <li class="align-item-center {{ Request::routeIs('analytics') ? 'active' : '' }}"><a href="{{route('analytics')}}" class="text-decoration-none fs-16 d-flex">
-                                <div class="menuIcon me-2"><img src="{{ asset('public/img/analytics.png') }}"
-                                        alt=""><img class="d-none img-2"
-                                        src="{{ asset('public/img/analytics-color.png') }}" alt="" style="color:white"></div>
-                                <span class="align-items-center d-flex" style="color:white">Analytics</span>
-                            </a></li>
-                        <li class="align-item-center"><a href="" class="text-decoration-none fs-16 d-flex">
-                                <div class="menuIcon me-2"><img src="{{ asset('public/img/settings.png') }}"
-                                        alt=""><img class="d-none img-2"
-                                        src="{{ asset('public/img/settings-color.png') }}" alt="" style="color:white"></div>
-                                <span class="align-items-center d-flex" style="color:white">Setting</span>
-                            </a></li>
-                    </ul>
-                </div>
-            </div>
+            
             <div class="col-11">
                 <div class="sectionheader py-3">
                     <div class="row align-items-center">
@@ -122,8 +52,7 @@
                                 </div>
                                 <div class="col">
                                     <ul class="p-0 m-0 list-unstyled d-flex gap-3 justify-content-end">
-                                        <li><a class="nav-link btnAddEvent" href="{{ url('/addVisitor/' . $id) }}">Add
-                                                Visitor</a></li>
+                                        <li><a class="nav-link btnAddEvent" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{ url('/addVisitor/' . $id) }}">Add Visitor</a></li>
                                         <li><a class="nav-link btnAddEvent"
                                                 href="{{ url('/exportdata/' . $id) }}">Export
                                                 Event</a></li>
@@ -144,6 +73,258 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade Create-Guest-modal" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header py-3 border-0">
+                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModalLabel">Edit Guest Information</h5>
+                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
+                            </div>
+                            <div class="modal-body p-0">
+                                <div class="row px-0 mx-0">
+                                    <div class="col-12 Account event_info px-0 py-2">
+                                        <h4 class="m-0 heading fw-bold text-white px-3 fs-16">Guest Information</h4>
+                                    </div>
+                                    <form action="{{route('addguest')}}" method="post" class="modal-form col-12 mt-3">
+                                        @csrf
+                                        <input type="hidden" name="mid" value="{{$id}}">
+                                        <div class="row">
+                                            <div class="col-3 d-flex justify-content-center">
+                                                <!-- userName -->
+                                                <div class="dnone">
+                                                    <div class="h-80px w-80px rounded-circle d-flex justify-content-center align-items-center user_img"><span class="fs-30 text-white fw-bold">DW</span></div>
+                                                    <div class="fs-14 mt-1 text-center">Attending</div>
+                                                </div>
+                                                <!-- user-Name End -->
+
+                                                <!-- user_img -->
+                                                <div class="d-none">
+                                                    <input class="form-control d-none" type="file" id="chooseFile">
+                                                    <label for="chooseFile" class="h-80px w-80px rounded-circle d-flex justify-content-center align-items-center user_img text-white"><img src="{{ asset('/public/new-design/img/USER.jpg') }}" alt="" class="w-100 rounded-circle"></label>
+                                                    <div class="fs-14 text-center mt-1">Attending</div>
+                                                </div>
+                                                <!-- user-img End -->
+                                            </div>
+
+                                            <div class="col-9">
+                                                <div class="row px-0 mx-0">
+                                                    <div class="col-12 form-floating mb-2">
+                                                        <select class="form-select h-50px shadow-none Inpt border-0" id="floatingSelect" name="type" aria-label="Floating label select example">
+                                                            <option lass="choose py-1" selected>Open this select menu</option>
+                                                            <option lass="choose py-1" value="checkin">Check In</option>
+                                                            <option lass="choose py-1" value="checkout">Check out</option>
+                                                        </select>
+                                                        <label for="floatingSelect" class="fs-12 ps-4">Status</label>
+                                                    </div>
+                                                    <div class="col-4 mb-2 form-floating">
+                                                        <select class="form-select h-50px shadow-none Inpt border-0" id="floatingSelect" name="nmtitle" aria-label="Floating label select example">
+                                                            <option lass="choose py-1" selected>Choose.</option>
+                                                            <option lass="choose py-1" value="1">One</option>
+                                                            <option lass="choose py-1" value="2">Two</option>
+                                                            <option lass="choose py-1" value="3">Three</option>
+                                                        </select>
+                                                        <label for="floatingSelect" class="fs-12 ps-4">Status</label>
+                                                    </div>
+                                                    <div class="col-4 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" name="evefirstname" id="floatingInputValue" placeholder="Enter First Name" value="">
+                                                        <label for="floatingInputValue" class="fs-12 ps-4">First Name</label>
+                                                    </div>
+                                                    <div class="col-4 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal"  name="evelastname"  id="floatingInputValue1" placeholder="Enter Last Name" value="">
+                                                        <label for="floatingInputValue1" class="fs-12 ps-4">Last Name</label>
+                                                    </div>
+                                                    <div class="col-12 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue2" placeholder="dawn.wong@nowcomms.asia" name="eveemail"  value="">
+                                                        <label for="floatingInputValue2" class="fs-12 ps-4">Email</label>
+                                                    </div>
+                                                    <div class="col-6 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue3" placeholder="Administrator" name="jobtitle" value="">
+                                                        <label for="floatingInputValue3" class="fs-12 ps-4">Job Title</label>
+                                                    </div>
+                                                    <div class="col-6 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue4" placeholder="Now Comms Asia" name="orgenization" value="">
+                                                        <label for="floatingInputValue4" class="fs-12 ps-4">Organisation</label>
+                                                    </div>
+                                                    <!-- <div class="col-12 mb-2 form-floating Tel_Input_group">
+                                                        <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
+                                                        <label for="phone" class="fs-12 ps-4">Organisation</label>
+                                                    </div> -->
+                                                    <!-- <div class="col-12">
+                                                        <input type="tel" id="phone">
+                                                    </div> -->
+                                                    <div class="col-12 mb-2 form-floating">
+                                                        <input type="number" class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue5" placeholder="Enter Mobile Number" name="mobileno" value="">
+                                                        <label for="floatingInputValue5" class="fs-12 ps-4">Mobile Number</label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <select class="form-control basicSelect" name="tags" multiple="multiple">
+                                                            <option selected="selected">orange</option>
+                                                            <option>white</option>
+                                                            <option selected="selected">purple</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-12 Account event_info my-3 px-0 py-2">
+                                                <h4 class="m-0 heading fw-bold text-white px-3 fs-16">Social Media (If Any)</h4>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <input type="text" placeholder="LinkedIn" name="linkedin" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                                            </div>
+
+                                            <div class="col-12 mb-3">
+                                                <input type="text" placeholder="Twitter" name="twitter" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                                            </div>
+
+                                            <div class="col-12 px-0 py-3 d-flex justify-content-center gap-2 fotter_button">
+                                                <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                <button type="submit" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <!-- <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade Create-Guest-modal" id="exampleModal1" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header py-3 border-0">
+                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModalLabel">Edit Guest Information</h5>
+                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                                <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
+                            </div>
+                            <div class="modal-body p-0">
+                                <div class="row px-0 mx-0">
+                                    <div class="col-12 Account event_info px-0 py-2">
+                                        <h4 class="m-0 heading fw-bold text-white px-3 fs-16">Guest Information</h4>
+                                    </div>
+                                    <form action="{{route('updateguest')}}" method="post" class="modal-form col-12 mt-3">
+                                        @csrf
+                                        <input type="hidden" name="mid" value="{{$id}}">
+                                        <input type="hidden" id="id1" name="id1">
+                                        <input type="hidden" id="id2" name="id2">
+                                        
+                                        <div class="row">
+                                            <div class="col-3 d-flex justify-content-center">
+                                                <!-- userName -->
+                                                <div class="dnone">
+                                                    <div class="h-80px w-80px rounded-circle d-flex justify-content-center align-items-center user_img"><span class="fs-30 text-white fw-bold">DW</span></div>
+                                                    <div class="fs-14 mt-1 text-center">Attending</div>
+                                                </div>
+                                                <!-- user-Name End -->
+
+                                                <!-- user_img -->
+                                                <div class="d-none">
+                                                    <input class="form-control d-none" type="file" id="chooseFile">
+                                                    <label for="chooseFile" class="h-80px w-80px rounded-circle d-flex justify-content-center align-items-center user_img text-white"><img src="{{ asset('/public/new-design/img/USER.jpg') }}" alt="" class="w-100 rounded-circle"></label>
+                                                    <div class="fs-14 text-center mt-1">Attending</div>
+                                                </div>
+                                                <!-- user-img End -->
+                                            </div>
+
+                                            <div class="col-9">
+                                                <div class="row px-0 mx-0">
+                                                    <div class="col-12 form-floating mb-2">
+                                                        <select class="form-select h-50px shadow-none Inpt border-0" id="status1" name="type" aria-label="Floating label select example">
+                                                            <option lass="choose py-1" selected>Open this select menu</option>
+                                                            <option lass="choose py-1" value="checkin">Check In</option>
+                                                            <option lass="choose py-1" value="checkout">Check out</option>
+                                                        </select>
+                                                        <label for="floatingSelect" class="fs-12 ps-4">Status</label>
+                                                    </div>
+                                                    <div class="col-4 mb-2 form-floating">
+                                                        <select class="form-select h-50px shadow-none Inpt border-0" id="status2" name="nmtitle" aria-label="Floating label select example">
+                                                            <option lass="choose py-1" selected>Choose.</option>
+                                                            <option lass="choose py-1" value="1">One</option>
+                                                            <option lass="choose py-1" value="2">Two</option>
+                                                            <option lass="choose py-1" value="3">Three</option>
+                                                        </select>
+                                                        <label for="floatingSelect" class="fs-12 ps-4">Status</label>
+                                                    </div>
+                                                    <div class="col-4 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" name="evefirstname" id="fname1" placeholder="Enter First Name" value="">
+                                                        <label for="floatingInputValue" class="fs-12 ps-4">First Name</label>
+                                                    </div>
+                                                    <div class="col-4 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal"  name="evelastname"  id="lname1" placeholder="Enter Last Name" value="">
+                                                        <label for="floatingInputValue1" class="fs-12 ps-4">Last Name</label>
+                                                    </div>
+                                                    <div class="col-12 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="email1" placeholder="dawn.wong@nowcomms.asia" name="eveemail"  value="">
+                                                        <label for="floatingInputValue2" class="fs-12 ps-4">Email</label>
+                                                    </div>
+                                                    <div class="col-6 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="jobtitle1" placeholder="Administrator" name="jobtitle" value="">
+                                                        <label for="floatingInputValue3" class="fs-12 ps-4">Job Title</label>
+                                                    </div>
+                                                    <div class="col-6 mb-2 form-floating">
+                                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="organization1" placeholder="Now Comms Asia" name="orgenization" value="">
+                                                        <label for="floatingInputValue4" class="fs-12 ps-4">Organisation</label>
+                                                    </div>
+                                                    <!-- <div class="col-12 mb-2 form-floating Tel_Input_group">
+                                                        <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
+                                                        <label for="phone" class="fs-12 ps-4">Organisation</label>
+                                                    </div> -->
+                                                    <!-- <div class="col-12">
+                                                        <input type="tel" id="phone">
+                                                    </div> -->
+                                                    <div class="col-12 mb-2 form-floating">
+                                                        <input type="number" class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="mnumber1" placeholder="Enter Mobile Number" name="mobileno" value="">
+                                                        <label for="floatingInputValue5" class="fs-12 ps-4">Mobile Number</label>
+                                                    </div>
+                                                    <div class="col-12">
+                                                        <select class="form-control basicSelect" id="tags1" name="tags" multiple="multiple">
+                                                            <option selected="selected">orange</option>
+                                                            <option>white</option>
+                                                            <option selected="selected">purple</option>
+                                                        </select>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-12 Account event_info my-3 px-0 py-2">
+                                                <h4 class="m-0 heading fw-bold text-white px-3 fs-16">Social Media (If Any)</h4>
+                                            </div>
+                                            <div class="col-12 mb-3">
+                                                <input type="text" placeholder="LinkedIn" id="linkedin1" name="linkedin" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                                            </div>
+
+                                            <div class="col-12 mb-3">
+                                                <input type="text" placeholder="Twitter" id="twiiter1" name="twitter" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                                            </div>
+
+                                            <div class="col-12 px-0 py-3 d-flex justify-content-center gap-2 fotter_button" id="btn11">
+                                                <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                <button type="submit" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                            </div>
+
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+
+                            <!-- <div class="modal-footer justify-content-center">
+                                <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+               
 
                 <div class="row" style="border:none">
                     <div class="col-3" style="border:none">
@@ -347,7 +528,8 @@
                                             <!--<th class="text-capitalize">Type</th>-->
                                             <!--<th class="text-capitalize">Email</th>-->
                                             <th class="text-capitalize">Visit</th>
-                                            <!--<th class="text-capitalize">Date</th>-->
+                                            <th class="text-capitalize">Edit</th>
+                                            <th class="text-capitalize">View</th>
                                             <th class="text-capitalize ">Action</th>
                                             <!--<th class="text-capitalize w-100">Action</th>-->
                                         </tr>
@@ -369,6 +551,77 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
+
+
+    <script>
+    function openmodal(id,mid){
+        $('#btn11').removeClass('d-none');
+        $('#id1').val(id);
+                $('#id2').val(mid);
+        $.ajax({
+
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            url: "{{ route('editvisitor') }}",
+            type: "post",
+            data: {
+                id: id,
+                mid:mid,
+            },
+            success: function(response) {
+                $('#twiiter1').val(response.twitter);
+                $('#linkedin1').val(response.linkedin);
+                
+                $('#mnumber1').val(response.mobileno);
+                $('#organization1').val(response.orgenization);
+                $('#jobtitle1').val(response.jobtitle);
+                $('#email1').val(response.eveemail);
+                $('#lname1').val(response.evelastname);
+                $('#fname1').val(response.evefirstname);
+                $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
+                $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
+                $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
+                $('#exampleModal1').modal('toggle');
+                $('#exampleModal1').modal('show');
+            }
+        })
+    }
+    function viewmodal(id,mid){
+        // $('#exampleModal2').modal('toggle');
+        // $('#exampleModal2').modal('show');
+        $.ajax({
+
+            headers: {
+                'X-CSRF-TOKEN': "{{ csrf_token() }}"
+            },
+            url: "{{ route('viewvisitor') }}",
+            type: "post",
+            data: {
+                id: id,
+                mid:mid,
+            },
+            success: function(response) {
+                $('#twiiter1').val(response.twitter);
+                $('#linkedin1').val(response.linkedin);
+                // $('#tags1').val(response.tags);
+                $('#mnumber1').val(response.mobileno);
+                $('#organization1').val(response.orgenization);
+                $('#jobtitle1').val(response.jobtitle);
+                $('#email1').val(response.eveemail);
+                $('#lname1').val(response.evelastname);
+                $('#fname1').val(response.evefirstname);
+                
+                $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
+                $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
+                $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
+                $('#btn11').addClass('d-none');
+                $('#exampleModal1').modal('toggle');
+                $('#exampleModal1').modal('show');
+            }
+            })
+    }
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -432,10 +685,12 @@
                         "data": "visit",
                         orderable: false
                     },
-                    // {
-                    //     "data": "date",
-                    //     orderable: false
-                    // },
+                    {
+                        "data": "edit",
+                    },
+                    {
+                        "data": "view",
+                    },
                     {
                         "data": "action",
                         orderable: false
@@ -463,7 +718,7 @@
             
         });
     </script>
-</body>
+
 
 {{-- <script type="text/javascript">
     function PrintDiv(id) {
@@ -477,4 +732,21 @@
     }
 </script> --}}
 
-</html>
+@endsection
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.js') }}"></script>
+<script>
+    var input = document.querySelector("#phone");
+    window.intlTelInput(input, {
+        // any initialisation options go here
+    });
+</script>
+
+<script>
+    $('.basicSelect').select2({
+        tags: true,
+    });
+</script>
+
+@endpush

@@ -62,15 +62,15 @@
     <link rel="stylesheet" href="{{ asset('public/new-design/css/style.min.css') }}" />
 </head>
 <body class="vh-100 overflow-hidden DashBoardSection">
-    @include('new-design.layouts.preloader')
+    @include('layouts.preloader')
     <div class="d-flex flex-column">
-    @include('new-design.layouts.header2')
+    @include('layouts.header2')
     <div class="bodyScrollPart d-flex" id="bodyScrollPart">
         <div class="sidebarSide">
-    @include('new-design.layouts.sidebar')
+    @include('layouts.sidebar')
         </div>
         <div class="contentSide px-2 py-4">
-            <main class="main-scrollbar h-100">
+            <main class="main-scrollbar">
                 @yield('content')
             </main>
         </div>
