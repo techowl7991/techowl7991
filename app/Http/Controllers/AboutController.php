@@ -43,7 +43,7 @@ class AboutController extends Controller
             $date = date('Y-m-d');
             $up_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate', '>=', $date)->documents();
             $upcoming_count = iterator_count($up_snapshot);
-            $pas_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate','<',$date)->documents();
+            $pas_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate', '<', $date)->documents();
             $past_count = iterator_count($pas_snapshot);
             return view('tableview', compact('mid', 'upcoming_count', 'past_count'));
         } else {
@@ -153,7 +153,7 @@ class AboutController extends Controller
         return redirect('/login');
     }
 
-    
+
 
 
     public function addEvent(Request $request)
@@ -175,6 +175,14 @@ class AboutController extends Controller
             if (date('m/d/Y h:i:s A', strtotime($request->eventenddate)) < date('m/d/Y h:i:s A')) {
                 return redirect()->back()->with('alert', 'End Date Should Be greater then Today Date');
             }
+
+            $data = [];
+            if ($request->eventtype == 'online') {
+                $dat = ($request->eventurl!=null)?$request->eventurl:'';
+            } else {
+                $dat = ($request->eventlocation!=null)?$request->eventlocation:'';
+            }
+
             $data = [
                 'event_startdate' => $request->eventstartdate,
                 'event_enddate' => $request->eventenddate,
@@ -185,110 +193,116 @@ class AboutController extends Controller
                 'vip' => 0,
                 'password' => $request->eventpassword,
 
-                'event_url' => $request->eventurl,
-                'event_location' => $request->eventlocation,
+                // 'event_url' => $request->eventurl,
+                // 'event_location' => $request->eventlocation,
                 'event_starttime' => $request->eventstarttime,
                 'event_endtime' => $request->eventendtime,
                 'event_timezone' => $request->eventtimezone,
+                'event_type' => $request->eventtype,
+                'event_sub_type' => $dat,
+
             ];
             // dd($data);
             //  self::$firestoreClient->collection(events)->document('one')->set($data);
             $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->add($data);
-            $totalvip = 0;
-            $totalreg = 0;
-            if ($request->eventr1 == 'excal') {
-                $reads = Excel::toArray(new \stdClass(), $request->file('eventfile'));
-                $index = 0;
-                foreach ($reads as  $read) {
-                    foreach ($read as $value) {
-                        if ($index == 0) {
-                        } else {
-                            $eventData = [
-                                'name' => $value[0],
-                                'type' =>  $value[1],
-                                'email' => $value[2],
-                                'company' =>  $value[3],
-                                'visit' => 'No',
-                                'status' => 0
-                            ];
-                            if ($eventData['type'] == 'vip' or $eventData['type'] == 'VIP') {
-                                $totalvip = $totalvip + 1;
-                            } else {
-                                $totalreg = $totalreg + 1;
-                            }
-                            $docref1 = self::$firestoreClient->collection('visitor')->document($docref->id())->collection('visitor_details')->add($eventData);
-                            $token = $docref->id() . '(**)' . $docref1->id();
-                            $eventData['token'] = $token;
-                            $eventData['event_startdate'] = $request->eventstartdate;
-                            $eventData['event_enddate'] = $request->eventenddate;
-                            $eventData['event_name'] = $request->eventname;
-                            $eventData['address'] = $request->address;
-                            self::$firestoreClient->collection('eventsemail')->add($eventData);
-                        }
-                        $index = $index + 1;
-                    }
-                }
-            } else {
-                for ($i = 0; $i < count($request->evefirstname); $i++) {
-                    if($request->picture && $request->picture[$i]){
-                        $file = $request->Picture[$i];
-                        // dump(base_path());
-                        $file->move(base_path('public\images'), $file->getClientOriginalName());
-                        // dd($file ,$file->getClientOriginalName());
-                        $image = 'public/images/'.$file->getClientOriginalName();
-                    }else{
-                        $image = '';
-                    }
-                    
-                    $evedata = [
-                        'nmtitle' => $request->nmtitle[$i],
-                        'firstname' => $request->evefirstname[$i],
-                        'lastname' => $request->evelastname[$i],
-                        'email' => $request->eveemail[$i],
-                        'phoneno' => $request->phoneno[$i],
-                        'mobileno' => $request->mobileno[$i],
-                        'address' => $request->address[$i],
-                        'organization' => $request->organization[$i],
-                        'twitter' => $request->twitter[$i],
-                        'linkedin' => $request->linkedin[$i],
-                        'picture' => $image,
-                        'type' => $request->evetype[$i],
-                        'company' => $request->evencname[$i],
-                        'visit' => 'No',
-                        'status' => 0
-                    ];
-                    if ($request->evetype[$i] == 'vip' or $request->evetype[$i] == 'VIP') {
-                        $totalvip = $totalvip + 1;
-                    } else {
-                        $totalreg = $totalreg + 1;
-                    }
-                    $docref1 = self::$firestoreClient->collection('visitor')->document($docref->id())->collection('visitor_details')->add($evedata);
-                    $token = $docref->id() . '(**)' . $docref1->id();
-                    $evedata['token'] = $token;
-                    $evedata['event_startdate'] = $request->eventstartdate;
-                    $evedata['event_enddate'] = $request->eventenddate;
-                    $evedata['event_name'] = $request->eventname;
-                    $evedata['address'] = $request->address;
-                    self::$firestoreClient->collection('eventsemail')->add($evedata);
-                }
-            }
-            $data1 = [
-                'event_startdate' => $request->eventstartdate,
-                'event_enddate' => $request->eventenddate,
-                'event_name' => $request->eventname,
-                // 'address' => $request->address,
-                'Reg' => $totalreg,
-                'total' => $totalreg + $totalvip,
-                'vip' => $totalvip,
-                'password' => $request->eventpassword,
 
-                'event_url' => $request->eventurl,
-                'event_location' => $request->eventlocation,
-                'event_starttime' => $request->eventstarttime,
-                'event_endtime' => $request->eventendtime,
-                'event_timezone' => $request->eventtimezone,
-            ];
-            $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->document($docref->id())->set($data1);
+            // $totalvip = 0;
+            // $totalreg = 0;
+            // if ($request->eventr1 == 'excal') {
+            //     $reads = Excel::toArray(new \stdClass(), $request->file('eventfile'));
+            //     $index = 0;
+            //     foreach ($reads as  $read) {
+            //         foreach ($read as $value) {
+            //             if ($index == 0) {
+            //             } else {
+            //                 $eventData = [
+            //                     'name' => $value[0],
+            //                     'type' =>  $value[1],
+            //                     'email' => $value[2],
+            //                     'company' =>  $value[3],
+            //                     'visit' => 'No',
+            //                     'status' => 0
+            //                 ];
+            //                 if ($eventData['type'] == 'vip' or $eventData['type'] == 'VIP') {
+            //                     $totalvip = $totalvip + 1;
+            //                 } else {
+            //                     $totalreg = $totalreg + 1;
+            //                 }
+            //                 $docref1 = self::$firestoreClient->collection('visitor')->document($docref->id())->collection('visitor_details')->add($eventData);
+            //                 $token = $docref->id() . '(**)' . $docref1->id();
+            //                 $eventData['token'] = $token;
+            //                 $eventData['event_startdate'] = $request->eventstartdate;
+            //                 $eventData['event_enddate'] = $request->eventenddate;
+            //                 $eventData['event_name'] = $request->eventname;
+            //                 $eventData['address'] = $request->address;
+            //                 self::$firestoreClient->collection('eventsemail')->add($eventData);
+            //             }
+            //             $index = $index + 1;
+            //         }
+            //     }
+            // }
+            // else {
+            //     for ($i = 0; $i < count($request->evefirstname); $i++) {
+            //         if ($request->picture && $request->picture[$i]) {
+            //             $file = $request->Picture[$i];
+            //             // dump(base_path());
+            //             $file->move(base_path('public\images'), $file->getClientOriginalName());
+            //             // dd($file ,$file->getClientOriginalName());
+            //             $image = 'public/images/' . $file->getClientOriginalName();
+            //         } else {
+            //             $image = '';
+            //         }
+
+            //         $evedata = [
+            //             'nmtitle' => $request->nmtitle[$i],
+            //             'firstname' => $request->evefirstname[$i],
+            //             'lastname' => $request->evelastname[$i],
+            //             'email' => $request->eveemail[$i],
+            //             'phoneno' => $request->phoneno[$i],
+            //             'mobileno' => $request->mobileno[$i],
+            //             'address' => $request->address[$i],
+            //             'organization' => $request->organization[$i],
+            //             'twitter' => $request->twitter[$i],
+            //             'linkedin' => $request->linkedin[$i],
+            //             'picture' => $image,
+            //             'type' => $request->evetype[$i],
+            //             'company' => $request->evencname[$i],
+            //             'visit' => 'No',
+            //             'status' => 0
+            //         ];
+            //         if ($request->evetype[$i] == 'vip' or $request->evetype[$i] == 'VIP') {
+            //             $totalvip = $totalvip + 1;
+            //         } else {
+            //             $totalreg = $totalreg + 1;
+            //         }
+            //         $docref1 = self::$firestoreClient->collection('visitor')->document($docref->id())->collection('visitor_details')->add($evedata);
+            //         $token = $docref->id() . '(**)' . $docref1->id();
+            //         $evedata['token'] = $token;
+            //         $evedata['event_startdate'] = $request->eventstartdate;
+            //         $evedata['event_enddate'] = $request->eventenddate;
+            //         $evedata['event_name'] = $request->eventname;
+            //         $evedata['address'] = $request->address;
+            //         self::$firestoreClient->collection('eventsemail')->add($evedata);
+            //     }
+            // }
+            // $data1 = [
+            //     'event_startdate' => $request->eventstartdate,
+            //     'event_enddate' => $request->eventenddate,
+            //     'event_name' => $request->eventname,
+            //     // 'address' => $request->address,
+            //     'Reg' => $totalreg,
+            //     'total' => $totalreg + $totalvip,
+            //     'vip' => $totalvip,
+            //     'password' => $request->eventpassword,
+
+            //     'event_url' => $request->eventurl,
+            //     'event_location' => $request->eventlocation,
+            //     'event_starttime' => $request->eventstarttime,
+            //     'event_endtime' => $request->eventendtime,
+            //     'event_timezone' => $request->eventtimezone,
+            //     // 'event_type' => $request->eventtype,
+            // ];
+            // $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->document($docref->id())->set($data1);
             return redirect('/index/' . $request->session()->get('uid'));
             // dd(Excel::toCollection(collect([]), $request->file('eventfile')));
         } else {
@@ -298,6 +312,7 @@ class AboutController extends Controller
             ]);
             $snapshot = self::$firestoreClient->collection('timezone')->documents();
             $data = $snapshot->rows();
+            // dd($data);
             return view('addevent', compact('data'));
         }
     }
@@ -551,7 +566,7 @@ class AboutController extends Controller
             'projectId' => self::$firestoreProjectId,
         ]);
 
-        $snapshot = self::$firestoreClient->collection('events')->document($_GET['mid'])->collection('events_data')->where('event_startdate','<',$date)->offset($start)->limit($limit)->orderBy($order, $dir);
+        $snapshot = self::$firestoreClient->collection('events')->document($_GET['mid'])->collection('events_data')->where('event_startdate', '<', $date)->offset($start)->limit($limit)->orderBy($order, $dir);
 
         // if(isset($_GET['event_name'])){
         //    if($_GET['event_name']!=""){
@@ -568,7 +583,7 @@ class AboutController extends Controller
         $query = $snapshot->rows();
         $totalTitles = count($query);
         $totalFiltered = $totalTitles;
-        
+
         $titles = $query;
         // dd($titles);
 
@@ -579,25 +594,25 @@ class AboutController extends Controller
                 $b = action('AboutController@printdata', $title->id());
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
 
-                $action = "<a href=".$b." class='btn btn-primary shadow printBtn py-1 px-3'>Detail</a>";
-                $actionQR = '<a class="btn btn-primary text-white shadow printBtn py-1 px-3" data-toggle="modal" data-target="#exampleModal'.$title->id().'">View QR</a><div class="modal fade" id="exampleModal'.$title->id().'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>'.$c.'</div></div></div></div>';
-                
+                $action = "<a href=" . $b . " class='btn btn-primary shadow printBtn py-1 px-3'>Detail</a>";
+                $actionQR = '<a class="btn btn-primary text-white shadow printBtn py-1 px-3" data-toggle="modal" data-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
+
                 $route = action('AboutController@singledelete', $title->id());
                 $editroute = action('AboutController@edit', $title->id());
-                $delbtn = "<a href=".$route." class='text-danger py-5 px-3'><i class='fa fa-trash' aria-hidden='true'></i></a>";
-                $edtbtn = "<a href=".$editroute." class='text-danger py-5 px-3'><i class='fa fa-edit' aria-hidden='true'></i></a>";
-            	$nestedData['id'] = $count;
-                $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="'.$title->id().'" >';
+                $delbtn = "<a href=" . $route . " class='text-danger py-5 px-3'><i class='fa fa-trash' aria-hidden='true'></i></a>";
+                $edtbtn = "<a href=" . $editroute . " class='text-danger py-5 px-3'><i class='fa fa-edit' aria-hidden='true'></i></a>";
+                $nestedData['id'] = $count;
+                $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="' . $title->id() . '" >';
                 $nestedData['singledel'] = $delbtn;
-            	$nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
-                $nestedData['event_name'] = $title['event_name'];                
-                $nestedData['event_startdate'] = date('m/d/Y h:i:s A', strtotime($title['event_startdate']));                
-                $nestedData['event_enddate'] = date('m/d/Y h:i:s A', strtotime($title['event_enddate']));                
-                $nestedData['address'] = $edtbtn;                
-                $nestedData['total'] = $title['total'];        
-                $nestedData['vip'] = $title['vip'];        
-                $nestedData['Reg'] = $title['Reg'];        
-                $nestedData['qrcode'] = $actionQR;        
+                $nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
+                $nestedData['event_name'] = $title['event_name'];
+                $nestedData['event_startdate'] = date('m/d/Y h:i:s A', strtotime($title['event_startdate']));
+                $nestedData['event_enddate'] = date('m/d/Y h:i:s A', strtotime($title['event_enddate']));
+                $nestedData['address'] = $edtbtn;
+                $nestedData['total'] = $title['total'];
+                $nestedData['vip'] = $title['vip'];
+                $nestedData['Reg'] = $title['Reg'];
+                $nestedData['qrcode'] = $actionQR;
                 $nestedData['action'] = $action;
                 $data[] = $nestedData;
                 $count++;
@@ -618,7 +633,7 @@ class AboutController extends Controller
 
     public function edit(Request $request, $id)
     {
-        
+
         $mid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -637,7 +652,7 @@ class AboutController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+
         // dd($id);
         if ($request->isMethod('put')) {
             $USERID = $request->session()->get('uid');
@@ -670,14 +685,13 @@ class AboutController extends Controller
                 'event_starttime' => $request->eventstarttime,
                 'event_endtime' => $request->eventendtime,
                 'event_timezone' => $request->eventtimezone,
-            ];            
+            ];
 
             // dd($data1);
             $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->document($id)->set($data1);
             return redirect('/index/' . $request->session()->get('uid'));
-        }
-        else {
-        
+        } else {
+
             self::$firestoreProjectId = 'guest-app-2eb59';
             self::$firestoreClient = new FirestoreClient([
                 'projectId' => self::$firestoreProjectId,
@@ -698,7 +712,7 @@ class AboutController extends Controller
             'projectId' => self::$firestoreProjectId,
         ]);
         $d = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->delete();
-        return redirect()->back()->with('message','Event Successfully Deleted');
+        return redirect()->back()->with('message', 'Event Successfully Deleted');
     }
 
     public function multi_delete(Request $request)

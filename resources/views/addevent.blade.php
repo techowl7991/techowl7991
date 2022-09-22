@@ -1,273 +1,227 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('new-design.main3')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@push('meta')
+    <title>page_title</title>
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="title" content="page_title" />
+    <meta name="description" content="page_description" />
+    <meta name="keywords" content="page_keywords" />
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <meta name="robots" content="index, follow" />
 
-    <link href="{{ asset('public/css/login.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />
-    <!-- Scripts -->
-    <script src="{{ asset('public/js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('public/css/app.css') }}" rel="stylesheet">
-    <style>
-        td input {
-            width: 130px;
-        }
-    </style>
-</head>
-
-<body>
-    <nav style="background-color:#302D2F" class="navbar navbar-expand-lg">
-        <a class="navbar-brand" href="#"><img src="https://i.ibb.co/Ny6rmJV/logo1.png" alt="logo"
-                border="0"></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-
-            </ul>
-            <form class="form-inline my-2 my-lg-0">
+    <meta name="twitter:title" content="page_title">
+    <meta name="twitter:description" content="page_description">
+    <meta name="twitter:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
 
 
+    <meta property="og:url" content="{{ asset('/') }}">
+    <meta property="og:title" content="page_title">
+    <meta property="og:description" content="page_description">
+    <meta property="og:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+    <meta property="og:image:secure_url" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+    <meta name="classification" content="page_title" />
 
-                <!--<a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-
-                <!--</a>-->
-
-                <button class="btn px-5"
-                    style="background-color:white;padding:10px;margin-right:20px;font-weight:700">CANCEL</button>
-                <button class="btn px-5"
-                    style="background-color:#FF4E00;padding:10px;margin-right:20px;font-weight:700;color:white">CREATE</button>
-        </div>
-
-        </form>
-        </div>
-    </nav>
-    <div class="container-fluid">
-
-        <div class="col-md-12">
-            <div class="row mx-0 my-5 justify-content-center">
-                <div class="col-5 card bg-white p-4">
-                    <div class="card-header fw-bold mb-3">
-                        <div class="row justify-content-between align-items-center">
-                            <div class="col-auto" style="font-size:20px;font-weight:800">Create Event</div>
-
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" />
+    <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-original.png') }}" id="light-scheme-icon">
+    <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" id="dark-scheme-icon">
+    <link rel="canonical" href="{{ asset('/') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+@endpush
+@push('styles')
+@endpush
+@section('content')
+    <div class="container-fluid signUpPage d-flex justify-content-center align-items-center Create_Event  px-0">
+        <div class="row innerPage justify-content-center align-items-center h-100 w-100 py-5">
+            <div class="col-xxl-7 col-xl-8 col-lg-9 col-md-10 col-sm-11 col-12 Sign_Up">
+                <div class="card border-0 px-0 py-2 bg-white ">
+                    <div class="row mx-0">
+                        <div class="col-12 Account px-4 py-2">
+                            <h4 class="m-0 heading text-theme2 fw-bold fs-md-20 fs-18">Create Event</h4>
+                        </div>
+                        <div class="col-12 Account event_info px-4 py-2">
+                            <h4 class="m-0 heading fw-bold text-white fs-16">Event Information</h4>
                         </div>
                     </div>
-                    <form id="subform" action="{{ asset('/addEvent') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ asset('/addEvent') }}" method="post" enctype="multipart/form-data"
+                        class="needs-validation px-4 py-3" id="form2" novalidate>
                         @csrf
-                        <div class="row g-3 needs-validation">
-                            <div class="col-md-12">
-                                <label for="validationCustom01" class="form-label">Event Name</label>
-                                <input type="text" class="form-control" name="eventname" required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none">
-                                <div class="valid-feedback">
-                                    Looks good!
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <input type="text" placeholder="Event Name" name="eventname"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    autocomplete="off" required>
+                            </div>
+
+                            <div class="col-12 mb-3 password-field position-relative">
+                                <input type="password" placeholder="Password" name="eventpassword"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    id="password-field" autocomplete="off" required>
+                                <span><i toggle="#password-field" id="eye"
+                                        class="imgs img-eye position-absolute eye-icon"></i></span>
+                                <div class="invalid-feedback fs-14">
+                                    Please enter your phone number or email
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
-                                <label for="validationCustom01" class="form-label">Password</label>
-                                <input type="text" class="form-control" name="eventpassword" required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none">
-                                <div class="valid-feedback">
-                                    Looks good!
+                            <div class="col-12 text-theme2 fs-16 fw-bold mb-3">Event Type</div>
+                            <div class="col-12 mb-3 d-flex align-items-center gap-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="eventtype" value="online"
+                                        id="evetypeonline" onclick="onlinefunction()">
+                                    <label class="form-check-label fw-normal text-theme2" for="eventypeonline">
+                                        Online
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="eventtype" value="offline"
+                                        id="evetypeoffline" onclick="offlinefunction()">
+                                    <label class="form-check-label fw-normal text-theme2" for="eventypeoffline">
+                                        Offline
+                                    </label>
                                 </div>
                             </div>
 
-                            <div class="col-md-12">
-                                <label for="validationCustom01" class="form-label">Event URL</label>
-                                <input type="url" class="form-control" name="eventurl" required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none"
-                                    placeholder="http://www.nowvue.com">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
+                            <div class="col-12 input-group mb-3 d-none" id="displaytable1">
+                                <input type="url" name="eventurl"
+                                    class="form-control shadow-none rouded-0 Inpt border-0 p-2 fs-16 fw-normal"
+                                    placeholder="Enter a Url" aria-label="Recipient's username"
+                                    aria-describedby="basic-addon2">
+                                <span class="input-group-text Inpt border-0 fs-16 Url_example"
+                                    id="basic-addon2">.nowvue.com</span>
                             </div>
 
-                            <div class="col-md-12">
-                                <label for="validationCustom01" class="form-label">Enter a Location</label>
-                                <input type="text" class="form-control" name="eventlocation" id="eventlocation"
-                                    required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">Event Start Date</label>
-                                <input type="date" class="form-control" name="eventstartdate" required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">Event End Date</label>
-                                <input type="date" class="form-control" name="eventenddate" required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">Start Time</label>
-                                <input type="time" class="form-control" name="eventstarttime" required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none">
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
+                            <div class="d-none col-12 mb-3" id="displaytable">
+                                <input type="text" placeholder="Enter a Location" name="eventlocation" id="eventlocation"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal">
                             </div>
 
 
-                            <div class="col-md-6">
-                                <label for="validationCustom02" class="form-label">End Time</label>
-                                <input type="time" class="form-control" name="eventendtime" required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none">
-                                <div class="valid-feedback">
-                                    Looks good!
+                            <div class="col-sm-6 mb-3 flatpickr ">
+                                <input type="text" placeholder="Start Date" name="eventstartdate"
+                                    class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    id="basicDate" required>
+                                <div class="invalid-feedback fs-14">
+                                    Please enter your phone number or email
                                 </div>
                             </div>
-
-                            <div class="col-md-12">
-                                <label for="validationCustom02" class="form-label">Select Timezone</label>
-                                <select class="form-select" name="eventtimezone" aria-label="Default select example">
-                                    <option selected>Select Timezone</option>
+                            <div class="col-sm-6 mb-3 flatpickr ">
+                                <input type="text" placeholder="End Date" name="eventenddate"
+                                    class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    id="endDate" required>
+                                <div class="invalid-feedback fs-14">
+                                    Please enter your phone number or email
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <input type="time" placeholder="Start Time" name="eventstarttime"
+                                    class="form-control clock shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    required>
+                                <div class="invalid-feedback fs-14">
+                                    Please enter your phone number or email
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3">
+                                <input type="time" placeholder="End Time" name="eventendtime"
+                                    class="form-control clock shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    required>
+                                <div class="invalid-feedback fs-14">
+                                    Please enter your phone number or email
+                                </div>
+                            </div>
+                            <div class="col-12 input-group mb-3">
+                                <select class="form-select shadow-none Inpt border-0" name="eventtimezone" id="inputGroupSelect01">
+                                    <option class="choose py-1" selected>Select Timezone</option>
                                     @foreach ($data as $timez)
-                                        <option value="{{ $timez['timezonename'] }}">{{ $timez['timezonename'] }}
-                                        </option>
+                                    <option class="choose py-1" value="{{ $timez['timezonename'] }}">{{ $timez['timezonename'] }}</option>
                                     @endforeach
                                 </select>
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
                             </div>
 
 
-
-                            {{-- <div class="col-md-12">
-                                <label for="validationCustom01" class="form-label">Address</label>
-                                <input type="text" class="form-control" name="address" required
-                                    style="border:none;border-bottom:2px solid grey;border-radius:0px;box-shadow:none">
-                                <div class="valid-feedback">
-                                    Looks good!
+                            {{--<div class="col-12 text-theme2 fs-16 fw-bold mb-3">Add Attendees List</div>
+                            <div class="col-12 mb-3 d-flex align-items-center gap-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault1" checked>
+                                    <label class="form-check-label fw-normal text-theme2" for="flexRadioDefault1">
+                                        Excel File
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="flexRadioDefault"
+                                        id="flexRadioDefault2">
+                                    <label class="form-check-label fw-normal text-theme2" for="flexRadioDefault2">
+                                        Manually
+                                    </label>
                                 </div>
                             </div> --}}
 
-                            <div class="col-md-12">
-                                <p class="form-label" style="font-weight:800;font-size:20">Add Type</p>
-
-                                <input style="margin-top:10px;margin-right:5px" type="radio" value="excal"
-                                    name="eventr1" id="ExcelFile" onclick="Exclefile()" required>
-                                <label style="margin-right:15px" for="Excel File" class="form-label">Excel
+                            {{-- <div class="col-12 mb-3" id="show1">
+                                <input class="form-control d-none" type="file" id="chooseFile">
+                                <label for="chooseFile"
+                                    class="bg-theme2 chooseFile px-4 py-2 text-white fw-bold rounded text-uppercase fs-14">Upload
                                     File</label>
+                            </div> --}}
 
-                                <input style="margin-top:10px;margin-right:5px" type="radio" value="manually"
-                                    name="eventr1" id="Manually" onclick="manualtable()" required>
-                                <label style="margin-right:15px" for="Manually" class="form-label">Manually</label>
-
-                                <div class="valid-feedback">
-                                    Looks good!
-                                </div>
-                            </div>
-                            <div class="container">
+                            {{-- <div class="col-12 manually_tab d-none" id="show2">
                                 <div class="row">
-                                    <div class="col-md-12 ">
-                                        <div id="displaytable" class="d-none table-responsive">
-                                            <table id="displaytable2" cellpadding="1" cellspacing="0" border="3"
-                                                class="table">
-                                                <tr align="center" class="bg-dark text-white">
-                                                    <td class="lbl">Title</td>
-                                                    <td class="lbl">First Name</td>
-                                                    <td class="lbl">Last Name</td>
-                                                    <td class="lbl">Email</td>
-                                                    <td class="lbl">Phone Number</td>
-                                                    <td class="lbl">Mobile number</td>
-                                                    <td class="lbl">Address</td>
-                                                    <td class="lbl">Organization</td>
-                                                    <td class="lbl">Twitter</td>
-                                                    <td class="lbl">Linkedin</td>
-                                                    <td class="lbl">Picture</td>
-                                                    <td class="lbl">Type</td>
-                                                    <td class="lbl">Company Name</td>
-                                                </tr>
+                                    <div class="col-12 table-responsive">
+                                        <table class="table">
+                                            <thead>
                                                 <tr>
-                                                    <td>
-                                                        <select class="form-select" name="nmtitle[]" id="">
-                                                            <option value="0">Choose</option>
-                                                            <option value="Mr">Mr</option>
-                                                            <option value="Mrs">Mrs</option>
-                                                            <option value="Dr">Dr</option>
-                                                        </select>
-                                                    </td>
-                                                    <td><input class="form-control" type="text"
-                                                            name="evefirstname[]" required></td>
-                                                    <td><input class="form-control" type="text"
-                                                            name="evelastname[]" required></td>
-                                                    <td><input class="form-control" type="email" name="eveemail[]"
-                                                            required></td>
-                                                    <td><input class="form-control" type="number" name="phoneno[]">
-                                                    </td>
-                                                    <td><input class="form-control" type="number" name="mobileno[]">
-                                                    </td>
-                                                    <td><input class="form-control" type="text" name="address[]">
-                                                    </td>
-                                                    <td><input class="form-control" type="text"
-                                                            name="organization[]"></td>
-                                                    <td><input class="form-control" type="text" name="twitter[]">
-                                                    </td>
-                                                    <td><input class="form-control" type="text" name="linkedin[]">
-                                                    </td>
-                                                    <td><input class="form-control" type="file" name="Picture[]">
-                                                    </td>
-                                                    <td><select class="form-select" name="evetype[]" id="">
-                                                            <option value="VIP">Choose</option>
-                                                            <option value="VIP">VIP</option>
-                                                            <option value="Reg">Reg</option>
-                                                        </select></td>
-                                                    <td><input class="form-control" type="text"
-                                                            name="evencname[]"></td>
+                                                    <th scope="col" class="p-2 fs-16 fw-bold">First Name</th>
+                                                    <th scope="col" class="p-2 fs-16 fw-bold">Last Name</th>
+                                                    <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
+                                                    <th scope="col" class="p-2 fs-16 fw-bold">Organisation</th>
+                                                    <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
+                                                    <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
+                                                    <!-- <th scope="col" class="p-2 fs-16 fw-bold">Type</th> -->
                                                 </tr>
-                                            </table>
-                                            <tr><button class="btn btn-dark" onclick="addrow()">Add Row</button></tr>
-                                        </div>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td> <input type="text"
+                                                            class="form-control border-0 shadow-none h-30px w-110px rounded "
+                                                            id="fasttd" placeholder="com"></td>
+                                                    <td> <input type="text"
+                                                            class="form-control border-0 shadow-none h-30px w-110px rounded "
+                                                            id="fasttd" placeholder="com"></td>
+                                                    <td>
+                                                        <div class="input-group">
+                                                            <select
+                                                                class="form-select shadow-none border-0 w-140px h-30px rounded"
+                                                                id="inputGroupSelect01">
+                                                                <option class="choose py-1" selected></option>
+                                                                <option class="choose py-1" value="1">One</option>
+                                                                <option class="choose py-1" value="2">Two</option>
+                                                                <option class="choose py-1" value="3">Three</option>
+                                                            </select>
+                                                        </div>
+                                                    </td>
+                                                    <td> <input type="text"
+                                                            class="form-control border-0 shadow-none h-30px w-110px rounded "
+                                                            id="fasttd" placeholder="com"></td>
+                                                    <td> <input type="text"
+                                                            class="form-control border-0 shadow-none h-30px w-110px rounded "
+                                                            id="fasttd" placeholder="com"></td>
+                                                    <td> <input type="text"
+                                                            class="form-control border-0 shadow-none h-30px w-110px rounded "
+                                                            id="fasttd" placeholder="com"></td>
+                                                    <!-- <td> <input type="text" class="form-control border-0 shadow-none h-30px w-115px rounded " id="fasttd" placeholder="com"></td> -->
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
                                     </div>
-
-                                </div>
-                            </div>
-
-                            <div class="container">
-                                <div class="row">
-                                    <div id="displaytable1" class="d-none">
-
-                                        <label for="validationCustom02" class="form-label">Excle File</label>
-                                        <input type="file" class="form-control" name="eventfile">
-                                        <div class="valid-feedback">
-                                            Looks good!
-                                        </div>
-
+                                    <div class="col-12">
+                                        <button
+                                            class="bg-theme2 shadow-none border-0 px-4 py-2 text-white fw-bold rounded text-uppercase fs-14">ADD
+                                            ROW
+                                        </button>
                                     </div>
                                 </div>
-                            </div>
-
+                            </div> --}}
 
                             <div class="col-12">
                                 <button class="btn btn-dark d-flex align-items-center" type="submit" id="subbutton"
@@ -277,17 +231,13 @@
                                         <span class="visually-hidden">Loading...</span>
                                     </span><span>Submit</span></button>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    </div>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script>
     let subform = document.getElementById('subform');
     let subbutton = document.getElementById('subbutton');
@@ -299,54 +249,22 @@
         subbutton.disabled = true
     })
 
-    function manualtable() {
-        var element = document.getElementById("displaytable");
-        element.classList.remove("d-none");
-        var element1 = document.getElementById("displaytable1");
-        element1.classList.add("d-none");
-    }
-
-    function Exclefile() {
+    function onlinefunction() {
         var element = document.getElementById("displaytable1");
         element.classList.remove("d-none");
         var element1 = document.getElementById("displaytable");
         element1.classList.add("d-none");
     }
 
-    function addrow() {
-        event.preventDefault();
-        $('#displaytable2 tr:last').after(
-            `<tr>
-                <td>
-                    <select class="form-select" name="nmtitle[]" id="">
-                        <option value="0">Choose</option>
-                        <option value="Mr">Mr</option>
-                        <option value="Mrs">Mrs</option>
-                        <option value="Dr">Dr</option>
-                    </select>
-                </td>
-                <td><input class="form-control" type="text" name="evefirstname[]" required></td>
-                <td><input class="form-control" type="text" name="evelastname[]" required></td>
-                <td><input class="form-control" type="email" name="eveemail[]" required></td>
-                <td><input class="form-control" type="number" name="phoneno[]"></td>
-                <td><input class="form-control" type="number" name="mobileno[]"></td>
-                <td><input class="form-control" type="text" name="address[]"></td>
-                <td><input class="form-control" type="text" name="organization[]"></td>
-                <td><input class="form-control" type="text" name="twitter[]"></td>
-                <td><input class="form-control" type="text" name="linkedin[]"></td>
-                <td><input class="form-control" type="file" name="Picture[]"></td>
-                <td>
-                    <select class="form-select" name="evetype[]" id="">
-                        <option value="VIP">Choose</option>
-                        <option value="VIP">VIP</option>
-                        <option value="Reg">Reg</option>
-                    </select>
-                </td>
-                <td><input class="form-control" type="text" name="evencname[]"><td>
-            </tr>`
-        );
+    function offlinefunction() {
+        var element = document.getElementById("displaytable");
+        element.classList.remove("d-none");
+        var element1 = document.getElementById("displaytable1");
+        element1.classList.add("d-none");
     }
 </script>
+
+
 <script>
     var msg = '{{ Session::get('alert') }}';
     var exist = '{{ Session::has('alert') }}';
@@ -359,7 +277,6 @@
 <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key={{ env('Google_Api_Key') }}&libraries=places&callback=initMap">
 </script>
-
 
 <script>
     /*** Geo Location For Address Start ***/
@@ -379,21 +296,22 @@
     var input = document.getElementById("eventlocation");
     var options = {
         bounds: defaultBounds,
-        componentRestrictions: {
-            country: "in"
-        },
         fields: ["address_components", "geometry", "icon", "name"],
         strictBounds: false,
         types: ["establishment"],
     };
     var autocomplete = new google.maps.places.Autocomplete(input, options);
 
-    // Set initial restriction to the greater list of countries.
-    autocomplete.setComponentRestrictions({
-        country: ["in"],
-    });
+
 
     /*** Geo Location For Address End ***/
 </script>
 
-</html>
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+@endpush
+
+@endsection
+
+
+
