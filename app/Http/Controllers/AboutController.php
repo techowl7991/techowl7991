@@ -486,7 +486,7 @@ class AboutController extends Controller
         $totalFiltered = $totalTitles;
 
         $titles = $query;
-
+            // dd($titles);
         if ($totalTitles != 0) {
             $data = array();
             $count = 1;
@@ -494,13 +494,13 @@ class AboutController extends Controller
                 $b = action('AboutController@printdata', $title->id());
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
 
-                $action = "<a href=" . $b . " class='btn btn-primary shadow printBtn py-1 px-3'>Detail</a>";
-                $actionQR = '<a class="btn btn-primary text-white shadow printBtn py-1 px-3" data-toggle="modal" data-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
+                $action = "<a href=" . $b . " class='btn btn-dark shadow printBtn py-1 px-3'>Detail</a>";
+                $actionQR = '<a class="btn btn-dark text-white shadow printBtn py-1 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
 
                 $route = action('AboutController@singledelete', $title->id());
                 $editroute = action('AboutController@edit', $title->id());
-                $delbtn = "<a href=" . $route . " class='text-danger py-5 px-3'><i class='fa fa-trash' aria-hidden='true'></i></a>";
-                $edtbtn = "<a href=" . $editroute . " class='text-danger py-5 px-3'><i class='fa fa-edit' aria-hidden='true'></i></a>";
+                $delbtn = "<a href=" . $route . " class='text-danger py-5 px-3'><i class='text-secondary img img-trash' aria-hidden='true'></i></a>";
+                $edtbtn = "<a href=" . $editroute . " class='text-danger py-5 px-3'><i class='text-secondary img img-pencil' aria-hidden='true'></i></a>";
                 $nestedData['id'] = $count;
                 $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="' . $title->id() . '" >';
                 $nestedData['singledel'] = $delbtn;
@@ -638,7 +638,7 @@ class AboutController extends Controller
     public function update(Request $request, $id)
     {
         
-        // dd($id);
+        // dd($request->all());
         if ($request->isMethod('put')) {
             $USERID = $request->session()->get('uid');
             self::$firestoreProjectId = 'guest-app-2eb59';
