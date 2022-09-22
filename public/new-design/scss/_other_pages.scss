@@ -325,6 +325,76 @@ body {
   .iti__flag {background-image: url("../libs/intel-tel-input/flags@2x.png");}
 }
 
+
+.progress_bar {
+  & svg {
+    transform: rotate(-90deg);
+    & circle {
+      fill: none;
+      stroke: #f0f0f0;
+      stroke-width: 14;
+      stroke-linecap: round;
+    }
+    & circle:last-of-type {
+      stroke-dasharray: 625px;
+      stroke-dashoffset: calc(625px - (625px * var(--percent)) / 100);
+      stroke: #3498db; 
+
+    }
+  }
+
+ & svg circle:last-of-type {
+    stroke: #FF4E00;
+  }
+}
+
+
+.analytics_table {
+  & .table {
+    white-space: nowrap;
+    overflow-x: auto;
+    & thead {
+      & tr {
+        background-color: #E2E2E2;
+        & th {
+          text-align: center;
+        }
+        & th:nth-child(1){
+          text-align: start !important;
+        }
+      }
+     
+    }
+    & tbody{
+      & tr {
+        & td {
+          font-size: 16px;
+          color: $theme2;
+          font-weight: 400;
+          text-align: center;
+        
+        }
+        & td:nth-child(1){
+          text-align: start !important;
+        }
+        &:nth-of-type(even) {
+          background-color: #E2E2E2 !important;
+        }
+      }
+    }
+    // & tr:nth-child(2){
+    //   background-color: #E2E2E2;
+    // }
+
+  }
+}
+// .table-striped>tbody>tr:nth-of-type(odd)>* {
+//   background-color: none !important;
+// }
+// .table-striped>tbody>tr:nth-of-type(even)>* {
+//   background-color: red !important;
+// }
+
 // Small devices (landscape phones, 576px and up)
 
 @mixin xxxxxx-xxxxx-mixin-min-sm() {

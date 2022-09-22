@@ -47,7 +47,9 @@ Route::any('/sign-up',function(){return view('new-design/auth/sign_up');});
 Route::any('/sign-in',function(){return view('new-design/auth/sign_in');});
 Route::any('/add-event',function(){return view('new-design/add-event');});
 Route::any('/create-event',function(){return view('new-design/create-event');});
-Route::any('/dashboard',function(){return view('new-design/dashboard');});
+Route::any('/ashboard',function(){return view('new-design/ashboard');});
+Route::any('/analytics',function(){return view('new-design/analytics');});
+
 Route::any('/my-event',function(){return view('new-design/my-event');});
 Route::any('/my-account',function(){return view('new-design/my-account');});
 
