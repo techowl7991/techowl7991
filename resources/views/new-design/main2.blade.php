@@ -69,7 +69,7 @@
         <div class="sidebarSide">
     @include('new-design.layouts.sidebar')
         </div>
-        <div class="contentSide p-2">
+        <div class="contentSide px-2 py-4">
             <main class="main-scrollbar">
                 @yield('content')
             </main>
