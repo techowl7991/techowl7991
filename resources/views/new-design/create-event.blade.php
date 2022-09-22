@@ -112,7 +112,7 @@
 
                         <div class="col-12 mb-3" id="show1">
                             <input class="form-control d-none" type="file" id="chooseFile">
-                            <label for="chooseFile" class="bg-theme2 chooseFile px-4 py-2 text-white fw-bold rounded text-uppercase fs-14">Upload File</label>
+                            <label for="chooseFile" class="bg-theme2 chooseFile px-4 py-2 text-white fw-bold rounded text-uppercase fs-14 top_right_export_btn">Upload File</label>
                         </div>
 
                         <div class="col-12 manually_tab d-none" id="show2">
@@ -155,7 +155,7 @@
                                     </table>
                                 </div>
                                 <div class="col-12">
-                                    <button class="bg-theme2 shadow-none border-0 px-4 py-2 text-white fw-bold rounded text-uppercase fs-14">ADD ROW</button>
+                                    <button class="bg-theme2 shadow-none border-0 px-4 py-2 text-white fw-bold rounded text-uppercase fs-14 top_right_export_btn">ADD ROW</button>
                                 </div>
                             </div>
                         </div>
