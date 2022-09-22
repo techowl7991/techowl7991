@@ -31,15 +31,15 @@
 @endpush
 @section('content')
 
-<section class=" container-fluid myAccount pb-4">
-    <div class="topBar py-4">
-        <div class="row justify-content-between mx-0">
+<section class=" container-fluid myAccount px-sm-3">
+    <div class="topBar pb-4">
+        <div class="row justify-content-between">
             <div class="col-12">
                 <div class="title text-theme1 fs-16 fs-sm-20 fs-md-30 fw-600 ">My Account</div>
             </div>
         </div>
     </div>
-    <div class="row mx-0">
+    <div class="row ">
         <div class=" col-12 col-md-9 order-2 order-md-1">
             <div class="row">
                 <div class="col-12">
@@ -65,7 +65,7 @@
                             <div class="col-12 ">
                                 <div class="password-field position-relative">
                                     <input type="password" placeholder="Password" value="12345678" class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-16 fw-normal" id="password-field4" required>
-                                    <span><i toggle="#password-field4" id="eye4" class="imgs img-eye position-absolute eye-icon"></i></span>
+                                    <span><i toggle="#password-field4" id="eye4" class=" shaowPass imgs img-eye position-absolute eye-icon"></i></span>
                                     <div class="invalid-feedback fs-14">
                                         Please enter your phone number or email
                                     </div>
@@ -123,14 +123,14 @@
                     <div class="row">
                         <div class="col-12 mb-3 ">
                             <div class="password-field position-relative">
-                                <input type="password" placeholder="New Password" value="" class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal" required>
-                                <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                                <input type="password" placeholder="New Password" id="newpassword" value="" class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal" required>
+                                <span><i toggle="#newpassword" id="eye" class="shaowPass imgs img-eye position-absolute eye-icon"></i></span>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="password-field position-relative">
-                                <input type="password" placeholder="Confirm Password" value="" class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal" required>
-                                <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                                <input type="password" placeholder="Confirm Password" value="" id="confirmpassword" class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal" required>
+                                <span><i toggle="#confirmpassword" id="eye" class="shaowPass imgs img-eye position-absolute eye-icon"></i></span>
                             </div>
                         </div>
                         <div class="col-12">
@@ -159,7 +159,7 @@
             <div class="modal-body px-3 pt-3 pb-2 px-sm-4 pt-sm-4 ">
                 <div class="row">
                     <div class="col-12 mb-3">
-                    <div class="fs-14 fs-sm-15 fs-sm-16 text-theme2">Are you sure you want to permanently delete your account? This cannot be undone.</div>
+                        <div class="fs-14 fs-sm-15 fs-sm-16 text-theme2">Are you sure you want to permanently delete your account? This cannot be undone.</div>
                     </div>
                     <div class="col-12">
                         <div class="gap-4 d-flex">
@@ -178,15 +178,15 @@
 @endsection
 @push('scripts')
 <script>
-      $("#eye4").click(function() {
+    $(".shaowPass").click(function() {
 
-$(this).toggleClass("img-eye img-eye-slash");
-var input4 = $($(this).attr("toggle"));
-if (input4.attr("type") == "password") {
-  input4.attr("type", "text");
-} else {
-  input4.attr("type", "password");
-}
-});
+        $(this).toggleClass("img-eye img-eye-slash");
+        var input4 = $($(this).attr("toggle"));
+        if (input4.attr("type") == "password") {
+            input4.attr("type", "text");
+        } else {
+            input4.attr("type", "password");
+        }
+    });
 </script>
 @endpush

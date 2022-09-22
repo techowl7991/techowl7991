@@ -374,13 +374,13 @@ body {
 
 // My Account
 .myAccount {
-  background-color: #f2f2f2;
-  min-height: calc(100vh - 60px);
+  // min-height: calc(100vh - 60px);
   & form {
     & .eye-icon {
       color: #777;
       top: 13px;
       right: 12px;
+      cursor: pointer;
     }
 
     & .Inpt {
@@ -452,6 +452,7 @@ body {
         color: #777;
         top: 13px;
         right: 12px;
+        cursor: pointer;
       }
   
       & .Inpt {
