@@ -422,11 +422,12 @@ class AboutController extends Controller
         $data = $snapshot->rows();
         $dta = [];
         foreach ($data as $value) {
-            $alldata['name'] = $value['company'];
+            // dd($value);
+            $alldata['name'] = $value['evefirstname'].' '.$value['evelastname'];
             $alldata['type'] = $value['type'];
-            $alldata['company'] = $value['company'];
-            $alldata['email'] = $value['email'];
-            $alldata['visit'] = $value['visit'];
+            $alldata['company'] = $value['orgenization'];
+            $alldata['email'] = $value['eveemail'];
+            $alldata['visit'] = $value['jobtitle'];
             $alldata['qrcode'] = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=' . $request->id . '(**)' . $value->id();
             $dta[] = $alldata;
         }
@@ -744,6 +745,7 @@ class AboutController extends Controller
 
     public function view_eventdetail_dt(Request $request)
     {
+        $chid = $_GET['id'];
         $columns = array(
             0 => 'event_name',
             1 => 'event_startdate',
@@ -788,6 +790,7 @@ class AboutController extends Controller
         $snapshot = $snapshot->documents();
 
         $query = $snapshot->rows();
+        // dd($query);
         $totalTitles = count($query);
         $totalFiltered = $totalTitles;
 
@@ -797,21 +800,25 @@ class AboutController extends Controller
             $data = array();
             $count = 1;
             foreach ($titles as $title) {
+                // $editroute = action('AboutController@editvisitor', $title->id());
+                // $editroute = action('AboutController@viewvisitor', $title->id());
+                $edtbtn = "<a href='javascript:void(0)' data-act='edit' id='edit' class='text-danger py-5 px-3'><i class='img img-pencil' aria-hidden='true' onclick='openmodal(`".$title->id()."`,`".$chid."`)'></i></a>";
+                $viewbtn = "<a href='javascript:void(0)' data-act='view' class='text-danger py-5 px-3'><i class='img img-eye' aria-hidden='true'  id='view' onclick='viewmodal(`".$title->id()."`,`".$chid."`)'></i></a>";
                 $a = action('AboutController@senddata');
                 $b = action('AboutController@printbadge');
-                $c = "<form action='" . $a . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['name'] . "'>
-                <input type='hidden' name='company' value='" . $title['company'] . "'>
+                $c = "<form action='" . $a . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
+                <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
                 <input type='hidden' name='type' value='" . $title['type'] . "'>
-                <input type='hidden' name='email' value='" . $title['email'] . "'>
+                <input type='hidden' name='email' value='" . $title['eveemail'] . "'>
                 <input type='hidden' name='qrvalue' value='" . $_GET['id'] . '(**)' . $title->id() . "'>
                 <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
                 <input type='submit' class='btn btn-primary text-uppercase fw-semibold' style='float:left'
                     value='🖶 Print Ticket'>
                 </form>
-                <form action='" . $b . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['name'] . "'>
-                    <input type='hidden' name='company' value='" . $title['company'] . "'>
+                <form action='" . $b . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
+                    <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
                     <input type='hidden' name='type' value='" . $title['type'] . "'>
-                    <input type='hidden' name='email' value='" . $title['email'] . "'>
+                    <input type='hidden' name='email' value='" . $title['eveemail'] . "'>
                     <input type='hidden' name='qrvalue' value='" . $_GET['id'] . '(**)' . $title->id() . "'>
                     <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
                     <input type='submit' class='btn btn-primary text-uppercase fw-semibold' style='margin-left: 13px;'
@@ -819,13 +826,15 @@ class AboutController extends Controller
                 </form>";
 
                 $nestedData['id'] = $count;
-                $nestedData['name'] = $title['name'];
-                $nestedData['company'] = $title['company'];
+                $nestedData['name'] = $title['evefirstname'];
+                $nestedData['company'] = $title['orgenization'];
                 $nestedData['type'] = $title['type'];
-                $nestedData['email'] = $title['email'];
-                $nestedData['visit'] = $title['visit'];
+                $nestedData['email'] = $title['eveemail'];
+                $nestedData['visit'] = $title['jobtitle'];
                 $nestedData['date'] = date('d M Y', strtotime($date));
                 $nestedData['action'] = $c;
+                $nestedData['edit'] = $edtbtn;
+                $nestedData['view'] = $viewbtn;
                 $data[] = $nestedData;
                 $count++;
             }
@@ -840,6 +849,76 @@ class AboutController extends Controller
             "data" => $data,
         );
         echo json_encode($json_data);
+    }
+
+    public function viewvisitor(Request $request){
+        // dd($request->all());
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $USERID = $request->session()->get('uid');
+        $id = $request->id;
+        $mid = $request->mid;
+        $snapshot = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->snapshot();
+        $data = $snapshot->data();
+        return response()->json($data);
+    }
+
+    public function editvisitor(Request $request){
+        // dd($request->all());
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $USERID = $request->session()->get('uid');
+        $id = $request->id;
+        $mid = $request->mid;
+        $snapshot = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->snapshot();
+        $data = $snapshot->data();
+        return response()->json($data);
+        // dd($snapshot->data());
+        // dd($request->all());
+    }
+
+    public function updateguest(Request $request){
+        // dd($request->all());
+        $uid =$request->session()->get('uid');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $mid = $request->mid;
+        $id1 = $request->id1;
+        $id2 = $request->id2;
+        $data = [
+            'type' => ($request->type)?$request->type:'',
+            'nmtitle' => ($request->nmtitle)?$request->nmtitle:'',
+            'evefirstname' => ($request->evefirstname)?$request->evefirstname:'',
+            'evelastname' => ($request->evelastname)?$request->evelastname:'',
+            'eveemail' => ($request->eveemail)?$request->eveemail:'',
+            'jobtitle' => ($request->jobtitle)?$request->jobtitle:'',
+            'orgenization' => ($request->orgenization)?$request->orgenization:'',
+            'mobileno' => ($request->mobileno)?$request->mobileno:'',
+            'tags' => ($request->tags)?$request->tags:'',
+            'linkedin' => ($request->linkedin)?$request->linkedin:'',
+            'twitter' => ($request->twitter)?$request->twitter:'',
+            
+        ];
+        // $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
+        $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('events_data')->document($id1)->set($data);
+        // dd($uid);
+        // $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
+        // // dd($snapshot->data());
+        // $snap = $snapshot->data();
+        // $token = $mid . '(**)' . $docref->id();
+        //             $evedata['token'] = $token;
+        //             $evedata['event_startdate'] = $snap['event_startdate'];
+        //             $evedata['event_enddate'] = $snap['event_enddate'];
+        //             $evedata['event_name'] = $snap['event_name'];
+        //             // $evedata['address'] = $snap['address'];
+        //             self::$firestoreClient->collection('eventsemail')->add($evedata);
+        return redirect()->back();
     }
 
     public function addVisitor(Request $request, $id)
@@ -1163,6 +1242,42 @@ class AboutController extends Controller
         $date = date('Y-m-d');
         $up_snapshot = self::$firestoreClient->collection('events')->document($uid);
         
+    }
+
+    public function add_guest(Request $request){
+        $uid =$request->session()->get('uid');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $mid = $request->mid;
+        $data = [
+            'type' => ($request->type)?$request->type:'',
+            'nmtitle' => ($request->nmtitle)?$request->nmtitle:'',
+            'evefirstname' => ($request->evefirstname)?$request->evefirstname:'',
+            'evelastname' => ($request->evelastname)?$request->evelastname:'',
+            'eveemail' => ($request->eveemail)?$request->eveemail:'',
+            'jobtitle' => ($request->jobtitle)?$request->jobtitle:'',
+            'orgenization' => ($request->orgenization)?$request->orgenization:'',
+            'mobileno' => ($request->mobileno)?$request->mobileno:'',
+            'tags' => ($request->tags)?$request->tags:'',
+            'linkedin' => ($request->linkedin)?$request->linkedin:'',
+            'twitter' => ($request->twitter)?$request->twitter:'',
+            
+        ];
+        $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
+        // dd($uid);
+        $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
+        // dd($snapshot->data());
+        $snap = $snapshot->data();
+        $token = $mid . '(**)' . $docref->id();
+                    $evedata['token'] = $token;
+                    $evedata['event_startdate'] = $snap['event_startdate'];
+                    $evedata['event_enddate'] = $snap['event_enddate'];
+                    $evedata['event_name'] = $snap['event_name'];
+                    // $evedata['address'] = $snap['address'];
+                    self::$firestoreClient->collection('eventsemail')->add($evedata);
+        return redirect()->back();
     }
 
 }
