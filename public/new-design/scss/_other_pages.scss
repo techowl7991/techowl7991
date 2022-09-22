@@ -440,13 +440,13 @@ body {
 
 // My Account
 .myAccount {
-  background-color: #f2f2f2;
-  min-height: calc(100vh - 60px);
+  // min-height: calc(100vh - 60px);
   & form {
     & .eye-icon {
       color: #777;
       top: 13px;
       right: 12px;
+      cursor: pointer;
     }
 
     & .Inpt {
@@ -481,8 +481,8 @@ body {
   & .profileImg {
     width: 210px;
     height: 210px;
-    cursor: pointer;
     & .changeProfile {
+      cursor: pointer;
       & img {
         object-fit: cover;
         width: 100%;
@@ -497,6 +497,56 @@ body {
       &:hover{
         & .imgOverlay{
           opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.fw-600{
+  font-weight: 600 !important;
+}
+
+#changepassword, #deleteaccount{
+  & .modal-header{
+    // padding: 21px 31px 11px 31px;
+  }
+  & .modal-body{
+    // padding: 26px 31px 11px;
+    & form {
+      & .eye-icon {
+        color: #777;
+        top: 13px;
+        right: 12px;
+        cursor: pointer;
+      }
+  
+      & .Inpt {
+        border-bottom: 2px solid #757575 !important;
+        background: #f2f2f2 !important;
+        border-bottom-left-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+        color: #000000;
+  
+        &:focus-visible {
+          outline: none !important;
+        }
+      }
+  
+      & .form-check {
+        & .form-check-input {
+          box-shadow: none;
+        }
+  
+        & .form-check-label {
+          font-weight: 600;
+        }
+      }
+  
+      & .sign_up {
+        & a {
+          font-weight: 600;
+          color: #ff4e00;
         }
       }
     }
@@ -526,6 +576,40 @@ body {
 
 // X-Small devices (portrait phones, less than 576px)
 @mixin myAccount-mixin-max-xs() {
+  .myAccount {
+    & form {
+      & .eye-icon {
+      }
+      & .Inpt {
+        &:focus-visible {
+        }
+      }
+      & .form-check {
+        & .form-check-input {
+        }
+        & .form-check-label {
+        }
+      }
+      & .sign_up {
+        & a {
+        }
+      }
+    }
+    & .profileImg {
+      width: 120px;
+      height: 120px;
+      & .changeProfile {
+        & img {
+        }
+        & .imgOverlay {
+        }
+        &:hover{
+          & .imgOverlay{
+          }
+        }
+      }
+    }
+  }
 }
 //
 
