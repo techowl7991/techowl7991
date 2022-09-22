@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use PDF;
 use DataTables;
+use GPBMetadata\Google\Firestore\V1Beta1\Firestore;
 use Illuminate\Support\Arr;
 
 class AboutController extends Controller
@@ -499,8 +500,8 @@ class AboutController extends Controller
 
                 $route = action('AboutController@singledelete', $title->id());
                 $editroute = action('AboutController@edit', $title->id());
-                $delbtn = "<a href=" . $route . " class='text-danger py-5 px-3'><i class='text-secondary img img-trash' aria-hidden='true'></i></a>";
-                $edtbtn = "<a href=" . $editroute . " class='text-danger py-5 px-3'><i class='text-secondary img img-pencil' aria-hidden='true'></i></a>";
+                $delbtn = "<a href=" . $route . " class='text-danger py-2 px-3'><i class='text-secondary img img-trash' aria-hidden='true'></i></a>";
+                $edtbtn = "<a href=" . $editroute . " class='text-danger py-2 px-3'><i class='text-secondary img img-pencil' aria-hidden='true'></i></a>";
                 $nestedData['id'] = $count;
                 $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="' . $title->id() . '" >';
                 $nestedData['singledel'] = $delbtn;
@@ -631,7 +632,7 @@ class AboutController extends Controller
 
 
         // $docref1 = self::$firestoreClient->collection('visitor')->document($id)->collection('visitor_details')->documents();
-        // dd($docref1);
+        // dd($snapshot);
         return view('editevent', compact('snapshot', 'id', 'data'));
     }
 
@@ -656,21 +657,46 @@ class AboutController extends Controller
             $totalvip = 0;
             $totalreg = 0;
 
+            $data1 = [];
+            if ($request->eventtype == 'online') {
+                $dat = ($request->eventurl!=null)?$request->eventurl:'';
+            } else {
+                $dat = ($request->eventlocation!=null)?$request->eventlocation:'';
+            }
 
             $data1 = [
                 'event_startdate' => $request->eventstartdate,
                 'event_enddate' => $request->eventenddate,
                 'event_name' => $request->eventname,
-                'Reg' => $totalreg,
-                'total' => $totalreg + $totalvip,
-                'vip' => $totalvip,
+                // 'address' => $request->address,
+                'Reg' => 0,
+                'total' => 0,
+                'vip' => 0,
                 'password' => $request->eventpassword,
-                'event_url' => $request->eventurl,
-                'event_location' => $request->eventlocation,
+
+                // 'event_url' => $request->eventurl,
+                // 'event_location' => $request->eventlocation,
                 'event_starttime' => $request->eventstarttime,
                 'event_endtime' => $request->eventendtime,
                 'event_timezone' => $request->eventtimezone,
-            ];            
+                'event_type' => $request->eventtype,
+                'event_sub_type' => $dat,
+
+            ];
+            // $data1 = [
+            //     'event_startdate' => $request->eventstartdate,
+            //     'event_enddate' => $request->eventenddate,
+            //     'event_name' => $request->eventname,
+            //     'Reg' => $totalreg,
+            //     'total' => $totalreg + $totalvip,
+            //     'vip' => $totalvip,
+            //     'password' => $request->eventpassword,
+            //     'event_url' => $request->eventurl,
+            //     'event_location' => $request->eventlocation,
+            //     'event_starttime' => $request->eventstarttime,
+            //     'event_endtime' => $request->eventendtime,
+            //     'event_timezone' => $request->eventtimezone,
+            // ];            
 
             // dd($data1);
             $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->document($id)->set($data1);
@@ -1127,4 +1153,16 @@ class AboutController extends Controller
         }
         exit;
     }
+
+    public function user_account(Request $request){
+        $uid = $request->session()->get('uid');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $date = date('Y-m-d');
+        $up_snapshot = self::$firestoreClient->collection('events')->document($uid);
+        
+    }
+
 }

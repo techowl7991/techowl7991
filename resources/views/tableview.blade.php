@@ -89,7 +89,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
                                 class="table table-bordered table-striped table-hover text-nowrap"
                                 id="allmatches_datatable" width="100%" cellspacing="0">
                                 <thead style="background-color:#CCCCCC">
-                                    <tr>
+                                    
                                         <th style="text-align:center;" class="text-capitalize">Event ID
                                         </th>
                                         <th class="text-capitalize"><input class="" type="checkbox"
@@ -110,7 +110,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
                                             QRcode</th>
                                         <th style="text-align:center;width:120px" class="text-capitalize">
                                             Guests</th>
-                                    </tr>
+                                   
                                 </thead>
 
                                 <tbody>

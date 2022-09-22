@@ -13,7 +13,7 @@
 <meta name="twitter:description" content="page_description">
 <meta name="twitter:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
 
-
+              
 <meta property="og:url" content="{{ asset('/') }}">
 <meta property="og:title" content="page_title">
 <meta property="og:description" content="page_description">
@@ -59,13 +59,37 @@
                                 Please enter your phone number or email
                             </div>
                         </div>
-                        <div class="col-12 mb-3">
-                            <input type="url" placeholder="Enter a Location" name="eventlocation" class="  form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" value="{{ $snapshot['event_location'] }}" required>
+                        <div class="col-12 text-theme2 fs-16 fw-bold mb-3">Event Type</div>
+                        <div class="col-12 mb-3 d-flex align-items-center gap-2">
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eventtype" value="online"
+                                    id="evetypeonline" onclick="onlinefunction()" <?php echo ($snapshot['event_type']=='online')?'checked':'' ?>>
+                                <label class="form-check-label fw-normal text-theme2" for="eventypeonline">
+                                    Online
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="eventtype" value="offline"
+                                    id="evetypeoffline" onclick="offlinefunction()" <?php echo ($snapshot['event_type']=='offline')?'checked':'' ?> >
+                                <label class="form-check-label fw-normal text-theme2" for="eventypeoffline">
+                                    Offline
+                                </label>
+                            </div>
                         </div>
-                        <div class="col-12 input-group mb-3">
-                            <input type="text" class="form-control shadow-none rouded-0 Inpt border-0 p-2 fs-16 fw-normal" placeholder="Enter url"name="eventurl" aria-label="Recipient's username" aria-describedby="basic-addon2"  value="{{ $snapshot['event_url'] }}" >
-                            <span class="input-group-text Inpt border-0 fs-16 Url_example" id="basic-addon2"></span>
+                        <div class="col-12 input-group mb-3 <?php echo ($snapshot['event_type']=='online')?'':'d-none' ?>" id="displaytable1">
+                            <input type="url" name="eventurl"   value="{{ $snapshot['event_sub_type'] }}"
+                                class="form-control shadow-none rouded-0 Inpt border-0 p-2 fs-16 fw-normal"
+                                placeholder="Enter a Url" aria-label="Recipient's username"
+                                aria-describedby="basic-addon2">
+                            <span class="input-group-text Inpt border-0 fs-16 Url_example"
+                                id="basic-addon2"></span>
                         </div>
+                        <div class="col-12 mb-3 <?php echo ($snapshot['event_type']=='offline')?'':'d-none' ?>" id="displaytable">
+                            <input type="text" placeholder="Enter a Location" name="eventlocation" id="eventlocation" value="{{ $snapshot['event_sub_type'] }}"
+                                class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal">
+                        </div>
+                        
+                        
                         <div class="col-sm-6 mb-3 flatpickr ">
                             <input type="text" placeholder="Start Date" name="eventstartdate"  class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"  value="{{ $snapshot['event_startdate'] }}" id="basicDate" required>
                             <div class="invalid-feedback fs-14">
@@ -91,7 +115,7 @@
                             </div>
                         </div>
                         <div class="col-12 input-group mb-3">
-                            <select class="form-select shadow-none Inpt border-0" id="inputGroupSelect01">
+                            <select class="form-select shadow-none Inpt border-0" name="eventtimezone" id="inputGroupSelect01">
                             <option selected>Select Timezone</option>
                                     @foreach ($data as $timez)
                                         <option value="{{ $timez['timezonename'] }}" <?php echo $snapshot['event_timezone'] == $timez['timezonename'] ? 'selected' : ''; ?>>
@@ -246,10 +270,55 @@
 </script>
 
 <!-- google location -->
+<script type="text/javascript">
+    function onlinefunction() {
+        var element = document.getElementById("displaytable1");
+        element.classList.remove("d-none");
+        var element1 = document.getElementById("displaytable");
+        element1.classList.add("d-none");
+    }
+
+    function offlinefunction() {
+        var element = document.getElementById("displaytable");
+        element.classList.remove("d-none");
+        var element1 = document.getElementById("displaytable1");
+        element1.classList.add("d-none");
+    }
+
+</script>
+<!-- google location -->
 <script type="text/javascript"
     src="https://maps.googleapis.com/maps/api/js?key={{ env('Google_Api_Key') }}&libraries=places&callback=initMap">
 </script>
 
+<script>
+    /*** Geo Location For Address Start ***/
+
+    var center = {
+        lat: 50.064192,
+        lng: -130.605469
+    };
+    // Create a bounding box with sides ~10km away from the center point
+    var defaultBounds = {
+        north: center.lat + 0.1,
+        south: center.lat - 0.1,
+        east: center.lng + 0.1,
+        west: center.lng - 0.1,
+    };
+
+    var input = document.getElementById("eventlocation");
+    var options = {
+        bounds: defaultBounds,
+        fields: ["address_components", "geometry", "icon", "name"],
+        strictBounds: false,
+        types: ["establishment"],
+    };
+    var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+
+
+    /*** Geo Location For Address End ***/
+</script>
 
 <script>
     /*** Geo Location For Address Start ***/

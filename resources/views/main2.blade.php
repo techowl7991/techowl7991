@@ -41,7 +41,7 @@
 
     
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2tal,wght@0,200;0,300;0,4?family=Nunito:i00;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css2tal,wght@0,200;0,300;0,4?family=Nunito:i00;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet"> -->
 
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
@@ -62,14 +62,14 @@
     <link rel="stylesheet" href="{{ asset('public/new-design/css/style.min.css') }}" />
 </head>
 <body class="vh-100 overflow-hidden DashBoardSection">
-    @include('new-design.layouts.preloader')
+    @include('layouts.preloader')
     <div class="d-flex flex-column">
-    @include('new-design.layouts.header2')
+    @include('layouts.header2')
     <div class="bodyScrollPart d-flex" id="bodyScrollPart">
         <div class="sidebarSide">
-    @include('new-design.layouts.sidebar')
+    @include('layouts.sidebar')
         </div>
-        <div class="contentSide p-2">
+        <div class="contentSide px-2 py-4">
             <main class="main-scrollbar">
                 @yield('content')
             </main>
