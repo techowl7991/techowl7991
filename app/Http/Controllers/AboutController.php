@@ -310,7 +310,8 @@ class AboutController extends Controller
             self::$firestoreClient = new FirestoreClient([
                 'projectId' => self::$firestoreProjectId,
             ]);
-            $snapshot = self::$firestoreClient->collection('timezone')->documents();
+            $snapshot = self::$firestoreClient->collection('timezone')->orderBy('timezonename', 'ASC')->documents();
+            // dump($snapshot);
             $data = $snapshot->rows();
             // dd($data);
             return view('addevent', compact('data'));
