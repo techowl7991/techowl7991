@@ -181,6 +181,31 @@ body {
   }
 }
 
+// Main Dashboard 
+.Main_Dashboard {
+  & .card {
+    & .card-body {
+      & .card-title {
+        & i {
+          cursor: pointer;
+        }
+        & .check-icon {
+        
+          background-color: #D3FFE0;
+          color: #18C44C;
+        }
+        & .close-icon{
+          background-color: #FDC5C9;
+          color: #BF0413;
+        }
+      }
+      & .card-subtitle {
+        // line-height: 55px;
+      }
+    }
+  }
+} 
+
 // Small devices (landscape phones, 576px and up)
 
 @mixin xxxxxx-xxxxx-mixin-min-sm() {

@@ -64,8 +64,8 @@
                             </div>
                             <div class="col-12 mb-3 ">
                                 <div class="password-field position-relative">
-                                    <input type="password" placeholder="Password" value="12345678" class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-16 fw-normal" required>
-                                    <span><i id="eye" class="imgs img-eye position-absolute eye-icon"></i></span>
+                                    <input type="password" placeholder="Password" value="12345678" class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-16 fw-normal" id="password-field4" required>
+                                    <span><i toggle="#password-field4" id="eye4" class="imgs img-eye position-absolute eye-icon"></i></span>
                                     <div class="invalid-feedback fs-14">
                                         Please enter your phone number or email
                                     </div>
@@ -111,4 +111,16 @@
 
 @endsection
 @push('scripts')
+<script>
+      $("#eye4").click(function() {
+
+$(this).toggleClass("img-eye img-eye-slash");
+var input4 = $($(this).attr("toggle"));
+if (input4.attr("type") == "password") {
+  input4.attr("type", "text");
+} else {
+  input4.attr("type", "password");
+}
+});
+</script>
 @endpush
