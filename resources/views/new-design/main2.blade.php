@@ -70,7 +70,7 @@
     @include('new-design.layouts.sidebar')
         </div>
         <div class="contentSide px-2 py-4">
-            <main class="main-scrollbar">
+            <main class="main-scrollbar h-100">
                 @yield('content')
             </main>
         </div>

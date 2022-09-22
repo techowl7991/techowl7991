@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="col-12 mt-5 mb-3 text-center">
-                            <button type="submit" class="shadow-none border-0 login_btn fs-16 px-3 py-1">LOG IN</button>
+                            <button type="submit" class="shadow-none border-0 login_btn fs-16 px-4 py-2">LOG IN</button>
                         </div>
                     </div>
                 </form>

@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="col-xl-6 col-sm-4">
-            <div class="text-end"><button class="shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-500 px-4 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal">CREATE GUEST</button></div>
+            <div class="text-end"><button class="shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-500 px-4 py-2 top_right_export_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">CREATE GUEST</button></div>
         </div>
         <div class="col-12 mt-4">
             <!-- Data Table -->
@@ -144,15 +144,8 @@
                                         <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue4" placeholder="Now Comms Asia" value="Now Comms Asia">
                                         <label for="floatingInputValue4" class="fs-12 ps-4">Organisation</label>
                                     </div>
-                                    <!-- <div class="col-12 mb-2 form-floating Tel_Input_group">
-                                        <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
-                                        <label for="phone" class="fs-12 ps-4">Organisation</label>
-                                    </div> -->
-                                    <!-- <div class="col-12">
-                                        <input type="tel" id="phone">
-                                    </div> -->
                                     <div class="col-12 mb-2 form-floating">
-                                        <input type="tel" class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue5" placeholder="Now Comms Asia" value="Now Comms Asia">
+                                        <input type="tel" class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue5" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" value="123-45-678">
                                         <label for="floatingInputValue5" class="fs-12 ps-4">Mobile Number</label>
                                     </div>
                                     <div class="col-12">
@@ -178,7 +171,7 @@
 
                             <div class="col-12 px-0 py-3 d-flex justify-content-center gap-2 fotter_button">
                                 <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                <button type="button" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                <button type="button" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2 top_right_export_btn">SAVE CHANGES</button>
                             </div>
 
                         </div>
