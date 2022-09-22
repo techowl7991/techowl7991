@@ -212,6 +212,9 @@ body {
     background-color: #f2f2f2;
     // & .modal-header {}
     & .modal-body {
+      & .user_img {
+        background-color: #A8C5FF;
+      }
       & .event_info {
         background-color: #757575;
       }
@@ -224,15 +227,27 @@ body {
             top: 13px;
             right: 25px;
           }
-
+          & .nonpadding {
+            padding: 0px !important;
+          }
+          & .form-control {
+            padding-left: 11px!important;
+          }
           & .Inpt {
             border-bottom: 2px solid #757575 !important;
             border-bottom-left-radius: 0px !important;
             border-bottom-right-radius: 0px !important;
             color: $theme2;
+            // padding-top: 1.3em !important;
 
             &:focus-visible {
               outline: none !important;
+            }
+          }
+          & .form-floating {
+            & .form-select {
+              background-position: right 0.75rem bottom 0.8rem !important;
+              padding-top: 1.3rem !important;
             }
           }
 
@@ -244,20 +259,71 @@ body {
             & .form-check-label {
               font-weight: 600;
             }
+          
           }
-
-          & .sign_up {
-            & a {
-              font-weight: 600;
-              color: #ff4e00;
+          & .select2-container {
+            width: 100% !important;
+          }
+          & .fotter_button {
+            border-top: 1px solid #757575;
+          }
+          & .Tel_Input_group {
+            & label {
+              padding-top: 0px !important;
+              padding-left: 1rem;
+            }
+            & .iti--allow-dropdown {
+              width: 100%;
+              & .form-control {
+                padding-left: 50px!important;
+              }
             }
           }
         }
       }
+    
     }
   }
 }
 
+.select2-selection {
+  padding: 12px 8px !important;
+  & ul {
+    & li {
+      margin-top: 0px !important;
+      border: none !important;
+      color: $theme2 !important;
+    }
+
+  }}
+  .select2-selection--multiple {
+    border: none !important;
+  
+  }
+  .select2-selection__choice {
+    padding: 6px 20px 6px 8px !important
+  }
+   .select2-selection__choice__remove {
+    right: 0 !important;
+    top: 7px !important;
+    left: unset !important;
+    border: none !important;
+    &:hover{
+      background-color: unset !important;
+      color: $theme2 !important;
+    }
+  }
+
+
+.select2-container--open {
+  z-index: 9999 !important;
+}
+
+.iti__flag {background-image: url("../libs/intel-tel-input/flags.png");}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .iti__flag {background-image: url("../libs/intel-tel-input/flags@2x.png");}
+}
 
 // Small devices (landscape phones, 576px and up)
 
