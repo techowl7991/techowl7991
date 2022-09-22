@@ -50,4 +50,5 @@ Route::any('/create-event',function(){return view('new-design/create-event');});
 Route::any('/dashboard',function(){return view('new-design/dashboard');});
 Route::any('/my-event',function(){return view('new-design/my-event');});
 Route::any('/my-account',function(){return view('new-design/my-account');});
+Route::any('/guests',function(){return view('new-design/guests');});
 
