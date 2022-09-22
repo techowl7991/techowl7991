@@ -7,11 +7,51 @@ body {
   font-family: 'Poppins', sans-serif !important;
 }
 
+.comman-form {
+  & form {
+    & .eye-icon {
+      color: #777;
+      top: 13px;
+      right: 25px;
+    }
+
+    & .Inpt {
+      border-bottom: 2px solid #757575 !important;
+      // background-color: #f2f2f2;
+      border-bottom-left-radius: 0px !important;
+      border-bottom-right-radius: 0px !important;
+      color: #757575;
+
+      &:focus-visible {
+        outline: none !important;
+      }
+    }
+
+    & .form-check {
+      & .form-check-input {
+        box-shadow: none;
+      }
+
+      & .form-check-label {
+        font-weight: 600;
+      }
+    }
+
+    & .sign_up {
+      & a {
+        font-weight: 600;
+        color: #ff4e00;
+      }
+    }
+  }
+}
+
 .signUpPage {
   height: 100vh;
 
   & .innerPage {
     background: #f2f2f2;
+
     & .Sign_Up {
       z-index: 5;
 
@@ -19,6 +59,7 @@ body {
         border-radius: 8px;
 
         & .Account {
+
           & .heading,
           a {
             font-weight: 600;
@@ -92,6 +133,7 @@ body {
 
 .Create_Event {
   height: auto !important;
+
   & .innerPage {
     & .Sign_Up {
       & .card {
@@ -113,7 +155,7 @@ body {
 
           & .clock {
             position: relative;
-            
+
           }
 
           & .clock::-webkit-calendar-picker-indicator {
@@ -145,32 +187,37 @@ body {
           & .chooseFile {
             cursor: pointer;
           }
+
           & .manually_tab {
             & .table-responsive {
               white-space: nowrap;
+
               & .table {
                 & thead {
                   & tr {
                     background-color: #757575;
+
                     & th {
                       color: #F2F2F2;
                     }
                   }
                 }
+
                 & tbody {
-                 
+
                   & tr {
                     & td {
                       background-color: #e2e2e2;
-                   & .form-control {
-                    color: #757575 !important;
-                   }
+
+                      & .form-control {
+                        color: #757575 !important;
+                      }
                     }
                   }
                 }
               }
             }
-           
+
           }
 
         }
@@ -188,51 +235,61 @@ body {
         & i {
           cursor: pointer;
         }
+
         & .check-icon {
-        
+
           background-color: #D3FFE0;
           color: #18C44C;
         }
-        & .close-icon{
+
+        & .close-icon {
           background-color: #FDC5C9;
           color: #BF0413;
         }
       }
+
       & .card-subtitle {
         // line-height: 55px;
       }
     }
   }
-} 
+}
 
 // Create-Guest-modal
 .Create-Guest-modal {
-& .modal-dialog {
-  & .modal-content {
-    background-color: #f2f2f2;
-    // & .modal-header {}
-    & .modal-body {
-      & .user_img {
-        background-color: #A8C5FF;
-      }
-      & .event_info {
-        background-color: #757575;
-      }
+  & .modal-dialog {
+    & .modal-content {
+      background-color: #f2f2f2;
+
+      // & .modal-header {}
+      & .modal-body {
+        & .user_img {
+          background-color: #A8C5FF;
+        }
+
+        & .event_info {
+          background-color: #757575;
+        }
+
         & .modal-form {
           & label {
             color: #757575;
           }
+
           & .eye-icon {
             color: #777;
             top: 13px;
             right: 25px;
           }
+
           & .nonpadding {
             padding: 0px !important;
           }
+
           & .form-control {
-            padding-left: 11px!important;
+            padding-left: 11px !important;
           }
+
           & .Inpt {
             border-bottom: 2px solid #757575 !important;
             border-bottom-left-radius: 0px !important;
@@ -244,6 +301,7 @@ body {
               outline: none !important;
             }
           }
+
           & .form-floating {
             & .form-select {
               background-position: right 0.75rem bottom 0.8rem !important;
@@ -259,91 +317,109 @@ body {
             & .form-check-label {
               font-weight: 600;
             }
-          
+
           }
+
           & .select2-container {
             width: 100% !important;
           }
+
           & .fotter_button {
             border-top: 1px solid #757575;
           }
+
           & .Tel_Input_group {
             & label {
               padding-top: 0px !important;
               padding-left: 1rem;
             }
+
             & .iti--allow-dropdown {
               width: 100%;
+
               & .form-control {
-                padding-left: 50px!important;
+                padding-left: 50px !important;
               }
             }
           }
         }
       }
-    
+
     }
   }
 }
 
 .select2-selection {
   padding: 12px 8px !important;
+
   & ul {
     & li {
       margin-top: 0px !important;
       border: none !important;
-      color: $theme2 !important;
+      color: $theme2  !important;
     }
 
-  }}
-  .select2-selection--multiple {
-    border: none !important;
-  
   }
-  .select2-selection__choice {
-    padding: 6px 20px 6px 8px !important
+}
+
+.select2-selection--multiple {
+  border: none !important;
+
+}
+
+.select2-selection__choice {
+  padding: 6px 20px 6px 8px !important
+}
+
+.select2-selection__choice__remove {
+  right: 0 !important;
+  top: 7px !important;
+  left: unset !important;
+  border: none !important;
+
+  &:hover {
+    background-color: unset !important;
+    color: $theme2  !important;
   }
-   .select2-selection__choice__remove {
-    right: 0 !important;
-    top: 7px !important;
-    left: unset !important;
-    border: none !important;
-    &:hover{
-      background-color: unset !important;
-      color: $theme2 !important;
-    }
-  }
+}
 
 
 .select2-container--open {
   z-index: 9999 !important;
 }
 
-.iti__flag {background-image: url("../libs/intel-tel-input/flags.png");}
+.iti__flag {
+  background-image: url("../libs/intel-tel-input/flags.png");
+}
 
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-  .iti__flag {background-image: url("../libs/intel-tel-input/flags@2x.png");}
+@media (-webkit-min-device-pixel-ratio: 2),
+(min-resolution: 192dpi) {
+  .iti__flag {
+    background-image: url("../libs/intel-tel-input/flags@2x.png");
+  }
 }
 
 
 .progress_bar {
   & svg {
     transform: rotate(-90deg);
+
     & circle {
       fill: none;
       stroke: #f0f0f0;
       stroke-width: 14;
       stroke-linecap: round;
     }
+
     & circle:last-of-type {
       stroke-dasharray: 625px;
       stroke-dashoffset: calc(625px - (625px * var(--percent)) / 100);
-      stroke: #3498db; 
+      stroke: #3498db;
 
     }
   }
 
- & svg circle:last-of-type {
+  & svg circle:last-of-type {
     stroke: #FF4E00;
   }
 }
@@ -353,41 +429,71 @@ body {
   & .table {
     white-space: nowrap;
     overflow-x: auto;
+
     & thead {
       & tr {
         background-color: #E2E2E2;
+
         & th {
           text-align: center;
         }
-        & th:nth-child(1){
+
+        & th:nth-child(1) {
           text-align: start !important;
         }
       }
-     
+
     }
-    & tbody{
+
+    & tbody {
       & tr {
         & td {
           font-size: 16px;
           color: $theme2;
           font-weight: 400;
           text-align: center;
-        
+
         }
-        & td:nth-child(1){
+
+        & td:nth-child(1) {
           text-align: start !important;
         }
+
         &:nth-of-type(even) {
           background-color: #E2E2E2 !important;
         }
       }
     }
+
     // & tr:nth-child(2){
     //   background-color: #E2E2E2;
     // }
 
   }
 }
+
+// email
+.impete {
+  transform: translate(-50%, -50%);
+}
+
+.email-modal {
+  & .modal-dialog {
+    & .modal-content {
+      & .modal-body {
+      & .modal-form {
+        & .form-control {
+          background-color: #F2F2F2;
+        }
+      }
+      }
+
+    }
+  }
+}
+
+
+
 // .table-striped>tbody>tr:nth-of-type(odd)>* {
 //   background-color: none !important;
 // }
@@ -397,24 +503,19 @@ body {
 
 // Small devices (landscape phones, 576px and up)
 
-@mixin xxxxxx-xxxxx-mixin-min-sm() {
-}
+@mixin xxxxxx-xxxxx-mixin-min-sm() {}
 
 // Medium devices (tablets, 768px and up)
-@mixin xxxxxx-xxxxx-mixin-min-md() {
-}
+@mixin xxxxxx-xxxxx-mixin-min-md() {}
 
 // Large devices (desktops, 992px and up)
-@mixin xxxxxx-xxxxx-mixin-min-lg() {
-}
+@mixin xxxxxx-xxxxx-mixin-min-lg() {}
 
 // X-Large devices (large desktops, 1200px and up)
-@mixin xxxxxx-xxxxx-mixin-min-xl() {
-}
+@mixin xxxxxx-xxxxx-mixin-min-xl() {}
 
 // XX-Large devices (larger desktops, 1400px and up)
-@mixin xxxxxx-xxxxx-mixin-min-xxl() {
-}
+@mixin xxxxxx-xxxxx-mixin-min-xxl() {}
 
 // X-Small devices (portrait phones, less than 576px)
 @mixin xxxxxx-xxxxx-mixin-max-xs() {
@@ -425,31 +526,30 @@ body {
   .back_img1 {
     right: 50px !important;
   }
+
   .back_img2 {
     left: -58px !important;
   }
+
   .back_img3 {
     top: -22px !important;
     right: -6px !important;
   }
 }
+
 //
 
 // Small devices (landscape phones, less than 768px)
-@mixin xxxxxx-xxxxx-mixin-max-sm() {
-}
+@mixin xxxxxx-xxxxx-mixin-max-sm() {}
 
 // Medium devices (tablets, less than 992px)
-@mixin xxxxxx-xxxxx-mixin-max-md() {
-}
+@mixin xxxxxx-xxxxx-mixin-max-md() {}
 
 // Large devices (desktops, less than 1200px)
-@mixin xxxxxx-xxxxx-mixin-max-lg() {
-}
+@mixin xxxxxx-xxxxx-mixin-max-lg() {}
 
 // X-Large devices (large desktops, less than 1400px)
-@mixin xxxxxx-xxxxx-mixin-max-xl() {
-}
+@mixin xxxxxx-xxxxx-mixin-max-xl() {}
 
 // table.dataTable thead>tr>th.sorting:after, table.dataTable thead>tr>th.sorting_asc:after, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>th.sorting_asc_disabled:after, table.dataTable thead>tr>th.sorting_desc_disabled:after, table.dataTable thead>tr>td.sorting:after, table.dataTable thead>tr>td.sorting_asc:after, table.dataTable thead>tr>td.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc_disabled:after, table.dataTable thead>tr>td.sorting_desc_disabled:after {
 //   display: none;
@@ -510,6 +610,7 @@ body {
 
 // My Account
 .myAccount {
+
   // min-height: calc(100vh - 60px);
   & form {
     & .eye-icon {
@@ -548,15 +649,19 @@ body {
       }
     }
   }
+
   & .profileImg {
     width: 210px;
     height: 210px;
+
     & .changeProfile {
       cursor: pointer;
+
       & img {
         object-fit: cover;
         width: 100%;
       }
+
       & .imgOverlay {
         opacity: 0;
         inset: 0;
@@ -564,8 +669,9 @@ body {
         cursor: pointer;
         transition: opacity .3s;
       }
-      &:hover{
-        & .imgOverlay{
+
+      &:hover {
+        & .imgOverlay {
           opacity: 1;
         }
       }
@@ -573,15 +679,18 @@ body {
   }
 }
 
-.fw-600{
+.fw-600 {
   font-weight: 600 !important;
 }
 
-#changepassword, #deleteaccount{
-  & .modal-header{
+#changepassword,
+#deleteaccount {
+  & .modal-header {
     // padding: 21px 31px 11px 31px;
   }
-  & .modal-body{
+
+  & .modal-body {
+
     // padding: 26px 31px 11px;
     & form {
       & .eye-icon {
@@ -590,29 +699,29 @@ body {
         right: 12px;
         cursor: pointer;
       }
-  
+
       & .Inpt {
         border-bottom: 2px solid #757575 !important;
         background: #f2f2f2 !important;
         border-bottom-left-radius: 0px !important;
         border-bottom-right-radius: 0px !important;
         color: #000000;
-  
+
         &:focus-visible {
           outline: none !important;
         }
       }
-  
+
       & .form-check {
         & .form-check-input {
           box-shadow: none;
         }
-  
+
         & .form-check-label {
           font-weight: 600;
         }
       }
-  
+
       & .sign_up {
         & a {
           font-weight: 600;
@@ -625,100 +734,95 @@ body {
 
 // Small devices (landscape phones, 576px and up)
 
-@mixin myAccount-mixin-min-sm() {
-}
+@mixin myAccount-mixin-min-sm() {}
 
 // Medium devices (tablets, 768px and up)
-@mixin myAccount-mixin-min-md() {
-}
+@mixin myAccount-mixin-min-md() {}
 
 // Large devices (desktops, 992px and up)
-@mixin myAccount-mixin-min-lg() {
-}
+@mixin myAccount-mixin-min-lg() {}
 
 // X-Large devices (large desktops, 1200px and up)
-@mixin myAccount-mixin-min-xl() {
-}
+@mixin myAccount-mixin-min-xl() {}
 
 // XX-Large devices (larger desktops, 1400px and up)
-@mixin myAccount-mixin-min-xxl() {
-}
+@mixin myAccount-mixin-min-xxl() {}
 
 // X-Small devices (portrait phones, less than 576px)
 @mixin myAccount-mixin-max-xs() {
   .myAccount {
     & form {
-      & .eye-icon {
-      }
+      & .eye-icon {}
+
       & .Inpt {
-        &:focus-visible {
-        }
+        &:focus-visible {}
       }
+
       & .form-check {
-        & .form-check-input {
-        }
-        & .form-check-label {
-        }
+        & .form-check-input {}
+
+        & .form-check-label {}
       }
+
       & .sign_up {
-        & a {
-        }
+        & a {}
       }
     }
+
     & .profileImg {
       width: 120px;
       height: 120px;
+
       & .changeProfile {
-        & img {
-        }
-        & .imgOverlay {
-        }
-        &:hover{
-          & .imgOverlay{
-          }
+        & img {}
+
+        & .imgOverlay {}
+
+        &:hover {
+          & .imgOverlay {}
         }
       }
     }
   }
 }
+
 //
 
 // Small devices (landscape phones, less than 768px)
-@mixin myAccount-mixin-max-sm() {
-}
+@mixin myAccount-mixin-max-sm() {}
 
 // Medium devices (tablets, less than 992px)
 @mixin myAccount-mixin-max-md() {
   .myAccount {
     & form {
-      & .eye-icon {
-      }
+      & .eye-icon {}
+
       & .Inpt {
-        &:focus-visible {
-        }
+        &:focus-visible {}
       }
+
       & .form-check {
-        & .form-check-input {
-        }
-        & .form-check-label {
-        }
+        & .form-check-input {}
+
+        & .form-check-label {}
       }
+
       & .sign_up {
-        & a {
-        }
+        & a {}
       }
     }
+
     & .profileImg {
       width: 160px;
       height: 160px;
+
       & .changeProfile {
-        & img {
-        }
-        & .imgOverlay {
-        }
-        &:hover{
-          & .imgOverlay{
-          }
+        & img {}
+
+        & .imgOverlay {}
+
+        &:hover {
+          & .imgOverlay {}
         }
       }
     }
@@ -726,12 +830,10 @@ body {
 }
 
 // Large devices (desktops, less than 1200px)
-@mixin myAccount-mixin-max-lg() {
-}
+@mixin myAccount-mixin-max-lg() {}
 
 // X-Large devices (large desktops, less than 1400px)
-@mixin myAccount-mixin-max-xl() {
-}
+@mixin myAccount-mixin-max-xl() {}
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {

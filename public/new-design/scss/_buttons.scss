@@ -8,13 +8,12 @@
 
 .cancle_btn {
     border: 1px solid #757575;
-    box-shadow: 0px 2px 5px #00000029 !important;
     color: #757575;
 }
 .fw-500 {
     font-weight: 500 !important;
 }
 
-.top_right_export_btn {
+.top_right_export_btn, .login_btn, .cancle_btn {
     box-shadow: 0px 2px 5px #00000029 !important;
 }

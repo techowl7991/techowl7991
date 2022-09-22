@@ -74,7 +74,7 @@
                             </label>
                         </div>
                         <div class="col-12 mt-5 mb-3 text-center">
-                            <button type="submit" class="shadow-none border-0 login_btn fs-16 px-3 py-1">SIGN UP</button>
+                            <button type="submit" class="shadow-none border-0 login_btn fs-16 px-4 py-2">SIGN UP</button>
                         </div>
                     </div>
                 </form>

@@ -56,7 +56,7 @@
             </div>
         </div>
         <div class="col-xl-6 col-sm-4">
-            <div class="text-end"><button class="shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-500 px-4 py-2" data-bs-toggle="modal" data-bs-target="#exampleModal">CREATE GUEST</button></div>
+            <div class="text-end"><button class="shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-500 px-4 py-2 top_right_export_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">CREATE GUEST</button></div>
         </div>
         <div class="col-12 mt-4">
             <!-- Data Table -->
@@ -171,7 +171,7 @@
 
                             <div class="col-12 px-0 py-3 d-flex justify-content-center gap-2 fotter_button">
                                 <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                <button type="button" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                <button type="button" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2 top_right_export_btn">SAVE CHANGES</button>
                             </div>
 
                         </div>
