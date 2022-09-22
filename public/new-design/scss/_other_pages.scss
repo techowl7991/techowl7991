@@ -101,7 +101,6 @@ body {
         }
 
         & form {
-
           & .calendar {
             background-repeat: no-repeat;
             background-position: center right 0.63em;
@@ -180,6 +179,85 @@ body {
     }
   }
 }
+
+// Main Dashboard 
+.Main_Dashboard {
+  & .card {
+    & .card-body {
+      & .card-title {
+        & i {
+          cursor: pointer;
+        }
+        & .check-icon {
+        
+          background-color: #D3FFE0;
+          color: #18C44C;
+        }
+        & .close-icon{
+          background-color: #FDC5C9;
+          color: #BF0413;
+        }
+      }
+      & .card-subtitle {
+        // line-height: 55px;
+      }
+    }
+  }
+} 
+
+// Create-Guest-modal
+.Create-Guest-modal {
+& .modal-dialog {
+  & .modal-content {
+    background-color: #f2f2f2;
+    // & .modal-header {}
+    & .modal-body {
+      & .event_info {
+        background-color: #757575;
+      }
+        & .modal-form {
+          & label {
+            color: #757575;
+          }
+          & .eye-icon {
+            color: #777;
+            top: 13px;
+            right: 25px;
+          }
+
+          & .Inpt {
+            border-bottom: 2px solid #757575 !important;
+            border-bottom-left-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+            color: $theme2;
+
+            &:focus-visible {
+              outline: none !important;
+            }
+          }
+
+          & .form-check {
+            & .form-check-input {
+              box-shadow: none;
+            }
+
+            & .form-check-label {
+              font-weight: 600;
+            }
+          }
+
+          & .sign_up {
+            & a {
+              font-weight: 600;
+              color: #ff4e00;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 
 // Small devices (landscape phones, 576px and up)
 
@@ -296,13 +374,13 @@ body {
 
 // My Account
 .myAccount {
-  background-color: #f2f2f2;
-  min-height: calc(100vh - 60px);
+  // min-height: calc(100vh - 60px);
   & form {
     & .eye-icon {
       color: #777;
       top: 13px;
       right: 12px;
+      cursor: pointer;
     }
 
     & .Inpt {
@@ -337,8 +415,8 @@ body {
   & .profileImg {
     width: 210px;
     height: 210px;
-    cursor: pointer;
     & .changeProfile {
+      cursor: pointer;
       & img {
         object-fit: cover;
         width: 100%;
@@ -353,6 +431,56 @@ body {
       &:hover{
         & .imgOverlay{
           opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+.fw-600{
+  font-weight: 600 !important;
+}
+
+#changepassword, #deleteaccount{
+  & .modal-header{
+    // padding: 21px 31px 11px 31px;
+  }
+  & .modal-body{
+    // padding: 26px 31px 11px;
+    & form {
+      & .eye-icon {
+        color: #777;
+        top: 13px;
+        right: 12px;
+        cursor: pointer;
+      }
+  
+      & .Inpt {
+        border-bottom: 2px solid #757575 !important;
+        background: #f2f2f2 !important;
+        border-bottom-left-radius: 0px !important;
+        border-bottom-right-radius: 0px !important;
+        color: #000000;
+  
+        &:focus-visible {
+          outline: none !important;
+        }
+      }
+  
+      & .form-check {
+        & .form-check-input {
+          box-shadow: none;
+        }
+  
+        & .form-check-label {
+          font-weight: 600;
+        }
+      }
+  
+      & .sign_up {
+        & a {
+          font-weight: 600;
+          color: #ff4e00;
         }
       }
     }
@@ -382,6 +510,40 @@ body {
 
 // X-Small devices (portrait phones, less than 576px)
 @mixin myAccount-mixin-max-xs() {
+  .myAccount {
+    & form {
+      & .eye-icon {
+      }
+      & .Inpt {
+        &:focus-visible {
+        }
+      }
+      & .form-check {
+        & .form-check-input {
+        }
+        & .form-check-label {
+        }
+      }
+      & .sign_up {
+        & a {
+        }
+      }
+    }
+    & .profileImg {
+      width: 120px;
+      height: 120px;
+      & .changeProfile {
+        & img {
+        }
+        & .imgOverlay {
+        }
+        &:hover{
+          & .imgOverlay{
+          }
+        }
+      }
+    }
+  }
 }
 //
 
