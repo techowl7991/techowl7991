@@ -178,23 +178,19 @@ class AboutController extends Controller
 
             $data = [];
             if ($request->eventtype == 'online') {
-                $dat = ($request->eventurl!=null)?$request->eventurl:'';
+                $dat = ($request->eventurl != null) ? $request->eventurl : '';
             } else {
-                $dat = ($request->eventlocation!=null)?$request->eventlocation:'';
+                $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
             }
 
             $data = [
                 'event_startdate' => $request->eventstartdate,
                 'event_enddate' => $request->eventenddate,
                 'event_name' => $request->eventname,
-                // 'address' => $request->address,
                 'Reg' => 0,
                 'total' => 0,
                 'vip' => 0,
                 'password' => $request->eventpassword,
-
-                // 'event_url' => $request->eventurl,
-                // 'event_location' => $request->eventlocation,
                 'event_starttime' => $request->eventstarttime,
                 'event_endtime' => $request->eventendtime,
                 'event_timezone' => $request->eventtimezone,
@@ -202,8 +198,7 @@ class AboutController extends Controller
                 'event_sub_type' => $dat,
 
             ];
-            // dd($data);
-            //  self::$firestoreClient->collection(events)->document('one')->set($data);
+            //self::$firestoreClient->collection(events)->document('one')->set($data);
             $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->add($data);
 
             // $totalvip = 0;
@@ -653,8 +648,6 @@ class AboutController extends Controller
 
     public function update(Request $request, $id)
     {
-
-        // dd($id);
         if ($request->isMethod('put')) {
             $USERID = $request->session()->get('uid');
             self::$firestoreProjectId = 'guest-app-2eb59';
@@ -671,8 +664,6 @@ class AboutController extends Controller
 
             $totalvip = 0;
             $totalreg = 0;
-
-
             $data1 = [
                 'event_startdate' => $request->eventstartdate,
                 'event_enddate' => $request->eventenddate,
@@ -687,12 +678,9 @@ class AboutController extends Controller
                 'event_endtime' => $request->eventendtime,
                 'event_timezone' => $request->eventtimezone,
             ];
-
-            // dd($data1);
             $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->document($id)->set($data1);
             return redirect('/index/' . $request->session()->get('uid'));
         } else {
-
             self::$firestoreProjectId = 'guest-app-2eb59';
             self::$firestoreClient = new FirestoreClient([
                 'projectId' => self::$firestoreProjectId,

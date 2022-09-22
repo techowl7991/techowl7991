@@ -26,8 +26,30 @@
     <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" id="dark-scheme-icon">
     <link rel="canonical" href="{{ asset('/') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+
+    <!-- CSS for searching -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <!-- JS for searching -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @endpush
 @push('styles')
+    <style>
+        .timeZoneSelect .select2-selection.select2-selection--single {
+            border: none !important;
+            border-bottom: 2px solid #757575 !important;
+            background-color: #f2f2f2 !important;
+            border-bottom-left-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+            color: #757575 !important;
+            padding: 0.4rem 0.2rem !important;
+            height: 40px !important;
+
+        }
+
+        .timeZoneSelect .select2-container--default .select2-selection--single .select2-selection__arrow {
+            top: 7px !important
+        }
+    </style>
 @endpush
 @section('content')
     <div class="container-fluid signUpPage d-flex justify-content-center align-items-center Create_Event  px-0">
@@ -80,7 +102,6 @@
                                     </label>
                                 </div>
                             </div>
-
                             <div class="col-12 input-group mb-3 d-none" id="displaytable1">
                                 <input type="url" name="eventurl"
                                     class="form-control shadow-none rouded-0 Inpt border-0 p-2 fs-16 fw-normal"
@@ -91,7 +112,8 @@
                             </div>
 
                             <div class="d-none col-12 mb-3" id="displaytable">
-                                <input type="text" placeholder="Enter a Location" name="eventlocation" id="eventlocation"
+                                <input type="text" placeholder="Enter a Location" name="eventlocation"
+                                    id="eventlocation"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal">
                             </div>
 
@@ -128,17 +150,19 @@
                                     Please enter your phone number or email
                                 </div>
                             </div>
-                            <div class="col-12 input-group mb-3">
-                                <select class="form-select shadow-none Inpt border-0" name="eventtimezone" id="inputGroupSelect01">
+                            <div class="col-12 input-group mb-3 timeZoneSelect">
+                                <select class="form-select shadow-none Inpt border-0 test" name="eventtimezone"
+                                    id="inputGroupSelect01">
                                     <option class="choose py-1" selected>Select Timezone</option>
                                     @foreach ($data as $timez)
-                                    <option class="choose py-1" value="{{ $timez['timezonename'] }}">{{ $timez['timezonename'] }}</option>
+                                        <option class="choose py-1" value="{{ $timez['timezonename'] }}">
+                                            {{ $timez['timezonename'] }}</option>
                                     @endforeach
                                 </select>
                             </div>
 
 
-                            {{--<div class="col-12 text-theme2 fs-16 fw-bold mb-3">Add Attendees List</div>
+                            {{-- <div class="col-12 text-theme2 fs-16 fw-bold mb-3">Add Attendees List</div>
                             <div class="col-12 mb-3 d-flex align-items-center gap-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
@@ -236,82 +260,85 @@
             </div>
         </div>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
-<script>
-    let subform = document.getElementById('subform');
-    let subbutton = document.getElementById('subbutton');
-    let subbuttonSpinner = document.getElementById('subbuttonSpinner');
 
 
-    subform.addEventListener('submit', () => {
-        subbuttonSpinner.classList.remove('d-none')
-        subbutton.disabled = true
-    })
-
-    function onlinefunction() {
-        var element = document.getElementById("displaytable1");
-        element.classList.remove("d-none");
-        var element1 = document.getElementById("displaytable");
-        element1.classList.add("d-none");
-    }
-
-    function offlinefunction() {
-        var element = document.getElementById("displaytable");
-        element.classList.remove("d-none");
-        var element1 = document.getElementById("displaytable1");
-        element1.classList.add("d-none");
-    }
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script>
+        // .js-example-basic-single declare this class into your select box
+        $(document).ready(function() {
+            $('.test').select2();
+        });
+    </script>
+    <script>
+        let subform = document.getElementById('subform');
+        let subbutton = document.getElementById('subbutton');
+        let subbuttonSpinner = document.getElementById('subbuttonSpinner');
 
 
-<script>
-    var msg = '{{ Session::get('alert') }}';
-    var exist = '{{ Session::has('alert') }}';
-    if (exist) {
-        alert(msg);
-    }
-</script>
+        subform.addEventListener('submit', () => {
+            subbuttonSpinner.classList.remove('d-none')
+            subbutton.disabled = true
+        })
 
-<!-- google location -->
-<script type="text/javascript"
-    src="https://maps.googleapis.com/maps/api/js?key={{ env('Google_Api_Key') }}&libraries=places&callback=initMap">
-</script>
+        function onlinefunction() {
+            var element = document.getElementById("displaytable1");
+            element.classList.remove("d-none");
+            var element1 = document.getElementById("displaytable");
+            element1.classList.add("d-none");
+        }
 
-<script>
-    /*** Geo Location For Address Start ***/
-
-    var center = {
-        lat: 50.064192,
-        lng: -130.605469
-    };
-    // Create a bounding box with sides ~10km away from the center point
-    var defaultBounds = {
-        north: center.lat + 0.1,
-        south: center.lat - 0.1,
-        east: center.lng + 0.1,
-        west: center.lng - 0.1,
-    };
-
-    var input = document.getElementById("eventlocation");
-    var options = {
-        bounds: defaultBounds,
-        fields: ["address_components", "geometry", "icon", "name"],
-        strictBounds: false,
-        types: ["establishment"],
-    };
-    var autocomplete = new google.maps.places.Autocomplete(input, options);
+        function offlinefunction() {
+            var element = document.getElementById("displaytable");
+            element.classList.remove("d-none");
+            var element1 = document.getElementById("displaytable1");
+            element1.classList.add("d-none");
+        }
+    </script>
 
 
+    <script>
+        var msg = '{{ Session::get('alert') }}';
+        var exist = '{{ Session::has('alert') }}';
+        if (exist) {
+            alert(msg);
+        }
+    </script>
 
-    /*** Geo Location For Address End ***/
-</script>
+    <!-- google location -->
+    <script type="text/javascript"
+        src="https://maps.googleapis.com/maps/api/js?key={{ env('Google_Api_Key') }}&libraries=places&callback=initMap">
+    </script>
 
-@push('scripts')
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-@endpush
+    <script>
+        /*** Geo Location For Address Start ***/
 
+        var center = {
+            lat: 50.064192,
+            lng: -130.605469
+        };
+        // Create a bounding box with sides ~10km away from the center point
+        var defaultBounds = {
+            north: center.lat + 0.1,
+            south: center.lat - 0.1,
+            east: center.lng + 0.1,
+            west: center.lng - 0.1,
+        };
+
+        var input = document.getElementById("eventlocation");
+        var options = {
+            bounds: defaultBounds,
+            fields: ["address_components", "geometry", "icon", "name"],
+            strictBounds: false,
+            types: ["establishment"],
+        };
+        var autocomplete = new google.maps.places.Autocomplete(input, options);
+
+
+
+        /*** Geo Location For Address End ***/
+    </script>
+
+    @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    @endpush
 @endsection
-
-
-
