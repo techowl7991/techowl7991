@@ -144,13 +144,6 @@
                                         <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue4" placeholder="Now Comms Asia" value="Now Comms Asia">
                                         <label for="floatingInputValue4" class="fs-12 ps-4">Organisation</label>
                                     </div>
-                                    <!-- <div class="col-12 mb-2 form-floating Tel_Input_group">
-                                        <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
-                                        <label for="phone" class="fs-12 ps-4">Organisation</label>
-                                    </div> -->
-                                    <!-- <div class="col-12">
-                                        <input type="tel" id="phone">
-                                    </div> -->
                                     <div class="col-12 mb-2 form-floating">
                                         <input type="tel" class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue5" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" value="123-45-678">
                                         <label for="floatingInputValue5" class="fs-12 ps-4">Mobile Number</label>

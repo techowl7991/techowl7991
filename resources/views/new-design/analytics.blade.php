@@ -32,13 +32,13 @@
 @section('content')
 
 <div class="container-fluid">
-    <div class="row mb-4 align-items-center">
-        <div class="col">
+    <div class="row mx-0 mb-4 align-items-center">
+        <div class="col mb-sm-0 mb-2">
             <div class="fs-sm-30 fs-25 fw-bold text-theme1">Analytics</div>
         </div>
-        <div class="col-auto"><button class="shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-500 px-sm-4 px-2 py-sm-2 py-1">EXPORT REPORT</button></div>
+        <div class="col-sm-auto"><button class="shadow-none border-0 text-white top_right_export_btn bg-theme1 rounded fs-14 fw-500 px-sm-4 px-3 py-2">EXPORT REPORT</button></div>
     </div>
-    <div class="row mb-3">
+    <div class="row mx-0 mb-3">
         <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
@@ -92,7 +92,7 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mx-0">
         <div class="col-xxl-6 col-xl-7 col-lg-9 col-md-9 col-12 mb-5">
             <div class="card border-0 rounded">
                 <div class="card-body row align-items-center py-4 mx-0">
