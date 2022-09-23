@@ -91,7 +91,7 @@
                                     </tr>
                                     <tr>
                                         <td class="d-block">
-                                            <button type="button" class="btn border-0 shadow-none d-block fs-14 fs-sm-16 text-theme2" p-0 href="">Thank you for attending</button>
+                                            <button type="button" class="btn border-0 shadow-none d-block fs-14 fs-sm-16 text-theme2 p-0" href="">Thank you for attending</button>
                                             <span class=" fs-14 fs-sm-16">Last edited Tue, 13 Sep 2022</span>
                                         </td>
                                         <td class=" fs-14 fs-sm-16"><span>Registrants who attended the event</span> <span class="text-theme1">[245]</span></td>
@@ -102,7 +102,7 @@
                                     </tr>
                                     <tr>
                                         <td class="d-block">
-                                            <button type="button" class="btn border-0 shadow-none d-block fs-14 fs-sm-16 text-theme2" p-0 href="">Sorry we missed you!</button>
+                                            <button type="button" class="btn border-0 shadow-none d-block fs-14 fs-sm-16 text-theme2 p-0" href="">Sorry we missed you!</button>
                                             <span class=" fs-14 fs-sm-16">Last edited Tue, 13 Sep 2022</span>
                                         </td>
                                         <td class=" fs-14 fs-sm-16"><span>Registrants who did not attend the event</span> <span class="text-theme1">[50]</span></td>
@@ -113,7 +113,7 @@
                                     </tr>
                                     <tr>
                                         <td class="d-block">
-                                            <button type="button" class="btn border-0 shadow-none d-block fs-14 fs-sm-16 text-theme2" p-0 href="">Congratulations winning...</button>
+                                            <button type="button" class="btn border-0 shadow-none d-block fs-14 fs-sm-16 text-theme2 p-0" href="">Congratulations winning...</button>
                                             <span class=" fs-14 fs-sm-16">Last edited Tue, 13 Sep 2022</span>
                                         </td>
                                         <td class=" fs-14 fs-sm-16"><span>New List 1</span> <span class="text-theme1">[12]</span></td>
