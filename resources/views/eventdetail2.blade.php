@@ -38,7 +38,7 @@
         <div class="row justify-content-between">
             <div class="col-12 d-flex justify-content-between align-items-center">
                 <div class="title text-theme1 fs-16 fs-sm-20 fs-md-30 fw-600 ">Guests</div>
-                <div class="filterBtn text-theme1 d-lg-none  fs-16 fs-sm-20 fs-md-30 fw-600 "><button type="button" class="btn guestFilterBtn btn-theme1 shadow-none w-30px h-30px w-sm-36px h-sm-6px align-items-center d-flex justify-content-center px-sm-4 p-2 "><img src="{{ asset('/public/new-design/img/guest-filter-light.png') }}" alt=""></button></div>
+                <div class="filterBtn text-theme1 d-lg-none  fs-16 fs-sm-20 fs-md-30 fw-600 "><button type="button"  class="btn guestFilterBtn btn-theme1 shadow-none w-30px h-30px w-sm-36px h-sm-6px align-items-center d-flex justify-content-center px-sm-4 p-2 "><img src="{{ asset('/public/new-design/img/guest-filter-light.png') }}" alt=""></button></div>
             </div>
         </div>
     </div>
@@ -57,73 +57,73 @@
                         </div>
                     </div>
                 </div>
-                <div class="filterBody  flex-fill h-100 overflow-scroll overflow-lg-hidden">
+                <div class="filterBody  flex-fill h-100 overflow-scroll overflow-lg-unset">
                     <ul class="list-unstyled p-0 m-0">
                         <li class="py-2 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="checkbox" name="filter" id="allguest" checked>
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="allguest" checked>
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="allguest"><span>All Guests</span><span class="value">6</span></label>
                             </div>
                         </li>
                         <li class="py-1 py-sm-2 px-2 px-sm-3 bg-theme2 text-white fs-13 fs-sm-14">Status</li>
                         <li class="pt-2 pb-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="verified">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="verified">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="verified"><span>Verified</span><span class="value">6</span></label>
                             </div>
                         </li>
                         <li class="py-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="unverified">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="unverified">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="unverified"><span>Unverified</span><span class="value">0</span></label>
                             </div>
                         </li>
                         <li class="py-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="checkedin">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="checkedin">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedin"><span>Checked In</span><span class="value">0</span></label>
                             </div>
                         </li>
                         <li class="py-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="checkedout">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="checkedout">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedout"><span>Checked Out</span><span class="value">0</span></label>
                             </div>
                         </li>
                         <li class="py-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="attended">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="attended">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="attended"><span>Attended</span><span class="value">0</span></label>
                             </div>
                         </li>
                         <li class="pb-2 pt-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="notattended">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="notattended">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="notattended"><span>Did Not Attend</span><span class="value">0</span></label>
                             </div>
                         </li>
                         <li class="bg-theme2"><button type="button" class="btn w-100 rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 " data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span> <i class="imgr img-plus fs-15 fs-sm-18"></i></button></li>
                         <li class="pt-2 pb-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="groups" id="asia">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="asia">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="asia"><span>Now Comms Asia</span><span class="value">5</span></label>
                             </div>
                         </li>
                         <li class="py-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="groups" id="brown">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="brown">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="brown"><span>Brown Cow</span><span class="value">1</span></label>
                             </div>
                         </li>
                         <li class="py-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="groups" id="male">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="male">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="male"><span>Male</span><span class="value">3</span></label>
                             </div>
                         </li>
                         <li class="py-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="groups" id="female">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="filter" id="female">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="female"><span>Female</span><span class="value">3</span></label>
                             </div>
                         </li>
@@ -154,7 +154,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="totalGuest px-4 py-3 bg-white border-bottom border-2">
+                    <div class="totalGuest px-4 py-3 bg-white">
                         <div class="row justify-content-between align-items-center">
                             <div class="col-12 col-sm-auto col-xl-3">
                                 <div class="geustValue">
@@ -172,34 +172,6 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-12">
-                    <table id="example" class="table mt-0 table-striped dt-responsive nowrap" style="width:100%">
-                        <thead>
-                            <tr class="even">
-                                <th class="select-checkbox"></th>
-                                <th>Frist Name</th>
-                                <th>Last Name</th>
-                                <th>Organisation</th>
-                                <th>Status</th>
-                                <th class="text-center">Edit</th>
-                                <th class="text-center">View</th>
-                                <th class="text-center">Badge</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td class=""><span class="select-checkbox"></span></td>
-                                <td>Eugene</td>
-                                <td class="">Wong</td>
-                                <td>Now Comms Asia</td>
-                                <td>Verified</td>
-                                <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
-                                <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
-                                <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
-                            </tr>
-                        </tbody>
-                    </table>
                 </div>
             </div>
         </div>
@@ -239,7 +211,7 @@
             <div class="modal-header py-3 border-0">
                 <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModalLabel">Edit Guest Information</h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
+                <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
             <div class="modal-body p-0">
                 <div class="row px-0 mx-0">
@@ -350,7 +322,7 @@
             <div class="modal-header py-3 border-0">
                 <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">View Guest Information</h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
+                <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
             <div class="modal-body p-0">
                 <div class="row px-0 mx-0">
@@ -459,22 +431,6 @@
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.js') }}"></script>
-<script>
-    $(document).ready(function() {
-    $('#example').DataTable( {
-        columnDefs: [ {
-            orderable: false,
-            className: 'select-checkbox',
-            targets:   0
-        } ],
-        select: {
-            style:    'os',
-            selector: 'td:first-child'
-        },
-        order: [[ 1, 'asc' ]]
-    } );
-} );
-</script>
 <script>
     var input = document.querySelector("#phone");
     window.intlTelInput(input, {

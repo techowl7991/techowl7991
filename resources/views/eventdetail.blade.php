@@ -78,7 +78,7 @@
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                         <div class="modal-content">
                             <div class="modal-header py-3 border-0">
-                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModalLabel">Edit Guest Information</h5>
+                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModalLabel">Add Guest Information</h5>
                                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                                 <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
                             </div>
@@ -201,7 +201,8 @@
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                         <div class="modal-content">
                             <div class="modal-header py-3 border-0">
-                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModalLabel">Edit Guest Information</h5>
+                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="editguest">Edit Guest Information</h5>
+                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguest">View Guest Information</h5>
                                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                                 <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
                             </div>
@@ -557,6 +558,8 @@
     <script>
     function openmodal(id,mid){
         $('#btn11').removeClass('d-none');
+        $('#viewguest').addClass('d-none');
+        $('#editguest').removeClass('d-none');
         $('#id1').val(id);
                 $('#id2').val(mid);
         $.ajax({
@@ -617,6 +620,8 @@
                 $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
                 $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
                 $('#btn11').addClass('d-none');
+                $('#editguest').addClass('d-none');
+                $('#viewguest').removeClass('d-none');
                 $('#exampleModal1').modal('toggle');
                 $('#exampleModal1').modal('show');
             }

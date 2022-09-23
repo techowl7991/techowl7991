@@ -56,20 +56,20 @@
 <div class="modal fade Create-Guest-modal email-modal " id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content bg-white">
-            <div class="modal-header pt-3 m-0 border-0">
-                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModalLabel">Edit Guest Information</h5>
+            <div class="modal-header px-4 pt-4 mb-3">
+                <h5 class="modal-title fs-20 text-theme2 fw-bold ps-1" id="exampleModalLabel">Edit Guest Information</h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
+                <i class="imgr img-times fs-20 text-theme2 pe-1" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
-            <div class="modal-body p-0">
+            <div class="modal-body p0">
                 <div class="row px-0 mx-0">
                     <form action="" class="modal-form col-12">
                         <div class="row">
-                            <div class="col-12 mb-3">
+                            <div class="col-12 mb-4">
                                 <input type="text" placeholder="Name your campaign" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
                             </div>
 
-                            <div class="col-12 px0 py-3 d-flex justify-content-start gap-2 fotter_button">
+                            <div class="col-12 px0 py-3 d-flex justify-content-start gap-2">
                                 <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
                                 <button type="button" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2 top_right_export_btn">CONTINUE</button>
                             </div>
@@ -81,6 +81,8 @@
         </div>
     </div>
 </div>
+
+
 @endsection
 @push('scripts')
 @endpush

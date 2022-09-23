@@ -1,4 +1,4 @@
-@extends('main2')
+@extends('main3')
 
 @push('meta')
     <title>page_title</title>
@@ -29,7 +29,6 @@
 @endpush
 @push('styles')
 <style>
-    
 
 table.dataTable thead th, table.dataTable tbody tr td {
         border: none;
@@ -48,24 +47,11 @@ table.dataTable thead th, table.dataTable tbody tr td {
         <div class="topBar py-3 pb-2 py-sm-4">
             <div class="row justify-content-between mx-0">
                 <div class="col-auto">
-                    <div class="title text-theme1 fs-16 fs-sm-20 fs-md-24 fw-bold ">My Event</div>
+                    <div class="title text-theme1 fs-16 fs-sm-20 fs-md-24 fw-bold ">Gate Keeper</div>
                 </div>
                 <div class="col-auto">
-                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14 p-1 px-sm-3 text-uppercase fw-500" href="{{ route('addEvent') }}"> Create Event </a>
-                </div>
-            </div>
-        </div>
-        <div class="totalEvents py-2 py-sm-3">
-            <div class="row mx-0">
-                <div class="col-auto">
-                    <button type="button" class="btn btn-dark fw-500 fs-10 fs-sm-16 p-1 px-sm-2">
-                        Upcoming <span class="badge text-bg-light ms-2">{{ $upcoming_count }}</span>
-                    </button>
-                </div>
-                <div class="col-auto">
-                    <button type="button" class="btn btn-outline-dark fw-500 fs-10 fs-sm-16 p-1 px-sm-2">
-                        Past Events <span class="badge text-bg-secondary ms-2">{{ $past_count }}</span>
-                    </button>
+                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14 p-1 px-sm-3 text-uppercase fw-500" href="{{route('index',[session()->get('uid')])}}"> Back</a>
+                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14 p-1 px-sm-3 text-uppercase fw-500" href="{{ route('addkeeper',[$mid]) }}"> Create Gate Keeper </a>
                 </div>
             </div>
         </div>
@@ -73,7 +59,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
         <div class="upcomingEvents py-2 py-sm-4">
             <div class="row mx-0 align-items-center">
                 <div class="col">
-                    <div class="title text-dark fs-16 fs-sm-20 fs-md-24 fw-bold">Upcoming Events</div>
+                    <div class="title text-dark fs-16 fs-sm-20 fs-md-24 fw-bold">Gate Keepers</div>
                 </div>
                             <div class="col-auto">
                             <button type="button" class="btn btn-theme1 text-white fs-11 fs-sm-14 p-1 px-sm-3 text-uppercase fw-500 delbtn">Delete</button>
@@ -91,26 +77,13 @@ table.dataTable thead th, table.dataTable tbody tr td {
                                 id="allmatches_datatable" width="100%" cellspacing="0">
                                 <thead style="background-color:#CCCCCC">
                                     
-                                        <th style="text-align:center;" class="text-capitalize">Event ID
+                                        <th style="text-align:center;" class="text-capitalize">Guest ID
                                         </th>
-                                        <th class="text-capitalize"><input class="" type="checkbox"
-                                                value="" name="select-all"
-                                                id="flexCheckIndeterminate"></th>
-                                        <th class="text-capitalize">Title</th>
-                                        <th style="text-align:center;" class="text-capitalize">Start Date
+                                        <th class="text-capitalize">Name</th>
+                                        <th style="text-align:center;" class="text-capitalize">Username
                                         </th>
-                                        <!--<th class="text-capitalize">End Date</th>-->
-                                        <th style="text-align:center;" style="width:50px"
-                                            class="text-capitalize">Edit</th>
-                                        <!-- <th style="text-align:center;" style="width:50px" class="text-capitalize">Delete</th> -->
-                                        <th style="text-align:center;" style="width:50px"
-                                            class="text-capitalize">Single Delete</th>
-                                        <th class="text-capitalize">Gate Keeper</th>
-                                        <!--<th class="text-capitalize">Regular</th>-->
                                         <th style="text-align:center;width:120px" class="text-capitalize">
-                                            QRcode</th>
-                                        <th style="text-align:center;width:120px" class="text-capitalize">
-                                            Guests</th>
+                                            Password</th>
                                    
                                 </thead>
 
@@ -138,7 +111,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
             "serverSide": true,
             "searching": false,
             "ajax": {
-                "url": '<?php echo URL::asset('view_event_dt'); ?>?event_name=' + event_name + '&event_startdate=' +
+                "url": '<?php echo URL::asset('view_guest_dt'); ?>?event_name=' + event_name + '&event_startdate=' +
                     event_startdate + '&mid=' + mid,
                 "dataType": "json",
                 "type": "POST",
@@ -163,42 +136,13 @@ table.dataTable thead th, table.dataTable tbody tr td {
                     orderable: false
                 },
                 {
-                    "data": "checkb",
-                    orderable: false
-                },
-                {
                     "data": "event_name"
                 },
                 {
                     "data": "event_startdate"
                 },
-
                 {
-                    "data": "address",
-                    orderable: false
-                },
-                // {
-                //     "data": "total",
-                //     orderable: false
-                // },
-                {
-                    "data": "singledel"
-                },
-                {
-                    "data": "gatekeeper",
-                    orderable: false
-                },
-                // {
-                //     "data": "Reg",
-                //     orderable: false
-                // },
-                {
-                    "data": "qrcode",
-                    orderable: false
-                },
-                {
-                    "data": "action",
-                    orderable: false
+                    "data": "event_startdate"
                 },
             ]
         });

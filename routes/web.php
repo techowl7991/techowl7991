@@ -69,4 +69,8 @@ Route::any('/campaign-nformation',function(){return view('new-design/campaign-nf
 Route::any('/my-event',function(){return view('new-design/my-event');});
 Route::any('/my-account',function(){return view('new-design/my-account');});
 Route::any('/guests',function(){return view('new-design/guests');});
+Route::any('/email2',function(){return view('new-design/email2');});
+
+Route::get('/viewgatekeeper/{mid}',[AboutController::class,'viewgatekeeper'])->name('viewgatekeeper');
+Route::any('/addkeeper/{mid}',[AboutController::class,'addkeeper'])->name('addkeeper');
 
