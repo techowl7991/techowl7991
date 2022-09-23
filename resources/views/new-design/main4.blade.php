@@ -63,7 +63,7 @@
 <body class="vh-100 overflow-hidden nonDashBoardSection">
     @include('new-design.layouts.preloader')
     <div class="d-flex flex-column">
-    @include('new-design.layouts.header2')
+    @include('new-design.layouts.header3')
     <div class="bodyScrollPart d-flex" id="bodyScrollPart">
             <main class="main-scrollbar w-100 p-4 Without_scroll_content">
                 @yield('content')

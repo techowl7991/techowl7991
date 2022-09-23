@@ -1,11 +1,12 @@
-
 .DashBoardSection {
     & .fixedHeader {
         height: 60px;
     }
+
     & .bodyScrollPart {
         height: calc(100vh - 60px);
         position: relative;
+
         & .sidebarSide {
             z-index: 5;
             width: 200px;
@@ -13,12 +14,14 @@
             height: 100%;
             transition: 0.5s all ease-in-out;
         }
+
         & .contentSide {
             width: calc(100% - 200px);
             overflow-y: auto;
             transition: 0.5s all ease-in-out;
             margin-left: auto;
         }
+
         &.show {
             & .sidebarSide {
                 position: absolute;
@@ -26,26 +29,30 @@
                 left: 0;
                 transform: translateX(-100%);
             }
+
             & .contentSide {
                 width: 100%;
                 transition: 0.5s all ease-in-out;
-            }   
+            }
         }
     }
 }
+
 .nonDashBoardSection {
     & .fixedHeader {
         height: 60px;
     }
+
     & .bodyScrollPart {
         height: calc(100vh - 60px);
         overflow-y: auto;
     }
 }
+
 @mixin sidebar-toggle-mixin-max-md() {
     .DashBoardSection {
-        & .fixedHeader {
-        }
+        & .fixedHeader {}
+
         & .bodyScrollPart {
             & .sidebarSide {
                 position: absolute;
@@ -54,10 +61,12 @@
                 transform: translateX(-100%);
                 transition: 0.5s all ease-in-out;
             }
+
             & .contentSide {
                 width: 100% !important;
                 overflow-y: auto;
             }
+
             &.show {
                 & .sidebarSide {
                     transform: translateX(0);
@@ -65,8 +74,9 @@
 
             }
         }
-    }   
+    }
 }
 
-.contentSide {
-    background-color: #f2f2f2;}
+.contentSide, .Without_scroll_content {
+    background-color: #f2f2f2;
+}

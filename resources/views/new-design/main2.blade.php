@@ -58,7 +58,6 @@
 
     @stack('styles')
 
-    
     <link rel="stylesheet" href="{{ asset('public/new-design/css/style.min.css') }}" />
 </head>
 <body class="vh-100 overflow-hidden DashBoardSection">
