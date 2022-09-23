@@ -30,6 +30,11 @@
 @endpush
 @push('styles')
 <link rel="stylesheet" href="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.css') }}">
+<link rel="stylesheet" href="https://cdn.datatables.net/select/1.4.0/css/select.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.3.0/css/responsive.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
 @endpush
 @section('content')
 
@@ -56,10 +61,75 @@
             </div>
         </div>
         <div class="col-xl-6 col-sm-4">
-            <div class="text-end"><button class="shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-500 px-4 py-2 top_right_export_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">CREATE GUEST</button></div>
+            <div class="text-end"><button class="shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-500 px-sm-4 py-sm-2 px-3 py-1 top_right_export_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">CREATE GUEST</button></div>
         </div>
         <div class="col-12 mt-4">
-            <!-- Data Table -->
+            <table id="example" class="table table-striped dt-responsive nowrap" style="width:100%">
+                <thead>
+                    <tr class="even">
+                        <th class="select-checkbox"></th>
+                        <th>Event ID</th>
+                        <th>Title</th>
+                        <th>Start Date</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                        <th>QRcode</th>
+                        <th>Guests</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class=""><span class="select-checkbox"></span></td>
+                        <td>#A000512</td>
+                        <td class="text-primary text-decoration-underline fs-16">Digital Conference 2020</td>
+                        <td>9 March 2022</td>
+                        <td><i class="imgs img-pen text-secondary"></i></td>
+                        <td><i class="imgs img-trash text-secondary"></i></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View QRcode</Button></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View Guests</Button></td>
+                    </tr>
+                    <tr>
+                        <td class="select-checkbox"></td>
+                        <td>#A000512</td>
+                        <td class="text-primary text-decoration-underline fs-16">Digital Conference 2020</td>
+                        <td>9 March 2022</td>
+                        <td><i class="imgs img-pen text-secondary"></i></td>
+                        <td><i class="imgs img-trash text-secondary"></i></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View QRcode</Button></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View Guests</Button></td>
+                    </tr>
+                    <tr>
+                        <td class="select-checkbox"></td>
+                        <td>#A000512</td>
+                        <td class="text-primary text-decoration-underline fs-16">Digital Conference 2020</td>
+                        <td>9 March 2022</td>
+                        <td><i class="imgs img-pen text-secondary"></i></td>
+                        <td><i class="imgs img-trash text-secondary"></i></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View QRcode</Button></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View Guests</Button></td>
+                    </tr>
+                    <tr>
+                        <td class="select-checkbox"></td>
+                        <td>#A000512</td>
+                        <td class="text-primary text-decoration-underline fs-16">Digital Conference 2020</td>
+                        <td>9 March 2022</td>
+                        <td><i class="imgs img-pen text-secondary"></i></td>
+                        <td><i class="imgs img-trash text-secondary"></i></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View QRcode</Button></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View Guests</Button></td>
+                    </tr>
+                    <tr>
+                        <td class="select-checkbox"></td>
+                        <td>#A000512</td>
+                        <td class="text-primary text-decoration-underline fs-16">Digital Conference 2020</td>
+                        <td>9 March 2022</td>
+                        <td><i class="imgs img-pen text-secondary"></i></td>
+                        <td><i class="imgs img-trash text-secondary"></i></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View QRcode</Button></td>
+                        <td><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">View Guests</Button></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
@@ -78,7 +148,7 @@
             <div class="modal-header py-3 border-0">
                 <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModalLabel">Edit Guest Information</h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
+                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
             <div class="modal-body p-0">
                 <div class="row px-0 mx-0">
@@ -87,7 +157,7 @@
                     </div>
                     <form action="" class="modal-form col-12 mt-3">
                         <div class="row">
-                            <div class="col-3 d-flex justify-content-center">
+                            <div class="col-sm-3 mb-sm-0 mb-3 d-flex justify-content-center">
                                 <!-- userName -->
                                 <div class="dnone">
                                     <div class="h-80px w-80px rounded-circle d-flex justify-content-center align-items-center user_img"><span class="fs-30 text-white fw-bold">DW</span></div>
@@ -104,10 +174,10 @@
                                 <!-- user-img End -->
                             </div>
 
-                            <div class="col-9">
+                            <div class="col-sm-9">
                                 <div class="row px-0 mx-0">
                                     <div class="col-12 form-floating mb-2">
-                                        <select class="form-select h-50px shadow-none Inpt border-0" id="floatingSelect" aria-label="Floating label select example">
+                                        <select class="form-select fs-sm-16 fs-14 h-50px shadow-none Inpt border-0" id="floatingSelect" aria-label="Floating label select example">
                                             <option lass="choose py-1" selected>Open this select menu</option>
                                             <option lass="choose py-1" value="1">One</option>
                                             <option lass="choose py-1" value="2">Two</option>
@@ -115,8 +185,8 @@
                                         </select>
                                         <label for="floatingSelect" class="fs-12 ps-4">Status</label>
                                     </div>
-                                    <div class="col-4 mb-2 form-floating">
-                                        <select class="form-select h-50px shadow-none Inpt border-0" id="floatingSelect" aria-label="Floating label select example">
+                                    <div class="col-md-4 mb-2 form-floating">
+                                        <select class="form-select fs-sm-16 fs-14 h-50px shadow-none Inpt border-0" id="floatingSelect" aria-label="Floating label select example">
                                             <option lass="choose py-1" selected>Ms.</option>
                                             <option lass="choose py-1" value="1">One</option>
                                             <option lass="choose py-1" value="2">Two</option>
@@ -124,28 +194,28 @@
                                         </select>
                                         <label for="floatingSelect" class="fs-12 ps-4">Status</label>
                                     </div>
-                                    <div class="col-4 mb-2 form-floating">
-                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue" placeholder="Dawn" value="Dawn">
+                                    <div class="col-md-4 mb-2 form-floating">
+                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-sm-16 fs-14 fw-normal" id="floatingInputValue" placeholder="Dawn" value="Dawn">
                                         <label for="floatingInputValue" class="fs-12 ps-4">First Name</label>
                                     </div>
-                                    <div class="col-4 mb-2 form-floating">
-                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue1" placeholder="Wong" value="Wong">
+                                    <div class="col-md-4 mb-2 form-floating">
+                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-sm-16 fs-14 fw-normal" id="floatingInputValue1" placeholder="Wong" value="Wong">
                                         <label for="floatingInputValue1" class="fs-12 ps-4">Last Name</label>
                                     </div>
                                     <div class="col-12 mb-2 form-floating">
-                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue2" placeholder="dawn.wong@nowcomms.asia" value="dawn.wong@nowcomms.asia">
+                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-sm-16 fs-14 fw-normal" id="floatingInputValue2" placeholder="dawn.wong@nowcomms.asia" value="dawn.wong@nowcomms.asia">
                                         <label for="floatingInputValue2" class="fs-12 ps-4">Email</label>
                                     </div>
-                                    <div class="col-6 mb-2 form-floating">
-                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue3" placeholder="Administrator" value="Administrator">
+                                    <div class="col-lg-6 mb-2 form-floating">
+                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-sm-16 fs-14 fw-normal" id="floatingInputValue3" placeholder="Administrator" value="Administrator">
                                         <label for="floatingInputValue3" class="fs-12 ps-4">Job Title</label>
                                     </div>
-                                    <div class="col-6 mb-2 form-floating">
-                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue4" placeholder="Now Comms Asia" value="Now Comms Asia">
+                                    <div class="col-lg-6 mb-2 form-floating">
+                                        <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-sm-16 fs-14 fw-normal" id="floatingInputValue4" placeholder="Now Comms Asia" value="Now Comms Asia">
                                         <label for="floatingInputValue4" class="fs-12 ps-4">Organisation</label>
                                     </div>
                                     <div class="col-12 mb-2 form-floating">
-                                        <input type="tel" class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal" id="floatingInputValue5" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" value="123-45-678">
+                                        <input type="tel" class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-sm-16 fs-14 fw-normal" id="floatingInputValue5" placeholder="123-45-678" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}" value="123-45-678">
                                         <label for="floatingInputValue5" class="fs-12 ps-4">Mobile Number</label>
                                     </div>
                                     <div class="col-12">
@@ -162,16 +232,16 @@
                                 <h4 class="m-0 heading fw-bold text-white px-3 fs-16">Social Media (If Any)</h4>
                             </div>
                             <div class="col-12 mb-3">
-                                <input type="text" placeholder="LinkedIn" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                                <input type="text" placeholder="LinkedIn" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-sm-16 fs-14 fw-normal" autocomplete="off" required>
                             </div>
 
                             <div class="col-12 mb-3">
-                                <input type="text" placeholder="Twitter" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                                <input type="text" placeholder="Twitter" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-sm-16 fs-14 fw-normal" autocomplete="off" required>
                             </div>
 
                             <div class="col-12 px-0 py-3 d-flex justify-content-center gap-2 fotter_button">
-                                <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                <button type="button" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2 top_right_export_btn">SAVE CHANGES</button>
+                                <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-3 py-1 px-sm-4 py-sm-2" data-bs-dismiss="modal">CANCEL</button>
+                                <button type="button" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-3 py-1 px-sm-4 py-sm-2 top_right_export_btn">SAVE CHANGES</button>
                             </div>
 
                         </div>
@@ -190,12 +260,23 @@
 
 @endsection
 @push('scripts')
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.js') }}"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.3.0/js/responsive.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/select/1.4.0/js/dataTables.select.min.js"></script>
 <script>
     var input = document.querySelector("#phone");
     window.intlTelInput(input, {
         // any initialisation options go here
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#example').DataTable();
     });
 </script>
 

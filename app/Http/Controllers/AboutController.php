@@ -93,19 +93,12 @@ class AboutController extends Controller
                 $createdUser = $auth->createUser($userProperties);
                 $signInResult = $auth->signInWithEmailAndPassword($request->email, $request->password);
                 $userdata = $signInResult->data();
-                $request->session()->put('uid', $userdata['localId']);
-
-
-                // if($userProperties['email'] != null OR $userProperties['password'] != null){            
-                //     // dd($userProperties['email']);
-                //     Mail::send('email-template', $userProperties, function($messages) use($userProperties){
-                //         $messages->to($userProperties['email'])
-                //         ->subject("This is the testing mail");
-                //     });
-
-                //     return back()->with("success", "Email has been sent");         
-                // }
-
+                self::$firestoreProjectId = 'guest-app-2eb59';
+                self::$firestoreClient = new FirestoreClient([
+                    'projectId' => self::$firestoreProjectId,
+                ]);
+                $docref = self::$firestoreClient->collection('users')->document($userdata['localId'])->set($userProperties);
+                $uid = $request->session()->put('uid', $userdata['localId']);
                 return redirect('/index/' . $request->session()->get('uid'));
             } else {
                 return view('register');
@@ -200,11 +193,11 @@ class AboutController extends Controller
 
             $geteventid = self::$firestoreClient->collection('eventidupdate')->documents();
             $rowid = $geteventid->rows();
-            $rowiddata =$rowid[0]->data();
-            
-            $data['eventid']=$rowiddata['id']+1;
+            $rowiddata = $rowid[0]->data();
 
-            $datarow['id']=$data['eventid'];
+            $data['eventid'] = $rowiddata['id'] + 1;
+
+            $datarow['id'] = $data['eventid'];
             self::$firestoreClient->collection('eventidupdate')->document($rowid[0]->id())->set($datarow);
             //self::$firestoreClient->collection(events)->document('one')->set($data);
             $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->add($data);
@@ -1251,7 +1244,7 @@ class AboutController extends Controller
         exit;
     }
 
-    public function user_account(Request $request)
+    public function user_account(Request $request, $id)
     {
         $uid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
@@ -1259,7 +1252,19 @@ class AboutController extends Controller
             'projectId' => self::$firestoreProjectId,
         ]);
         $date = date('Y-m-d');
-        $up_snapshot = self::$firestoreClient->collection('events')->document($uid);
+        $snapshot = self::$firestoreClient->collection('users')->document($uid)->snapshot()->data();
+       
+
+
+        // $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
+        // $database = $factory->createDatabase();
+        // $auth = $factory->createAuth();
+        // $user = $auth->getUser($uid);
+        // dd($user);
+
+        
+        // $up_snapshot = self::$firestoreClient->collection('events')->document($uid);
+        return view('my-account',compact('snapshot','id'));
     }
 
     public function add_guest(Request $request)
@@ -1285,9 +1290,7 @@ class AboutController extends Controller
 
         ];
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
-        // dd($uid);
         $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
-        // dd($snapshot->data());
         $snap = $snapshot->data();
         $token = $mid . '(**)' . $docref->id();
         $evedata['token'] = $token;

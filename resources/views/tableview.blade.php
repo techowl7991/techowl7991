@@ -1,4 +1,4 @@
-@extends('main3')
+@extends('main2')
 
 @push('meta')
     <title>page_title</title>
@@ -29,6 +29,7 @@
 @endpush
 @push('styles')
 <style>
+    
 
 table.dataTable thead th, table.dataTable tbody tr td {
         border: none;
