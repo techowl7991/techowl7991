@@ -32,8 +32,6 @@ class AboutController extends Controller
         return view('emailview');
     }
 
-
-
     public function index(Request $request, $mid)
     {
         if (!empty($request->session()->get('uid')) && $request->session()->get('uid') == $mid) {
@@ -199,6 +197,15 @@ class AboutController extends Controller
                 'event_sub_type' => $dat,
 
             ];
+
+            $geteventid = self::$firestoreClient->collection('eventidupdate')->documents();
+            $rowid = $geteventid->rows();
+            $rowiddata =$rowid[0]->data();
+            
+            $data['eventid']=$rowiddata['id']+1;
+
+            $datarow['id']=$data['eventid'];
+            self::$firestoreClient->collection('eventidupdate')->document($rowid[0]->id())->set($datarow);
             //self::$firestoreClient->collection(events)->document('one')->set($data);
             $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->add($data);
 
