@@ -1,4 +1,4 @@
-@extends('new-design.main3')
+@extends('new-design.main4')
 
 @push('meta')
     <title>page_title</title>
