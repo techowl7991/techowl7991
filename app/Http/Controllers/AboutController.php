@@ -1340,4 +1340,58 @@ class AboutController extends Controller
             return view('addkeeper', compact('mid'));
         }
     }
+
+    public function view_guest_dt(Request $request)
+    {
+        $columns = array(
+            0 => 'keepername',
+            1 => 'username',
+        );
+        $input = $request->all();
+
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $columns[$request->input('order.0.column')];
+        $dir = $request->input('order.0.dir');
+
+        // dd($_GET['mid']);
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+
+        $snapshot = self::$firestoreClient->collection('gatekeeper')->document($_GET['mid'])->collection('keeperdata_data')->offset($start)->limit($limit)->orderBy($order, $dir);
+
+  
+
+        $snapshot = $snapshot->documents();
+        $query = $snapshot->rows();
+        $totalTitles = count($query);
+        $totalFiltered = $totalTitles;
+
+        $titles = $query;
+        // dd($titles);
+        if ($totalTitles != 0) {
+            $data = array();
+            $count = 1;
+            foreach ($titles as $title) {
+                $nestedData['id'] = $count;
+                $nestedData['name'] = $title['keepername'];
+                $nestedData['username'] = $title['username'];
+                $nestedData['password'] = $title['password'];
+                $data[] = $nestedData;
+                $count++;
+            }
+        } else {
+            $data = array();
+        }
+
+        $json_data = array(
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($totalTitles),
+            "recordsFiltered" => intval($totalFiltered),
+            "data" => $data,
+        );
+        echo json_encode($json_data);
+    }
 }

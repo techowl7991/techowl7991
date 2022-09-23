@@ -61,9 +61,6 @@ table.dataTable thead th, table.dataTable tbody tr td {
                 <div class="col">
                     <div class="title text-dark fs-16 fs-sm-20 fs-md-24 fw-bold">Gate Keepers</div>
                 </div>
-                            <div class="col-auto">
-                            <button type="button" class="btn btn-theme1 text-white fs-11 fs-sm-14 p-1 px-sm-3 text-uppercase fw-500 delbtn">Delete</button>
-                            </div>
             </div>
             <div class="row mx-0">
                 <div class="col-12 mt-3">
@@ -103,16 +100,13 @@ table.dataTable thead th, table.dataTable tbody tr td {
         $.fn.dataTable.ext.errMode = 'none';
 
         var mid = $('#mid').val();
-        var event_name = $('#event_name').val();
-        var event_startdate = $('#event_startdate').val();
         $('#allmatches_datatable').DataTable({
             'bFilter': false,
             "processing": true,
             "serverSide": true,
             "searching": false,
             "ajax": {
-                "url": '<?php echo URL::asset('view_guest_dt'); ?>?event_name=' + event_name + '&event_startdate=' +
-                    event_startdate + '&mid=' + mid,
+                "url": '<?php echo URL::asset('view_guest_dt'); ?>?mid=' + mid,
                 "dataType": "json",
                 "type": "POST",
                 "data": {
@@ -132,17 +126,17 @@ table.dataTable thead th, table.dataTable tbody tr td {
                 ]
             }],
             "columns": [{
-                    "data": "eventid",
+                    "data": "id",
                     orderable: false
                 },
                 {
-                    "data": "event_name"
+                    "data": "name"
                 },
                 {
-                    "data": "event_startdate"
+                    "data": "username"
                 },
                 {
-                    "data": "event_startdate"
+                    "data": "password"
                 },
             ]
         });
