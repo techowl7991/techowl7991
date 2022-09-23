@@ -52,6 +52,7 @@ Route::any('/analytics',function(){return view('new-design/analytics');});
 Route::any('/analytics-booth-name',function(){return view('new-design/analytics-booth-name');});
 Route::any('/setting',function(){return view('new-design/setting');});
 Route::any('/email',function(){return view('new-design/email');});
+Route::any('/campaign-nformation',function(){return view('new-design/campaign-nformation');});
 
 Route::any('/my-event',function(){return view('new-design/my-event');});
 Route::any('/my-account',function(){return view('new-design/my-account');});

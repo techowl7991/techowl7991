@@ -36,13 +36,6 @@ body {
         font-weight: 600;
       }
     }
-
-    & .sign_up {
-      & a {
-        font-weight: 600;
-        color: #ff4e00;
-      }
-    }
   }
 }
 
@@ -174,8 +167,8 @@ body {
                 transition: 0.3s all ease-in-out;
 
                 &:hover {
-                  background-color: $theme1 !important;
-                  color: $theme2 !important;
+                  background-color: $theme1  !important;
+                  color: $theme2  !important;
                 }
               }
             }
@@ -204,6 +197,7 @@ body {
                   & tr {
                     & td {
                       background-color: #e2e2e2;
+
                       & .form-control {
                         color: #757575 !important;
                       }
@@ -232,6 +226,7 @@ body {
           background-color: #d3ffe0;
           color: #18c44c;
         }
+
         & .close-icon {
           background-color: #fdc5c9;
           color: #bf0413;
@@ -471,11 +466,42 @@ body {
   & .modal-dialog {
     & .modal-content {
       & .modal-body {
-      & .modal-form {
-        & .form-control {
-          background-color: #F2F2F2;
+        & .modal-form {
+          & .form-control {
+            background-color: #F2F2F2;
+          }
         }
       }
+
+    }
+  }
+}
+
+.Campaign_page {
+  .comman-form {
+    & form {
+      & label {
+        left: 11px !important;
+      }
+
+      & .calendar {
+        background-repeat: no-repeat;
+        background-position: center right 0.63em;
+        background-size: 1.2em;
+      }
+
+      & .calendar {
+        background-image: url(../img/calendar.png);
+      }
+
+      & .clock {
+        position: relative;
+      }
+
+      & .clock::-webkit-calendar-picker-indicator {
+        background-image: url(../img/clock.png);
+        background-size: 1.2em;
+        cursor: pointer;
       }
 
     }
@@ -659,6 +685,7 @@ body {
         cursor: pointer;
         transition: opacity 0.3s;
       }
+
       &:hover {
         & .imgOverlay {
           opacity: 1;
@@ -677,7 +704,9 @@ body {
   & .modal-header {
     // padding: 21px 31px 11px 31px;
   }
+
   & .modal-body {
+
     // padding: 26px 31px 11px;
     & form {
       & .eye-icon {
@@ -761,22 +790,12 @@ body {
       height: 120px;
 
       & .changeProfile {
-<<<<<<< HEAD
         & img {}
 
         & .imgOverlay {}
 
         &:hover {
           & .imgOverlay {}
-=======
-        & img {
-        }
-        & .imgOverlay {
-        }
-        &:hover {
-          & .imgOverlay {
-          }
->>>>>>> 5ea77330f131c5b5efd63605b24b0362c9f67960
         }
       }
     }
@@ -814,22 +833,12 @@ body {
       height: 160px;
 
       & .changeProfile {
-<<<<<<< HEAD
         & img {}
 
         & .imgOverlay {}
 
         &:hover {
           & .imgOverlay {}
-=======
-        & img {
-        }
-        & .imgOverlay {
-        }
-        &:hover {
-          & .imgOverlay {
-          }
->>>>>>> 5ea77330f131c5b5efd63605b24b0362c9f67960
         }
       }
     }
@@ -850,35 +859,40 @@ body {
         cursor: pointer;
       }
     }
+
     & .filterBody {
       & .form-check {
         & .form-check-input:checked[type="radio"] {
           background-image: url("../img/check-icon.png");
-          border-color: $primary !important;
+          border-color: $primary  !important;
         }
       }
     }
   }
+
   & .searchBar {
-    & .input-group{
+    & .input-group {
       border-color: #757575 !important;
+
       & #searchguest {
         &::placeholder {
           font-size: 12px;
         }
-        & ~ .searchbtn {
+
+        &~.searchbtn {
           position: absolute;
           top: 10px;
           left: 14px;
         }
       }
     }
-    
+
     & .dropdown-menu {
       border: none;
       box-shadow: 0px 2px 5px #00000029;
       border-radius: 4px;
       min-width: 100%;
+
       &.show {
         transform: translate(0px, 35px);
       }
@@ -890,8 +904,9 @@ body {
   & .modal-dialog {
     & .modal-content {
       background-color: #f2f2f2;
-      & .modal-header {
-      }
+
+      & .modal-header {}
+
       & .modal-body {
         & form {
           & .Inpt {
@@ -910,161 +925,155 @@ body {
     }
   }
 }
+
 // Small devices (landscape phones, 576px and up)
 
-@mixin guests-mixin-min-sm() {
-}
+@mixin guests-mixin-min-sm() {}
 
 // Medium devices (tablets, 768px and up)
-@mixin guests-mixin-min-md() {
-}
+@mixin guests-mixin-min-md() {}
 
 // Large devices (desktops, 992px and up)
-@mixin guests-mixin-min-lg() {
-}
+@mixin guests-mixin-min-lg() {}
 
 // X-Large devices (large desktops, 1200px and up)
-@mixin guests-mixin-min-xl() {
-}
+@mixin guests-mixin-min-xl() {}
 
 // XX-Large devices (larger desktops, 1400px and up)
-@mixin guests-mixin-min-xxl() {
-}
+@mixin guests-mixin-min-xxl() {}
 
 // X-Small devices (portrait phones, less than 576px)
-@mixin guests-mixin-max-xs() {
-}
+@mixin guests-mixin-max-xs() {}
+
 //
 
 // Small devices (landscape phones, less than 768px)
-@mixin guests-mixin-max-sm() {
-}
+@mixin guests-mixin-max-sm() {}
 
 // Medium devices (tablets, less than 992px)
 @mixin guests-mixin-max-md() {
   .guests {
-    &.filterShow{
-      & .guestFilter{
+    &.filterShow {
+      & .guestFilter {
         left: 0;
         transition: all .5s;
       }
     }
+
     & .guestFilter {
       position: absolute;
       top: 0;
       left: -100%;
       transition: all .5s;
       z-index: 10;
+
       & .filterHeader {
-        & .guestLodar {
-        }
+        & .guestLodar {}
       }
+
       & .filterBody {
         & .form-check {
-          & .form-check-input:checked[type="radio"] {
-          }
+          & .form-check-input:checked[type="radio"] {}
         }
       }
     }
+
     & .searchBar {
-      & .input-group{
+      & .input-group {
         & #searchguest {
-          &::placeholder {
-          }
-          & ~ .searchbtn {
-          }
+          &::placeholder {}
+
+          &~.searchbtn {}
         }
       }
+
       & .dropdown-menu {
-        &.show {
-        }
+        &.show {}
       }
     }
   }
 }
 
 // Large devices (desktops, less than 1200px)
-@mixin guests-mixin-max-lg() {
-  
-  
-}
+@mixin guests-mixin-max-lg() {}
 
 // X-Large devices (large desktops, less than 1400px)
-@mixin guests-mixin-max-xl() {
-}
+@mixin guests-mixin-max-xl() {}
 
-@media (max-width: 450px){
+@media (max-width: 450px) {
   .guests {
-    &.filterShow{
-      & .guestFilter{
-      }
+    &.filterShow {
+      & .guestFilter {}
     }
+
     & .guestFilter {
       & .filterHeader {
-        & .guestLodar {
-        }
+        & .guestLodar {}
       }
+
       & .filterBody {
         & .form-check {
-          & .form-check-input:checked[type="radio"] {
-          }
+          & .form-check-input:checked[type="radio"] {}
         }
       }
     }
+
     & .searchBar {
       zoom: .9;
-      & .input-group{
+
+      & .input-group {
         & #searchguest {
-          &::placeholder {
-          }
-          & ~ .searchbtn {
-          }
+          &::placeholder {}
+
+          &~.searchbtn {}
         }
       }
+
       & .dropdown-menu {
-        &.show {
-        }
+        &.show {}
       }
     }
-    & .totalGuest{
+
+    & .totalGuest {
       zoom: .8;
     }
   }
 }
-@media (max-width: 370px){
+
+@media (max-width: 370px) {
   .guests {
-    &.filterShow{
-      & .guestFilter{
-      }
+    &.filterShow {
+      & .guestFilter {}
     }
+
     & .guestFilter {
       & .filterHeader {
-        & .guestLodar {
-        }
+        & .guestLodar {}
       }
+
       & .filterBody {
         & .form-check {
-          & .form-check-input:checked[type="radio"] {
-          }
+          & .form-check-input:checked[type="radio"] {}
         }
       }
     }
+
     & .searchBar {
-      & .input-group{
+      & .input-group {
         & #searchguest {
-          &::placeholder {
-          }
-          & ~ .searchbtn {
-          }
+          &::placeholder {}
+
+          &~.searchbtn {}
         }
       }
+
       & .dropdown-menu {
-        &.show {
-        }
+        &.show {}
       }
     }
-    & .totalGuest{
-      & .buttonsGroup{
+
+    & .totalGuest {
+      & .buttonsGroup {
         & button {
           padding: 5px !important;
         }
