@@ -469,9 +469,10 @@ class AboutController extends Controller
     public function view_event_dt(Request $request)
     {
         $columns = array(
-            0 => 'event_name',
-            1 => 'event_startdate',
-            2 => 'event_enddate',
+            0 => 'eventid',
+            1 => 'event_name',
+            2 => 'event_startdate',
+            3 => 'event_enddate',
         );
         $input = $request->all();
 
@@ -512,16 +513,18 @@ class AboutController extends Controller
             $count = 1;
             foreach ($titles as $title) {
                 $b = action('AboutController@printdata', $title->id());
+                $d = action('AboutController@viewgatekeeper', $title->id());
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
 
                 $action = "<a href=" . $b . " class='btn btn-dark shadow printBtn py-1 px-3'>Detail</a>";
+                $viewgate = "<a href=" . $d . " class='btn btn-dark shadow printBtn py-1 px-3'>View</a>";
                 $actionQR = '<a class="btn btn-dark text-white shadow printBtn py-1 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
 
                 $route = action('AboutController@singledelete', $title->id());
                 $editroute = action('AboutController@edit', $title->id());
                 $delbtn = "<a href=" . $route . " class='text-danger py-2 px-3'><i class='text-secondary img img-trash' aria-hidden='true'></i></a>";
                 $edtbtn = "<a href=" . $editroute . " class='text-danger py-2 px-3'><i class='text-secondary img img-pencil' aria-hidden='true'></i></a>";
-                $nestedData['id'] = '#A00000'.$title['eventid'];
+                $nestedData['eventid'] = '#A00000'.$title['eventid'];
                 $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="' . $title->id() . '" >';
                 $nestedData['singledel'] = $delbtn;
                 $nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
@@ -531,6 +534,7 @@ class AboutController extends Controller
                 $nestedData['address'] = $edtbtn;
                 $nestedData['total'] = $title['total'];
                 $nestedData['vip'] = $title['vip'];
+                $nestedData['gatekeeper'] = $viewgate;
                 $nestedData['Reg'] = $title['Reg'];
                 $nestedData['qrcode'] = $actionQR;
                 $nestedData['action'] = $action;
@@ -813,8 +817,8 @@ class AboutController extends Controller
             foreach ($titles as $title) {
                 // $editroute = action('AboutController@editvisitor', $title->id());
                 // $editroute = action('AboutController@viewvisitor', $title->id());
-                $edtbtn = "<a href='javascript:void(0)' data-act='edit' id='edit' class='text-danger py-5 px-3'><i class='img img-pencil' aria-hidden='true' onclick='openmodal(`" . $title->id() . "`,`" . $chid . "`)'></i></a>";
-                $viewbtn = "<a href='javascript:void(0)' data-act='view' class='text-danger py-5 px-3'><i class='img img-eye' aria-hidden='true'  id='view' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)'></i></a>";
+                $edtbtn = "<a role='button' onclick='openmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='edit' id='edit' class='text-danger py-5 px-3'><i class='img img-pencil' aria-hidden='true'></i></a>";
+                $viewbtn = "<a role='button' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='view' class='text-danger py-5 px-3'><i class='img img-eye' aria-hidden='true'  id='view' ></i></a>";
                 $a = action('AboutController@senddata');
                 $b = action('AboutController@printbadge');
                 $c = "<form action='" . $a . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
@@ -1293,5 +1297,47 @@ class AboutController extends Controller
         // $evedata['address'] = $snap['address'];
         self::$firestoreClient->collection('eventsemail')->add($evedata);
         return redirect()->back();
+    }
+
+    public function viewgatekeeper(Request $request, $mid)
+    {
+        if (!empty($request->session()->get('uid'))) {
+            self::$firestoreProjectId = 'guest-app-2eb59';
+            self::$firestoreClient = new FirestoreClient([
+                'projectId' => self::$firestoreProjectId,
+            ]);
+            $date = date('Y-m-d');
+            $up_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate', '>=', $date)->documents();
+            $upcoming_count = iterator_count($up_snapshot);
+            $pas_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->where('event_startdate', '<', $date)->documents();
+            $past_count = iterator_count($pas_snapshot);
+            return view('viewgatekeeper', compact('mid', 'upcoming_count', 'past_count'));
+        } else {
+            $request->session()->forget('uid');
+            return redirect('/login');
+        }
+    }
+
+    public function addkeeper(Request $request,$mid)
+    {
+        // dd($request->all());
+        if ($request->isMethod('post')) {
+
+            // $eve = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->add($evedata);
+            $USERID = $request->session()->get('uid');
+            self::$firestoreProjectId = 'guest-app-2eb59';
+            self::$firestoreClient = new FirestoreClient([
+                'projectId' => self::$firestoreProjectId,
+            ]);
+            $data = [
+                'keepername' => $request->keepername,
+                'username' => $request->username,
+                'password' => $request->password
+            ];
+            $docref = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->add($data);
+            return redirect('/viewgatekeeper/' . $mid);
+        } else {
+            return view('addkeeper', compact('mid'));
+        }
     }
 }
