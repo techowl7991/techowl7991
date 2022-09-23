@@ -29,7 +29,7 @@
 
     <!-- CSS for searching -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <!-- JS for searching -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 @endpush
 @push('styles')
@@ -105,14 +105,14 @@
                             <div class="col-12 input-group mb-3 d-none" id="displaytable1">
                                 <input type="url" name="eventurl"
                                     class="form-control shadow-none rouded-0 Inpt border-0 p-2 fs-16 fw-normal"
-                                    placeholder="Enter a Url" aria-label="Recipient's username"
+                                    placeholder="Enter Url" aria-label="Recipient's username"
                                     aria-describedby="basic-addon2">
                                 <span class="input-group-text Inpt border-0 fs-16 Url_example"
                                     id="basic-addon2">.nowvue.com</span>
                             </div>
 
                             <div class="d-none col-12 mb-3" id="displaytable">
-                                <input type="text" placeholder="Enter a Location" name="eventlocation"
+                                <input type="text" placeholder="Enter Location" name="eventlocation"
                                     id="eventlocation"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal">
                             </div>
@@ -262,6 +262,7 @@
     </div>
 
 
+    <!-- JS for searching -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         // .js-example-basic-single declare this class into your select box
@@ -306,7 +307,7 @@
 
     <!-- google location -->
     <script type="text/javascript"
-        src="https://maps.googleapis.com/maps/api/js?key={{ env('Google_Api_Key') }}&libraries=places&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w&libraries=places&callback=initMap">
     </script>
 
     <script>
