@@ -514,7 +514,7 @@ class AboutController extends Controller
                 $editroute = action('AboutController@edit', $title->id());
                 $delbtn = "<a href=" . $route . " class='text-danger py-2 px-3'><i class='text-secondary img img-trash' aria-hidden='true'></i></a>";
                 $edtbtn = "<a href=" . $editroute . " class='text-danger py-2 px-3'><i class='text-secondary img img-pencil' aria-hidden='true'></i></a>";
-                $nestedData['id'] = $count;
+                $nestedData['id'] = '#A00000'.$title['eventid'];
                 $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="' . $title->id() . '" >';
                 $nestedData['singledel'] = $delbtn;
                 $nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
@@ -678,6 +678,7 @@ class AboutController extends Controller
 
             $data1 = [
                 'event_startdate' => $request->eventstartdate,
+                'eventid' => $request->eventid,
                 'event_enddate' => $request->eventenddate,
                 'event_name' => $request->eventname,
                 'Reg' => 0,
@@ -705,8 +706,6 @@ class AboutController extends Controller
             //     'event_endtime' => $request->eventendtime,
             //     'event_timezone' => $request->eventtimezone,
             // ];            
-
-            dd($data1);
             $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->document($id)->set($data1);
             return redirect('/index/' . $request->session()->get('uid'));
         } else {
