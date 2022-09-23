@@ -595,62 +595,62 @@ body {
 // X-Large devices (large desktops, less than 1400px)
 @mixin xxxxxx-xxxxx-mixin-max-xl() {}
 
-// table.dataTable thead>tr>th.sorting:after, table.dataTable thead>tr>th.sorting_asc:after, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>th.sorting_asc_disabled:after, table.dataTable thead>tr>th.sorting_desc_disabled:after, table.dataTable thead>tr>td.sorting:after, table.dataTable thead>tr>td.sorting_asc:after, table.dataTable thead>tr>td.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc_disabled:after, table.dataTable thead>tr>td.sorting_desc_disabled:after {
-//   display: none;
-// }
-// table.dataTable thead>tr>th.sorting:before, table.dataTable thead>tr>th.sorting_asc:before, table.dataTable thead>tr>th.sorting_desc:before, table.dataTable thead>tr>th.sorting_asc_disabled:before, table.dataTable thead>tr>th.sorting_desc_disabled:before, table.dataTable thead>tr>td.sorting:before, table.dataTable thead>tr>td.sorting_asc:before, table.dataTable thead>tr>td.sorting_desc:before, table.dataTable thead>tr>td.sorting_asc_disabled:before, table.dataTable thead>tr>td.sorting_desc_disabled:before {
-//   display: none;
-// }
+table.dataTable thead>tr>th.sorting:after, table.dataTable thead>tr>th.sorting_asc:after, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>th.sorting_asc_disabled:after, table.dataTable thead>tr>th.sorting_desc_disabled:after, table.dataTable thead>tr>td.sorting:after, table.dataTable thead>tr>td.sorting_asc:after, table.dataTable thead>tr>td.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc_disabled:after, table.dataTable thead>tr>td.sorting_desc_disabled:after {
+  display: none;
+}
+table.dataTable thead>tr>th.sorting:before, table.dataTable thead>tr>th.sorting_asc:before, table.dataTable thead>tr>th.sorting_desc:before, table.dataTable thead>tr>th.sorting_asc_disabled:before, table.dataTable thead>tr>th.sorting_desc_disabled:before, table.dataTable thead>tr>td.sorting:before, table.dataTable thead>tr>td.sorting_asc:before, table.dataTable thead>tr>td.sorting_desc:before, table.dataTable thead>tr>td.sorting_asc_disabled:before, table.dataTable thead>tr>td.sorting_desc_disabled:before {
+  display: none;
+}
 
-// table.dataTable.table-striped>tbody>tr.even>*, table.dataTable.table-striped>thead>tr.even>* {
-//   box-shadow: inset 0 0 0 9999px rgb(0 0 0 / 5%);
-// }
-// table.dataTable.table-striped>tbody>tr.odd>* {
-//   box-shadow: none;
-// }
+table.dataTable.table-striped>tbody>tr.even>*, table.dataTable.table-striped>thead>tr.even>* {
+  box-shadow: inset 0 0 0 9999px rgb(0 0 0 / 5%);
+}
+table.dataTable.table-striped>tbody>tr.odd>* {
+  box-shadow: none;
+}
 
-// table.dataTable thead td.select-checkbox:before, table.dataTable thead th.select-checkbox:before {
-//   content: " ";
-//   margin-top: -6px;
-//   margin-left: -6px;
-//   border: 1px solid black;
-//   border-radius: 3px;
-// }
-// table.dataTable tbody td.select-checkbox, table.dataTable thead th.select-checkbox {
-//   position: relative;
-// }
-// table.dataTable tbody td.select-checkbox:before, table.dataTable tbody td.select-checkbox:after, table.dataTable thead th.select-checkbox:before, table.dataTable tbody th.select-checkbox:after {
-//   display: block;
-//   position: absolute;
-//   top: 1.4em;
-//   left: 50%;
-//   width: 12px;
-//   height: 12px;
-//   box-sizing: border-box;
-// }
-// table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after {
-//   content: "✓";
-//   font-size: 10px;
-//    margin-top: 0;
-//   margin-left: -6px;
-//   text-align: center;
-//   text-shadow: 1px 1px #b0bed9, -1px -1px #b0bed9, 1px -1px #b0bed9, -1px 1px #b0bed9;
-// }
-// table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-striped>tbody>tr.even.selected>* {
-//   box-shadow: inset 0 0 0 9999px $theme2;
+table.dataTable thead td.select-checkbox:before, table.dataTable thead th.select-checkbox:before {
+  content: " ";
+  margin-top: -6px;
+  margin-left: -6px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+table.dataTable tbody td.select-checkbox, table.dataTable thead th.select-checkbox {
+  position: relative;
+}
+table.dataTable tbody td.select-checkbox:before, table.dataTable tbody td.select-checkbox:after, table.dataTable thead th.select-checkbox:before, table.dataTable tbody th.select-checkbox:after {
+  display: block;
+  position: absolute;
+  top: 1.4em;
+  left: 50%;
+  width: 12px;
+  height: 12px;
+  box-sizing: border-box;
+}
+table.dataTable tr.selected td.select-checkbox:after, table.dataTable tr.selected th.select-checkbox:after {
+  content: "✓";
+  font-size: 10px;
+   margin-top: 0;
+  margin-left: -6px;
+  text-align: center;
+  text-shadow: 1px 1px #b0bed9, -1px -1px #b0bed9, 1px -1px #b0bed9, -1px 1px #b0bed9;
+}
+table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-striped>tbody>tr.even.selected>* {
+  box-shadow: inset 0 0 0 9999px $theme2;
 
-// }
+}
 
-// #example_wrapper{
-//   & .row{
-//     &:nth-child(1){
-//       display: none;
-//     }
-//     &:nth-child(3){
-//       display: none;
-//     }
-//   }
-// }
+#drafttable_wrapper, #scheduledtable_wrapper, #senttable_wrapper {
+  & .row{
+    &:nth-child(1){
+      display: none;
+    }
+    &:nth-child(3){
+      display: none;
+    }
+  }
+}
 
 // My Account
 .myAccount {
@@ -889,8 +889,9 @@ body {
     }
 
     & .filterBody {
+      overflow: hidden !important;
       & .form-check {
-        & .form-check-input:checked[type="radio"] {
+        & .form-check-input:checked[type="radio"], .form-check-input:checked[type=checkbox] {
           background-image: url("../img/check-icon.png");
           border-color: $primary  !important;
         }
@@ -973,8 +974,6 @@ body {
 // X-Small devices (portrait phones, less than 576px)
 @mixin guests-mixin-max-xs() {}
 
-//
-
 // Small devices (landscape phones, less than 768px)
 @mixin guests-mixin-max-sm() {}
 
@@ -1000,6 +999,7 @@ body {
       }
 
       & .filterBody {
+        overflow: scroll !important;
         & .form-check {
           & .form-check-input:checked[type="radio"] {}
         }
@@ -1023,7 +1023,42 @@ body {
 }
 
 // Large devices (desktops, less than 1200px)
-@mixin guests-mixin-max-lg() {}
+@mixin guests-mixin-max-lg() {
+  .guests {
+    &.filterShow {
+      & .guestFilter {
+      }
+    }
+
+    & .guestFilter {
+
+      & .filterHeader {
+        & .guestLodar {}
+      }
+
+      & .filterBody {
+        overflow: hidden !important;
+        & .form-check {
+          & .form-check-input:checked[type="radio"] {}
+        }
+      }
+    }
+
+    & .searchBar {
+      & .input-group {
+        & #searchguest {
+          &::placeholder {}
+
+          &~.searchbtn {}
+        }
+      }
+
+      & .dropdown-menu {
+        &.show {}
+      }
+    }
+  }
+}
 
 // X-Large devices (large desktops, less than 1400px)
 @mixin guests-mixin-max-xl() {}
@@ -1110,12 +1145,55 @@ body {
   }
 }
 
+// Email 2
+.emailType {
+  .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: $white !important;
+    background-color: $theme2;
+}
+ 
+}
+
+// Small devices (landscape phones, 576px and up)
+
+@mixin emailType-mixin-min-sm() {}
+
+// Medium devices (tablets, 768px and up)
+@mixin emailType-mixin-min-md() {}
+
+// Large devices (desktops, 992px and up)
+@mixin emailType-mixin-min-lg() {}
+
+// X-Large devices (large desktops, 1200px and up)
+@mixin emailType-mixin-min-xl() {}
+
+// XX-Large devices (larger desktops, 1400px and up)
+@mixin emailType-mixin-min-xxl() {}
+
+// X-Small devices (portrait phones, less than 576px)
+@mixin emailType-mixin-max-xs() {
+}
+
+// Small devices (landscape phones, less than 768px)
+@mixin emailType-mixin-max-sm() {}
+
+// Medium devices (tablets, less than 992px)
+@mixin emailType-mixin-max-md() {
+}
+
+// Large devices (desktops, less than 1200px)
+@mixin emailType-mixin-max-lg() {}
+
+// X-Large devices (large desktops, less than 1400px)
+@mixin emailType-mixin-max-xl() {}
+
 
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   @include xxxxxx-xxxxx-mixin-min-sm();
   @include myAccount-mixin-min-sm();
   @include guests-mixin-min-sm();
+  @include emailType-mixin-min-sm();
 }
 
 // Medium devices (tablets, 768px and up)
@@ -1123,6 +1201,7 @@ body {
   @include xxxxxx-xxxxx-mixin-min-md();
   @include myAccount-mixin-min-md();
   @include guests-mixin-min-md();
+  @include emailType-mixin-min-md();
 }
 
 // Large devices (desktops, 992px and up)
@@ -1130,6 +1209,7 @@ body {
   @include xxxxxx-xxxxx-mixin-min-lg();
   @include myAccount-mixin-min-lg();
   @include guests-mixin-min-lg();
+  @include emailType-mixin-min-lg();
 }
 
 // X-Large devices (large desktops, 1200px and up)
@@ -1137,6 +1217,7 @@ body {
   @include xxxxxx-xxxxx-mixin-min-xl();
   @include myAccount-mixin-min-xl();
   @include guests-mixin-min-xl();
+  @include emailType-mixin-min-xl();
 }
 
 // XX-Large devices (larger desktops, 1400px and up)
@@ -1144,6 +1225,7 @@ body {
   @include xxxxxx-xxxxx-mixin-min-xxl();
   @include myAccount-mixin-min-xxl();
   @include guests-mixin-min-xxl();
+  @include emailType-mixin-min-xxl();
 }
 
 // X-Large devices (large desktops, less than 1400px)
@@ -1151,6 +1233,7 @@ body {
   @include xxxxxx-xxxxx-mixin-max-xl();
   @include myAccount-mixin-max-xl();
   @include guests-mixin-max-xl();
+  @include emailType-mixin-max-xl();
 }
 
 // Large devices (desktops, less than 1200px)
@@ -1158,6 +1241,7 @@ body {
   @include xxxxxx-xxxxx-mixin-max-lg();
   @include myAccount-mixin-max-lg();
   @include guests-mixin-max-lg();
+  @include emailType-mixin-max-lg();
 }
 
 // Medium devices (tablets, less than 992px)
@@ -1165,6 +1249,7 @@ body {
   @include xxxxxx-xxxxx-mixin-max-md();
   @include myAccount-mixin-max-md();
   @include guests-mixin-max-md();
+  @include emailType-mixin-max-md();
   @include sidebar-toggle-mixin-max-md();
 }
 
@@ -1173,6 +1258,7 @@ body {
   @include xxxxxx-xxxxx-mixin-max-sm();
   @include myAccount-mixin-max-sm();
   @include guests-mixin-max-sm();
+  @include emailType-mixin-max-sm();
 }
 
 // X-Small devices (portrait phones, less than 576px)
@@ -1180,6 +1266,7 @@ body {
   @include xxxxxx-xxxxx-mixin-max-xs();
   @include myAccount-mixin-max-xs();
   @include guests-mixin-max-xs();
+  @include emailType-mixin-max-xs();
 }
 
 // XX-Large devices (larger desktops)
