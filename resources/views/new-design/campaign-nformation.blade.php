@@ -27,60 +27,69 @@
 <link rel="canonical" href="{{ asset('/') }}" />
 
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-
-
 @endpush
 @push('styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 @endpush
 @section('content')
 <div class="container-fluid">
-    <div class="row Campaign_page">
-        <div class="col-6">
-            <div class="text-theme1 fs-16 fs-sm-20 fs-md-30 fw-bold mb-5">Campaign Information</div>
+    <div class="row Campaign_page pb-5">
+        <div class="col-sm-6 mb-sm-0 mb-4">
+            <div class="text-theme1 fs-20 fs-md-30 fw-bold mb-sm-5 mb-3">Campaign Information</div>
             <div class="comman-form ">
-                <form action="">
+                <form action="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-12 mb-3 form-floating">
-                            <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 pt-4 fs-16 fw-normal" id="floatingInputValue2" placeholder="Testing here" value="Testing here">
+                            <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 pt-4 fs-sm-16 fs-14 fw-normal" id="floatingInputValue2" placeholder="Testing here" value="Testing here">
                             <label for="floatingInputValue2" class="fs-12 ps-3">Campaign Name</label>
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="email" placeholder="Email Subject*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 fs-16 fw-normal" autocomplete="off" required="">
+                            <input type="email" placeholder="Email Subject*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 fs-sm-16 fs-14 fw-normal" autocomplete="off" required="">
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" placeholder="From*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 fs-16 fw-normal" autocomplete="off" required="">
+                            <input type="text" placeholder="From*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 fs-sm-16 fs-14 fw-normal" autocomplete="off" required="">
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" placeholder="Reply-to Email*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 fs-16 fw-normal" autocomplete="off" required="">
+                            <input type="text" placeholder="Reply-to Email*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 fs-sm-16 fs-14 fw-normal" autocomplete="off" required="">
                         </div>
-                        <div class="col-12 mb-5">
-                            <button type="submit" class="shadow-none border-0 text-white bg-theme2 rounded fs-14 fw-bold px-4 py-2 top_right_export_btn">SEND A TEST</button>
+                        <div class="col-12 mb-5 text-sm-start text-center">
+                            <button type="submit" class="shadow-none border-0 text-white bg-theme2 rounded fs-14 fw-bold px-sm-4 py-sm-2 px-3 py-1 top_right_export_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">SEND A TEST</button>
                         </div>
-                        <div class="col-12 mb-3 fs-25 fw-bold text-theme2">Send now or schedule</div>
+                        <div class="col-12 mb-3 fs-md-25 fs-sm-20 fs-16 fw-bold text-theme2" data-bs-toggle="modal" data-bs-target="#exampleModal3">Send now or schedule</div>
                         <div class="col-12">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                <label class="form-check-label fw-normal" for="flexRadioDefault1">Send now</label>
+                                <label class="form-check-label fs-sm-16 fs-14 fw-normal" for="flexRadioDefault1">Send now</label>
                             </div>
                         </div>
                         <div class="col-12 mb-3">
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked="checked">
-                                <label class="form-check-label fw-normal" for="flexRadioDefault2">Schedule for later</label>
+                                <label class="form-check-label fs-sm-16 fs-14 fw-normal" for="flexRadioDefault2">Schedule for later</label>
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3 flatpickr ">
-                            <input type="text" placeholder="Date" class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="basicDate" required="">
+                            <input type="text" placeholder="Date" class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-sm-16 fs-14 fw-normal" id="basicDate" required="">
                             <div class="invalid-feedback fs-14">
-                                Please enter your phone number or email
+                              
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
-                            <input type="time" placeholder="Time" class="form-control clock shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" required="">
+                            <input type="time" placeholder="Time" class="form-control clock shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-sm-16 fs-14 fw-normal" required="">
                             <div class="invalid-feedback fs-14">
-                                Please enter your phone number or email
+                            
                             </div>
+                        </div>
+                        <div class="col-12 input-group mb-3">
+                            <select class="form-select shadow-none fs-sm-16 fs-14 Inpt border-0" id="inputGroupSelect01">
+                                <option class="choose py-1" selected="">Select Timezone</option>
+                                <option class="choose py-1" value="1">One</option>
+                                <option class="choose py-1" value="2">Two</option>
+                                <option class="choose py-1" value="3">Three</option>
+                            </select>
+                        </div>
+                        <div class="col-12 mb-3 text-sm-start text-center">
+                            <button type="submit" class="shadow-none border-0 text-white bg-theme2 rounded fs-14 fw-bold px-sm-4 py-sm-2 px-3 py-1 top_right_export_btn" data-bs-toggle="modal" data-bs-target="#exampleModal2">SCHEDULE TO SEND</button>
                         </div>
 
                     </div>
@@ -88,10 +97,131 @@
             </div>
 
         </div>
-        <div class="col-6"></div>
+        <div class="col-sm-6 d-flex align-items-center justify-content-center">
+            <div class="email_builder bg-theme2 w-100 h-100 mx-md-3 my-3 d-flex align-items-center justify-content-center">
+                <div class="text-theme1 fs-lg-60 fs-md-50 fs-sm-40 fs-30 lh-1 fw-normal">Email Builder</div>
+            </div>
+        </div>
     </div>
 </div>
+
+
+<!-- Modal Of Send a Test Email -->
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade Create-Guest-modal email-modal " id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-white">
+            <div class="modal-header px-4 pt-4 mb-3 m-0">
+                <h5 class="modal-title fs-20 text-theme2 fw-bold ps-1" id="exampleModalLabel">Send a Test Email</h5>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                <i class="imgr img-times fs-20 text-theme2 pe-1" data-bs-dismiss="modal" aria-label="Close"></i>
+            </div>
+            <div class="modal-body p0">
+                <div class="row px-0 mx-0">
+                    <form action="" class="modal-form col-12 needs-validation" novalidate>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <input type="email" placeholder="Email" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                                <span class="fs-12 emailAddressSpan">You can send a test email to up to 15 email addresses.</span>
+                                <div class="invalid-feedback">
+                                    Please provide a valid city.
+                                </div>
+                            </div>
+
+
+                            <div class="col-12 px0 py-3 d-flex justify-content-start gap-2 ">
+                                <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                <button type="submit" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2 top_right_export_btn">SEND</button>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Of Schedule Email? -->
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal2">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade Create-Guest-modal email-modal " id="exampleModal2" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModal2Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-white">
+            <div class="modal-header px-4 pt-4 mb-3 m-0">
+                <h5 class="modal-title fs-20 text-theme2 fw-bold ps-1" id="exampleModal2Label">Schedule Email?</h5>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                <i class="imgr img-times fs-20 text-theme2 pe-1" data-bs-dismiss="modal" aria-label="Close"></i>
+            </div>
+            <div class="modal-body p0">
+                <div class="row px-0 mx-0">
+                    <form action="" class="modal-form col-12 needs-validation" novalidate>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="fs-16 text-theme2">[Campagin Name]will send this email to a total of 1,000 recipient(s) on September 24, 2022 at 1:00 AM (Asia/Singapore).</div>
+                            </div>
+                            <div class="col-12 px0 py-3 d-flex justify-content-start gap-2 ">
+                                <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                <button type="submit" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2 top_right_export_btn">SCHEDULE</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Of Send Now? -->
+
+<!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal3">
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade Create-Guest-modal email-modal " id="exampleModal3" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModal3Label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content bg-white">
+            <div class="modal-header px-4 pt-4 mb-3 m-0">
+                <h5 class="modal-title fs-20 text-theme2 fw-bold ps-1" id="exampleModal3Label">Send Now?</h5>
+                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+                <i class="imgr img-times fs-20 text-theme2 pe-1" data-bs-dismiss="modal" aria-label="Close"></i>
+            </div>
+            <div class="modal-body p0">
+                <div class="row px-0 mx-0">
+                    <form action="" class="modal-form col-12 needs-validation" novalidate>
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <div class="fs-16 text-theme2">[Campagin Name] will start sending this email to a total of 2 recipient(s) right away.</div>
+                            </div>
+                            <div class="col-12 px0 py-3 d-flex justify-content-start gap-2 ">
+                                <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                <button type="submit" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2 top_right_export_btn">CONFIRM</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
 @endpush

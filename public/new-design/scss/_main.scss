@@ -77,6 +77,12 @@
     }
 }
 
-.contentSide, .Without_scroll_content {
+.contentSide {
     background-color: #f2f2f2;
+}
+
+.nonDashBoardSection {
+    & .bodyScrollPart  {
+        background-color: #f2f2f2;
+    }
 }

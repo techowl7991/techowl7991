@@ -36,6 +36,15 @@ body {
         font-weight: 600;
       }
     }
+
+    & .form-check-input:checked {
+      background-color: #fff;
+      border: 2px solid #0077ED;
+    }
+
+    & .form-check-input:checked[type=radio] {
+      background-image: url(../img/checked.svg);
+    }
   }
 }
 
@@ -135,6 +144,14 @@ body {
         }
 
         & form {
+          & .form-check-input:checked {
+            background-color: #fff;
+            border: 2px solid #0077ED;
+          }
+      
+          & .form-check-input:checked[type=radio] {
+            background-image: url(../img/checked.svg);
+          }
           & .calendar {
             background-repeat: no-repeat;
             background-position: center right 0.63em;
@@ -465,10 +482,18 @@ body {
 .email-modal {
   & .modal-dialog {
     & .modal-content {
+      & .modal-header {
+        border-bottom: 1px solid #757575;
+      }
+
       & .modal-body {
         & .modal-form {
           & .form-control {
             background-color: #F2F2F2;
+          }
+
+          & .emailAddressSpan {
+            color: #757575;
           }
         }
       }
@@ -502,6 +527,9 @@ body {
         background-image: url(../img/clock.png);
         background-size: 1.2em;
         cursor: pointer;
+      }
+      & .form_select_non_icon {
+        background:  #fff !important;
       }
 
     }
