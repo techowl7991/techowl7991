@@ -228,7 +228,7 @@
                                                                                 style="color:#000000;font-family: arial; font-size:15px; line-height: 12px;">Thursday,
                                                                                 {{date('d-M-Y h:i:s A', strtotime($snapshot1['event_startdate']));}} - {{date('d-M-Y h:i:s A', strtotime($snapshot1['event_enddate']));}}
                                                                                 <br>
-                                                                                Location: {{$snapshot1['address']}}</span>
+                                                                                Location: {{$snapshot1['event_sub_type']}}</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
