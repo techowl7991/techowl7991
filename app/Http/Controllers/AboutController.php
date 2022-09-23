@@ -685,6 +685,7 @@ class AboutController extends Controller
 
             $data1 = [
                 'event_startdate' => $request->eventstartdate,
+                'eventid' => $request->eventid,
                 'event_enddate' => $request->eventenddate,
                 'event_name' => $request->eventname,
                 'Reg' => 0,
@@ -712,8 +713,6 @@ class AboutController extends Controller
             //     'event_endtime' => $request->eventendtime,
             //     'event_timezone' => $request->eventtimezone,
             // ];            
-
-            dd($data1);
             $docref = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->document($id)->set($data1);
             return redirect('/index/' . $request->session()->get('uid'));
         } else {
