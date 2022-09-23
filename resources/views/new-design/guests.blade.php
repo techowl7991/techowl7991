@@ -211,7 +211,7 @@
             <div class="modal-header py-3 border-0">
                 <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModalLabel">Edit Guest Information</h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
+                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
             <div class="modal-body p-0">
                 <div class="row px-0 mx-0">
@@ -322,7 +322,7 @@
             <div class="modal-header py-3 border-0">
                 <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">View Guest Information</h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
+                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
             <div class="modal-body p-0">
                 <div class="row px-0 mx-0">
