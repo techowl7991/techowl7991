@@ -40,17 +40,17 @@
                 <form action="" class="needs-validation" novalidate>
                     <div class="row">
                         <div class="col-12 mb-3 form-floating">
-                            <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 pt-4 fs-sm-16 fs-14 fw-normal" id="floatingInputValue2" placeholder="Testing here" value="Testing here">
+                            <input type="text" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0  fs-sm-16 fs-14 fw-normal" id="floatingInputValue2" placeholder="Testing here" value="Testing here">
                             <label for="floatingInputValue2" class="fs-12 ps-3">Campaign Name</label>
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="email" placeholder="Email Subject*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 fs-sm-16 fs-14 fw-normal" autocomplete="off" required="">
+                            <input type="email" placeholder="Email Subject*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 fs-sm-16 fs-14 fw-normal" autocomplete="off" required="">
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" placeholder="From*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 fs-sm-16 fs-14 fw-normal" autocomplete="off" required="">
+                            <input type="text" placeholder="From*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 fs-sm-16 fs-14 fw-normal" autocomplete="off" required="">
                         </div>
                         <div class="col-12 mb-3">
-                            <input type="text" placeholder="Reply-to Email*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 py-2 px-3 fs-sm-16 fs-14 fw-normal" autocomplete="off" required="">
+                            <input type="text" placeholder="Reply-to Email*" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 fs-sm-16 fs-14 fw-normal" autocomplete="off" required="">
                         </div>
                         <div class="col-12 mb-5 text-sm-start text-center">
                             <button type="submit" class="shadow-none border-0 text-white bg-theme2 rounded fs-14 fw-bold px-sm-4 py-sm-2 px-3 py-1 top_right_export_btn" data-bs-toggle="modal" data-bs-target="#exampleModal">SEND A TEST</button>
@@ -69,19 +69,19 @@
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3 flatpickr ">
-                            <input type="text" placeholder="Date" class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-sm-16 fs-14 fw-normal" id="basicDate" required="">
+                            <input type="text" placeholder="Date" class="form-control calendar shadow-none rouded-0 Inpt w-100 h-50px border-0 fs-sm-16 fs-14 fw-normal" id="basicDate" required="">
                             <div class="invalid-feedback fs-14">
                               
                             </div>
                         </div>
                         <div class="col-sm-6 mb-3">
-                            <input type="time" placeholder="Time" class="form-control clock shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-sm-16 fs-14 fw-normal" required="">
+                            <input type="time" placeholder="Time" class="form-control clock shadow-none rouded-0 Inpt w-100 h-50px border-0 fs-sm-16 fs-14 fw-normal" required="">
                             <div class="invalid-feedback fs-14">
                             
                             </div>
                         </div>
                         <div class="col-12 input-group mb-3">
-                            <select class="form-select shadow-none fs-sm-16 fs-14 Inpt border-0" id="inputGroupSelect01">
+                            <select class="form-select shadow-none h-50px fs-sm-16 fs-14 Inpt border-0" id="inputGroupSelect01">
                                 <option class="choose py-1" selected="">Select Timezone</option>
                                 <option class="choose py-1" value="1">One</option>
                                 <option class="choose py-1" value="2">Two</option>
@@ -127,7 +127,7 @@
                     <form action="" class="modal-form col-12 needs-validation" novalidate>
                         <div class="row">
                             <div class="col-12 mb-3">
-                                <input type="email" placeholder="Email" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" autocomplete="off" required>
+                                <input type="email" placeholder="Email" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 fs-16 fw-normal" autocomplete="off" required>
                                 <span class="fs-12 emailAddressSpan">You can send a test email to up to 15 email addresses.</span>
                                 <div class="invalid-feedback">
                                     Please provide a valid city.
