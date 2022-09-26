@@ -362,6 +362,9 @@
                     <input type="file" class="form-control d-none" id="inputGroupFile01">
                 </div>
             </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-theme1 fs-16 text-white fw-500 px-3">Submit</button>
+        </div>
         </div>
     </div>
 </div>
