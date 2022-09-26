@@ -1,79 +1,311 @@
-@extends('main2')
+@extends('new-design.main2')
 
 @push('meta')
-<title>page_title</title>
+<title>Guests</title>
 
-<meta name="title" content="page_title" />
+<meta name="title" content="Guests" />
 <meta name="description" content="page_description" />
 <meta name="keywords" content="page_keywords" />
 
 <meta name="robots" content="index, follow" />
 
-<meta name="twitter:title" content="page_title">
+<meta name="twitter:title" content="Guests">
 <meta name="twitter:description" content="page_description">
 <meta name="twitter:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
 
 
 <meta property="og:url" content="{{ asset('/') }}">
-<meta property="og:title" content="page_title">
+<meta property="og:title" content="Guests">
 <meta property="og:description" content="page_description">
 <meta property="og:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
 <meta property="og:image:secure_url" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
-<meta name="classification" content="page_title" />
+<meta name="classification" content="Guests" />
 
 <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" />
 <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-original.png') }}" id="light-scheme-icon">
 <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" id="dark-scheme-icon">
 <link rel="canonical" href="{{ asset('/') }}" />
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 
 @endpush
 @push('styles')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.css') }}">
 @endpush
 @section('content')
+   
+<input type="hidden" value="{{ $id }}" id="id">
+<?php
+    $visit = '';
+    $type = '';
+    $allval = '';
     
+    if (isset($_GET['allval'])) {
+        $allval = $_GET['allval'];
+    }
+    if (isset($_GET['visit'])) {
+        $visit = $_GET['visit'];
+    }
+    if (isset($_GET['type'])) {
+        $type = $_GET['type'];
+    }
+    if(($allval=='Yes' OR $allval=='') && (!in_array($visit,['Reg','VIP']) && (!in_array($visit,['Yes','No'])))){
+        $visit = '';
+        $type = '';
+    }else{
+        $allval='No';
+    }
+?>
+<section class=" container-fluid guests px-sm-3">
+    <div class="topBar pb-2 pb-lg-4">
+        <div class="row justify-content-between">
+            <div class="col-12 d-flex justify-content-between align-items-center">
+                <div class="title text-theme1 fs-16 fs-sm-20 fs-md-30 fw-600 ">Guests</div>
+                <div class="filterBtn text-theme1 d-lg-none  fs-16 fs-sm-20 fs-md-30 fw-600 "><button type="button" class="btn guestFilterBtn btn-theme1 shadow-none w-30px h-30px w-sm-36px h-sm-6px align-items-center d-flex justify-content-center px-sm-4 p-2 "><img src="{{ asset('/public/new-design/img/guest-filter-light.png') }}" alt=""></button></div>
+            </div>
+        </div>
+    </div>
+  
+    <div class="row ">
+        <div class="col-lg-3">
+            <div class="guestFilter bg-white flex-column d-flex h-100">
+                <div class="filterHeader py-2 px-3 border-bottom border-2">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="fs-14 fs-sm-16 text-theme2 fw-bold">Guest List</div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="guestLodar">
+                                <img src="{{ asset('/public/new-design/img/guest-loder.png') }}" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="filterBody  flex-fill h-100 overflow-scroll overflow-lg-hidden">
+                    <form method="get" action="<?php echo action('AboutController@printdata', [$id]); ?>" style="border:none">
+                    <ul class="list-unstyled p-0 m-0">
+                        <li class="py-2 px-3">
+                            <div class="form-check">
+                               
+                                <input type="checkbox" id="customcheckbox1" name="allval"
+                                                    class="custom-control-input allval form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" value="Yes"  <?php if ($allval=='Yes' OR $allval=='') {
+                                                        echo 'checked';
+                                                    } ?>>
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox1"><span>All Guests</span><span class="value">{{$sidedata['total']}}</span></label>
+                            </div>
+                        </li>
+                        <li class="py-1 py-sm-2 px-2 px-sm-3 bg-theme2 text-white fs-13 fs-sm-14">Status</li>
+                        <li class="pt-2 pb-1 px-3">
+                            <div class="form-check">
+                                <input class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="visit" value="Yes" id="customcheckbox23" <?php if ($visit == 'Yes') { echo 'checked'; } ?>>
+                                
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox23"><span>Checked In</span><span class="value">{{count($sidedata['checkedin'])}}</span></label>
+                            </div>
+                        </li>
+                        <li class="py-1 px-3">
+                            <div class="form-check">
+                                
+                                <input type="radio" id="customcheckbox22"
+                                    name="visit" value="No" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') {
+                                    echo 'checked';
+                                } ?>>
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox22"><span>Not Attendding</span><span class="value">{{count($sidedata['notattending'])}}</span></label>
+                            </div>
+                        </li>
+                        {{-- <li class="py-1 px-3">
+                            <div class="form-check">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="checkedin">
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedin"><span>Checked In</span><span class="value">0</span></label>
+                            </div>
+                        </li>
+                        <li class="py-1 px-3">
+                            <div class="form-check">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="checkedout">
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedout"><span>Checked Out</span><span class="value">0</span></label>
+                            </div>
+                        </li>
+                        <li class="py-1 px-3">
+                            <div class="form-check">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="attended">
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="attended"><span>Attended</span><span class="value">0</span></label>
+                            </div>
+                        </li>
+                        <li class="pb-2 pt-1 px-3">
+                            <div class="form-check">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="notattended">
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="notattended"><span>Did Not Attend</span><span class="value">0</span></label>
+                            </div>
+                        </li> --}}
+                        <li class="bg-theme2"><button type="button" class="btn w-100 type rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 " data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span> <i class="imgr img-plus fs-15 fs-sm-18"></i></button></li>
+                        <li class="pt-2 pb-1 px-3">
+                            <div class="form-check">
+                                <input class="form-check-input type border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="type" value="VIP"  id="customcheckbox73" <?php if ($type == 'VIP') {
+                                                                        echo 'checked';
+                                                                    } ?>>
+                                
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox73"><span>VIP</span><span class="value">{{count($sidedata['vip'])}}</span></label>
+                            </div>
+                        </li>
+                        <li class="py-1 px-3">
+                            <div class="form-check">
+                                <!-- <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="groups" id="brown"> -->
+                                <input type="radio" id="customcheckbox72"
+                                                                    name="type" value="Reg" class="form-check-input type border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" 
+                                                                 <?php if ($type == 'Reg') {
+                                                                        echo 'checked';
+                                                                    } ?> >
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox72"><span>Brown Cow</span><span class="value">{{count($sidedata['reg'])}}</span></label>
+                            </div>
+                        </li>
+                       {{--  
+                        <li class="py-1 px-3">
+                            <div class="form-check">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="groups" id="male">
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="male"><span>Male</span><span class="value">3</span></label>
+                            </div>
+                        </li>
+                        <li class="py-1 px-3">
+                            <div class="form-check">
+                                <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="groups" id="female">
+                                <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="female"><span>Female</span><span class="value">3</span></label>
+                            </div>
+                        </li>
+                         --}}
+                    </ul>
+                        </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-9">
+            <div class="row">
+                <div class="col-12">
+                    <div class="searchBar px-4 py-3 bg-white border-bottom border-2">
+                        <div class="row">
+                            <div class="col-12 col-sm-4">
+                                <!-- <div class="input-group border border-1 rounded-5"> -->
+                                    <!-- <botton type="button" class="btn border-0 shadow-none bg-white p-0 searchbtn fs-14 px-2 align-items-center d-flex"><i class="imgr img-search fw-600"></i></botton> -->
+                                    <!-- <input type="text" class="form-control shadow-none border-0 ps-1 py-1 h-29px h-lg-31 h-xl-35px" id="searchguest" placeholder="Search Guests" aria-label="Example text with button addon" aria-describedby="button-addon1"> -->
+                                <!-- </div> -->
+                            </div>
+                            <div class="col-12 col-sm mt-3 mt-sm-0 d-flex gap-3 justify-content-sm-end">
+                                <!-- <div><button type="btn" class="btn historyBtn btn-outline-light fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase">History</button></div> -->
+                                <div class="dropdown">
+                                    <button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="me-3">Add guests</span><i class="imgr img-chevron-down"></i></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item fs-12 fs-sm-14" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">One by one</a></li>
+                                        <li><a class="dropdown-item fs-12 fs-sm-14" href="#" data-bs-toggle="modal" data-bs-target="#viewguestinfo">Import CSV file</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="totalGuest px-4 py-3 bg-white border-bottom border-2">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-12 col-sm-auto col-xl-3">
+                                <div class="geustValue">
+                                    <span class="fs-12 text-theme2 ps-4">Viewing</span>
+                                    <div class="countValue text-theme2 fs-14 fs-md-16 fs-xl-20 fw-bold mt-n2 mt-xl-n2"><span class="text-theme1 fs-16 fs-md-20 fs-xl-28">{{$sidedata['total']}}</span> All Guests</div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-auto mt-3 mt-sm-0">
+                                <div class="buttonsGroup d-sm-flex gap-2 d-inline-block">
+                                    <!-- <button type="btn" class="btn btn-theme2 fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0" disabled>Add to Group</button> -->
+                                    <!-- <a href="{{ url('/exportdata/' . $id) }}" type="btn" class="btn btn-theme2 fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0" disabled>Change Status</a> -->
+                                    <a href="{{ url('/exportdata/' . $id) }}" type="btn" class="btn btn-theme2 fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0"  disabled>Export</a>
+                                    <button type="btn" class="btn btn-theme2 delbtn fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0" >Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <!-- <table id="example" class="table mt-0 table-striped dt-responsive nowrap" style="width:100%">
+                        <thead>
+                            <tr class="even">
+                                <th class="select-checkbox"></th>
+                                <th>Frist Name</th>
+                                <th>Last Name</th>
+                                <th>Organisation</th>
+                                <th>Status</th>
+                                <th class="text-center">Edit</th>
+                                <th class="text-center">View</th>
+                                <th class="text-center">Badge</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class=""><span class="select-checkbox"></span></td>
+                                <td>Eugene</td>
+                                <td class="">Wong</td>
+                                <td>Now Comms Asia</td>
+                                <td>Verified</td>
+                                <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
+                                <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
+                                <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
+                            </tr>
+                        </tbody>
+                    </table> -->
+                    <table class="table table-bordered mt-0 table-striped table-hover text-nowrap  dt-responsive nowrap"
+                                    id="allmatches_datatable" width="100%" cellspacing="0">
+                                    <thead style="background-color:#CCCCCC">
+                                        <tr >
+                                            <th class="text-capitalize">S No.</th>
+                                            <th class="text-capitalize"><input class="" type="checkbox"
+                                                value="" name="select-all"
+                                                id="flexCheckIndeterminate"></th>
+                                            <th class="text-capitalize">Name</th>
+                                            <th class="text-capitalize">Organization</th>
+                                            <!--<th class="text-capitalize">Type</th>-->
+                                            <!--<th class="text-capitalize">Email</th>-->
+                                            <th class="text-capitalize">Visit</th>
+                                            <th class="text-capitalize">Edit</th>
+                                            <th class="text-capitalize">View</th>
+                                            <th class="text-capitalize ">Action</th>
+                                            <!--<th class="text-capitalize w-100">Action</th>-->
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
 {{-- <input type="hidden" value="{{$mid}}" id="mid"> --}}
     <div class="container-fluid">
         <div class="row" style="height:100%">
 
             
             <div class="col-11">
-                <div class="sectionheader py-3">
-                    <div class="row align-items-center">
-                        <div class="col-2">
-                            <h2 class="m-0" style="color:#FF4E00;font-weight:700">Events Detail</h2>
-                        </div>
-                        <div class="col-10">
-                            <div class="row">
-                                <div class="col-auto">
-                                    <a href="{{ asset('/index/' . session()->get('uid')) }}"
-                                        class=" nav-link btnAddEvent">Back To Dashboard</a>
-                                </div>
-                                <div class="col">
-                                    <ul class="p-0 m-0 list-unstyled d-flex gap-3 justify-content-end">
-                                        <li><a class="nav-link btnAddEvent" data-bs-toggle="modal" data-bs-target="#exampleModal" href="{{ url('/addVisitor/' . $id) }}">Add Visitor</a></li>
-                                        <li><a class="nav-link btnAddEvent"
-                                                href="{{ url('/exportdata/' . $id) }}">Export
-                                                Event</a></li>
-                                                <li><a class="nav-link btnAddEvent"
-                                                href="{{ url('/exportdata/' . $id) }}">Add Guest
-                                                Event</a></li>
-                                                <li><a class="nav-link btnAddEvent"
-                                                href="{{ url('/exportdata/' . $id) }}">Change Status
-                                                </a></li>
-                                                <li><a class="nav-link btnAddEvent"
-                                                href="{{ url('/exportdata/' . $id) }}">Delete
-                                                </a></li>
-                                       
-                                        </li>
-                                    </ul>
-                                </div>
+               
+
+                <!-- grouping -->
+                <div class="modal fade" id="grouping" tabindex="-1" aria-labelledby="groupingLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered w-md-40 w-lg-35">
+                        <div class="modal-content">
+                            <div class="modal-header border-bottom border-2 px-3 pt-3 pb-2 px-sm-4">
+                                <h5 class="modal-title fs-16 fs-sm-18 fs-md-20 fw-600" id="groupingLabel">Create New Group</h5>
+                                <button type="button" class="btn-close shadow-none" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body py-3 px-sm-4">
+                                <form action="">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <input type="text" placeholder="Enter Group Name" value="Designers" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal text-theme2" required>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer border-top border-2 py-3 justify-content-center">
+                                <button type="button" class="btn historyBtn fs-14 fw-600 text-uppercase p-2 px-3" data-bs-dismiss="modal">Cancel</button>
+                                <button type="button" class="btn btn-theme1 fs-14 fw-600 text-uppercase text-white p-2 px-3">Create</button>
                             </div>
                         </div>
                     </div>
                 </div>
-
                 <div class="modal fade Create-Guest-modal" id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                         <div class="modal-content">
@@ -121,9 +353,9 @@
                                                     <div class="col-4 mb-2 form-floating">
                                                         <select class="form-select h-50px shadow-none Inpt border-0" id="floatingSelect" name="nmtitle" aria-label="Floating label select example">
                                                             <option lass="choose py-1" selected>Choose.</option>
-                                                            <option lass="choose py-1" value="1">One</option>
-                                                            <option lass="choose py-1" value="2">Two</option>
-                                                            <option lass="choose py-1" value="3">Three</option>
+                                                            <option lass="choose py-1" value="Mr">Mr</option>
+                                                            <option lass="choose py-1" value="Mrs">Mrs</option>
+                                                            <!-- <option lass="choose py-1" value="3">Three</option> -->
                                                         </select>
                                                         <label for="floatingSelect" class="fs-12 ps-4">Status</label>
                                                     </div>
@@ -327,188 +559,13 @@
 
                
 
-                <div class="row" style="border:none">
+                <!-- <div class="row" style="border:none">
                     <div class="col-3" style="border:none">
                         <div class="card mb-3">
                             <div class="card-heading p-3">
                                 <input type="hidden" value="{{ $id }}" id="id">
-                                <?php
-                                    $visit = '';
-                                    $type = '';
-                                    $allval = '';
-                                    
-                                    if (isset($_GET['allval'])) {
-                                        $allval = $_GET['allval'];
-                                    }
-                                    if (isset($_GET['visit'])) {
-                                        $visit = $_GET['visit'];
-                                    }
-                                    if (isset($_GET['type'])) {
-                                        $type = $_GET['type'];
-                                    }
-                                    if(($allval=='Yes' OR $allval=='') && (!in_array($visit,['Reg','VIP']) && (!in_array($visit,['Yes','No'])))){
-                                        $visit = '';
-                                        $type = '';
-                                    }else{
-                                        $allval='No';
-                                    }
-                                    ?>
-                                <form method="get" action="<?php echo action('AboutController@printdata', [$id]); ?>" style="border:none">
-                                    
-                                    <div class="sbp-preview position-relative" >
-                                        <div class="form-group">
-                                            {{-- <div class="row mx-0">
-
-                                        <div class="col-12">
-                                            <div class="form-group my-3">
-                                                {{ Form::label('Checked In', 'Checked In', ['class' => 'text-bold']) }}
-                                                <br><select name="visit" id="visit" class="form-control form-control-solid">
-                                                    <option value="">Select All</option>
-                                                    <option value="Yes" <?php if ($visit == 'Yes') {
-                                                        echo 'selected';
-                                                    } ?>>Yes</option>
-                                                    <option value="No" <?php if ($visit == 'No') {
-                                                        echo 'selected';
-                                                    } ?>>No</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-group my-3">
-                                                {{ Form::label('TYPE', 'Type', ['class' => 'text-bold']) }}
-                                                <br><select name="type" id="type" class="form-control form-control-solid">
-                                                    <option value="">Select Type</option>
-                                                    <option value="VIP" <?php if ($type == 'VIP') {
-                                                        echo 'selected';
-                                                    } ?>>VIP</option>
-                                                    <option value="Reg" <?php if ($type == 'Reg') {
-                                                        echo 'selected';
-                                                    } ?>>REG</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12">
-                                            <div class="">
-                                                <button type="submit" class="btn btn-sm btn-success text-uppercase"><i
-                                                        class="far fa-check-circle"></i>&nbsp; Submit</button>
-                                                <a href="<?php echo action('AboutController@printdata', [$id]); ?>"
-                                                    class="btn btn-sm btn-warning text-uppercase"><i
-                                                        class="far fa-undo"></i>&nbsp; Reset</a>
-                                            </div>
-                                        </div>
-                                    </div> --}}
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" id="customcheckbox1" name="allval"
-                                                    class="custom-control-input allval" value="Yes"  <?php if ($allval=='Yes' OR $allval=='') {
-                                                        echo 'checked';
-                                                    } ?>>
-                                                <label class="custom-control-label w-100" for="customcheckbox1">
-                                                    <div class="row mx-0">
-                                                        <span class="col pl-0">All Guests</span>
-                                                        <span class="col-auto">{{$sidedata['total']}}</span>
-                                                    </div>
-                                                </label>
-                                            </div>
-                                            <div class="" id="accordionExample">
-                                                <div class="pt-4 ">
-                                                    <div class="" id="headingOne" style="background-color:black;color:white">
-                                                        <h5 class="mb-0">
-                                                            <button class="bg-transparent border-0 p-2"
-                                                                type="button" data-toggle="collapse"
-                                                                data-target="#collapseOne" aria-expanded="true"
-                                                                aria-controls="collapseOne" style="background-color:black;color:white;">
-                                                                Status
-                                                                
-                                                            </button>
-                                                        </h5>
-                                                    </div>
-
-                                                    <div id="collapseOne" class="collapse show"
-                                                        aria-labelledby="headingOne" id="#collapseOne">
-                                                        <div class="card-body px-1 pt-2">
-                                                            <div class="custom-control custom-checkbox py-2">
-                                                                <input type="radio" id="customcheckbox23"
-                                                                    name="visit" value="Yes" class="visit d-none custom-control-input"
-                                                                    class=""  <?php if ($visit == 'Yes') {
-                                                                        echo 'checked';
-                                                                    } ?>>
-                                                                <label class="custom-control-label w-100"
-                                                                    for="customcheckbox23">
-                                                                    <div class="row mx-0">
-                                                                        <span class="col pl-0">Checked In</span>
-                                                                        <span class="col-auto">{{count($sidedata['checkedin'])}}</span>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                            <div class="custom-control custom-checkbox py-2">
-                                                                <input type="radio" id="customcheckbox22"
-                                                                    name="visit" value="No" class="visit d-none custom-control-input"
-                                                                    class="" <?php if ($visit == 'No') {
-                                                                        echo 'checked';
-                                                                    } ?>>
-                                                                <label class="custom-control-label w-100"
-                                                                    for="customcheckbox22">
-                                                                    <div class="row mx-0">
-                                                                        <span class="col pl-0">Not Attending</span>
-                                                                        <span class="col-auto">{{count($sidedata['notattending'])}}</span>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                                <div class="pt-4">
-                                                    <div class="" id="headingTwo" style="background-color:black;color:white">
-                                                        <h5 class="mb-0">
-                                                            <button class="bg-transparent border-0 p-2 collapsed"
-                                                                type="button" data-toggle="collapse"
-                                                                data-target="#collapseTwo" aria-expanded="false"
-                                                                aria-controls="collapseTwo" style="color:white">
-                                                                My Lists
-                                                            </button>
-                                                        </h5>
-                                                    </div>
-
-                                                    <div id="collapseTwo" class="collapse show"
-                                                        aria-labelledby="headingTwo" id="collapseTwo">
-                                                        <div class="card-body px-1 pt-2">
-                                                            <div class="custom-control custom-checkbox py-2">
-                                                                <input type="radio" id="customcheckbox73"
-                                                                    name="type" value="VIP" class="type d-none custom-control-input" <?php if ($type == 'VIP') {
-                                                                        echo 'checked';
-                                                                    } ?>
-                                                                    >
-                                                                <label class="custom-control-label w-100"
-                                                                    for="customcheckbox73">
-                                                                    <div class="row mx-0">
-                                                                        <span class="col pl-0">VIP</span>
-                                                                        <span class="col-auto">{{count($sidedata['vip'])}}</span>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                            <div class="custom-control custom-checkbox py-2">
-                                                                <input type="radio" id="customcheckbox72"
-                                                                    name="type" value="Reg" class="type d-none custom-control-input"
-                                                                 <?php if ($type == 'Reg') {
-                                                                        echo 'checked';
-                                                                    } ?> >
-                                                                <label class="custom-control-label w-100"
-                                                                    for="customcheckbox72">
-                                                                    <div class="row mx-0">
-                                                                        <span class="col pl-0">REG</span>
-                                                                        <span class="col-auto">{{count($sidedata['reg'])}}</span>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
+                               
+                                
                             </div>
                         </div>
                     </div>
@@ -520,113 +577,94 @@
                                 href="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.css">
                             <div class="datatable table-responsive">
 
-                                <table class="table table-bordered table-striped table-hover text-nowrap"
-                                    id="allmatches_datatable" width="100%" cellspacing="0">
-                                    <thead style="background-color:#CCCCCC">
-                                        <tr >
-                                            <th class="text-capitalize">S No.</th>
-                                            <th class="text-capitalize">Name</th>
-                                            <th class="text-capitalize">Company</th>
-                                            <!--<th class="text-capitalize">Type</th>-->
-                                            <!--<th class="text-capitalize">Email</th>-->
-                                            <th class="text-capitalize">Visit</th>
-                                            <th class="text-capitalize">Edit</th>
-                                            <th class="text-capitalize">View</th>
-                                            <th class="text-capitalize ">Action</th>
-                                            <!--<th class="text-capitalize w-100">Action</th>-->
-                                        </tr>
-                                    </thead>
-                                    
-                                    <tbody>
-                                    </tbody>
-                                </table>
+                               
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
         </div>
         {{-- <div id="output"></div> --}}
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
-    </script>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
+    </script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
 
 
     <script>
-    function openmodal(id,mid){
-        $('#btn11').removeClass('d-none');
-        $('#viewguest').addClass('d-none');
-        $('#editguest').removeClass('d-none');
-        $('#id1').val(id);
-                $('#id2').val(mid);
-        $.ajax({
+        function openmodal(id,mid){
+            $('#btn11').removeClass('d-none');
+            $('#viewguest').addClass('d-none');
+            $('#editguest').removeClass('d-none');
+            $('#id1').val(id);
+                    $('#id2').val(mid);
+            $.ajax({
 
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            url: "{{ route('editvisitor') }}",
-            type: "post",
-            data: {
-                id: id,
-                mid:mid,
-            },
-            success: function(response) {
-                $('#twiiter1').val(response.twitter);
-                $('#linkedin1').val(response.linkedin);
-                
-                $('#mnumber1').val(response.mobileno);
-                $('#organization1').val(response.orgenization);
-                $('#jobtitle1').val(response.jobtitle);
-                $('#email1').val(response.eveemail);
-                $('#lname1').val(response.evelastname);
-                $('#fname1').val(response.evefirstname);
-                $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
-                $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
-                $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
-                $('#exampleModal1').modal('toggle');
-                $('#exampleModal1').modal('show');
-            }
-        })
-    }
-    function viewmodal(id,mid){
-        // $('#exampleModal2').modal('toggle');
-        // $('#exampleModal2').modal('show');
-        $.ajax({
-
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            url: "{{ route('viewvisitor') }}",
-            type: "post",
-            data: {
-                id: id,
-                mid:mid,
-            },
-            success: function(response) {
-                $('#twiiter1').val(response.twitter);
-                $('#linkedin1').val(response.linkedin);
-                // $('#tags1').val(response.tags);
-                $('#mnumber1').val(response.mobileno);
-                $('#organization1').val(response.orgenization);
-                $('#jobtitle1').val(response.jobtitle);
-                $('#email1').val(response.eveemail);
-                $('#lname1').val(response.evelastname);
-                $('#fname1').val(response.evefirstname);
-                
-                $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
-                $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
-                $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
-                $('#btn11').addClass('d-none');
-                $('#editguest').addClass('d-none');
-                $('#viewguest').removeClass('d-none');
-                $('#exampleModal1').modal('toggle');
-                $('#exampleModal1').modal('show');
-            }
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                url: "{{ route('editvisitor') }}",
+                type: "post",
+                data: {
+                    id: id,
+                    mid:mid,
+                },
+                success: function(response) {
+                    $('#twiiter1').val(response.twitter);
+                    $('#linkedin1').val(response.linkedin);
+                    
+                    $('#mnumber1').val(response.mobileno);
+                    $('#organization1').val(response.orgenization);
+                    $('#jobtitle1').val(response.jobtitle);
+                    $('#email1').val(response.eveemail);
+                    $('#lname1').val(response.evelastname);
+                    $('#fname1').val(response.evefirstname);
+                    $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
+                    $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
+                    $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
+                    $('#exampleModal1').modal('toggle');
+                    $('#exampleModal1').modal('show');
+                }
             })
-    }
+        }
+        function viewmodal(id,mid){
+            // $('#exampleModal2').modal('toggle');
+            // $('#exampleModal2').modal('show');
+            $.ajax({
+
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                url: "{{ route('viewvisitor') }}",
+                type: "post",
+                data: {
+                    id: id,
+                    mid:mid,
+                },
+                success: function(response) {
+                    $('#twiiter1').val(response.twitter);
+                    $('#linkedin1').val(response.linkedin);
+                    // $('#tags1').val(response.tags);
+                    $('#mnumber1').val(response.mobileno);
+                    $('#organization1').val(response.orgenization);
+                    $('#jobtitle1').val(response.jobtitle);
+                    $('#email1').val(response.eveemail);
+                    $('#lname1').val(response.evelastname);
+                    $('#fname1').val(response.evefirstname);
+                    
+                    $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
+                    $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
+                    $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
+                    $('#btn11').addClass('d-none');
+                    $('#editguest').addClass('d-none');
+                    $('#viewguest').removeClass('d-none');
+                    $('#exampleModal1').modal('toggle');
+                    $('#exampleModal1').modal('show');
+                }
+                })
+        }
     </script>
 
     <script type="text/javascript">
@@ -675,6 +713,10 @@
                         orderable: false
                     },
                     {
+                        "data":"checkb",
+                        orderable: false
+                    },  
+                    {
                         "data": "name"
                     },
                     {
@@ -704,7 +746,46 @@
                 ]
             });
         }
+        
+        $('#flexCheckIndeterminate').click(function(event) {
+            if (this.checked) {
+                $(':checkbox').each(function() {
+                    this.checked = true;
+                });
+            } else {
+                $(':checkbox').each(function() {
+                    this.checked = false;
+                });
+            }
+        });
 
+        $('.delbtn').on('click', function(){
+            alert('hekf');
+            var vid ='';
+            var arr = $("input[name='id[]']:checked").map(function() {
+                vid = $(this).data('mid');
+                return this.value;
+            }).get();
+            console.log(vid);
+            console.log(arr);
+            if(arr.length != 0){
+                $.ajax({
+                    type: "POST",
+                    data: {
+                        id: arr,
+                        vid: vid,
+                    },
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    },
+                    url: "{{ route('multideleteguest') }}",
+                    success: function(msg) {
+                        window.location.reload()
+                    }
+
+                });
+            }
+        })
         $('.visit').change(function(){
             $("input:checkbox").removeAttr("checked");
             $('#allmatches_datatable').DataTable().destroy();
@@ -743,6 +824,22 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.js') }}"></script>
 <script>
+    $(document).ready(function() {
+        $('#example').DataTable( {
+            columnDefs: [ {
+                orderable: false,
+                className: 'select-checkbox',
+                targets:   0
+            } ],
+            select: {
+                style:    'os',
+                selector: 'td:first-child'
+            },
+            order: [[ 1, 'asc' ]]
+        } );
+    } );
+</script>
+<script>
     var input = document.querySelector("#phone");
     window.intlTelInput(input, {
         // any initialisation options go here
@@ -754,5 +851,11 @@
         tags: true,
     });
 </script>
-
+<script>
+    $(document).ready(function() {
+        $(".guestFilterBtn").click(function() {
+            $(".guests").toggleClass("filterShow");
+        });
+    });
+</script>
 @endpush

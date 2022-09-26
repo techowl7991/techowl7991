@@ -31,6 +31,7 @@ Route::post('/printbadge',[AboutController::class,'printbadge'])->name('printbad
 Route::any('/view_event_dt', [AboutController::class, 'view_event_dt']);
 Route::any('/view_event_dt_past', [AboutController::class, 'view_event_dt_past']);
 Route::any('/multidelete', [AboutController::class, 'multi_delete'])->name('multidelete');
+Route::any('/multideleteguest', [AboutController::class, 'multidelete_guest'])->name('multideleteguest');
 Route::any('/singledel/{id}', [AboutController::class, 'singledelete']);
 Route::any('/dataedit/{id}', [AboutController::class, 'edit']);
 Route::any('/dataupdate/{id}', [AboutController::class, 'update'])->name('update');

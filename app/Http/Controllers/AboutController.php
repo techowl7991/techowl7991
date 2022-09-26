@@ -751,6 +751,23 @@ class AboutController extends Controller
         return response()->json(['message' => 'Selected Event Successfully Deleted']);
     }
 
+    public function multidelete_guest(Request $request)
+    {   
+        $ids = $request->id;
+        $vid = $request->vid;
+        $mid = $request->session()->get('uid');
+        // dd($request->all());
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        foreach ($ids as $id) {
+            // dd($ids);
+            $snapshot = self::$firestoreClient->collection('visitor')->document($vid)->collection('visitor_details')->document($id)->delete();
+        }
+        return response()->json(['message' => 'Selected Event Successfully Deleted']);
+    }
+
     public function view_eventdetail_dt(Request $request)
     {
         $chid = $_GET['id'];
@@ -794,6 +811,11 @@ class AboutController extends Controller
                 $snapshot = $snapshot->where('type', '=', $_GET['type']);
             }
         }
+        if (isset($_GET['search'])) {
+            if ($_GET['search'] != "" && $_GET['search'] != "undefined") {
+                $snapshot = $snapshot->where('search', '=', $_GET['search']);
+            }
+        }
 
         $snapshot = $snapshot->documents();
 
@@ -834,6 +856,7 @@ class AboutController extends Controller
                 </form>";
 
                 $nestedData['id'] = $count;
+                $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" data-mid="'.$chid.'" value="' . $title->id() . '" >';
                 $nestedData['name'] = $title['evefirstname'];
                 $nestedData['company'] = $title['orgenization'];
                 $nestedData['type'] = $title['type'];
