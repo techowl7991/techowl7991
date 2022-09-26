@@ -37,6 +37,12 @@
                 </div>
             </div>
         </div>
+
+        @if (session('success'))
+            <div class="alert alert-success">
+                {!! session('success') !!}
+            </div>
+        @endif
         <div class="row ">
             <div class=" col-12 col-md-9 order-2 order-md-1">
                 <div class="row">
@@ -46,24 +52,28 @@
                                 <div class="title text-dark fs-15 fs-sm-18 fs-md-25 fw-600 ">My Profile</div>
                             </div>
                         </div>
-                        <form action="{{ asset('add_useraccount') }}" method="POST">
+                        <form action="{{ route('update_useraccount', session()->get('uid')) }}" method="POST">
+                            @method('put')
                             @csrf
                             <div class="row">
 
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" placeholder="Frist Name" value="{{ $snapshot['FirstName'] }}" name="fname"
+                                    <input type="text" placeholder="Frist Name" value="{{ $snapshot['FirstName'] }}"
+                                        name="fname"
                                         class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
                                         required>
                                 </div>
 
                                 <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                    <input type="text" placeholder="Last Name" value="{{ $snapshot['LastName'] }}" name="lname"
+                                    <input type="text" placeholder="Last Name" value="{{ $snapshot['LastName'] }}"
+                                        name="lname"
                                         class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
                                         required>
                                 </div>
 
                                 <div class="col-12">
-                                    <input type="email" disabled placeholder="Example@gmail.com" value="{{ $snapshot['email'] }}" name="email"
+                                    <input type="email" placeholder="Example@gmail.com" value="{{ $snapshot['email'] }}"
+                                        readonly name="email"
                                         class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
                                         required>
                                 </div>
@@ -72,7 +82,8 @@
                                 </div>
                                 <div class="col-12">
                                     <div class="password-field position-relative">
-                                        <input type="password" placeholder="Password" value="{{ $snapshot['password'] }}" name="password"
+                                        <input type="password" placeholder="Password" value="{{ $snapshot['password'] }}"
+                                            readonly name="password"
                                             class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-16 fw-normal"
                                             id="password-field4" required>
                                         <span><i toggle="#password-field4" id="eye4"
@@ -125,7 +136,9 @@
                         </label>
 
                     </div>
-                    <div class="activeDate fs-11 fs-sm-14 fs-md-15 text-muted fw-500">Acitve since 05/12/22</div>
+                    <div class="activeDate fs-11 fs-sm-14 fs-md-15 text-muted fw-500">
+                        Acitve since {{ $snapshot['date'] }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -143,11 +156,33 @@
                         aria-label="Close"></button>
                 </div>
                 <div class="modal-body px-3 pt-3 pb-2 px-sm-4 pt-sm-4">
-                    <form action="">
+
+                    <form action="{{ route('save_new_password', session()->get('uid')) }}" method="POST">
+                        @method('put')
+                        @csrf
                         <div class="row">
+                            <div class="col-12 col-sm-6">
+                                <input type="hidden" placeholder="Frist Name" value="{{ $snapshot['FirstName'] }}"
+                                    id="fname-{{ session()->get('uid') }}" name="fname"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
+                            </div>
+
+                            <div class="col-12 col-sm-6 mt-3 mt-sm-0">
+                                <input type="hidden" placeholder="Last Name" value="{{ $snapshot['LastName'] }}"
+                                    id="lname-{{ session()->get('uid') }}" name="lname"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
+                            </div>
+
+                            <div class="col-12">
+                                <input type="hidden" placeholder="Example@gmail.com" value="{{ $snapshot['email'] }}"
+                                    id="email-{{ session()->get('uid') }}" readonly name="email"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
+                            </div>
+
                             <div class="col-12 mb-3 ">
                                 <div class="password-field position-relative">
-                                    <input type="password" placeholder="New Password" id="newpassword" value=""
+                                    <input type="password" name="password" placeholder="New Password" id="newpassword"
+                                        value=""
                                         class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
                                         required>
                                     <span><i toggle="#newpassword" id="eye"
@@ -156,8 +191,8 @@
                             </div>
                             <div class="col-12 mb-3">
                                 <div class="password-field position-relative">
-                                    <input type="password" placeholder="Confirm Password" value=""
-                                        id="confirmpassword"
+                                    <input type="password" name="confirm_new_password" placeholder="Confirm Password"
+                                        value="" id="confirmpassword"
                                         class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
                                         required>
                                     <span><i toggle="#confirmpassword" id="eye"
@@ -169,7 +204,7 @@
                                     <button type="button"
                                         class="btn cancelBtn fs-11 fs-sm-14 p-1 p-sm-2  px-2 px-sm-4 fw-600 text-uppercase"
                                         data-bs-dismiss="modal">Cancel</button>
-                                    <button type="button"
+                                    <button type="submit"
                                         class="btn btn-theme1 fs-11 fs-sm-14 p-1 p-sm-2  px-2 px-sm-4 text-white fw-600 text-uppercase ">Confirm</button>
                                 </div>
                             </div>
