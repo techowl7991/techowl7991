@@ -47,6 +47,7 @@ Route::any('/exportdataanalytics/{id}',[AboutController::class,'exportdataanalyt
 Route::any('useraccount/{id}',[AboutController::class,'user_account'])->name('useraccount');
 Route::post('add_useraccount',[AboutController::class,'add_user_account'])->name('add_useraccount');
 Route::any('addguest',[AboutController::class,'add_guest'])->name('addguest');
+Route::any('addguestcsv',[AboutController::class,'add_guest_exl'])->name('addguestcsv');
 Route::any('editvisitor',[AboutController::class,'editvisitor'])->name('editvisitor');
 Route::any('viewvisitor',[AboutController::class,'viewvisitor'])->name('viewvisitor');
 Route::any('updateguest',[AboutController::class,'updateguest'])->name('updateguest');

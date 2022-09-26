@@ -1325,6 +1325,56 @@ class AboutController extends Controller
         return redirect()->back();
     }
 
+    public function add_guest_exl(Request $request){
+        $uid = $request->session()->get('uid');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        // dd($request->all());
+        $mid = $request->mid;
+        $reads = Excel::toArray(new \stdClass(), $request->file('eventfile'));
+        $index = 0;
+        foreach ($reads as  $read) {
+            foreach ($read as $value) {
+                if ($index == 0) {
+                } else {
+                    $eventData = [
+                        'type' => $value[0],
+                        'evefirstname' => $value[1],
+                        'evelastname' =>  $value[2],
+                        'eveemail' => $value[3],
+                        'jobtitle' =>  $value[4],
+                        'orgenization' => $value[5],
+                        'type' => $value[6],
+                        'tags' => $value[7],
+                        'linkedin' => $value[8],
+                        'twitter' => $value[9],
+                    ];
+                    $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($eventData);
+                    $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
+                    $snap = $snapshot->data();
+                    $token = $mid . '(**)' . $docref->id();
+                    $evedata['token'] = $token;
+                    $evedata['event_startdate'] = $snap['event_startdate'];
+                    $evedata['event_enddate'] = $snap['event_enddate'];
+                    $evedata['event_name'] = $snap['event_name'];
+                    // $evedata['address'] = $snap['address'];
+                    self::$firestoreClient->collection('eventsemail')->add($evedata);
+                  
+                    // if ($eventData['type'] == 'vip' or $eventData['type'] == 'VIP') {
+                    //     $totalvip = $totalvip + 1;
+                    // } else {
+                    //     $totalreg = $totalreg + 1;
+                    // }
+                    
+                }
+                $index = $index + 1;
+            }
+        }
+          return redirect()->back();
+    }
+
     public function viewgatekeeper(Request $request, $mid)
     {
         if (!empty($request->session()->get('uid'))) {
