@@ -249,7 +249,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
                     headers: {
                         'X-CSRF-TOKEN': "{{ csrf_token() }}"
                     },
-                    url: '{{ route('multidelete') }}',
+                    url: "{{ route('multidelete') }}",
                     //  beforeSend: function() {
                     // $('.preloader').removeClass('d-none');
                     // },

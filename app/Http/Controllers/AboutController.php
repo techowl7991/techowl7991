@@ -751,6 +751,23 @@ class AboutController extends Controller
         return response()->json(['message' => 'Selected Event Successfully Deleted']);
     }
 
+    public function multidelete_guest(Request $request)
+    {   
+        $ids = $request->id;
+        $vid = $request->vid;
+        $mid = $request->session()->get('uid');
+        // dd($request->all());
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        foreach ($ids as $id) {
+            // dd($ids);
+            $snapshot = self::$firestoreClient->collection('visitor')->document($vid)->collection('visitor_details')->document($id)->delete();
+        }
+        return response()->json(['message' => 'Selected Event Successfully Deleted']);
+    }
+
     public function view_eventdetail_dt(Request $request)
     {
         $chid = $_GET['id'];
@@ -794,6 +811,11 @@ class AboutController extends Controller
                 $snapshot = $snapshot->where('type', '=', $_GET['type']);
             }
         }
+        if (isset($_GET['search'])) {
+            if ($_GET['search'] != "" && $_GET['search'] != "undefined") {
+                $snapshot = $snapshot->where('search', '=', $_GET['search']);
+            }
+        }
 
         $snapshot = $snapshot->documents();
 
@@ -834,6 +856,7 @@ class AboutController extends Controller
                 </form>";
 
                 $nestedData['id'] = $count;
+                $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" data-mid="'.$chid.'" value="' . $title->id() . '" >';
                 $nestedData['name'] = $title['evefirstname'];
                 $nestedData['company'] = $title['orgenization'];
                 $nestedData['type'] = $title['type'];
@@ -1300,6 +1323,56 @@ class AboutController extends Controller
         // $evedata['address'] = $snap['address'];
         self::$firestoreClient->collection('eventsemail')->add($evedata);
         return redirect()->back();
+    }
+
+    public function add_guest_exl(Request $request){
+        $uid = $request->session()->get('uid');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        // dd($request->all());
+        $mid = $request->mid;
+        $reads = Excel::toArray(new \stdClass(), $request->file('eventfile'));
+        $index = 0;
+        foreach ($reads as  $read) {
+            foreach ($read as $value) {
+                if ($index == 0) {
+                } else {
+                    $eventData = [
+                        'type' => $value[0],
+                        'evefirstname' => $value[1],
+                        'evelastname' =>  $value[2],
+                        'eveemail' => $value[3],
+                        'jobtitle' =>  $value[4],
+                        'orgenization' => $value[5],
+                        'type' => $value[6],
+                        'tags' => $value[7],
+                        'linkedin' => $value[8],
+                        'twitter' => $value[9],
+                    ];
+                    $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($eventData);
+                    $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
+                    $snap = $snapshot->data();
+                    $token = $mid . '(**)' . $docref->id();
+                    $evedata['token'] = $token;
+                    $evedata['event_startdate'] = $snap['event_startdate'];
+                    $evedata['event_enddate'] = $snap['event_enddate'];
+                    $evedata['event_name'] = $snap['event_name'];
+                    // $evedata['address'] = $snap['address'];
+                    self::$firestoreClient->collection('eventsemail')->add($evedata);
+                  
+                    // if ($eventData['type'] == 'vip' or $eventData['type'] == 'VIP') {
+                    //     $totalvip = $totalvip + 1;
+                    // } else {
+                    //     $totalreg = $totalreg + 1;
+                    // }
+                    
+                }
+                $index = $index + 1;
+            }
+        }
+          return redirect()->back();
     }
 
     public function viewgatekeeper(Request $request, $mid)

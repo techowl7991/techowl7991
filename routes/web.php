@@ -31,6 +31,7 @@ Route::post('/printbadge',[AboutController::class,'printbadge'])->name('printbad
 Route::any('/view_event_dt', [AboutController::class, 'view_event_dt']);
 Route::any('/view_event_dt_past', [AboutController::class, 'view_event_dt_past']);
 Route::any('/multidelete', [AboutController::class, 'multi_delete'])->name('multidelete');
+Route::any('/multideleteguest', [AboutController::class, 'multidelete_guest'])->name('multideleteguest');
 Route::any('/singledel/{id}', [AboutController::class, 'singledelete']);
 Route::any('/dataedit/{id}', [AboutController::class, 'edit']);
 Route::any('/dataupdate/{id}', [AboutController::class, 'update'])->name('update');
@@ -46,6 +47,7 @@ Route::any('/exportdataanalytics/{id}',[AboutController::class,'exportdataanalyt
 Route::any('useraccount/{id}',[AboutController::class,'user_account'])->name('useraccount');
 Route::post('add_useraccount',[AboutController::class,'add_user_account'])->name('add_useraccount');
 Route::any('addguest',[AboutController::class,'add_guest'])->name('addguest');
+Route::any('addguestcsv',[AboutController::class,'add_guest_exl'])->name('addguestcsv');
 Route::any('editvisitor',[AboutController::class,'editvisitor'])->name('editvisitor');
 Route::any('viewvisitor',[AboutController::class,'viewvisitor'])->name('viewvisitor');
 Route::any('updateguest',[AboutController::class,'updateguest'])->name('updateguest');
