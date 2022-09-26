@@ -641,7 +641,7 @@ table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-str
 
 }
 
-#drafttable_wrapper, #scheduledtable_wrapper, #senttable_wrapper {
+#example_wrapper, #drafttable_wrapper, #scheduledtable_wrapper, #senttable_wrapper {
   & .row{
     &:nth-child(1){
       display: none;
