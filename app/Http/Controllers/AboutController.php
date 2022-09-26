@@ -18,6 +18,7 @@ use PDF;
 use DataTables;
 use GPBMetadata\Google\Firestore\V1Beta1\Firestore;
 use Illuminate\Support\Arr;
+use Kreait\Auth\Request\UpdateUser;
 
 class AboutController extends Controller
 {
@@ -88,6 +89,8 @@ class AboutController extends Controller
                     'emailVerified' => false,
                     'password' => $request->password,
                     'disabled' => false,
+                    'date' => date('Y-m-d'),
+                    // 'date'=> $request->date('y-m-d'),
                 ];
                 $auth = $factory->createAuth();
                 $createdUser = $auth->createUser($userProperties);
@@ -517,7 +520,7 @@ class AboutController extends Controller
                 $editroute = action('AboutController@edit', $title->id());
                 $delbtn = "<a href=" . $route . " class='text-danger py-2 px-3'><i class='text-secondary img img-trash' aria-hidden='true'></i></a>";
                 $edtbtn = "<a href=" . $editroute . " class='text-danger py-2 px-3'><i class='text-secondary img img-pencil' aria-hidden='true'></i></a>";
-                $nestedData['eventid'] = '#A00000'.$title['eventid'];
+                $nestedData['eventid'] = '#A00000' . $title['eventid'];
                 $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="' . $title->id() . '" >';
                 $nestedData['singledel'] = $delbtn;
                 $nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
@@ -1276,18 +1279,41 @@ class AboutController extends Controller
         ]);
         $date = date('Y-m-d');
         $snapshot = self::$firestoreClient->collection('users')->document($uid)->snapshot()->data();
-       
-
-
         // $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
         // $database = $factory->createDatabase();
         // $auth = $factory->createAuth();
         // $user = $auth->getUser($uid);
         // dd($user);
 
-        
+
         // $up_snapshot = self::$firestoreClient->collection('events')->document($uid);
-        return view('my-account',compact('snapshot','id'));
+        return view('my-account', compact('snapshot', 'id'));
+    }
+
+    public function update_user_account(Request $request, $id)
+    {
+        if ($request->isMethod('put')) {
+            $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
+            $auth = $factory->createAuth();
+            $user = $auth->getUser($id);
+
+            self::$firestoreProjectId = 'guest-app-2eb59';
+            self::$firestoreClient = new FirestoreClient([
+                'projectId' => self::$firestoreProjectId,
+            ]);
+            $uid = $id;
+            $userProperties = [
+                'FirstName' => $request->fname,
+                'LastName' => $request->lname,
+                'email' => $request->email,
+                'emailVerified' => false,
+                'password' => $request->password,
+                'disabled' => false,
+                'date' => date('Y-m-d'),
+            ];
+            $docref = self::$firestoreClient->collection('users')->document($uid)->set($userProperties);
+            return redirect()->back()->with('success', 'Profile has been updated successfully');
+        }
     }
 
     public function add_guest(Request $request)
@@ -1394,7 +1420,7 @@ class AboutController extends Controller
         }
     }
 
-    public function addkeeper(Request $request,$mid)
+    public function addkeeper(Request $request, $mid)
     {
         // dd($request->all());
         if ($request->isMethod('post')) {
@@ -1438,7 +1464,7 @@ class AboutController extends Controller
 
         $snapshot = self::$firestoreClient->collection('gatekeeper')->document($_GET['mid'])->collection('keeperdata_data')->offset($start)->limit($limit)->orderBy($order, $dir);
 
-  
+
 
         $snapshot = $snapshot->documents();
         $query = $snapshot->rows();
@@ -1469,5 +1495,39 @@ class AboutController extends Controller
             "data" => $data,
         );
         echo json_encode($json_data);
+    }
+
+    public function save_new_password(Request $request, $id)
+    {
+        if ($request->isMethod('put')) {
+
+            $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
+            $auth = $factory->createAuth();
+            $user = $auth->getUser($id);
+
+            self::$firestoreProjectId = 'guest-app-2eb59';
+            self::$firestoreClient = new FirestoreClient([
+                'projectId' => self::$firestoreProjectId,
+            ]);
+
+            $uid = $id;
+            if($request->password == $request->confirm_new_password){
+                $newpasswordProperties = [
+                    'password' => $request->password,
+                    'FirstName' => $request->fname,
+                    'LastName' => $request->lname,
+                    'email' => $request->email,
+                    'emailVerified' => false,
+                    'disabled' => false,
+                    'date' => date('Y-m-d'),
+                ];
+                $docref = self::$firestoreClient->collection('users')->document($uid)->set($newpasswordProperties);
+                return redirect()->back()->with('success', 'Password successfully changed !!');
+            }
+            else{
+                return redirect()->back()->with('success', 'Password does not matched !!');
+            }
+            
+        }
     }
 }

@@ -45,7 +45,7 @@ Route::get('/analyticsview/{id}',[AboutController::class,'analyticsview']);
 Route::any('/view_anyalyticdetail_dt', [AboutController::class, 'view_anyalyticdetail_dt']);
 Route::any('/exportdataanalytics/{id}',[AboutController::class,'exportdataanalytics'])->name('exportdataanalytics');
 Route::any('useraccount/{id}',[AboutController::class,'user_account'])->name('useraccount');
-Route::post('add_useraccount',[AboutController::class,'add_user_account'])->name('add_useraccount');
+Route::any('update_useraccount/{id}',[AboutController::class,'update_user_account'])->name('update_useraccount');
 Route::any('addguest',[AboutController::class,'add_guest'])->name('addguest');
 Route::any('addguestcsv',[AboutController::class,'add_guest_exl'])->name('addguestcsv');
 Route::any('editvisitor',[AboutController::class,'editvisitor'])->name('editvisitor');
@@ -53,6 +53,11 @@ Route::any('viewvisitor',[AboutController::class,'viewvisitor'])->name('viewvisi
 Route::any('updateguest',[AboutController::class,'updateguest'])->name('updateguest');
 
 Route::get('analytics',[AboutController::class,'get_analytics'])->name('analytics');
+
+
+Route::any('save_new_password/{id}',[AboutController::class,'save_new_password'])->name('save_new_password');
+
+
 
 // Route::get('/login',function(){});
 
@@ -64,7 +69,7 @@ Route::any('/create-event',function(){return view('new-design/create-event');});
 Route::any('/dashboard',function(){return view('new-design/dashboard');});
 Route::any('/analytics',function(){return view('new-design/analytics');});
 Route::any('/analytics-booth-name',function(){return view('new-design/analytics-booth-name');});
-Route::any('/setting',function(){return view('new-design/setting');});
+Route::any('/setting',function(){return view('new-design/setting');})->name('setting');
 Route::any('/email',function(){return view('new-design/email');});
 Route::any('/campaign-nformation',function(){return view('new-design/campaign-nformation');});
 
