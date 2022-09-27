@@ -96,7 +96,7 @@
                         <li class="py-1 py-sm-2 px-2 px-sm-3 bg-theme2 text-white fs-13 fs-sm-14">Status</li>
                         <li class="pt-2 pb-1 px-3">
                             <div class="form-check">
-                                <input class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="visit" value="Yes" id="customcheckbox23" <?php if ($visit == 'Yes') { echo 'checked'; } ?>>
+                                <input class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="visit" value="checkin" id="customcheckbox23" <?php if ($visit == 'Yes') { echo 'checked'; } ?>>
                                 
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox23"><span>Checked In</span><span class="value">{{count($sidedata['checkedin'])}}</span></label>
                             </div>
@@ -105,7 +105,7 @@
                             <div class="form-check">
                                 
                                 <input type="radio" id="customcheckbox22"
-                                    name="visit" value="No" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') {
+                                    name="visit" value="checkout" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') {
                                     echo 'checked';
                                 } ?>>
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox22"><span>Not Attendding</span><span class="value">{{count($sidedata['notattending'])}}</span></label>

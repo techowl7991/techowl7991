@@ -786,7 +786,7 @@ class AboutController extends Controller
         $order = $columns[$request->input('order.0.column')];
         $dir = $request->input('order.0.dir');
 
-        // dd($_GET['mid']);
+        // dump($_GET);
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
@@ -806,19 +806,19 @@ class AboutController extends Controller
         $snapshot = self::$firestoreClient->collection('visitor')->document($_GET['id'])->collection('visitor_details');
         if (isset($_GET['visit'])) {
             if ($_GET['visit'] != "" && $_GET['visit'] != "undefined") {
-                $snapshot = $snapshot->where('visit', '=', $_GET['visit']);
+                $snapshot = $snapshot->where('type', '=', $_GET['visit']);
             }
         }
-        if (isset($_GET['type'])) {
-            if ($_GET['type'] != "" && $_GET['type'] != "undefined") {
-                $snapshot = $snapshot->where('type', '=', $_GET['type']);
-            }
-        }
-        if (isset($_GET['search'])) {
-            if ($_GET['search'] != "" && $_GET['search'] != "undefined") {
-                $snapshot = $snapshot->where('search', '=', $_GET['search']);
-            }
-        }
+        // if (isset($_GET['type'])) {
+        //     if ($_GET['type'] != "" && $_GET['type'] != "undefined") {
+        //         $snapshot = $snapshot->where('type', '=', $_GET['type']);
+        //     }
+        // }
+        // if (isset($_GET['search'])) {
+        //     if ($_GET['search'] != "" && $_GET['search'] != "undefined") {
+        //         $snapshot = $snapshot->where('search', '=', $_GET['search']);
+        //     }
+        // }
 
         $snapshot = $snapshot->documents();
 
@@ -1367,7 +1367,7 @@ class AboutController extends Controller
                 if ($index == 0) {
                 } else {
                     $eventData = [
-                        'type' => $value[0],
+                        'nmtitle' => $value[0],
                         'evefirstname' => $value[1],
                         'evelastname' =>  $value[2],
                         'eveemail' => $value[3],
