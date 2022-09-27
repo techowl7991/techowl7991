@@ -52,10 +52,17 @@ Route::any('editvisitor',[AboutController::class,'editvisitor'])->name('editvisi
 Route::any('viewvisitor',[AboutController::class,'viewvisitor'])->name('viewvisitor');
 Route::any('updateguest',[AboutController::class,'updateguest'])->name('updateguest');
 
-Route::get('analytics',[AboutController::class,'get_analytics'])->name('analytics');
+Route::get('get_analytics',[AboutController::class,'get_analytics'])->name('get_analytics');
+Route::get('get_setting',[AboutController::class,'get_setting'])->name('get_setting');
+
+Route::get('email',[AboutController::class,'email'])->name('email');
+Route::get('view_email',[AboutController::class,'view_email'])->name('view_email');
+Route::get('campaign_information',[AboutController::class,'campaign_information'])->name('campaign_information');
+Route::get('analytics_booth_name',[AboutController::class,'analytics_booth_name'])->name('analytics_booth_name');
 
 
 Route::any('save_new_password/{id}',[AboutController::class,'save_new_password'])->name('save_new_password');
+
 
 
 
@@ -70,7 +77,7 @@ Route::any('/dashboard',function(){return view('new-design/dashboard');});
 Route::any('/analytics',function(){return view('new-design/analytics');});
 Route::any('/analytics-booth-name',function(){return view('new-design/analytics-booth-name');});
 Route::any('/setting',function(){return view('new-design/setting');})->name('setting');
-Route::any('/email',function(){return view('new-design/email');});
+Route::any('/email11',function(){return view('new-design/email');});
 Route::any('/campaign-nformation',function(){return view('new-design/campaign-nformation');});
 
 Route::any('/my-event',function(){return view('new-design/my-event');});
