@@ -954,6 +954,22 @@ table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-str
     }
   }
 }
+#viewguestinfo{
+  & .modal-body {
+    & label {
+      &.input-group-text{
+        border: 2px dashed $theme2;
+        cursor: pointer;
+        & .textHover {
+          transition: all .3s;
+          &:hover{
+            color: $primary;
+          }
+        }
+      }
+    }
+  }
+}
 
 // Small devices (landscape phones, 576px and up)
 

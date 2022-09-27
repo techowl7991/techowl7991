@@ -15,7 +15,7 @@
           </a>
           <ul class="dropdown-menu rounded-0 p-0 bg-theme2 top-lg-45px top-41px">
             <li><a class="dropdown-item text-white d-flex justify-content-start align-items-center gap-2" href="{{route('useraccount',session()->get('uid'))}}"><i class="imgs img-user text-white fs-18"></i> <span class="fs-16">My Account</span> </a></li>
-            <li><a class="dropdown-item text-white d-flex justify-content-start align-items-center gap-2" href="#"><i class="imgr img-power-off text-white fs-18"></i> <span class="fs-16">Log out</span> </a></li>
+            <li><a class="dropdown-item text-white d-flex justify-content-start align-items-center gap-2" href="{{route('logout')}}"><i class="imgr img-power-off text-white fs-18"></i> <span class="fs-16">Log out</span> </a></li>
           
           </ul>
         </li>
