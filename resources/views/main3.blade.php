@@ -61,11 +61,11 @@
     <link rel="stylesheet" href="{{ asset('public/new-design/css/style.min.css') }}" />
 </head>
 <body class="vh-100 overflow-hidden nonDashBoardSection">
-    @include('new-design.layouts.preloader')
+    @include('layouts.preloader')
     <div class="d-flex flex-column">
-    @include('new-design.layouts.header2')
+    @include('layouts.header2')
     <div class="bodyScrollPart d-flex" id="bodyScrollPart">
-            <main class="main-scrollbar w-100">
+            <main class="main-scrollbar w-100 p-4 Without_scroll_content">
                 @yield('content')
             </main>
     </div>
