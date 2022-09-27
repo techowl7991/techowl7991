@@ -1244,6 +1244,7 @@ class AboutController extends Controller
         ]);
         $snapshot = self::$firestoreClient->collection('analytics')->document($request->id)->collection('viewanalytics')->documents();
         $data = $snapshot->rows();
+        dd($data);
         $dta = [];
         foreach ($data as $value) {
             $alldata['name'] = $value['name'];
@@ -1357,9 +1358,9 @@ class AboutController extends Controller
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
-        // dd($request->all());
+        // dd($request->eventfile);
         $mid = $request->mid;
-        $reads = Excel::toArray(new \stdClass(), $request->file('eventfile'));
+        $reads = Excel::toArray(new \stdClass(), $request->eventfile);
         $index = 0;
         foreach ($reads as  $read) {
             foreach ($read as $value) {
