@@ -4,15 +4,15 @@
                 src="{{ asset('/public/new-design/img/logo-1.png') }}" alt="" class="w-100"></a>
 
 
-        @if (\Request::is('campaign_information'))
-            <div class="nav-body d-flex align-items-center gap-3" id="navbarSupportedContent">
+        {{-- @if ('campaign_information' == request()->path()) --}}
+            {{-- <div class="nav-body d-flex align-items-center gap-3" id="navbarSupportedContent">
                 <a href=""
                     class="shadow-none border-0 text-decoration-none text-theme2 bg-light fs-14 fw-bold px-sm-3 p-1 px-2 py-1 top_right_export_btn text-uppercase rounded-5">Back</a>
                 <a href=""
                     class="shadow-none border-0 text-decoration-none text-white bg-theme1 fs-14 fw-bold px-sm-3 p-1 px-2 py-1 top_right_export_btn text-uppercase rounded-5">Save
                     Changes</a>
-            </div>
-        @else
+            </div> --}}
+        {{-- @else --}}
             <!-- Right Side Start -->
             <div class="nav-body d-flex align-items-center" id="navbarSupportedContent">
                 <!-- SideClick Button -->
@@ -44,6 +44,6 @@
                 </ul>
             </div>
             <!-- Right Side End -->
-        @endif
+        {{-- @endif --}}
     </div>
 </nav>
