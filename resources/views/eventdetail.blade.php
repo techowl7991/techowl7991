@@ -192,7 +192,7 @@
                                     <button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="me-3">Add guests</span><i class="imgr img-chevron-down"></i></button>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item fs-12 fs-sm-14" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">One by one</a></li>
-                                        <li><a class="dropdown-item fs-12 fs-sm-14" href="#" data-bs-toggle="modal" data-bs-target="#exampleModalcsv">Import CSV file</a></li>
+                                        <li><a class="dropdown-item fs-12 fs-sm-14" href="#" data-bs-toggle="modal" data-bs-target="#viewguestinfo">Import CSV file</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -557,60 +557,37 @@
                     </div>
                 </div>
 
-                 <div class="modal fade Create-Guest-modal" id="exampleModalcsv" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal fade Create-Guest-modal" id="viewguestinfo" data-bs-backdrop="static" tabindex="-1" aria-labelledby="viewguestinfoLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                         <div class="modal-content">
-                            <div class="modal-header py-3 border-0">
-                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="editguest">Add Guest CSV</h5>
-                                <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                                <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
-                            </div>
-                            <div class="modal-body p-0">
-                                <div class="row px-0 mx-0">
-                                    <div class="col-12 Account event_info px-0 py-2">
-                                        <h4 class="m-0 heading fw-bold text-white px-3 fs-16">Guest Information</h4>
-                                    </div>
-                                    <form action="{{route('addguestcsv')}}" method="post" class="modal-form col-12 mt-3" enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="hidden" name="mid" value="{{$id}}">
-                                        
-                                        <div class="row">
-                                            <div class="col-3 d-flex justify-content-center">
-                                                <!-- userName -->
-                                                <div class="dnone">
-                                                    <div class="h-80px w-80px rounded-circle d-flex justify-content-center align-items-center user_img"><span class="fs-30 text-white fw-bold">DW</span></div>
-                                                    <div class="fs-14 mt-1 text-center"><input type="file" name="eventfile" id="csv1"></div>
-                                                </div>
-                                                <!-- user-Name End -->
-
-                                                <!-- user_img -->
-                                                <div class="d-none">
-                                                    <input class="form-control d-none" type="file" id="chooseFile">
-                                                    <label for="chooseFile" class="h-80px w-80px rounded-circle d-flex justify-content-center align-items-center user_img text-white"><img src="{{ asset('/public/new-design/img/USER.jpg') }}" alt="" class="w-100 rounded-circle"></label>
-                                                    <div class="fs-14 text-center mt-1">Attending</div>
-                                                </div>
-                                                <!-- user-img End -->
-                                            </div>
-
-                                            
-                                            <div class="col-12 px-0 py-3 d-flex justify-content-center gap-2 fotter_button" id="btn11">
-                                                <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                                <button type="submit" class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                                            </div>
-
+                           
+                                <div class="modal-header py-3">
+                                    <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Choose a file</h5>
+                                    <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
+                                </div>
+                                <form action="{{route('addguestcsv')}}" method="post" class="modal-form col-12 mt-3" enctype="multipart/form-data">
+                            <div class="modal-body">
+                                @csrf
+                                <input type="hidden" name="mid" value="{{$id}}">
+                                <div class="input-group">
+                                    <label class="input-group-text p-5 justify-content-center w-100 rounded-8" for="inputGroupFile01">
+                                        <div class="gap-3">
+                                            <i class="imgr img-arrow-to-bottom fs-36 d-block"></i>
+                                            <span class="d-block fs-18 mb-n2 textHover my-3 fs-16 fs-sm-18 fs-md-22">Choose a file</span>
                                         </div>
-                                    </form>
+                                    </label>
+                                    <input type="file" class="form-control d-none" name="eventfile" id="inputGroupFile01">
                                 </div>
                             </div>
-
-
-                            <!-- <div class="modal-footer justify-content-center">
-                                <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                            </div> -->
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-theme1 fs-16 text-white fw-500 px-3">Submit</button>
+                            </div>
+                        </form>
                         </div>
                     </div>
                 </div>
+
+                
 
                
 
