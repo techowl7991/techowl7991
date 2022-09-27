@@ -1,4 +1,4 @@
-@extends('new-design.main4')
+@extends('main3')
 
 @push('meta')
     <title>page_title</title>
@@ -79,7 +79,7 @@
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                     id="password-field" autocomplete="off" required>
                                 <span><i toggle="#password-field" id="eye"
-                                        class="imgs img-eye position-absolute eye-icon"></i></span>
+                                        class="shaowPass imgs img-eye position-absolute eye-icon"></i></span>
                                 <div class="invalid-feedback fs-14">
                                     Please enter your phone number or email
                                 </div>
@@ -341,5 +341,18 @@
 
     @push('scripts')
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+        <script>
+            $(".shaowPass").click(function() {
+        
+                $(this).toggleClass("img-eye img-eye-slash");
+                var input4 = $($(this).attr("toggle"));
+                if (input4.attr("type") == "password") {
+                    input4.attr("type", "text");
+                } else {
+                    input4.attr("type", "password");
+                }
+            });
+        </script>
     @endpush
 @endsection
