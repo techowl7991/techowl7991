@@ -44,7 +44,7 @@ Route::any('/view_analytics_dt', [AboutController::class, 'view_analytics_dt']);
 Route::get('/analyticsview/{id}',[AboutController::class,'analyticsview']);
 Route::any('/view_anyalyticdetail_dt', [AboutController::class, 'view_anyalyticdetail_dt']);
 Route::any('/exportdataanalytics/{id}',[AboutController::class,'exportdataanalytics'])->name('exportdataanalytics');
-Route::any('useraccount/{id}',[AboutController::class,'user_account'])->name('useraccount');
+Route::any('useraccount/{id}',[AboutController::class,'edit_user_account'])->name('useraccount');
 Route::any('update_useraccount/{id}',[AboutController::class,'update_user_account'])->name('update_useraccount');
 Route::any('addguest',[AboutController::class,'add_guest'])->name('addguest');
 Route::any('addguestcsv',[AboutController::class,'add_guest_exl'])->name('addguestcsv');

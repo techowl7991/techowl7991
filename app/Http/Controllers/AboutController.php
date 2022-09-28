@@ -820,8 +820,8 @@ class AboutController extends Controller
             foreach ($titles as $title) {
                 // $editroute = action('AboutController@editvisitor', $title->id());
                 // $editroute = action('AboutController@viewvisitor', $title->id());
-                $edtbtn = "<a role='button' onclick='openmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='edit' id='edit' class='text-danger py-5 px-3'><i class='img img-pencil' aria-hidden='true'></i></a>";
-                $viewbtn = "<a role='button' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='view' class='text-danger py-5 px-3'><i class='img img-eye' aria-hidden='true'  id='view' ></i></a>";
+                $edtbtn = "<a role='button' onclick='openmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='edit' id='edit' class='text-danger py-0 px-3 text-decoration-none ".$title->id()." oncClickDisabled'><i class='img img-pencil' aria-hidden='true'></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
+                $viewbtn = "<a role='button' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='view' class='text-danger py-0 px-3 text-decoration-none view".$title->id()." oncClickDisabled'><i class='img img-eye' aria-hidden='true'  id='view' ></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
                 $a = action('AboutController@senddata');
                 $b = action('AboutController@printbadge');
                 $c = "<form action='" . $a . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
@@ -1256,7 +1256,7 @@ class AboutController extends Controller
         exit;
     }
 
-    public function user_account(Request $request, $id)
+    public function edit_user_account(Request $request, $id)
     {
         $uid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
@@ -1265,12 +1265,10 @@ class AboutController extends Controller
         ]);
         $date = date('Y-m-d');
         $snapshot = self::$firestoreClient->collection('users')->document($uid)->snapshot()->data();
-        // dd($snapshot);
         // $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
         // $database = $factory->createDatabase();
         // $auth = $factory->createAuth();
         // $user = $auth->getUser($uid);
-        // dd($user);
 
 
         // $up_snapshot = self::$firestoreClient->collection('events')->document($uid);
@@ -1279,7 +1277,7 @@ class AboutController extends Controller
 
     public function update_user_account(Request $request, $id)
     {
-        // dd($request->all());
+        // dump($request->all());
         if ($request->isMethod('put')) {
             $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
             $auth = $factory->createAuth();
@@ -1299,7 +1297,10 @@ class AboutController extends Controller
                 'disabled' => false,
                 'date' => date('Y-m-d'),
             ];
-            $docref = self::$firestoreClient->collection('users')->document($uid)->set($userProperties);
+
+            $updatedUser = $auth->updateUser($uid, $userProperties);
+
+            $docref1 = self::$firestoreClient->collection('users')->document($uid)->set($userProperties);
             return redirect()->back()->with('success', 'Profile has been updated successfully');
         }
     }

@@ -13,18 +13,19 @@
                             class="imgs img-bars fs-sm-25 fs-20 text-white"></i>
                     </button>
                 </div>
-                <a href="#"
+                
+                <a href="{{route('email')}}"
                     class="shadow-none border-0 text-decoration-none text-theme2 bg-light fs-14 fw-bold px-sm-3 p-1 px-2 py-1 top_right_export_btn text-uppercase rounded-5">Back</a>
                 <a href="#"
                     class="shadow-none border-0 text-decoration-none text-white bg-theme1 fs-14 fw-bold px-sm-3 p-1 px-2 py-1 top_right_export_btn text-uppercase rounded-5 ms-3">Save
                     Changes</a>
             @else
-              <div class="me-3">
-                <button id="SideClick"
-                    class="show_sidebar_btn shadow-none border-0 rounded bg-theme2 d-flex  justify-content-center align-items-center"><i
-                        class="imgs img-bars fs-sm-25 fs-20 text-white"></i>
-                </button>
-            </div>
+                <div class="me-3">
+                    <button id="SideClick"
+                        class="show_sidebar_btn shadow-none border-0 rounded bg-theme2 d-flex  justify-content-center align-items-center"><i
+                            class="imgs img-bars fs-sm-25 fs-20 text-white"></i>
+                    </button>
+                </div>
                 <ul class="navbar-nav me-auto mb-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link h-sm-35px h-30px w-sm-35px w-30px  rounded-circle bg-white d-flex justify-content-center align-items-center ms-auto"
