@@ -3,9 +3,9 @@
         <li><a class="text-decoration-none mb-1 text-white rounded p-2 d-flex justify-content-start         align-items-center gap-2"
                 href="#"><img src="{{ asset('/public/new-design/img/dashboard.png') }}" alt=""
                     class="w-18px"><span class="fs-16 fs-normal">Dashboard</span> </a></li>
-
-        <li><a class="text-decoration-none mb-1  text-white rounded p-2 d-flex justify-content-start align-items-center gap-2"
-                href="#"><img src="{{ asset('/public/new-design/img/Guest.png') }}" alt=""
+                   
+        <li><a class="{{ 'printdata/'.session()->get('eventid') == request()->path() ? 'active' : '' }} text-decoration-none mb-1  text-white rounded p-2 d-flex justify-content-start align-items-center gap-2"
+                href="{{route('eventdt',session()->get('eventid'))}}"><img src="{{ asset('/public/new-design/img/Guest.png') }}" alt=""
                     class="w-22px"><span class="fs-16 fs-normal">Guests</span> </a></li>
 
         <li><a class="{{ 'email' == request()->path() || 'view_email' == request()->path() ? 'active' : '' }} text-decoration-none mb-1  text-white rounded p-2 d-flex justify-content-start align-items-center gap-2"
