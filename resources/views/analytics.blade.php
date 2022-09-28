@@ -47,7 +47,7 @@
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Total Visitors</div>
-                        <div class="card-text fs-20 text-theme2 fw-bold text-start">300</div>
+                        <div class="card-text fs-20 text-theme2 fw-bold text-start">{{$totalguest}}</div>
                     </div>
                 </div>
             </div>
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">RSVP</div>
-                        <div class="card-text fs-20 text-theme2 fw-bold text-start">20</div>
+                        <div class="card-text fs-20 text-theme2 fw-bold text-start">0</div>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Checked In</div>
-                        <div class="card-text fs-20 text-theme2 fw-bold text-start">4</div>
+                        <div class="card-text fs-20 text-theme2 fw-bold text-start">{{$tcheckedin}}</div>
                     </div>
                 </div>
             </div>
