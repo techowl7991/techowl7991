@@ -391,7 +391,7 @@
             </div>
             </label>
             <input type="file" class="form-control" id="inputGroupFile01">
-        </div>
+        </div>  
       </div>
     </div>
   </div>

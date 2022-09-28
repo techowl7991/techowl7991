@@ -46,13 +46,13 @@
                         <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><img src="{{ asset('/public/new-design/img/mouse.png') }}" alt=""></div>
                     </div>
                     <div class="col">
-                        <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Unique Visitors</div>
+                        <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Total Visitors</div>
                         <div class="card-text fs-20 text-theme2 fw-bold text-start">300</div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">
+        <!-- <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
                     <div class="col-auto">
@@ -64,7 +64,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
@@ -72,7 +72,7 @@
                         <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><i class="imgs img-users fs-20 rounded text-white pe-1 check-icon"></i></div>
                     </div>
                     <div class="col">
-                        <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Invited Guests</div>
+                        <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">RSVP</div>
                         <div class="card-text fs-20 text-theme2 fw-bold text-start">20</div>
                     </div>
                 </div>
