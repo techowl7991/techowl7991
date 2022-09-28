@@ -24,7 +24,7 @@ Route::any('/exportdata/{id}',[AboutController::class,'exportdata'])->name('expo
 Route::any('/register',[AboutController::class,'register'])->name('register');
 Route::any('/addEvent',[AboutController::class,'addEvent'])->name('addEvent');
 Route::any('/sendEmail',[AboutController::class,'sendEmail'])->name('sendEmail');
-Route::get('/printdata/{id}',[AboutController::class,'printdata']);
+Route::get('/printdata/{id}',[AboutController::class,'printdata'])->name('eventdt');
 Route::get('/divprnt/{email}',[AboutController::class,'divprnt']);
 Route::post('/sendata',[AboutController::class,'senddata'])->name('sendata');
 Route::post('/printbadge',[AboutController::class,'printbadge'])->name('printbadge');

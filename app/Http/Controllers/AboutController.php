@@ -111,8 +111,10 @@ class AboutController extends Controller
     {
 
         if (!empty($request->session()->get('uid'))) {
-            // dd('aj');
             $mid = $request->session()->get('uid');
+            // dd('aj');
+            session()->forget('eventid');
+            Session::put('eventid', $id);
             self::$firestoreProjectId = 'guest-app-2eb59';
             self::$firestoreClient = new FirestoreClient([
                 'projectId' => self::$firestoreProjectId,
@@ -486,7 +488,6 @@ class AboutController extends Controller
         //       $snapshot=$snapshot->where('event_startdate', 'LIKE', '%'.$_GET['event_startdate'].'%');
         //     }
         // }
-
         $snapshot = $snapshot->documents();
 
         $query = $snapshot->rows();
@@ -494,7 +495,6 @@ class AboutController extends Controller
         $totalFiltered = $totalTitles;
 
         $titles = $query;
-        // dd($titles);
         if ($totalTitles != 0) {
             $data = array();
             $count = 1;
@@ -509,8 +509,8 @@ class AboutController extends Controller
 
                 $route = action('AboutController@singledelete', $title->id());
                 $editroute = action('AboutController@edit', $title->id());
-                $delbtn = "<a href=" . $route . " class='text-danger py-2 px-3'><i class='text-secondary img img-trash' aria-hidden='true'></i></a>";
-                $edtbtn = "<a href=" . $editroute . " class='text-danger py-2 px-3'><i class='text-secondary img img-pencil' aria-hidden='true'></i></a>";
+                $delbtn = "<a href=" . $route . " class='text-danger py-1 px-2'><i class='text-secondary img img-trash' aria-hidden='true'></i></a>";
+                $edtbtn = "<a href=" . $editroute . " class='text-danger py-1 px-2'><i class='text-secondary img img-pencil' aria-hidden='true'></i></a>";
                 $nestedData['eventid'] = '#A00000' . $title['eventid'];
                 $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="' . $title->id() . '" >';
                 $nestedData['singledel'] = $delbtn;
@@ -771,7 +771,7 @@ class AboutController extends Controller
         $order = $columns[$request->input('order.0.column')];
         $dir = $request->input('order.0.dir');
 
-        // dd($_GET['mid']);
+        // dump($_GET);
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
@@ -791,19 +791,19 @@ class AboutController extends Controller
         $snapshot = self::$firestoreClient->collection('visitor')->document($_GET['id'])->collection('visitor_details');
         if (isset($_GET['visit'])) {
             if ($_GET['visit'] != "" && $_GET['visit'] != "undefined") {
-                $snapshot = $snapshot->where('visit', '=', $_GET['visit']);
+                $snapshot = $snapshot->where('type', '=', $_GET['visit']);
             }
         }
         if (isset($_GET['type'])) {
             if ($_GET['type'] != "" && $_GET['type'] != "undefined") {
-                $snapshot = $snapshot->where('type', '=', $_GET['type']);
+                $snapshot = $snapshot->where('nmtype', '=', $_GET['type']);
             }
         }
-        if (isset($_GET['search'])) {
-            if ($_GET['search'] != "" && $_GET['search'] != "undefined") {
-                $snapshot = $snapshot->where('search', '=', $_GET['search']);
-            }
-        }
+        // if (isset($_GET['search'])) {
+        //     if ($_GET['search'] != "" && $_GET['search'] != "undefined") {
+        //         $snapshot = $snapshot->where('search', '=', $_GET['search']);
+        //     }
+        // }
 
         $snapshot = $snapshot->documents();
 
@@ -904,7 +904,6 @@ class AboutController extends Controller
 
     public function updateguest(Request $request)
     {
-        // dd($request->all());
         $uid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -925,10 +924,11 @@ class AboutController extends Controller
             'tags' => ($request->tags) ? $request->tags : '',
             'linkedin' => ($request->linkedin) ? $request->linkedin : '',
             'twitter' => ($request->twitter) ? $request->twitter : '',
-
+            'nmtype' => ($request->nmtype) ? $request->nmtype : '',
         ];
+        // dd($data);
         // $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
-        $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('events_data')->document($id1)->set($data);
+        $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id1)->set($data);
         // dd($uid);
         // $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
         // // dd($snapshot->data());
@@ -1036,12 +1036,12 @@ class AboutController extends Controller
 
     public function analytics(Request $request)
     {
-        if (empty($request->session()->get('uid'))) {
-            return redirect('/login');
-        } else {
-            $mid = $request->session()->get('uid');
-            return view('analytics', compact('mid'));
-        }
+        // if (empty($request->session()->get('uid'))) {
+        //     return redirect('/login');
+        // } else {
+        //     $mid = $request->session()->get('uid');
+            return view('analytics');
+        // }
     }
 
     public function view_analytics_dt(Request $request)
@@ -1325,8 +1325,11 @@ class AboutController extends Controller
             'tags' => ($request->tags) ? $request->tags : '',
             'linkedin' => ($request->linkedin) ? $request->linkedin : '',
             'twitter' => ($request->twitter) ? $request->twitter : '',
+            'nmtype' => ($request->nmtype) ? $request->nmtype : '',
+            'visit' => 'No',
 
         ];
+        // dd($data);
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
         $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
         $snap = $snapshot->data();
@@ -1356,7 +1359,7 @@ class AboutController extends Controller
                 if ($index == 0) {
                 } else {
                     $eventData = [
-                        'type' => $value[0],
+                        'nmtitle' => $value[0],
                         'evefirstname' => $value[1],
                         'evelastname' =>  $value[2],
                         'eveemail' => $value[3],
@@ -1366,6 +1369,7 @@ class AboutController extends Controller
                         'tags' => $value[7],
                         'linkedin' => $value[8],
                         'twitter' => $value[9],
+                        'nmtype' => $value[10],
                     ];
                     $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($eventData);
                     $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
