@@ -344,7 +344,7 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                             <div class="row px-0 mx-0">
                                                 <div class="col-12 form-floating mb-2">
                                                     <select class="form-select h-50px shadow-none Inpt border-0" id="floatingSelect" name="type" aria-label="Floating label select example">
-                                                        <option lass="choose py-1" selected>Open this select menu</option>
+                                                        <option lass="choose py-1">Open this select menu</option>
                                                         <option lass="choose py-1" value="checkin">Check In</option>
                                                         <option lass="choose py-1" value="checkout">Check out</option>
                                                     </select>
@@ -352,7 +352,7 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                                 </div>
                                                 <div class="col-4 mb-2 form-floating">
                                                     <select class="form-select h-50px shadow-none Inpt border-0" id="floatingSelect" name="nmtitle" aria-label="Floating label select example">
-                                                        <option lass="choose py-1" selected>Choose.</option>
+                                                        <option lass="choose py-1">Choose.</option>
                                                         <option lass="choose py-1" value="Mr">Mr</option>
                                                         <option lass="choose py-1" value="Mrs">Mrs</option>
                                                         <!-- <option lass="choose py-1" value="3">Three</option> -->
@@ -394,7 +394,7 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                                 </div>
                                                 <div class="col-6 mb-2 form-floating">
                                                     <select class="form-select h-50px shadow-none Inpt border-0" id="floatingSelect1" name="nmtype" aria-label="Floating label select example1">
-                                                        <option lass="choose py-1" selected>Choose.</option>
+                                                        <option lass="choose py-1">Choose.</option>
                                                         <option lass="choose py-1" value="VIP">VIP</option>
                                                         <option lass="choose py-1" value="Reg">Regular</option>
                                                         <!-- <option lass="choose py-1" value="3">Three</option> -->
@@ -484,7 +484,7 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                             <div class="row px-0 mx-0">
                                                 <div class="col-12 form-floating mb-2">
                                                     <select class="form-select h-50px shadow-none Inpt border-0" id="status1" name="type" aria-label="Floating label select example">
-                                                        <option lass="choose py-1" selected>Open this select menu</option>
+                                                        <option lass="choose py-1" >Open this select menu</option>
                                                         <option lass="choose py-1" value="checkin">Check In</option>
                                                         <option lass="choose py-1" value="checkout">Check out</option>
                                                     </select>
@@ -492,7 +492,7 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                                 </div>
                                                 <div class="col-4 mb-2 form-floating">
                                                     <select class="form-select h-50px shadow-none Inpt border-0" id="status2" name="nmtitle" aria-label="Floating label select example">
-                                                        <option lass="choose py-1" selected>Choose.</option>
+                                                        <option lass="choose py-1" >Choose.</option>
                                                         <option lass="choose py-1" value="Mr">Mr</option>
                                                         <option lass="choose py-1" value="Mrs">Mrs</option>
                                                         <!-- <option lass="choose py-1" value="3">Three</option> -->
@@ -535,7 +535,7 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
 
                                                 <div class="col-6 mb-2 form-floating">
                                                     <select class="form-select h-50px shadow-none Inpt border-0" id="nmtype1" name="nmtype" aria-label="Floating label select example1">
-                                                        <option lass="choose py-1" selected>Choose.</option>
+                                                        <option lass="choose py-1" >Choose.</option>
                                                         <option lass="choose py-1" value="VIP">VIP</option>
                                                         <option lass="choose py-1" value="Reg">Regular</option>
                                                         <!-- <option lass="choose py-1" value="3">Three</option> -->

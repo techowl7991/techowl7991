@@ -925,6 +925,7 @@ class AboutController extends Controller
             'linkedin' => ($request->linkedin) ? $request->linkedin : '',
             'twitter' => ($request->twitter) ? $request->twitter : '',
             'nmtype' => ($request->nmtype) ? $request->nmtype : '',
+            'visit' => 'No',
         ];
         // dd($data);
         // $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
@@ -940,6 +941,19 @@ class AboutController extends Controller
         //             $evedata['event_name'] = $snap['event_name'];
         //             // $evedata['address'] = $snap['address'];
         //             self::$firestoreClient->collection('eventsemail')->add($evedata);
+
+        $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
+        $snap = $snapshot->data();
+        if ($data['nmtype'] == 'vip' or $data['nmtype'] == 'VIP') {
+            $snap['vip'] = $snap['vip'] + 1;
+            $snap['Reg'] = $snap['Reg'] - 1;
+        } else {
+            $snap['Reg'] = $snap['Reg'] + 1;
+            $snap['vip'] = $snap['vip'] - 1;
+        }
+        $snap['total']=$snap['vip']+$snap['Reg'];
+        $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->set($snap);
+
         return redirect()->back();
     }
 
@@ -971,10 +985,11 @@ class AboutController extends Controller
                                 'type' =>  $value[1],
                                 'email' => $value[2],
                                 'company' =>  $value[3],
+                                'nmtype' =>  $value[4],
                                 'visit' => 'No',
                                 'status' => 0
                             ];
-                            if ($eventData['type'] == 'vip' or $eventData['type'] == 'VIP') {
+                            if ($eventData['nmtype'] == 'vip' or $eventData['nmtype'] == 'VIP') {
                                 $totalvip = $totalvip + 1;
                             } else {
                                 $totalreg = $totalreg + 1;
@@ -997,11 +1012,12 @@ class AboutController extends Controller
                         'name' => $request->evename[$i],
                         'email' => $request->eveemail[$i],
                         'type' => $request->evetype[$i],
+                        'nmtype' => $request->nmtype[$i],
                         'company' => $request->evencname[$i],
                         'visit' => 'No',
                         'status' => 0
                     ];
-                    if ($request->evetype[$i] == 'vip' or $request->evetype[$i] == 'VIP') {
+                    if ($request->nmtype[$i] == 'vip' or $request->nmtype[$i] == 'VIP') {
                         $totalvip = $totalvip + 1;
                     } else {
                         $totalreg = $totalreg + 1;
@@ -1333,6 +1349,14 @@ class AboutController extends Controller
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
         $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
         $snap = $snapshot->data();
+        if ($data['nmtype'] == 'vip' or $data['nmtype'] == 'VIP') {
+            $snap['vip'] = $snap['vip'] + 1;
+        } else {
+            $snap['Reg'] = $snap['Reg'] + 1;
+        }
+        $snap['total']=$snap['vip']+$snap['Reg'];
+        $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->set($snap);
+        // dd($snap);
         $token = $mid . '(**)' . $docref->id();
         $evedata['token'] = $token;
         $evedata['event_startdate'] = $snap['event_startdate'];
@@ -1370,10 +1394,20 @@ class AboutController extends Controller
                         'linkedin' => $value[8],
                         'twitter' => $value[9],
                         'nmtype' => $value[10],
+                        'visit' => 'No',
                     ];
                     $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($eventData);
                     $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
                     $snap = $snapshot->data();
+
+                    if ($eventData['nmtype'] == 'vip' or $eventData['nmtype'] == 'VIP') {
+                        $snap['vip'] = $snap['vip'] + 1;
+                    } else {
+                        $snap['Reg'] = $snap['Reg'] + 1;
+                    }
+                    $snap['total']=$snap['vip']+$snap['Reg'];
+                    $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->set($snap);
+
                     $token = $mid . '(**)' . $docref->id();
                     $evedata['token'] = $token;
                     $evedata['event_startdate'] = $snap['event_startdate'];
@@ -1543,9 +1577,36 @@ class AboutController extends Controller
         return view('email2');
     }
 
-    public function get_analytics()
+    public function get_analytics(Request $request)
     {
-        return view('analytics');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        // dd($id);
+        $USERID = $request->session()->get('uid');
+        $snapshot = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->documents();
+        $totalguest=0;
+        $tcheckedin=0;
+        foreach($snapshot as $eventdata){
+            $eve = $eventdata->data();
+            $totalguest = $eve['total']+$totalguest;
+            $snapshot1 = self::$firestoreClient->collection('visitor')->document($eventdata->id())->collection('visitor_details')->where('type','=','checkin')->documents();
+            $tcheckedin = count($snapshot1->rows())+$tcheckedin;
+            // $totalcheckedin = 0;
+            // foreach($snapshot1 as $snapdata){
+            //     $checkdata = $snapdata->data();
+            //     if($checkdata['type']=='checkin'){
+            //         $totalcheckedin = $totalcheckedin+1;
+            //     }else{
+            //         $totalcheckedin = $totalcheckedin;
+            //     }
+            // }
+            // $tcheckedin = $tcheckedin+$totalcheckedin;
+        }
+        // dd($total);
+        // dd($snapshot->snapshot());
+        return view('analytics',compact('totalguest','tcheckedin'));
     }
     public function get_setting()
     {
