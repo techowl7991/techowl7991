@@ -82,7 +82,6 @@ class AboutController extends Controller
 
                 $database = $factory->createDatabase();
                 $userProperties = [
-                    // 'displayName' => $request->name,
                     'FirstName' => $request->fname,
                     'LastName' => $request->lname,
                     'email' => $request->email,
@@ -90,7 +89,6 @@ class AboutController extends Controller
                     'password' => $request->password,
                     'disabled' => false,
                     'date' => date('Y-m-d'),
-                    // 'date'=> $request->date('y-m-d'),
                 ];
                 $auth = $factory->createAuth();
                 $createdUser = $auth->createUser($userProperties);
@@ -153,9 +151,7 @@ class AboutController extends Controller
 
     public function addEvent(Request $request)
     {
-        // dd($request->all());
         if ($request->isMethod('post')) {
-
             // $eve = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->add($evedata);
             $USERID = $request->session()->get('uid');
             self::$firestoreProjectId = 'guest-app-2eb59';
@@ -163,7 +159,6 @@ class AboutController extends Controller
                 'projectId' => self::$firestoreProjectId,
             ]);
 
-            // dd($request->all());
             if (date('m/d/Y h:i:s A', strtotime($request->eventstartdate)) < date('m/d/Y h:i:s A')) {
                 return redirect()->back()->with('alert', 'Start Date Should Be greater then Today Date');
             }
@@ -177,7 +172,6 @@ class AboutController extends Controller
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
             }
-
             $data = [
                 'event_startdate' => $request->eventstartdate,
                 'event_enddate' => $request->eventenddate,
@@ -191,7 +185,6 @@ class AboutController extends Controller
                 'event_timezone' => $request->eventtimezone,
                 'event_type' => $request->eventtype,
                 'event_sub_type' => $dat,
-
             ];
 
             $geteventid = self::$firestoreClient->collection('eventidupdate')->documents();
@@ -310,9 +303,7 @@ class AboutController extends Controller
                 'projectId' => self::$firestoreProjectId,
             ]);
             $snapshot = self::$firestoreClient->collection('timezone')->orderBy('timezonename', 'ASC')->documents();
-            // dump($snapshot);
             $data = $snapshot->rows();
-            // dd($data);
             return view('addevent', compact('data'));
         }
     }
@@ -638,7 +629,6 @@ class AboutController extends Controller
 
     public function edit(Request $request, $id)
     {
-
         $mid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -648,17 +638,12 @@ class AboutController extends Controller
         $data = $snapshot1->rows();
 
         $snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->snapshot()->data();
-
-
         // $docref1 = self::$firestoreClient->collection('visitor')->document($id)->collection('visitor_details')->documents();
-        // dd($snapshot);
         return view('editevent', compact('snapshot', 'id', 'data'));
     }
 
     public function update(Request $request, $id)
     {
-
-        // dd($request->all());
         if ($request->isMethod('put')) {
             $USERID = $request->session()->get('uid');
             self::$firestoreProjectId = 'guest-app-2eb59';
@@ -755,7 +740,7 @@ class AboutController extends Controller
     }
 
     public function multidelete_guest(Request $request)
-    {   
+    {
         $ids = $request->id;
         $vid = $request->vid;
         $mid = $request->session()->get('uid');
@@ -859,7 +844,7 @@ class AboutController extends Controller
                 </form>";
 
                 $nestedData['id'] = $count;
-                $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" data-mid="'.$chid.'" value="' . $title->id() . '" >';
+                $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" data-mid="' . $chid . '" value="' . $title->id() . '" >';
                 $nestedData['name'] = $title['evefirstname'];
                 $nestedData['company'] = $title['orgenization'];
                 $nestedData['type'] = $title['type'];
@@ -1280,6 +1265,7 @@ class AboutController extends Controller
         ]);
         $date = date('Y-m-d');
         $snapshot = self::$firestoreClient->collection('users')->document($uid)->snapshot()->data();
+        // dd($snapshot);
         // $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
         // $database = $factory->createDatabase();
         // $auth = $factory->createAuth();
@@ -1293,6 +1279,7 @@ class AboutController extends Controller
 
     public function update_user_account(Request $request, $id)
     {
+        // dd($request->all());
         if ($request->isMethod('put')) {
             $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
             $auth = $factory->createAuth();
@@ -1352,7 +1339,8 @@ class AboutController extends Controller
         return redirect()->back();
     }
 
-    public function add_guest_exl(Request $request){
+    public function add_guest_exl(Request $request)
+    {
         $uid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -1388,18 +1376,18 @@ class AboutController extends Controller
                     $evedata['event_name'] = $snap['event_name'];
                     // $evedata['address'] = $snap['address'];
                     self::$firestoreClient->collection('eventsemail')->add($evedata);
-                  
+
                     // if ($eventData['type'] == 'vip' or $eventData['type'] == 'VIP') {
                     //     $totalvip = $totalvip + 1;
                     // } else {
                     //     $totalreg = $totalreg + 1;
                     // }
-                    
+
                 }
                 $index = $index + 1;
             }
         }
-          return redirect()->back();
+        return redirect()->back();
     }
 
     public function viewgatekeeper(Request $request, $mid)
@@ -1512,7 +1500,7 @@ class AboutController extends Controller
             ]);
 
             $uid = $id;
-            if($request->password == $request->confirm_new_password){
+            if ($request->password == $request->confirm_new_password) {
                 $newpasswordProperties = [
                     'password' => $request->password,
                     'FirstName' => $request->fname,
@@ -1524,11 +1512,43 @@ class AboutController extends Controller
                 ];
                 $docref = self::$firestoreClient->collection('users')->document($uid)->set($newpasswordProperties);
                 return redirect()->back()->with('success', 'Password successfully changed !!');
-            }
-            else{
+            } else {
                 return redirect()->back()->with('success', 'Password does not matched !!');
             }
-            
         }
+    }
+
+    public function email(Request $request)
+    {
+        if (empty($request->session()->get('uid'))) {
+            return redirect('/login');
+        } else {
+            $mid = $request->session()->get('uid');
+            return view('email', compact('mid'));
+        }
+    }
+
+    public function campaign_information()
+    {
+        return view('campaign-nformation');
+    }
+
+    public function view_email()
+    {
+        return view('email2');
+    }
+
+    public function get_analytics()
+    {
+        return view('analytics');
+    }
+    public function get_setting()
+    {
+        return view('setting');
+    }
+
+    public function analytics_booth_name()
+    {
+        return view('analytics-booth-name');
     }
 }
