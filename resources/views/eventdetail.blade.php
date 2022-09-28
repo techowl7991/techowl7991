@@ -646,86 +646,123 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
 <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
+<style>
+    .oncClickDisabled {
+        display: grid;
+    }
+    .oncClickDisabled span {
+        display: none;
+    }
+    .oncClickDisabled.active i {
+        display: none;
+    }
+    .oncClickDisabled.active span {
+        display: block;
+    }
+    .oncClickDisabled.active {
+        pointer-events: none;
+    }
+    .disabledClick {
+        pointer-events: none
+    }
+    
+</style>
+
+    <script>
+
+        function openmodal(id,mid){
+            $('#btn11').removeClass('d-none');
+            $('#viewguest').addClass('d-none');
+            $('#editguest').removeClass('d-none');
+            $('.'+id).addClass('active');
+            $('.oncClickDisabled').addClass('disabledClick');
+            console.log('hello');
+            $('#id1').val(id);
+                    $('#id2').val(mid);
+            $.ajax({
+
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                url: "{{ route('editvisitor') }}",
+                type: "post",
+                data: {
+                    id: id,
+                    mid:mid,
+                },
+                success: function(response) {
+                    $('.'+id).removeClass('active');
+                    $('.oncClickDisabled').removeClass('disabledClick');
+                    
+                    console.log('hello2');
+                    $('#twiiter1').val(response.twitter);
+                    $('#linkedin1').val(response.linkedin);
+                    
+                    $('#mnumber1').val(response.mobileno);
+                    $('#organization1').val(response.orgenization);
+                    $('#jobtitle1').val(response.jobtitle);
+                    $('#email1').val(response.eveemail);
+                    $('#lname1').val(response.evelastname);
+                    $('#fname1').val(response.evefirstname);
+                    $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
+                    $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
+                    $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
+                    $(`#nmtype1 option[value="${response.nmtype}"]`).attr("selected", "selected");
+                    $('#exampleModal1').modal('toggle');
+                    $('#exampleModal1').modal('show');
+                }
+            })
+        }
+        function viewmodal(id,mid){
+            // $('#exampleModal2').modal('toggle');
+            // $('#exampleModal2').modal('show');
+            $('.view'+id).addClass('active');
+            $('.oncClickDisabled').addClass('disabledClick');
+            $.ajax({
+
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                url: "{{ route('viewvisitor') }}",
+                type: "post",
+                data: {
+                    id: id,
+                    mid:mid,
+                },
+                success: function(response) {
+                    $('.view'+id).removeClass('active');
+                    $('.oncClickDisabled').removeClass('disabledClick');
+                    $('#twiiter1').val(response.twitter);
+                    $('#linkedin1').val(response.linkedin);
+                    // $('#tags1').val(response.tags);
+                    $('#mnumber1').val(response.mobileno);
+                    $('#organization1').val(response.orgenization);
+                    $('#jobtitle1').val(response.jobtitle);
+                    $('#email1').val(response.eveemail);
+                    $('#lname1').val(response.evelastname);
+                    $('#fname1').val(response.evefirstname);
+                    
+                    $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
+                    $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
+                    $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
+                    $(`#nmtype1 option[value="${response.nmtype}"]`).attr("selected", "selected");
+                    $('#btn11').addClass('d-none');
+                    $('#editguest').addClass('d-none');
+                    $('#viewguest').removeClass('d-none');
+                    $('#exampleModal1').modal('toggle');
+                    $('#exampleModal1').modal('show');
+                }
+                })
+        }
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
 
 
 <script>
-    function openmodal(id, mid) {
-        $('#btn11').removeClass('d-none');
-        $('#viewguest').addClass('d-none');
-        $('#editguest').removeClass('d-none');
-        $('#id1').val(id);
-        $('#id2').val(mid);
-        $.ajax({
-
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            url: "{{ route('editvisitor') }}",
-            type: "post",
-            data: {
-                id: id,
-                mid: mid,
-            },
-            success: function(response) {
-                console.log('response', response)
-                $('#twiiter1').val(response.twitter);
-                $('#linkedin1').val(response.linkedin);
-
-                $('#mnumber1').val(response.mobileno);
-                $('#organization1').val(response.orgenization);
-                $('#jobtitle1').val(response.jobtitle);
-                $('#email1').val(response.eveemail);
-                $('#lname1').val(response.evelastname);
-                $('#fname1').val(response.evefirstname);
-                $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
-                $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
-                $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
-                $('#exampleModal1').modal('toggle');
-                $('#exampleModal1').modal('show');
-                $(`#nmtype1 option[value="${response.nmtype}"]`).attr("selected", "selected");
-
-            }
-        })
-    }
-
-    function viewmodal(id, mid) {
-        // $('#exampleModal2').modal('toggle');
-        // $('#exampleModal2').modal('show');
-        $.ajax({
-
-            headers: {
-                'X-CSRF-TOKEN': "{{ csrf_token() }}"
-            },
-            url: "{{ route('viewvisitor') }}",
-            type: "post",
-            data: {
-                id: id,
-                mid: mid,
-            },
-            success: function(response) {
-                $('#twiiter1').val(response.twitter);
-                $('#linkedin1').val(response.linkedin);
-                // $('#tags1').val(response.tags);
-                $('#mnumber1').val(response.mobileno);
-                $('#organization1').val(response.orgenization);
-                $('#jobtitle1').val(response.jobtitle);
-                $('#email1').val(response.eveemail);
-                $('#lname1').val(response.evelastname);
-                $('#fname1').val(response.evefirstname);
-
-                $(`#status1 option[value="${response.type}"]`).attr("selected", "selected");
-                $(`#status2 option[value="${response.nmtitle}"]`).attr("selected", "selected");
-                $(`#tags1 option[value="${response.tags}"]`).attr("selected", "selected");
-                $('#btn11').addClass('d-none');
-                $('#editguest').addClass('d-none');
-                $('#viewguest').removeClass('d-none');
-                $('#exampleModal1').modal('toggle');
-                $('#exampleModal1').modal('show');
-            }
-        })
-    }
+    
 </script>
 
 <script type="text/javascript">
