@@ -36,6 +36,8 @@ Route::any('/singledel/{id}', [AboutController::class, 'singledelete']);
 Route::any('/dataedit/{id}', [AboutController::class, 'edit']);
 Route::any('/dataupdate/{id}', [AboutController::class, 'update'])->name('update');
 Route::any('/view_eventdetail_dt', [AboutController::class, 'view_eventdetail_dt']);
+Route::any('/verify/{id}/{token}', [AboutController::class, 'verify']);
+Route::any('/updateverifcation', [AboutController::class, 'update_verifcation'])->name('updateverifcation');
 
 Route::any('/addVisitor/{id}',[AboutController::class,'addVisitor'])->name('addVisitor');
 

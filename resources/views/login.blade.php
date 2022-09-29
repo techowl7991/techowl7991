@@ -1,7 +1,7 @@
 @extends('new-design.main')
 
 @push('meta')
-<title>page_title</title>
+<title>Login</title>
 
 <meta name="title" content="page_title" />
 <meta name="description" content="page_description" />

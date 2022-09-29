@@ -1,7 +1,7 @@
 @extends('main2')
 
 @push('meta')
-<title>page_title</title>
+<title>Analytics</title>
 
 <meta name="title" content="page_title" />
 <meta name="description" content="page_description" />
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">RSVP</div>
-                        <div class="card-text fs-20 text-theme2 fw-bold text-start">0</div>
+                        <div class="card-text fs-20 text-theme2 fw-bold text-start">{{$rsvp}}</div>
                     </div>
                 </div>
             </div>

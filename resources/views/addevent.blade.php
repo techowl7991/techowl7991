@@ -1,9 +1,9 @@
 @extends('main3')
 
 @push('meta')
-    <title>page_title</title>
+    <title>Create Event</title>
 
-    <meta name="title" content="page_title" />
+    <meta name="title" content="Create Event" />
     <meta name="description" content="page_description" />
     <meta name="keywords" content="page_keywords" />
 

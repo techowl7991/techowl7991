@@ -1,7 +1,7 @@
 @extends('main3')
 
 @push('meta')
-    <title>page_title</title>
+    <title>Campaign Information</title>
 
     <meta name="title" content="page_title" />
     <meta name="description" content="page_description" />

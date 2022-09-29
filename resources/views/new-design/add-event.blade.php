@@ -1,7 +1,7 @@
 @extends('new-design.main2')
 
 @push('meta')
-    <title>page_title</title>
+    <title>Create Event</title>
 
     <meta name="title" content="page_title" />
     <meta name="description" content="page_description" />
@@ -17,13 +17,13 @@
     <meta property="og:url" content="{{ asset('/') }}">
     <meta property="og:title" content="page_title">
     <meta property="og:description" content="page_description">
-    <meta property="og:image" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
-    <meta property="og:image:secure_url" content="{{ asset('/public/new-design/img/logos/logo.png') }}">
+    <meta property="og:image" content="{{ asset('/public/new-design/img/logo.png') }}">
+    <meta property="og:image:secure_url" content="{{ asset('/public/new-design/img/logo.png') }}">
     <meta name="classification" content="page_title" />
     
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" />
-    <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-original.png') }}" id="light-scheme-icon">
-    <link rel="icon" href="{{ asset('/public/new-design/img/logos/favicon-white.png') }}" id="dark-scheme-icon">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('/public/new-design/img/favicon-white.png') }}" />
+    <link rel="icon" href="{{ asset('/public/new-design/img/favicon-original.png') }}" id="light-scheme-icon">
+    <link rel="icon" href="{{ asset('/public/new-design/img/favicon-white.png') }}" id="dark-scheme-icon">
     <link rel="canonical" href="{{ asset('/') }}" />
 
 @endpush

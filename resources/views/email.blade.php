@@ -1,7 +1,7 @@
 @extends('main2')
 
 @push('meta')
-<title>page_title</title>
+<title>Email</title>
 
 <meta name="title" content="page_title" />
 <meta name="description" content="page_description" />
