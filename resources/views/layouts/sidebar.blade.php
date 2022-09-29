@@ -22,7 +22,10 @@
         <li><a class="{{ 'get_setting' == request()->path() ? 'active' : '' }} text-decoration-none mb-1  text-white rounded p-2 d-flex justify-content-start align-items-center gap-2"
                 href="{{ route('get_setting') }}"><i class="imgs img-cog text-white fs-18"></i> <span
                     class="fs-16 fs-normal">Setting</span> </a></li>
-    </ul>
+        <li><a class="{{ 'viewwebsite/'.$sess == request()->path() ? 'active' : '' }} text-decoration-none mb-1  text-white rounded p-2 d-flex justify-content-start align-items-center gap-2"
+        href="{{route('viewweb',$sess)}}"><img src="{{ asset('/public/new-design/img/Guest.png') }}" alt=""
+        class="w-22px"><span class="fs-16 fs-normal">Micro Website</span> </a></li>
+</ul>
 
 
 
