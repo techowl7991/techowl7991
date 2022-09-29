@@ -1677,8 +1677,8 @@ class AboutController extends Controller
                 $tcheckedin = $tcheckedin + 1;
             }
         }
-        // $per = ($tcheckedin/($totalguest != 0)?$totalguest:1)*100;
-        // dd($per);
+        $per = ($tcheckedin/$totalguest)*100;
+        
         // foreach($snapshot as $eventdata){
         //     $eve = $eventdata->data();
         //     // $totalguest = $eve['total']+$totalguest;
@@ -1698,7 +1698,7 @@ class AboutController extends Controller
         // }
         // dd($total);
         // dd($snapshot->snapshot());
-        return view('analytics',compact('totalguest','tcheckedin','rsvp'));
+        return view('analytics',compact('totalguest','tcheckedin','rsvp','per'));
     }
     public function get_setting()
     {
