@@ -107,9 +107,7 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                             <li class="py-1 px-3">
                                 <div class="form-check">
 
-                                    <input type="radio" id="customcheckbox22" name="visit" value="checkout" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') {
-                                                                                                                                                                                                                        echo 'checked';
-                                                                                                                                                                                                                    } ?>>
+                                    <input type="radio" id="customcheckbox22" name="visit" value="NO" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') { echo 'checked';} ?>>
                                     <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox22"><span>Not Attendding</span><span class="value">{{count($sidedata['notattending'])}}</span></label>
                                 </div>
                             </li>
@@ -345,8 +343,8 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                                 <div class="col-12 form-floating mb-2">
                                                     <select class="form-select h-50px shadow-none Inpt border-0" id="floatingSelect" name="type" aria-label="Floating label select example">
                                                         <option lass="choose py-1">Open this select menu</option>
-                                                        <option lass="choose py-1" value="checkin">Check In</option>
-                                                        <option lass="choose py-1" value="checkout">Check out</option>
+                                                        <option lass="choose py-1" value="verified">Verified</option>
+                                                        <option lass="choose py-1" value="RSVP">RSVP</option>
                                                     </select>
                                                     <label for="floatingSelect" class="fs-12 ps-4">Status</label>
                                                 </div>
@@ -403,9 +401,9 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                                 </div>
                                                 <div class="col-12">
                                                     <select class="form-control basicSelect" name="tags" multiple="multiple">
-                                                        <option selected="selected">orange</option>
+                                                        <option >orange</option>
                                                         <option>white</option>
-                                                        <option selected="selected">purple</option>
+                                                        <option >purple</option>
                                                     </select>
                                                 </div>
 
@@ -485,8 +483,8 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                                 <div class="col-12 form-floating mb-2">
                                                     <select class="form-select h-50px shadow-none Inpt border-0" id="status1" name="type" aria-label="Floating label select example">
                                                         <option lass="choose py-1" >Open this select menu</option>
-                                                        <option lass="choose py-1" value="checkin">Check In</option>
-                                                        <option lass="choose py-1" value="checkout">Check out</option>
+                                                        <option lass="choose py-1" value="verified">Verified</option>
+                                                        <option lass="choose py-1" value="RSVP">RSVP</option>
                                                     </select>
                                                     <label for="floatingSelect" class="fs-12 ps-4">Status</label>
                                                 </div>
@@ -544,9 +542,9 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                                 </div>
                                                 <div class="col-12">
                                                     <select class="form-control basicSelect" id="tags1" name="tags" multiple="multiple">
-                                                        <option selected="selected">orange</option>
+                                                        <option >orange</option>
                                                         <option>white</option>
-                                                        <option selected="selected">purple</option>
+                                                        <option >purple</option>
                                                     </select>
                                                 </div>
 

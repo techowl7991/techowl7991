@@ -1,7 +1,7 @@
 @extends('main2')
 
 @push('meta')
-<title>page_title</title>
+<title>Analytics</title>
 
 <meta name="title" content="page_title" />
 <meta name="description" content="page_description" />
@@ -73,7 +73,7 @@
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">RSVP</div>
-                        <div class="card-text fs-20 text-theme2 fw-bold text-start">0</div>
+                        <div class="card-text fs-20 text-theme2 fw-bold text-start">{{$rsvp}}</div>
                     </div>
                 </div>
             </div>
@@ -98,12 +98,13 @@
                 <div class="card-body row align-items-center py-4 mx-0">
                     <div class="col-sm-auto">
                         <div class="card-subtitle text-start lh1 fs-sm-16 fs-14 text-theme2 fw-bold">Attendees / Registrants (%)</div>
-                        <div class="card-text fs-xl-60 fs-lg-50 fs-md-45 fs-sm-40 fs-35 text-theme1 lh-1 pt-2 fw-bold text-sm-center">5.65%</div>
+                        <div class="card-text fs-xl-60 fs-lg-50 fs-md-45 fs-sm-40 fs-35 text-theme1 lh-1 pt-2 fw-bold text-sm-center">{{$per}}%</div>
                     </div>
                     <div class="col text-sm-end text-center mt-sm-0 mt-4 progress_bar">
                         <svg class="position-relative h-120px w-120px">
                             <circle class="w-100 h-100" cx="60" cy="60" r="50"></circle>
-                            <circle class="w-100 h-100" cx="60" cy="60" r="50" style="--percent: 13"></circle>
+                            <?php $dd = $per/2;?>
+                            <circle class="w-100 h-100" cx="60" cy="60" r="50" style="--percent:{{$dd}}"></circle>
                         </svg>
                     </div>
                 </div>
