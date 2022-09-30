@@ -508,7 +508,7 @@ class AboutController extends Controller
 
                 $action = "<a href=" . $b . " class='btn btn-dark shadow printBtn py-1 px-3'>Detail</a>";
                 $viewgate = "<a href=" . $d . " class='btn btn-dark shadow printBtn py-1 px-3'>View</a>";
-                $actionQR = '<a class="btn btn-dark text-white shadow printBtn py-1 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
+                $actionQR = '<a class="btn btn-dark text-white shadow printBtn py-1 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close  btn bg-transparent border-0 fs-24 fw-normal p-0 text-muted shadow-none" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
 
                 $route = action('AboutController@singledelete', $title->id());
                 $editroute = action('AboutController@edit', $title->id());
@@ -823,8 +823,8 @@ class AboutController extends Controller
             foreach ($titles as $title) {
                 // $editroute = action('AboutController@editvisitor', $title->id());
                 // $editroute = action('AboutController@viewvisitor', $title->id());
-                $edtbtn = "<a role='button' onclick='openmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='edit' id='edit' class='text-danger py-0 px-3 text-decoration-none ".$title->id()." oncClickDisabled'><i class='img img-pencil' aria-hidden='true'></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
-                $viewbtn = "<a role='button' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='view' class='text-danger py-0 px-3 text-decoration-none view".$title->id()." oncClickDisabled'><i class='img img-eye' aria-hidden='true'  id='view' ></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
+                $edtbtn = "<a role='button' onclick='openmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='edit' id='edit' class='text-danger py-0 px-3 text-decoration-none ".$title->id()." oncClickDisabled'><i class='imgs img-pen text-secondary' aria-hidden='true'></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
+                $viewbtn = "<a role='button' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='view' class='text-danger py-0 px-3 text-decoration-none view".$title->id()." oncClickDisabled'><i class='img img-eye text-secondary' aria-hidden='true'  id='view' ></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
                 $a = action('AboutController@senddata');
                 $b = action('AboutController@printbadge');
                 $c = "<form action='" . $a . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
@@ -833,7 +833,7 @@ class AboutController extends Controller
                 <input type='hidden' name='email' value='" . $title['eveemail'] . "'>
                 <input type='hidden' name='qrvalue' value='" . $_GET['id'] . '(**)' . $title->id() . "'>
                 <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
-                <input type='submit' class='btn btn-primary text-uppercase fw-semibold' style='float:left'
+                <input type='submit' class='btn btn-dark text-uppercase fw-semibold' style='float:left'
                     value='🖶 Print Ticket'>
                 </form>
                 <form action='" . $b . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
@@ -842,7 +842,7 @@ class AboutController extends Controller
                     <input type='hidden' name='email' value='" . $title['eveemail'] . "'>
                     <input type='hidden' name='qrvalue' value='" . $_GET['id'] . '(**)' . $title->id() . "'>
                     <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
-                    <input type='submit' class='btn btn-primary text-uppercase fw-semibold' style='margin-left: 13px;'
+                    <input type='submit' class='btn btn-dark text-uppercase fw-semibold' style='margin-left: 13px;'
                         value='🖶 Print Badge'>
                 </form>";
 
@@ -1112,7 +1112,7 @@ class AboutController extends Controller
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
 
                 $action = "<a href=" . $b . " class='btn btn-primary shadow printBtn py-1 px-3'>Analytic</a>";
-                $actionQR = '<a class="btn btn-primary text-white shadow printBtn py-1 px-3" data-toggle="modal" data-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
+                $actionQR = '<a class="btn btn-primary text-white shadow printBtn py-1 px-3" data-toggle="modal" data-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close " data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
 
 
                 $nestedData['id'] = $count;

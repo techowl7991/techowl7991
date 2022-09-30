@@ -64,7 +64,7 @@ body {
 
           & .heading,
           a {
-            font-weight: 600;
+            font-weight: 300;
           }
 
           & a {
@@ -89,6 +89,7 @@ body {
             &:focus-visible {
               outline: none !important;
             }
+            
           }
 
           & .form-check {
@@ -97,31 +98,63 @@ body {
             }
 
             & .form-check-label {
-              font-weight: 600;
+              font-weight: 300;
             }
           }
 
           & .sign_up {
             & a {
-              font-weight: 600;
+              font-weight: 300;
               color: #ff4e00;
             }
           }
+          &.was-validated  {
+            & .Inpt {
+              &:invalid {
+                border-color: $danger !important;
+              }
+              &:valid {
+                border-color: $theme1 !important;
+                background-image: none;
+              }
+            }
+            & #enterpass, #createpassword, #confirmpassword {
+              background-position: 90%;
+            }
+            & .form-check {
+              & .form-check-input {
+                &:valid {
+                  border-color: $dark;
+                  &:checked {
+                    background-color: $primary;
+                    border-color: $primary;
+                  }
+                }
+                & ~ label {
+                  color: $dark;
+                }
+              }
+            }
+         }
         }
       }
 
       .back_img {
-        width: 100px;
+        width: 140px;
         position: absolute;
       }
 
       & .back_img1 {
         right: 100px;
+        bottom: -60px;
+        z-index: -1;
       }
 
       & .back_img2 {
-        left: -87px;
-        top: 40px;
+        left: -72px;
+        top: 50px;
+        transform: rotate(228deg);
+        z-index: -1;
       }
 
       & .back_img3 {
@@ -389,6 +422,34 @@ body {
 .select2-container--open {
   z-index: 9999 !important;
 }
+.myEvent{
+  & table {
+    & tbody {
+      & tr {
+        & td {
+          &:nth-child(5) {
+            text-align: center;
+          }
+          &:nth-child(6) {
+            text-align: center;
+          }
+          &:nth-child(7) {
+            text-align: center;
+          }
+          &:nth-child(8) {
+            text-align: center;
+          }
+          &:nth-child(9) {
+            text-align: center;
+          }
+          &:nth-child(10) {
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+}
 
 .iti__flag {
   background-image: url("../libs/intel-tel-input/flags.png");
@@ -568,16 +629,16 @@ body {
   }
 
   .back_img1 {
-    right: 50px !important;
+    bottom: -45px !important;
   }
 
   .back_img2 {
-    left: -58px !important;
+    left: 0 !important;
   }
 
   .back_img3 {
-    top: -22px !important;
-    right: -6px !important;
+    top: -15px !important;
+    right: 0px !important;
   }
 }
 
@@ -590,11 +651,103 @@ body {
 @mixin xxxxxx-xxxxx-mixin-max-md() {}
 
 // Large devices (desktops, less than 1200px)
-@mixin xxxxxx-xxxxx-mixin-max-lg() {}
+@mixin xxxxxx-xxxxx-mixin-max-lg() {
+  
+  .signUpPage {
+  
+    & .innerPage {
+  
+      & .Sign_Up {
+  
+        & .card {
+  
+          & .Account {
+  
+            & .heading,
+            a {
+            }
+  
+            & a {
+            }
+          }
+  
+          & form {
+            & .eye-icon {
+            }
+            & .Inpt {
+              &:focus-visible {
+              }
+            }
+            & .form-check {
+              & .form-check-input {
+              }
+              & .form-check-label {
+              }
+            }
+            & .sign_up {
+              & a {
+              }
+            }
+            &.was-validated  {
+              & .Inpt {
+                &:invalid {
+                }
+                &:valid {
+                }
+              }
+              & #enterpass {
+              }
+              & .form-check {
+                & .form-check-input {
+                  &:valid {
+                    &:checked {
+                    }
+                  }
+                  & ~ label {
+                  }
+                }
+              }
+           }
+          }
+        }
+  
+        .back_img {
+          width: 100px;
+        }
+  
+        & .back_img1 {
+          right: 50px;
+          bottom: -50px;
+        }
+  
+        & .back_img2 {
+          left: -50px;
+        }
+  
+        & .back_img3 {
+        }
+      }
+    }
+  }
+}
 
 // X-Large devices (large desktops, less than 1400px)
 @mixin xxxxxx-xxxxx-mixin-max-xl() {}
 
+
+table.dataTable tbody td, table.dataTable tbody td {
+  padding: 10px 18px !important;
+  border-bottom: 1px solid #000 !important;
+}
+table.dataTable tbody tr.even {
+  background-color: transparent !important;
+}
+table.dataTable.table-striped>tbody>tr.even>*, table.dataTable.table-striped>thead>tr.even>* {
+  box-shadow: none !important;
+}
+table.dataTable.table-striped>tbody>tr.odd>*, table.dataTable.table-striped>thead>tr.odd>* {
+  background-color: #E2E2E2 !important;
+}
 table.dataTable thead>tr>th.sorting:after, table.dataTable thead>tr>th.sorting_asc:after, table.dataTable thead>tr>th.sorting_desc:after, table.dataTable thead>tr>th.sorting_asc_disabled:after, table.dataTable thead>tr>th.sorting_desc_disabled:after, table.dataTable thead>tr>td.sorting:after, table.dataTable thead>tr>td.sorting_asc:after, table.dataTable thead>tr>td.sorting_desc:after, table.dataTable thead>tr>td.sorting_asc_disabled:after, table.dataTable thead>tr>td.sorting_desc_disabled:after {
   display: none;
 }

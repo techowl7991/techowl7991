@@ -47,11 +47,11 @@ table.dataTable thead th, table.dataTable tbody tr td {
         <div class="topBar py-3 pb-2 py-sm-4">
             <div class="row justify-content-between mx-0">
                 <div class="col-auto">
-                    <div class="title text-theme1 fs-16 fs-sm-20 fs-md-24 fw-bold ">Gate Keeper</div>
+                    <div class="title text-theme1 fs-16 fs-sm-24 fs-md-30 fw-bold ">Gate Keeper</div>
                 </div>
                 <div class="col-auto">
-                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14 p-1 px-sm-3 text-uppercase fw-500" href="{{route('index',[session()->get('uid')])}}"> Back</a>
-                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14 p-1 px-sm-3 text-uppercase fw-500" href="{{ route('addkeeper',[$mid]) }}"> Create Gate Keeper </a>
+                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14  text-uppercase fw-600 me-3" href="{{route('index',[session()->get('uid')])}}"> Back</a>
+                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14  text-uppercase fw-600" href="{{ route('addkeeper',[$mid]) }}" data-bs-toggle="modal" data-bs-target="#addkeeper"> Create Gate Keeper </a>
                 </div>
             </div>
         </div>
@@ -59,7 +59,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
         <div class="upcomingEvents py-2 py-sm-4">
             <div class="row mx-0 align-items-center">
                 <div class="col">
-                    <div class="title text-dark fs-16 fs-sm-20 fs-md-24 fw-bold">Gate Keepers</div>
+                    <div class="title text-dark fs-15 fs-sm-20 fs-md-25 fw-bold">Gate Keepers</div>
                 </div>
             </div>
             <div class="row mx-0">
@@ -74,12 +74,12 @@ table.dataTable thead th, table.dataTable tbody tr td {
                                 id="allmatches_datatable" width="100%" cellspacing="0">
                                 <thead style="background-color:#CCCCCC">
                                     
-                                        <th style="text-align:center;" class="text-capitalize">Guest ID
+                                        <th style="" class="text-capitalize">Guest ID
                                         </th>
                                         <th class="text-capitalize">Name</th>
-                                        <th style="text-align:center;" class="text-capitalize">Username
+                                        <th style="" class="text-capitalize">Username
                                         </th>
-                                        <th style="text-align:center;width:120px" class="text-capitalize">
+                                        <th style="width:120px" class="text-capitalize">
                                             Password</th>
                                    
                                 </thead>
@@ -93,6 +93,9 @@ table.dataTable thead th, table.dataTable tbody tr td {
             </div>
         </div>
 </section>
+
+
+
 <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
 
 <script type="text/javascript">

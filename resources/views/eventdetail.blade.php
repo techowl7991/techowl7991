@@ -60,8 +60,8 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
     <div class="topBar pb-2 pb-lg-4">
         <div class="row justify-content-between">
             <div class="col-12 d-flex justify-content-between align-items-center">
-                <div class="title text-theme1 fs-16 fs-sm-20 fs-md-30 fw-600 ">Guests</div>
-                <div class="filterBtn text-theme1 d-lg-none  fs-16 fs-sm-20 fs-md-30 fw-600 "><button type="button" class="btn guestFilterBtn btn-theme1 shadow-none w-30px h-30px w-sm-36px h-sm-6px align-items-center d-flex justify-content-center px-sm-4 p-2 "><img src="{{ asset('/public/new-design/img/guest-filter-light.png') }}" alt=""></button></div>
+                <div class="title text-theme1 fs-16 fs-sm-20 fs-md-30 fw-bold ">Guests</div>
+                <div class="filterBtn text-theme1 d-lg-none  fs-16 fs-sm-20 fs-md-30 fw-bold "><button type="button" class="btn guestFilterBtn btn-theme1 shadow-none w-30px h-30px w-sm-36px h-sm-6px align-items-center d-flex justify-content-center px-sm-4 p-2 "><img src="{{ asset('/public/new-design/img/guest-filter-light.png') }}" alt=""></button></div>
             </div>
         </div>
     </div>
@@ -76,7 +76,7 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                         </div>
                         <div class="col-auto">
                             <div class="guestLodar">
-                                <img src="{{ asset('/public/new-design/img/guest-loder.png') }}" alt="">
+                                <img src="{{ asset('/public/new-design/img/icon/sync.svg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -135,9 +135,9 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="notattended"><span>Did Not Attend</span><span class="value">0</span></label>
                             </div>
                         </li> --}}
-                            <li class="bg-theme2"><button type="button" class="btn w-100 type rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 " data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span> <i class="imgr img-plus fs-15 fs-sm-18"></i></button></li>
+                            <li class="bg-theme2"><button type="button" class="btn w-100 type rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 " data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span> <i class="imgr img-plus fs-15 fs-sm-18"></i><!-- <img src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""> --></button></li>
 
-
+                            
                             <li class="pt-2 pb-1 px-3">
                                 <div class="form-check">
                                     <input class="form-check-input type border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="type" value="VIP" id="customcheckbox73" <?php if ($type == 'VIP') {

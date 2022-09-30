@@ -48,10 +48,10 @@ table.dataTable thead th, table.dataTable tbody tr td {
         <div class="topBar py-3 pb-2 py-sm-4">
             <div class="row justify-content-between mx-0">
                 <div class="col-auto">
-                    <div class="title text-theme1 fs-16 fs-sm-20 fs-md-24 fw-bold ">My Event</div>
+                    <div class="title text-theme1 fs-16 fs-sm-24 fs-md-30 fw-bold ">My Event</div>
                 </div>
                 <div class="col-auto">
-                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14 p-1 px-sm-3 text-uppercase fw-500" href="{{ route('addEvent') }}"> Create Event </a>
+                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14 text-uppercase fw-600" href="{{ route('addEvent') }}"> Create Event </a>
                 </div>
             </div>
         </div>
@@ -73,10 +73,10 @@ table.dataTable thead th, table.dataTable tbody tr td {
         <div class="upcomingEvents py-2 py-sm-4">
             <div class="row mx-0 align-items-center">
                 <div class="col">
-                    <div class="title text-dark fs-16 fs-sm-20 fs-md-24 fw-bold">Upcoming Events</div>
+                    <div class="title text-dark fs-15 fs-sm-20 fs-md-25 fw-bold">Upcoming Events</div>
                 </div>
                             <div class="col-auto">
-                            <button type="button" class="btn btn-theme1 text-white fs-11 fs-sm-14 p-1 px-sm-3 text-uppercase fw-500 delbtn">Delete</button>
+                            <button type="button" class="btn btn-theme1 text-white fs-11 fs-sm-14 fw-600 text-uppercase delbtn">Delete</button>
                             </div>
             </div>
             <div class="row mx-0">
@@ -91,13 +91,13 @@ table.dataTable thead th, table.dataTable tbody tr td {
                                 id="allmatches_datatable" width="100%" cellspacing="0">
                                 <thead style="background-color:#CCCCCC">
                                     
-                                        <th style="text-align:center;" class="text-capitalize">Event ID
+                                        <th style="" class="text-capitalize">Event ID
                                         </th>
                                         <th class="text-capitalize"><input class="" type="checkbox"
                                                 value="" name="select-all"
                                                 id="flexCheckIndeterminate"></th>
                                         <th class="text-capitalize">Title</th>
-                                        <th style="text-align:center;" class="text-capitalize">Start Date
+                                        <th style="" class="text-capitalize">Start Date
                                         </th>
                                         <!--<th class="text-capitalize">End Date</th>-->
                                         <th style="text-align:center;" style="width:50px"
@@ -105,7 +105,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
                                         <!-- <th style="text-align:center;" style="width:50px" class="text-capitalize">Delete</th> -->
                                         <th style="text-align:center;" style="width:50px"
                                             class="text-capitalize">Single Delete</th>
-                                        <th class="text-capitalize">Gate Keeper</th>
+                                        <th class="text-capitalize text-center">Gate Keeper</th>
                                         <!--<th class="text-capitalize">Regular</th>-->
                                         <th style="text-align:center;width:120px" class="text-capitalize">
                                             QRcode</th>
