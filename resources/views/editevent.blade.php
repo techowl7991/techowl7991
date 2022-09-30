@@ -83,6 +83,24 @@
                                     Please enter your phone number or email
                                 </div>
                             </div>
+
+                            <div class="col-12 mb-3">
+                                <input type="text" placeholder="Event Organizer Name" name="eventorganizer"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    autocomplete="off" value="{{ $snapshot['event_organizer'] }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <textarea name="eventdesc" placeholder="Event Description" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" value="{{ $snapshot['event_description'] }}" rows="3">{{ $snapshot['event_description'] }}</textarea>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <input type="file" name="event_image"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    autocomplete="off" required> <br>
+                                    <img src="{{asset('public/eventimgs/'.$snapshot['event_image'])}}" alt="" width="70px" height="70px">
+                            </div>
+
                             <div class="col-12 text-theme2 fs-16 fw-bold mb-3">Event Type</div>
                             <div class="col-12 mb-3 d-flex align-items-center gap-2">
                                 <div class="form-check">

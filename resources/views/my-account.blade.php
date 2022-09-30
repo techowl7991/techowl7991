@@ -118,12 +118,19 @@
 
                 </div>
             </div>
+            
             <div class="col-12 col-md-3 order-1 order-md-2 mb-4 mb-md-0">
                 <div class="profileImg text-center ms-0 ms-md-auto">
                     <div class="input-group justify-content-end">
                         <input type="file" class="form-control d-none" id="inputGroupFile01">
                         <label class="changeProfile rounded-5 overflow-hidden position-relative" for="inputGroupFile01">
+                            {{-- @dd($snapshot) --}}
+                            {{-- @if (empty($snapshot['date'])) --}}
                             <img src="{{ asset('/public/new-design/img/avatar-img.png') }}" alt="">
+                            {{-- @else --}}
+                            {{-- {{substr($snapshot['FirstName'], 0, 1) . substr($snapshot['LastName'], 0, 1)}} --}}
+                            {{-- @endif --}}
+                            
                             <div
                                 class="imgOverlay w-100 h-100 text-center align-items-center d-flex justify-content-center position-absolute">
                                 <div>
@@ -141,6 +148,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
