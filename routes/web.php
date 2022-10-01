@@ -40,7 +40,6 @@ Route::any('/verify/{id}/{token}', [AboutController::class, 'verify']);
 Route::any('/updateverifcation', [AboutController::class, 'update_verifcation'])->name('updateverifcation');
 
 Route::any('/addVisitor/{id}',[AboutController::class,'addVisitor'])->name('addVisitor');
-
 Route::any('/analytics',[AboutController::class,'analytics'])->name('analytics');
 Route::any('/view_analytics_dt', [AboutController::class, 'view_analytics_dt']);
 Route::get('/analyticsview/{id}',[AboutController::class,'analyticsview']);
@@ -92,5 +91,5 @@ Route::any('/new-page',function(){return view('new-design/new-page');});
 Route::get('/viewgatekeeper/{mid}',[AboutController::class,'viewgatekeeper'])->name('viewgatekeeper');
 Route::any('/addkeeper/{mid}',[AboutController::class,'addkeeper'])->name('addkeeper');
 Route::any('/view_guest_dt', [AboutController::class, 'view_guest_dt']);
-Route::any('/viewwebsite/{id}', [AboutController::class, 'view_web']);
+Route::any('/viewwebsite/{id}', [AboutController::class, 'view_web'])->name('viewweb');
 
