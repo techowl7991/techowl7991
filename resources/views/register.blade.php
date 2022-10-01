@@ -33,33 +33,42 @@
         <div class="row innerPage justify-content-center align-items-center h-100 w-100">
             <div class="col-xl-5 col-lg-6 col-md-7 col-sm-8 col-12 Sign_Up position-relative">
                 <div class="card border-0 bg-white py-4 px-md-5 px-3">
-                    <div class="d-flex justify-content-center align-items-center pt-3 pb-4">
-                        <div class="w-sm-100px w-80px"><img src="{{ asset('/public/new-design/img/logo.png') }}"
+                    <div class="d-flex justify-content-center align-items-center pb-4">
+                        <div class="w-sm-100px w-80px"><img src="{{ asset('/public/new-design/img/logo-black.svg') }}"
                                 alt="" class="w-100"></div>
                     </div>
                     <div class="d-flex justify-content-center align-items-center  Account gap-2">
                         <h4 class="m-0 heading fs-md-20 fs-sm-18 fs-16">Have an account?</h4>
                         <div><a href="{{route('login')}}" class="text-decoration-none fs-md-20 fs-sm-18 fs-16">Sign In!</a></div>
                     </div>
-                    <form method="POST" action="{{ route('register') }}" class="needs-validation pt-sm-5 pt-3 pb-3" id="form2" novalidate>
+                    <form method="POST" action="{{ route('register') }}" class="needs-validation pt-sm-4 pt-3 pb-3" id="form2" novalidate>
                         @csrf
                         <div class="row">
                             <div class="col-6 mb-3">
                                 <input type="text" placeholder="First Name"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('fname') is-invalid @enderror" name="fname" value="{{ old('fname') }}"
                                     required>
+                                    <div class="invalid-feedback fs-14">
+                                    First Name
+                                </div>
                             </div>
 
                             <div class="col-6 mb-3">
                                 <input type="text" placeholder="Last Name"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('lname') is-invalid @enderror" name="lname" value="{{ old('lname') }}"
                                     required>
+                                    <div class="invalid-feedback fs-14">
+                                    Last Name
+                                </div>
                             </div>
 
                             <div class="col-12 mb-3">
                                 <input type="email" placeholder="Email Address"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"
                                     required>
+                                    <div class="invalid-feedback fs-14">
+                                    Enter Email
+                                </div>
                             </div>
 
                             <div class="col-12 mb-3 password-field position-relative">
@@ -68,7 +77,7 @@
                                     required>
                                 <span><i toggle="#createpassword" id="eye" class=" shaowPass imgs img-eye position-absolute eye-icon"></i></span>
                                 <div class="invalid-feedback fs-14">
-                                    Please enter your phone number or email
+                                    Create password
                                 </div>
                             </div>
 
@@ -79,7 +88,7 @@
                                     required>
                                 <span><i toggle="#confirmpassword" id="eye" class="shaowPass imgs img-eye position-absolute eye-icon"></i></span>
                                 <div class="invalid-feedback fs-14">
-                                    Please enter your phone number or email
+                                    Confirm password
                                 </div>
                             </div>
 
@@ -102,25 +111,23 @@
                                         <div class="col-auto sign_up px-0"><a href="" class="text-decoration-none fs-sm-16 fs-14">Recover Password</a> </div>
                                     </div> -->
 
-                            <div class="col-12 mt-5 mb-3 text-center">
-                                <button type="submit" class="shadow-none border-0 login_btn fs-16 px-3 py-1">SIGN
-                                    UP</button>
+                            <div class="col-12 mt-4 text-center">
+                                <button type="submit" class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 px-md-3 px-xl-4 text-uppercase text-white">SIGN UP</button>
                             </div>
                         </div>
                     </form>
 
                 </div>
-
                 <div class="back_img1 back_img">
-                    <img src="{{ asset('/public/new-design/img/bottom-right.png') }}" alt="" class="w-100">
+                    <img src="{{ asset('/public/new-design/img/r-black.svg') }}" alt="" class="w-100">
+                    </div>
+                    <div class="back_img2 back_img">
+                        <img src="{{ asset('/public/new-design/img/r-orange.svg') }}" alt="" class="w-100">
+                    </div>
+                    <div class="back_img3 back_img">
+                        <img src="{{ asset('/public/new-design/img/r-lightgrey.svg') }}" alt="" class="w-100">
+                    </div>
                 </div>
-                <div class="back_img2 back_img">
-                    <img src="{{ asset('/public/new-design/img/top-left.png') }}" alt="" class="w-100">
-                </div>
-                <div class="back_img3 back_img">
-                    <img src="{{ asset('/public/new-design/img/top-right.png') }}" alt="" class="w-100">
-                </div>
-            </div>
         </div>
 
     </div>
@@ -138,4 +145,26 @@
         }
     });
 </script>
+ <script>
+    (function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
+
+ </script>
 @endpush
