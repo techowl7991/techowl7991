@@ -50,8 +50,8 @@ table.dataTable thead th, table.dataTable tbody tr td {
                     <div class="title text-theme1 fs-16 fs-sm-24 fs-md-30 fw-bold ">Gate Keeper</div>
                 </div>
                 <div class="col-auto">
-                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14  text-uppercase fw-600 me-3" href="{{route('index',[session()->get('uid')])}}"> Back</a>
-                    <a class="btn createEventBtn btn-theme1 text-white fs-11 fs-sm-14  text-uppercase fw-600" href="{{ route('addkeeper',[$mid]) }}" data-bs-toggle="modal" data-bs-target="#addkeeper"> Create Gate Keeper </a>
+                    <a class="btn createEventBtn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white me-3" href="{{route('index',[session()->get('uid')])}}"> Back</a>
+                    <a class="btn createEventBtn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white" href="{{ route('addkeeper',[$mid]) }}" data-bs-toggle="modal" data-bs-target="#addkeeper"> Create Gate Keeper </a>
                 </div>
             </div>
         </div>
