@@ -102,7 +102,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
                                         <!--<th class="text-capitalize">End Date</th>-->
                                         <th style="text-align:center;" style="width:50px"
                                             class="text-capitalize">Edit</th>
-                                        <!-- <th style="text-align:center;" style="width:50px" class="text-capitalize">Delete</th> -->
+                                        <th style="text-align:center;" style="width:50px" class="text-capitalize">Delete</th>
                                         <th style="text-align:center;" style="width:50px"
                                             class="text-capitalize">Single Delete</th>
                                         <th class="text-capitalize text-center">Gate Keeper</th>
