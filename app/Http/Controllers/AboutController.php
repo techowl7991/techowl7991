@@ -1790,10 +1790,15 @@ class AboutController extends Controller
         ]);
         $date = date('Y-m-d');
         $up_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document('fbfb808696e64c79af4b')->snapshot();
-        dd($up_snapshot->data());
-        // return view();
+        $data = $up_snapshot->data();
+        // dd($up_snapshot->data());
+        return view('viewweb',compact('data','mid','id'));
         // $upcoming_count = iterator_count($up_snapshot);?
 
+    }
+    
+    public function add_ver_guest(Request $request){
+        dd($request->all());
     }
 
     public function get_setting()
