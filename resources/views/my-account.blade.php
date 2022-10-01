@@ -1,4 +1,4 @@
-@extends('main2')
+@extends('main3')
 {{-- @dd($snapshot) --}}
 @push('meta')
     <title>page_title</title>
@@ -71,7 +71,7 @@
                                         required>
                                 </div>
 
-                                <div class="col-12">
+                                <div class="col-12 mt-3">
                                     <input type="email" placeholder="Example@gmail.com" value="{{ $snapshot['email'] }}"
                                         readonly name="email"
                                         class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
@@ -120,19 +120,19 @@
             </div>
             
             <div class="col-12 col-md-3 order-1 order-md-2 mb-4 mb-md-0">
-                <div class="profileImg text-center ms-0 ms-md-auto">
+                <div class="profileImg text-center ms-0 ms-md-auto rounded-5">
                     <div class="input-group justify-content-end">
                         <input type="file" class="form-control d-none" id="inputGroupFile01">
-                        <label class="changeProfile rounded-5 overflow-hidden position-relative" for="inputGroupFile01">
+                        <label class="w-100 changeProfile overflow-hidden position-relative" for="inputGroupFile01">
                             {{-- @dd($snapshot) --}}
                             {{-- @if (empty($snapshot['date'])) --}}
-                            <img src="{{ asset('/public/new-design/img/avatar-img.png') }}" alt="">
+                            <img src="{{ asset('/public/new-design/img//icon/avatar.svg') }}" alt="">
                             {{-- @else --}}
                             {{-- {{substr($snapshot['FirstName'], 0, 1) . substr($snapshot['LastName'], 0, 1)}} --}}
                             {{-- @endif --}}
                             
                             <div
-                                class="imgOverlay w-100 h-100 text-center align-items-center d-flex justify-content-center position-absolute">
+                                class="imgOverlay w-100 h-100 text-center rounded-5 align-items-center d-flex justify-content-center position-absolute">
                                 <div>
                                     <span class="d-inline-block w-100 mb-2"><img class="w-auto d-inline-block"
                                             src="{{ asset('/public/new-design/img/change-img-icon.png') }}"
@@ -143,7 +143,7 @@
                         </label>
 
                     </div>
-                    <div class="activeDate fs-11 fs-sm-14 fs-md-15 text-muted fw-500">
+                    <div class="activeDate fs-11 fs-sm-14 fs-md-15 text-muted fw-500 mt-1">
                         Acitve since {{ $snapshot['date'] }}
                     </div>
                 </div>
@@ -156,7 +156,7 @@
     <!-- changepassword -->
     <div class="modal fade" id="changepassword" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="changepasswordLabel" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-bottom border-2 px-3 pt-3 pb-2 px-sm-4 pt-sm-4">
                     <h5 class="modal-title fs-16 fs-sm-18 fs-md-20 fw-600" id="changepasswordLabel">Change Password</h5>
@@ -228,7 +228,7 @@
     <!-- changepassword -->
     <div class="modal fade" id="deleteaccount" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="deleteaccountLabel" aria-hidden="true">
-        <div class="modal-dialog w-sm-60 w-md-45 w-lg-35 w-xl-30">
+        <div class="modal-dialog w-sm-60 w-md-45 w-lg-35 w-xl-30 modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-bottom border-2 px-3 pt-3 pb-2 px-sm-4 pt-sm-4 ">
                     <h5 class="modal-title fs-16 fs-sm-18 fs-md-20 fw-600 " id="deleteaccountLabel">Delete the Account

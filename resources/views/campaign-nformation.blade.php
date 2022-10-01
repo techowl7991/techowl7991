@@ -33,7 +33,7 @@
     <div class="container-fluid">
         <div class="row Campaign_page pb-5">
             <div class="col-sm-6 mb-sm-0 mb-4">
-                <div class="text-theme1 fs-20 fs-md-30 fw-bold mb-sm-5 mb-3">Campaign Information</div>
+                <div class="text-theme1 fs-20 fs-md-30 fw-600 mb-sm-5 mb-3">Campaign Information</div>
                 <div class="comman-form ">
                     <form action="" class="needs-validation" novalidate>
                         <div class="row">
@@ -60,7 +60,7 @@
                             </div>
                             <div class="col-12 mb-5 text-sm-start text-center">
                                 <button type="submit"
-                                    class="shadow-none border-0 text-white bg-theme2 rounded fs-14 fw-bold px-sm-4 py-sm-2 px-3 py-1 top_right_export_btn"
+                                    class="btn shadow-none border-0 text-white rounded fs-14 fw-600 customDarkBtn"
                                     data-bs-toggle="modal" data-bs-target="#exampleModal">SEND A TEST</button>
                             </div>
                             <div class="col-12 mb-3 fs-md-25 fs-sm-20 fs-16 fw-bold text-theme2" data-bs-toggle="modal"
@@ -68,50 +68,46 @@
                             <div class="col-12">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault1">
+                                        id="flexRadioDefault1" checked>
                                     <label class="form-check-label fs-sm-16 fs-14 fw-normal" for="flexRadioDefault1">Send
                                         now</label>
                                 </div>
-                            </div>
-                            <div class="col-12 mb-3">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="flexRadioDefault"
-                                        id="flexRadioDefault2" checked="checked">
+                                        id="flexRadioDefault2">
                                     <label class="form-check-label fs-sm-16 fs-14 fw-normal"
                                         for="flexRadioDefault2">Schedule for later</label>
                                 </div>
                             </div>
-                            <div class="col-sm-6 mb-3 flatpickr ">
-                                <input type="text" placeholder="Date"
-                                    class="form-control calendar shadow-none rouded-0 Inpt w-100 h-50px border-0 fs-sm-16 fs-14 fw-normal"
-                                    id="basicDate" required="">
-                                <div class="invalid-feedback fs-14">
+                           <div class="row scheduleLater d-none mt-3">
+                                <div class="col-sm-6 mb-3 flatpickr ">
+                                    <input type="text" placeholder="Date" class="form-control calendar shadow-none rouded-0 Inpt w-100 h-50px border-0 fs-sm-16 fs-14 fw-normal" id="basicDate"  readonly="" required>
+                                    <div class="invalid-feedback fs-14">
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-sm-6 mb-3">
-                                <input type="time" placeholder="Time"
-                                    class="form-control clock shadow-none rouded-0 Inpt w-100 h-50px border-0 fs-sm-16 fs-14 fw-normal"
-                                    required="">
-                                <div class="invalid-feedback fs-14">
+                                <div class="col-sm-6 mb-3">
+                                    <input type="time" placeholder="Time" class="form-control clock shadow-none rouded-0 Inpt w-100 h-50px border-0 fs-sm-16 fs-14 fw-normal" required>
+                                    <div class="invalid-feedback fs-14">
 
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-12 input-group mb-3">
-                                <select class="form-select shadow-none h-50px fs-sm-16 fs-14 Inpt border-0"
-                                    id="inputGroupSelect01">
-                                    <option class="choose py-1" selected="">Select Timezone</option>
-                                    <option class="choose py-1" value="1">One</option>
-                                    <option class="choose py-1" value="2">Two</option>
-                                    <option class="choose py-1" value="3">Three</option>
-                                </select>
-                            </div>
-                            <div class="col-12 mb-3 text-sm-start text-center">
-                                <button type="submit"
-                                    class="shadow-none border-0 text-white bg-theme2 rounded fs-14 fw-bold px-sm-4 py-sm-2 px-3 py-1 top_right_export_btn"
-                                    data-bs-toggle="modal" href="#exampleModalToggle" role="button">SCHEDULE TO
-                                    SEND</button>
-                            </div>
+                                <div class="col-12 input-group mb-3">
+                                    <select class="form-select shadow-none h-50px fs-sm-16 fs-14 Inpt border-0"
+                                        id="inputGroupSelect01">
+                                        <option class="choose py-1" selected="">Select Timezone</option>
+                                        <option class="choose py-1" value="1">One</option>
+                                        <option class="choose py-1" value="2">Two</option>
+                                        <option class="choose py-1" value="3">Three</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3 text-sm-start text-center">
+                                    <button type="submit"
+                                        class="shadow-none border-0 text-white rounded fs-14 fw-bold px-sm-4 py-sm-2 px-3 py-1 customDarkBtn"
+                                        data-bs-toggle="modal" href="#exampleModalToggle" id="scheduledate" role="button">SCHEDULE TO
+                                        SEND</button>
+                                </div>
+                           </div>
 
                         </div>
                     </form>
@@ -162,10 +158,10 @@
 
 
                                 <div class="col-12 px0 py-3 d-flex justify-content-start gap-2 ">
-                                    <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2"
+                                    <button type="button" class="btn btn-outline-theme2 shadow-none rounded cancle_btn fs-14 fw-bold px-4 "
                                         data-bs-dismiss="modal">CANCEL</button>
                                     <button type="submit"
-                                        class=" shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2 top_right_export_btn">SEND</button>
+                                        class="btn btn-theme1 shadow-none border-0 text-white rounded fs-14 fw-bold px-4  top_right_export_btn">SEND</button>
                                 </div>
 
                             </div>
@@ -189,9 +185,9 @@
         aria-labelledby="exampleModalToggleLabel" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-white">
-                <div class="modal-header px-4 pt-4 mb-3 m-0">
-                    <h5 class="modal-title fs-20 text-theme2 fw-bold ps-1" id="exampleModal2Label">Schedule Email?</h5>
-                    <i class="imgr img-times fs-20 text-theme2 pe-1" data-bs-dismiss="modal" aria-label="Close"></i>
+                <div class="modal-header px-4 pt-3 mb-3 m-0">
+                    <h5 class="modal-title fs-20 text-theme2 fw-600" id="exampleModal2Label">Schedule Email?</h5>
+                    <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
                 </div>
                 <div class="modal-body p0">
                     <div class="row px-0 mx-0">
@@ -230,8 +226,8 @@
         aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content bg-white">
-                <div class="modal-header px-4 pt-4 mb-3 m-0">
-                    <h5 class="modal-title fs-20 text-theme2 fw-bold ps-1" id="exampleModal3Label">Send Now?</h5>
+                <div class="modal-header px-4 pt-3 mb-3 m-0">
+                    <h5 class="modal-title fs-20 text-theme2 fw-bold" id="exampleModal3Label">Send Now?</h5>
                     <i class="imgr img-times fs-20 text-theme2 pe-1" data-bs-dismiss="modal" aria-label="Close"></i>
                 </div>
                 <div class="modal-body p0">
@@ -260,4 +256,9 @@
 @endsection
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.getElementById('scheduledate').onclick = function() {
+            document.getElementById('basicDate').removeAttribute('readonly');
+        };
+    </script>
 @endpush

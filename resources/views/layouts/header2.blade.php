@@ -15,9 +15,9 @@
                 </div>
                 
                 <a href="{{route('email')}}"
-                    class="shadow-none border-0 text-decoration-none text-theme2 bg-light fs-14 fw-bold px-sm-3 p-1 px-2 py-1 top_right_export_btn text-uppercase rounded-5">Back</a>
+                    class="btn btn-light shadow-none border-0 text-decoration-none text-theme2 fs-14 fw-600 top_right_export_btn text-uppercase rounded-5">Back</a>
                 <a href="#"
-                    class="shadow-none border-0 text-decoration-none text-white bg-theme1 fs-14 fw-bold px-sm-3 p-1 px-2 py-1 top_right_export_btn text-uppercase rounded-5 ms-3">Save
+                    class="btn btn-theme1 shadow-none border-0 text-decoration-none text-white fs-14 fw-600 top_right_export_btn text-uppercase rounded-5 ms-3">Save
                     Changes</a>
             @else
                 <div class="me-3">

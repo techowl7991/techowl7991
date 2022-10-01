@@ -183,7 +183,6 @@ class AboutController extends Controller
                 $filename = time() . '.' . $extention;
                 $dest = public_path('eventimgs');
                 $image->move($dest, $filename);
-    
             }
             $data = [
                 'event_startdate' => $request->eventstartdate,
@@ -519,7 +518,7 @@ class AboutController extends Controller
                 $b = action('AboutController@printdata', $title->id());
                 $d = action('AboutController@viewgatekeeper', $title->id());
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
-                $img= asset('/public/eventimgs/'.$title['event_image']);
+                $img = asset('/public/eventimgs/' . $title['event_image']);
 
                 $action = "<a href=" . $b . " class='btn btn-dark shadow printBtn py-1 px-3'>Detail</a>";
                 $viewgate = "<a href=" . $d . " class='btn btn-dark shadow printBtn py-1 px-3'>View</a>";
@@ -535,7 +534,7 @@ class AboutController extends Controller
                 $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="' . $title->id() . '" >';
                 $nestedData['singledel'] = $delbtn;
                 $nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
-                $nestedData['event_image'] = '<img src="'.$img.'" alt="" width="70px" height="65px">';
+                $nestedData['event_image'] = '<img src="' . $img . '" alt="" width="70px" height="65px">';
                 $nestedData['event_name'] = $title['event_name'];
                 $nestedData['event_startdate'] = date('m/d/Y h:i:s A', strtotime($title['event_startdate']));
                 $nestedData['event_enddate'] = date('m/d/Y h:i:s A', strtotime($title['event_enddate']));
@@ -665,7 +664,7 @@ class AboutController extends Controller
 
     public function update(Request $request, $id)
     {
-        
+
         if ($request->isMethod('put')) {
             $USERID = $request->session()->get('uid');
             self::$firestoreProjectId = 'guest-app-2eb59';
@@ -690,13 +689,13 @@ class AboutController extends Controller
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
             }
-            
 
-            if ($request->has('event_image')) { 
 
-                $destination = 'public/eventimgs/'. $snapshot['event_image'];
+            if ($request->has('event_image')) {
 
-                if(File::exists($destination)){
+                $destination = 'public/eventimgs/' . $snapshot['event_image'];
+
+                if (File::exists($destination)) {
                     File::delete($destination);
                 }
 
@@ -705,9 +704,6 @@ class AboutController extends Controller
                 $filename = time() . '.' . $extention;
                 $dest = public_path('eventimgs');
                 $image->move($dest, $filename);
-
-                
-    
             }
 
             $data1 = [
@@ -943,12 +939,10 @@ class AboutController extends Controller
         $snapshot = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->snapshot();
         $data = $snapshot->data();
 
-
-        if(!empty($snapshot['guestimage'])){
+        if (!empty($snapshot['guestimage'])) {
 
             return response()->json(['data' => $data, 'success' => 1]);
-        }
-        else{
+        } else {
             return response()->json(['data' => $data, 'success' => 0]);
         }
     }
@@ -960,27 +954,37 @@ class AboutController extends Controller
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
-        $id = $request->id;
         $mid = $request->mid;
         $id1 = $request->id1;
         $id2 = $request->id2;
-        
-        // $snapshot = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->snapshot();
-        // dd($snapshot);
-        // $data = $snapshot->data();
 
-        
-        // if ($request->has('guestimage')) {
-        //     $image = $request->file('guestimage');
-        //     $extention = $image->getClientOriginalExtension();
-        //     $filename = time() . '.' . $extention;
-        //     $dest = public_path('imgs');
-        //     $image->move($dest, $filename);
-        // }
+        $snapshot = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id1)->snapshot();
+        $data = $snapshot->data();
+        // dd($data);
 
+
+
+
+        // dd($request->guimage);
+        if ($request->has('guimage') && $request->has('guimage') != '') {
+
+            $destination = 'public/imgs/' . $snapshot['guestimage'];
+            if (File::exists($destination)) {
+                File::delete($destination);
+            }
+
+            $image = $request->file('guimage');
+            $extention = $image->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $dest = public_path('imgs');
+            $image->move($dest, $filename);
+        } else {
+
+            $filename = $snapshot['guestimage'];
+        }
 
         $data = [
-            // 'guestimage' => ($filename) ? $filename : '',
+            'guestimage' => $filename ? $filename : '',
             'type' => ($request->type) ? $request->type : '',
             'nmtitle' => ($request->nmtitle) ? $request->nmtitle : '',
             'evefirstname' => ($request->evefirstname) ? $request->evefirstname : '',
@@ -1313,7 +1317,7 @@ class AboutController extends Controller
         ]);
         $snapshot = self::$firestoreClient->collection('analytics')->document($request->id)->collection('viewanalytics')->documents();
         $data = $snapshot->rows();
-        dd($data);
+        // dd($data);
         $dta = [];
         foreach ($data as $value) {
             $alldata['name'] = $value['name'];
@@ -1400,10 +1404,18 @@ class AboutController extends Controller
 
         $bytes = bin2hex(random_bytes(20));
         // dd($bytes);
-        if($request->type == 'RSVP'){
-            $rsvpstatus =1;
-        }else{
-            $rsvpstatus =0;
+        if ($request->type == 'RSVP') {
+            $rsvpstatus = 1;
+        } else {
+            $rsvpstatus = 0;
+        }
+
+        if ($request->has('guestimage')) {
+            $image = $request->file('guestimage');
+            $extention = $image->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $dest = public_path('imgs');
+            $image->move($dest, $filename);
         }
         $data = [
             'guestimage' => ($request->guestimage) ? $filename : '',
@@ -1506,7 +1518,7 @@ class AboutController extends Controller
             'visit' =>'NO',            
         ];
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->set($data);
-        dd($docref);
+        // dd($docref);
     }
 
     public function add_guest_exl(Request $request)
