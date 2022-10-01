@@ -67,18 +67,17 @@
             </div>
         </div>
 
-        <div class="row ">
-            <div class="col-lg-3">
-                <div class="guestFilter bg-white flex-column d-flex h-100">
-                    <div class="filterHeader py-2 px-3 border-bottom border-2">
-                        <div class="row align-items-center">
-                            <div class="col">
-                                <div class="fs-14 fs-sm-16 text-theme2 fw-bold">Guest List</div>
-                            </div>
-                            <div class="col-auto">
-                                <div class="guestLodar">
-                                    <img src="{{ asset('/public/new-design/img/guest-loder.png') }}" alt="">
-                                </div>
+    <div class="row ">
+        <div class="col-lg-3">
+            <div class="guestFilter bg-white flex-column d-flex h-100">
+                <div class="filterHeader py-2 px-3 border-bottom border-2">
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <div class="fs-14 fs-sm-16 text-theme2 fw-bold">Guest List</div>
+                        </div>
+                        <div class="col-auto">
+                            <div class="guestLodar">
+                                <img src="{{ asset('/public/new-design/img/icon/sync.svg') }}" alt="">
                             </div>
                         </div>
                     </div>
@@ -151,20 +150,14 @@
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="notattended"><span>Did Not Attend</span><span class="value">0</span></label>
                             </div>
                         </li> --}}
-                                <li class="bg-theme2"><button type="button"
-                                        class="btn w-100 type rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 "
-                                        data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span> <i
-                                            class="imgr img-plus fs-15 fs-sm-18"></i></button></li>
+                            <li class="bg-theme2"><button type="button" class="btn w-100 type rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 " data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span> <i class="imgr img-plus fs-15 fs-sm-18"></i><!-- <img src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""> --></button></li>
 
-
-                                <li class="pt-2 pb-1 px-3">
-                                    <div class="form-check">
-                                        <input
-                                            class="form-check-input type border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
-                                            type="radio" name="type" value="VIP" id="customcheckbox73"
-                                            <?php if ($type == 'VIP') {
-                                                echo 'checked';
-                                            } ?>>
+                            
+                            <li class="pt-2 pb-1 px-3">
+                                <div class="form-check">
+                                    <input class="form-check-input type border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="type" value="VIP" id="customcheckbox73" <?php if ($type == 'VIP') {
+                                                                                                                                                                                                                echo 'checked';
+                                                                                                                                                                                                            } ?>>
 
                                         <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14"
                                             for="customcheckbox73"><span>VIP</span><span

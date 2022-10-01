@@ -54,7 +54,7 @@
 @section('content')
     <div class="container-fluid signUpPage d-flex justify-content-center align-items-center Create_Event  px-0">
         <div class="row innerPage justify-content-center align-items-center h-100 w-100 py-5">
-            <div class="col-xxl-7 col-xl-8 col-lg-9 col-md-10 col-sm-11 col-12 Sign_Up">
+            <div class="col-xxl-6 col-xl-6 col-lg-9 col-md-10 col-sm-11 col-12 Sign_Up">
                 <div class="card border-0 px-0 py-2 bg-white ">
                     <div class="row mx-0">
                         <div class="col-12 Account px-4 py-2">
