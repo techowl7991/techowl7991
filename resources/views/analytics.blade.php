@@ -34,9 +34,9 @@
 <div class="container-fluid">
     <div class="row mx-0 mb-4 align-items-center">
         <div class="col mb-sm-0 mb-2">
-            <div class="fs-16 fs-sm-20 fs-md-30 fw-bold text-theme1">Analytics</div>
+            <div class="fs-16 fs-sm-20 fs-md-30 fw-600 text-theme1">Analytics</div>
         </div>
-        <div class="col-sm-auto"><button class="shadow-none border border-theme1 text-white top_right_export_btn bg-theme1 rounded fs-14 fw-500 px-sm-4 px-3 py-2">EXPORT REPORT</button></div>
+        <div class="col-sm-auto"><button class="btn btn-theme1 shadow-none border border-theme1 text-white top_right_export_btn rounded fs-14 fw-500 px-sm-4 px-3">EXPORT REPORT</button></div>
     </div>
     <div class="row mx-0 mb-3">
         <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">

@@ -197,117 +197,118 @@
                     </div>
                 </div>
             </div>
-            <div class="col-12 col-lg-9">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="searchBar px-4 py-3 bg-white border-bottom border-2">
-                            <div class="row">
-                                <div class="col-12 col-sm-4">
-                                    <!-- <div class="input-group border border-1 rounded-5"> -->
-                                    <!-- <botton type="button" class="btn border-0 shadow-none bg-white p-0 searchbtn fs-14 px-2 align-items-center d-flex"><i class="imgr img-search fw-600"></i></botton> -->
-                                    <!-- <input type="text" class="form-control shadow-none border-0 ps-1 py-1 h-29px h-lg-31 h-xl-35px" id="searchguest" placeholder="Search Guests" aria-label="Example text with button addon" aria-describedby="button-addon1"> -->
-                                    <!-- </div> -->
-                                </div>
-                                <div class="col-12 col-sm mt-3 mt-sm-0 d-flex gap-3 justify-content-sm-end">
-                                    <!-- <div><button type="btn" class="btn historyBtn btn-outline-light fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase">History</button></div> -->
-                                    <div class="dropdown">
-                                        <button
-                                            class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white"
-                                            type="button" data-bs-toggle="dropdown" aria-expanded="false"><span
-                                                class="me-3">Add guests</span><i
-                                                class="imgr img-chevron-down"></i></button>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item fs-12 fs-sm-14" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal">One by one</a>
-                                            </li>
-                                            <li><a class="dropdown-item fs-12 fs-sm-14" href="#"
-                                                    data-bs-toggle="modal" data-bs-target="#viewguestinfo">Import CSV
-                                                    file</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
+        </div>
+        <div class="col-12 col-lg-9">
+            <div class="row">
+                <div class="col-12">
+                    <div class="searchBar px-4 py-3 bg-white border-bottom border-2">
+                        <div class="row">
+                            <div class="col-12 col-sm-4">
+                                <!-- <div class="input-group border border-1 rounded-5"> -->
+                                <!-- <botton type="button" class="btn border-0 shadow-none bg-white p-0 searchbtn fs-14 px-2 align-items-center d-flex"><i class="imgr img-search fw-600"></i></botton> -->
+                                <!-- <input type="text" class="form-control shadow-none border-0 ps-1 py-1 h-29px h-lg-31 h-xl-35px" id="searchguest" placeholder="Search Guests" aria-label="Example text with button addon" aria-describedby="button-addon1"> -->
+                                <!-- </div> -->
                             </div>
-                        </div>
-                        <div class="totalGuest px-4 py-3 bg-white border-bottom border-2">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col-12 col-sm-auto col-xl-3">
-                                    <div class="geustValue">
-                                        <span class="fs-12 text-theme2 ps-4">Viewing</span>
-                                        <div class="countValue text-theme2 fs-14 fs-md-16 fs-xl-20 fw-bold mt-n2 mt-xl-n2">
-                                            <span
-                                                class="text-theme1 fs-16 fs-md-20 fs-xl-28">{{ $sidedata['total'] }}</span>
-                                            All Guests
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-sm-auto mt-3 mt-sm-0">
-                                    <div class="buttonsGroup d-sm-flex gap-2 d-inline-block">
-                                        <!-- <button type="btn" class="btn btn-theme2 fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0" disabled>Add to Group</button> -->
-                                        <!-- <a href="{{ url('/exportdata/' . $id) }}" type="btn" class="btn btn-theme2 fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0" disabled>Change Status</a> -->
-                                        <a href="{{ url('/exportdata/' . $id) }}" type="btn"
-                                            class="btn btn-theme2 fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0"
-                                            disabled>Export</a>
-                                        <button type="btn"
-                                            class="btn btn-theme2 delbtn fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0">Delete</button>
-                                    </div>
+                            <div class="col-12 col-sm mt-3 mt-sm-0 d-flex gap-3 justify-content-sm-end">
+                                <!-- <div><button type="btn" class="btn historyBtn btn-outline-light fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase">History</button></div> -->
+                                <div class="dropdown">
+                                    <button
+                                        class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white"
+                                        type="button" data-bs-toggle="dropdown" aria-expanded="false"><span
+                                            class="me-3">Add guests</span><i
+                                            class="imgr img-chevron-down"></i></button>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item fs-12 fs-sm-14" href="#"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal">One by one</a>
+                                        </li>
+                                        <li><a class="dropdown-item fs-12 fs-sm-14" href="#"
+                                                data-bs-toggle="modal" data-bs-target="#viewguestinfo">Import CSV
+                                                file</a></li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12">
-                        <!-- <table id="example" class="table mt-0 table-striped dt-responsive nowrap" style="width:100%">
-                                        <thead>
-                                            <tr class="even">
-                                                <th class="select-checkbox"></th>
-                                                <th>Frist Name</th>
-                                                <th>Last Name</th>
-                                                <th>Organisation</th>
-                                                <th>Status</th>
-                                                <th class="text-center">Edit</th>
-                                                <th class="text-center">View</th>
-                                                <th class="text-center">Badge</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td class=""><span class="select-checkbox"></span></td>
-                                                <td>Eugene</td>
-                                                <td class="">Wong</td>
-                                                <td>Now Comms Asia</td>
-                                                <td>Verified</td>
-                                                <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
-                                                <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
-                                                <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
-                                            </tr>
-                                        </tbody>
-                                    </table> -->
-                        <table
-                            class="table table-bordered mt-0 table-striped table-hover text-nowrap  dt-responsive nowrap"
-                            id="allmatches_datatable" width="100%" cellspacing="0">
-                            <thead style="background-color:#CCCCCC">
-                                <tr>
-                                    <th class="text-capitalize">S No.</th>
-                                    <th class="text-capitalize"><input class="" type="checkbox" value=""
-                                            name="select-all" id="flexCheckIndeterminate"></th>
-                                    <th class="text-capitalize">Name</th>
-                                    <th class="text-capitalize">Organization</th>
-                                    <!--<th class="text-capitalize">Type</th>-->
-                                    <!--<th class="text-capitalize">Email</th>-->
-                                    <th class="text-capitalize">Visit</th>
-                                    <th class="text-capitalize">Edit</th>
-                                    <th class="text-capitalize">View</th>
-                                    <th class="text-capitalize ">Action</th>
-                                    <!--<th class="text-capitalize w-100">Action</th>-->
-                                </tr>
-                            </thead>
+                    <div class="totalGuest px-4 py-3 bg-white border-bottom border-2">
+                        <div class="row justify-content-between align-items-center">
+                            <div class="col-12 col-sm-auto col-xl-3">
+                                <div class="geustValue">
+                                    <span class="fs-12 text-theme2 ps-4">Viewing</span>
+                                    <div class="countValue text-theme2 fs-14 fs-md-16 fs-xl-20 fw-bold mt-n2 mt-xl-n2">
+                                        <span
+                                            class="text-theme1 fs-16 fs-md-20 fs-xl-28">{{ $sidedata['total'] }}</span>
+                                        All Guests
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-auto mt-3 mt-sm-0">
+                                <div class="buttonsGroup d-sm-flex gap-2 d-inline-block">
+                                    <!-- <button type="btn" class="btn btn-theme2 fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0" disabled>Add to Group</button> -->
+                                    <!-- <a href="{{ url('/exportdata/' . $id) }}" type="btn" class="btn btn-theme2 fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0" disabled>Change Status</a> -->
+                                    <a href="{{ url('/exportdata/' . $id) }}" type="btn"
+                                        class="btn btn-theme2 fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0"
+                                        disabled>Export</a>
+                                    <button type="btn"
+                                        class="btn btn-theme2 delbtn fs-10 fs-lg-11 fs-xl-14  fw-600 text-uppercase my-1 my-sm-0">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <!-- <table id="example" class="table mt-0 table-striped dt-responsive nowrap" style="width:100%">
+                                    <thead>
+                                        <tr class="even">
+                                            <th class="select-checkbox"></th>
+                                            <th>Frist Name</th>
+                                            <th>Last Name</th>
+                                            <th>Organisation</th>
+                                            <th>Status</th>
+                                            <th class="text-center">Edit</th>
+                                            <th class="text-center">View</th>
+                                            <th class="text-center">Badge</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class=""><span class="select-checkbox"></span></td>
+                                            <td>Eugene</td>
+                                            <td class="">Wong</td>
+                                            <td>Now Comms Asia</td>
+                                            <td>Verified</td>
+                                            <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
+                                            <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
+                                            <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
+                                        </tr>
+                                    </tbody>
+                                </table> -->
+                    <table
+                        class="table table-bordered mt-0 table-striped table-hover text-nowrap  dt-responsive nowrap"
+                        id="allmatches_datatable" width="100%" cellspacing="0">
+                        <thead style="background-color:#CCCCCC">
+                            <tr>
+                                <th class="text-capitalize">S No.</th>
+                                <th class="text-capitalize"><input class="" type="checkbox" value=""
+                                        name="select-all" id="flexCheckIndeterminate"></th>
+                                <th class="text-capitalize">Name</th>
+                                <th class="text-capitalize">Organization</th>
+                                <!--<th class="text-capitalize">Type</th>-->
+                                <!--<th class="text-capitalize">Email</th>-->
+                                <th class="text-capitalize">Visit</th>
+                                <th class="text-capitalize">Edit</th>
+                                <th class="text-capitalize">View</th>
+                                <th class="text-capitalize ">Action</th>
+                                <!--<th class="text-capitalize w-100">Action</th>-->
+                            </tr>
+                        </thead>
 
-                            <tbody>
-                            </tbody>
-                        </table>
-                    </div>
+                        <tbody>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
     </section>
 
 
@@ -512,13 +513,13 @@
                                                 </h4>
                                             </div>
                                             <div class="col-12 mb-3">
-                                                <input type="text" placeholder="LinkedIn" name="linkedin"
+                                                <input type="text" placeholder="LinkedIn" value="LinkedIn" name="linkedin"
                                                     class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                     autocomplete="off">
                                             </div>
 
                                             <div class="col-12 mb-3">
-                                                <input type="text" placeholder="Twitter" name="twitter"
+                                                <input type="text" placeholder="Twitter" value="Twitter" name="twitter"
                                                     class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                     autocomplete="off">
                                             </div>
@@ -709,14 +710,14 @@
                                                 </h4>
                                             </div>
                                             <div class="col-12 mb-3">
-                                                <input type="text" placeholder="LinkedIn" id="linkedin1"
+                                                <input type="text" placeholder="LinkedIn" value="LinkedIn" id="linkedin1"
                                                     name="linkedin"
                                                     class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                     autocomplete="off">
                                             </div>
 
                                             <div class="col-12 mb-3">
-                                                <input type="text" placeholder="Twitter" id="twiiter1"
+                                                <input type="text" placeholder="Twitter" value="Twitter" id="twiiter1"
                                                     name="twitter"
                                                     class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                     autocomplete="off">
@@ -748,37 +749,39 @@
 
                 <div class="modal fade Create-Guest-modal" id="viewguestinfo" data-bs-backdrop="static" tabindex="-1"
                     aria-labelledby="viewguestinfoLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                    <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
 
-                            <div class="modal-header py-3">
-                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Choose a file
+                            <div class="modal-header py-2 px-4">
+                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Import CSV File
                                 </h5>
                                 <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal"
                                     aria-label="Close"></i>
                             </div>
-                            <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12 mt-3"
+                            <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12"
                                 enctype="multipart/form-data">
-                                <div class="modal-body">
+                                <div class="modal-body p-4">
                                     @csrf
                                     <input type="hidden" name="mid" value="{{ $id }}">
                                     <div class="input-group">
-                                        <label class="input-group-text p-5 justify-content-center w-100 rounded-8"
+                                        <label class="input-group-text p-5 justify-content-center w-100 rounded-4 bg-white"
                                             for="inputGroupFile01">
                                             <div class="gap-3">
-                                                <i class="imgr img-arrow-to-bottom fs-36 d-block"></i>
-                                                <span
-                                                    class="d-block fs-18 mb-n2 textHover my-3 fs-16 fs-sm-18 fs-md-22">Choose
-                                                    a file</span>
+                                                <div class="w-44px h-44px mx-auto">
+                                                    <img class="w-100" src="{{ asset('/public/new-design/img//icon/upload.svg') }}" alt="">
+                                                </div>
+                                                <span class="fs-30 fw-bold text-muted d-block">Drag & Drop</span>
+                                                <span class="d-block fs-18 fs-16 fs-sm-18 fs-md-25">A <span class="textHover text-primary">.csv</span> file here or click</span>
+                                                
                                             </div>
                                         </label>
                                         <input type="file" class="form-control d-none" name="eventfile"
                                             id="inputGroupFile01">
                                     </div>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit"
-                                        class="btn btn-theme1 fs-16 text-white fw-500 px-3">Submit</button>
+                                <div class="modal-footer pt-4 justify-content-center">
+                                    <button type="submit" class="btn btn-outline-dark fs-14 fw-500 px-4 text-uppercase">Cancel</button>
+                                    <button type="submit" class="btn btn-theme1 fs-14 text-white fw-500 px-4 text-uppercase">Import</button>
                                 </div>
                             </form>
                         </div>

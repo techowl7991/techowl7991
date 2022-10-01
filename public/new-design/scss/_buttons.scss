@@ -40,4 +40,13 @@
     font-size: 14px;
     font-weight: bold;
 }
+.customDarkBtn {
+    border: 1px solid #302D2F !important;
+    background-color: #302D2F;
+    transition: all .3s;
+    &:hover {
+        background-color: transparent;
+        color: #302D2F !important;
+    }
+}
 

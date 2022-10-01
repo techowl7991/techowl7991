@@ -34,10 +34,10 @@
 <div class="container-fluid h-100 position-relative">
     <div class="row mx-0 mb-4 align-items-center">
         <div class="col mb-sm-0 mb-2">
-            <div class="fs-sm-30 fs-25 fw-bold text-theme1">Email</div>
+            <div class="fs-sm-30 fs-25 fw-600 text-theme1">Email</div>
         </div>
         <div class="col-sm-auto">
-            <button class="shadow-none border-0 text-white top_right_export_btn bg-theme1 rounded fs-14 fw-500 px-sm-4 px-3  py-2" data-bs-toggle="modal" data-bs-target="#exampleModal">CREATE A CAMPAIGN</button>
+            <button class="btn btn-theme1 shadow-none border-0 text-white top_right_export_btn rounded fs-14 fw-600 " data-bs-toggle="modal" data-bs-target="#exampleModal">CREATE A CAMPAIGN</button>
         </div>
     </div>
     <div class="row">
@@ -56,8 +56,8 @@
 <div class="modal fade Create-Guest-modal email-modal " id="exampleModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content bg-white">
-            <div class="modal-header px-4 pt-4 mb-3">
-                <h5 class="modal-title fs-20 text-theme2 fw-bold ps-1" id="exampleModalLabel">Edit Guest Information</h5>
+            <div class="modal-header px-4 py-3">
+                <h5 class="modal-title fs-20 text-theme2 fw-600 ps-1" id="exampleModalLabel">Edit Guest Information</h5>
                 <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
                 <i class="imgr img-times fs-20 text-theme2 pe-1" data-bs-dismiss="modal" aria-label="Close"></i>
             </div>
@@ -70,8 +70,8 @@
                             </div>
 
                             <div class="col-12 px0 py-3 d-flex justify-content-start gap-2">
-                                <button type="button" class=" shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                <a href="{{route('campaign_information')}}" class="shadow-none rounded border-0 text-white bg-theme1 hrefrounded fs-14 fw-bold px-4 py-2 top_right_export_btn text-decoration-none">CONTINUE</a>
+                                <button type="button" class="btn btn-outline-theme2 shadow-none rounded cancle_btn fs-14 fw-600" data-bs-dismiss="modal">CANCEL</button>
+                                <a href="{{route('campaign_information')}}" class="btn btn-theme1 shadow-none rounded border-0 text-white hrefrounded fs-14 fw-600 top_right_export_btn text-decoration-none">CONTINUE</a>
                             </div>
 
                         </div>
