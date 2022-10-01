@@ -472,12 +472,12 @@
                                                             class="fs-12 ps-4">Organisation</label>
                                                     </div>
                                                     <!-- <div class="col-12 mb-2 form-floating Tel_Input_group">
-                                                                        <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
-                                                                        <label for="phone" class="fs-12 ps-4">Organisation</label>
-                                                                    </div> -->
+                                                                                        <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
+                                                                                        <label for="phone" class="fs-12 ps-4">Organisation</label>
+                                                                                    </div> -->
                                                     <!-- <div class="col-12">
-                                                                        <input type="tel" id="phone">
-                                                                    </div> -->
+                                                                                        <input type="tel" id="phone">
+                                                                                    </div> -->
                                                     <div class="col-6 mb-2 form-floating">
                                                         <input type="number"
                                                             class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal"
@@ -541,9 +541,9 @@
 
 
                             <!-- <div class="modal-footer justify-content-center">
-                                                <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                                <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                                            </div> -->
+                                                                <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                                <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -567,7 +567,7 @@
                                         <h4 class="m-0 heading fw-bold text-white px-3 fs-16">Guest Information</h4>
                                     </div>
                                     <form action="{{ route('updateguest') }}" method="post"
-                                        class="modal-form col-12 mt-3">
+                                        enctype="multipart/form-data" class="modal-form col-12 mt-3">
                                         @csrf
                                         <input type="hidden" name="mid" value="{{ $id }}">
                                         <input type="hidden" id="id1" name="id1">
@@ -575,16 +575,20 @@
 
                                         <div class="row">
                                             <div class="col-3 d-flex justify-content-center">
-                                                <!-- userName -->
-                                                <div class="dnone">
-                                                    <input class="d-none" type="file" name="guestimage"
-                                                        id="guestimage">
-                                                    <label for="guestimage" id="image1">
-                                                        <img src="{{ asset('/public/new-design/img/avatar-img.png') }}"
-                                                            alt="" height="65px" width="65px">
-                                                        <div class="fs-14 mt-1 text-center">Attending</div>
-                                                    </label>
+
+                                                <div id="image1">
+
                                                 </div>
+
+                                                <!-- userName -->
+                                                {{-- <div class="dnone">
+                                                    <input class="d-none" type="file" name="guimage"
+                                                        id="guimage">
+                                                    <label for="guimage" id="image1" class="imageContainer">
+                                                    </label>
+                                                </div> --}}
+
+
 
 
 
@@ -667,12 +671,12 @@
                                                             class="fs-12 ps-4">Organisation</label>
                                                     </div>
                                                     <!-- <div class="col-12 mb-2 form-floating Tel_Input_group">
-                                                                        <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
-                                                                        <label for="phone" class="fs-12 ps-4">Organisation</label>
-                                                                    </div> -->
+                                                                                        <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
+                                                                                        <label for="phone" class="fs-12 ps-4">Organisation</label>
+                                                                                    </div> -->
                                                     <!-- <div class="col-12">
-                                                                        <input type="tel" id="phone">
-                                                                    </div> -->
+                                                                                        <input type="tel" id="phone">
+                                                                                    </div> -->
                                                     <div class="col-6 mb-2 form-floating">
                                                         <input type="number"
                                                             class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal"
@@ -740,9 +744,9 @@
 
 
                             <!-- <div class="modal-footer justify-content-center">
-                                                <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                                <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                                            </div> -->
+                                                                <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                                <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                                            </div> -->
                         </div>
                     </div>
                 </div>
@@ -794,14 +798,14 @@
 
                 <div class="row" style="border:none">
                     <!-- <div class="col-3" style="border:none">
-                                        <div class="card mb-3">
-                                            <div class="card-heading p-3">
-                                                <input type="hidden" value="{{ $id }}" id="id">
-                                               
-                                                
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                                        <div class="card mb-3">
+                                                            <div class="card-heading p-3">
+                                                                <input type="hidden" value="{{ $id }}" id="id">
+                                                               
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div> -->
 
                     <div class="col-9">
 
@@ -823,7 +827,7 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
-                    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
+                                    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
     <style>
         .oncClickDisabled {
             display: grid;
@@ -873,11 +877,10 @@
                     mid: mid,
                 },
                 success: function(response) {
-                    console.log(response.success);
                     $('.' + id).removeClass('active');
                     $('.oncClickDisabled').removeClass('disabledClick');
 
-                    // console.log(response);
+                    console.log(response);
                     $('#twiiter1').val(response.data.twitter);
                     $('#linkedin1').val(response.data.linkedin);
 
@@ -893,20 +896,25 @@
                     $(`#nmtype1 option[value="${response.data.nmtype}"]`).attr("selected", "selected");
 
                     $("#image1").children().remove();
-                    $("#image1").append(
-                        `<input class="d-none" type="file" name="guestimage" id="guestimage"><label for="guestimage"><img id="imgg" src="{{ asset('public/imgs/${response.data.guestimage}') }}" alt="" height="65px" width="65px"></label>`
-                    );
-
-                    // if (response.success == 1) {
-                    //     $("#image1").children().remove();
-                    //     $("#image1").append(
-                    //         `<input class="d-none" type="file" name="guestimage" id="guestimage"><label for="guestimage"><img id="imgg" src="{{ asset('public/imgs/${response.data.guestimage}') }}" alt="" height="65px" width="65px"></label>`
-                    //     );
-                    // }
-                    // else{
 
 
-                    // }
+                    if (response.success == 0) {
+                        console.log(response.guestimage == '');
+                        $("#image1").children().remove();
+                        fname = response.data.evefirstname.substr(0, 1).toUpperCase();
+                        lname = response.data.evelastname.substr(0, 1).toUpperCase();
+                        console.log(fname, lname);
+
+
+                        $("#image1").append(
+                            `<input class="d-none" type="file" name="guimage" id="guimage"><label for="guimage"><p class="">${fname}${lname} </p> </label>
+                            `
+                        );
+                    } else {
+                        $("#image1").append(
+                            `<input class="d-none" type="file" name="guimage" id="guimage" value="${response.data.guestimage}"><label for="guimage"><img id="imgg" src="{{ asset('public/imgs/${response.data.guestimage}') }}" alt="" height="65px" width="65px"></label>`
+                        );
+                    }
 
                     $('#exampleModal1').modal('toggle');
                     $('#exampleModal1').modal('show');
