@@ -91,4 +91,5 @@ Route::any('/email2',function(){return view('new-design/email2');});
 Route::get('/viewgatekeeper/{mid}',[AboutController::class,'viewgatekeeper'])->name('viewgatekeeper');
 Route::any('/addkeeper/{mid}',[AboutController::class,'addkeeper'])->name('addkeeper');
 Route::any('/view_guest_dt', [AboutController::class, 'view_guest_dt']);
+Route::any('/viewwebsite/{id}', [AboutController::class, 'view_web']);
 

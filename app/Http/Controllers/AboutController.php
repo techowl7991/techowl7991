@@ -1444,6 +1444,7 @@ class AboutController extends Controller
 
     public function add_guest_exl(Request $request)
     {
+
         $uid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -1506,6 +1507,7 @@ class AboutController extends Controller
 
     public function viewgatekeeper(Request $request, $mid)
     {
+
         if (!empty($request->session()->get('uid'))) {
             self::$firestoreProjectId = 'guest-app-2eb59';
             self::$firestoreClient = new FirestoreClient([
