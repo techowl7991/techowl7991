@@ -85,6 +85,28 @@
                                 </div>
                             </div>
 
+                            <div class="col-12 mb-3">
+                                <input type="text" placeholder="Event Organizer Name" name="eventorganizer"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    autocomplete="off" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <textarea name="eventdesc" placeholder="Event Description" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" rows="3"></textarea>
+                            </div>
+
+                            <div class="col-12 mb-3">
+                                <input type="file" name="event_image"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    autocomplete="off" required>
+                            </div>
+
+                            {{-- <div class="col-12 mb-3">
+                                <input type="text" placeholder="Event Description" name="eventdesc"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    autocomplete="off" required>
+                            </div> --}}
+
                             <div class="col-12 text-theme2 fs-16 fw-bold mb-3">Event Type</div>
                             <div class="col-12 mb-3 d-flex align-items-center gap-2">
                                 <div class="form-check">
@@ -344,7 +366,7 @@
 
         <script>
             $(".shaowPass").click(function() {
-        
+
                 $(this).toggleClass("img-eye img-eye-slash");
                 var input4 = $($(this).attr("toggle"));
                 if (input4.attr("type") == "password") {

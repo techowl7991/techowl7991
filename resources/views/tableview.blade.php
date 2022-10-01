@@ -170,6 +170,9 @@ table.dataTable thead th, table.dataTable tbody tr td {
                     "data": "event_name"
                 },
                 {
+                    "data": "event_image"
+                },
+                {
                     "data": "event_startdate"
                 },
 
