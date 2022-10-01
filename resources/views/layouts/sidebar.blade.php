@@ -23,4 +23,7 @@
                 href="{{ route('get_setting') }}"><i class="imgs img-cog text-white fs-18"></i> <span
                     class="fs-16 fs-normal">Setting</span> </a></li>
     </ul>
+
+
+
 </div>
