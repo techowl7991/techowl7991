@@ -19,6 +19,7 @@ use DataTables;
 use GPBMetadata\Google\Firestore\V1Beta1\Firestore;
 use Illuminate\Support\Arr;
 use Kreait\Auth\Request\UpdateUser;
+use Illuminate\Support\Facades\File;
 
 class AboutController extends Controller
 {
@@ -175,6 +176,15 @@ class AboutController extends Controller
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
             }
+
+            if ($request->has('event_image')) {
+                $image = $request->file('event_image');
+                $extention = $image->getClientOriginalExtension();
+                $filename = time() . '.' . $extention;
+                $dest = public_path('eventimgs');
+                $image->move($dest, $filename);
+    
+            }
             $data = [
                 'event_startdate' => $request->eventstartdate,
                 'event_enddate' => $request->eventenddate,
@@ -188,7 +198,11 @@ class AboutController extends Controller
                 'event_timezone' => $request->eventtimezone,
                 'event_type' => $request->eventtype,
                 'event_sub_type' => $dat,
+                'event_organizer' => $request->eventorganizer,
+                'event_description' => $request->eventdesc,
+                'event_image' => $filename,
             ];
+            // dd($data);
 
             $geteventid = self::$firestoreClient->collection('eventidupdate')->documents();
             $rowid = $geteventid->rows();
@@ -369,7 +383,7 @@ class AboutController extends Controller
                 <p>Dear ' . $eventdata['name'] . ',</p> 
                 <p>In-person Invitation to the ' . $eventdata['event_name'] . '  - You’re In!</p> 
                 <p>Thank you for registering for the ' . $eventdata['event_name'] . '. This is a reminder that this event will be happening ' . date('d-m-y', strtotime($eventdata['event_startdate'])) . ', from ' . date('h:i:s A', strtotime($eventdata['event_startdate'])) . ' to ' . date('h:i:s A', strtotime($eventdata['event_enddate'])) . ', held at .</p> 
-                <p><a href="'.$eventdata['url'] .'">click here</a> to verify</p>
+                <p><a href="' . $eventdata['url'] . '">click here</a> to verify</p>
                 <p>Please bring your mobile device for check-in purposes. Your device will also be used to log in to the virtual platform to participate in live chats, Q&A and polls.</p>
                 <p>For more details on what to expect during your event please refer to the link here: https://nowevents.online</p>
                 <p>See you soon!</p>
@@ -505,10 +519,13 @@ class AboutController extends Controller
                 $b = action('AboutController@printdata', $title->id());
                 $d = action('AboutController@viewgatekeeper', $title->id());
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
+                $img= asset('/public/eventimgs/'.$title['event_image']);
 
                 $action = "<a href=" . $b . " class='btn btn-dark shadow printBtn py-1 px-3'>Detail</a>";
                 $viewgate = "<a href=" . $d . " class='btn btn-dark shadow printBtn py-1 px-3'>View</a>";
                 $actionQR = '<a class="btn btn-dark text-white shadow printBtn py-1 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
+
+                // $image = "<a href="">Image</a>";
 
                 $route = action('AboutController@singledelete', $title->id());
                 $editroute = action('AboutController@edit', $title->id());
@@ -518,6 +535,7 @@ class AboutController extends Controller
                 $nestedData['checkb'] = '<input class="" type="checkbox"  name="id[]" value="' . $title->id() . '" >';
                 $nestedData['singledel'] = $delbtn;
                 $nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
+                $nestedData['event_image'] = '<img src="'.$img.'" alt="" width="70px" height="65px">';
                 $nestedData['event_name'] = $title['event_name'];
                 $nestedData['event_startdate'] = date('m/d/Y h:i:s A', strtotime($title['event_startdate']));
                 $nestedData['event_enddate'] = date('m/d/Y h:i:s A', strtotime($title['event_enddate']));
@@ -647,12 +665,14 @@ class AboutController extends Controller
 
     public function update(Request $request, $id)
     {
+        
         if ($request->isMethod('put')) {
             $USERID = $request->session()->get('uid');
             self::$firestoreProjectId = 'guest-app-2eb59';
             self::$firestoreClient = new FirestoreClient([
                 'projectId' => self::$firestoreProjectId,
             ]);
+            $snapshot = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->document($id)->snapshot()->data();
 
             if (date('m/d/Y h:i:s A', strtotime($request->eventstartdate)) < date('m/d/Y h:i:s A')) {
                 return redirect()->back()->with('alert', 'Start Date Should Be greater then Today Date');
@@ -670,6 +690,25 @@ class AboutController extends Controller
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
             }
+            
+
+            if ($request->has('event_image')) { 
+
+                $destination = 'public/eventimgs/'. $snapshot['event_image'];
+
+                if(File::exists($destination)){
+                    File::delete($destination);
+                }
+
+                $image = $request->file('event_image');
+                $extention = $image->getClientOriginalExtension();
+                $filename = time() . '.' . $extention;
+                $dest = public_path('eventimgs');
+                $image->move($dest, $filename);
+
+                
+    
+            }
 
             $data1 = [
                 'event_startdate' => $request->eventstartdate,
@@ -685,6 +724,9 @@ class AboutController extends Controller
                 'event_timezone' => $request->eventtimezone,
                 'event_type' => $request->eventtype,
                 'event_sub_type' => $dat,
+                'event_organizer' => $request->eventorganizer,
+                'event_description' => $request->eventdesc,
+                'event_image' => $filename,
 
             ];
             // $data1 = [
@@ -823,8 +865,8 @@ class AboutController extends Controller
             foreach ($titles as $title) {
                 // $editroute = action('AboutController@editvisitor', $title->id());
                 // $editroute = action('AboutController@viewvisitor', $title->id());
-                $edtbtn = "<a role='button' onclick='openmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='edit' id='edit' class='text-danger py-0 px-3 text-decoration-none ".$title->id()." oncClickDisabled'><i class='img img-pencil' aria-hidden='true'></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
-                $viewbtn = "<a role='button' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='view' class='text-danger py-0 px-3 text-decoration-none view".$title->id()." oncClickDisabled'><i class='img img-eye' aria-hidden='true'  id='view' ></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
+                $edtbtn = "<a role='button' onclick='openmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='edit' id='edit' class='text-danger py-0 px-3 text-decoration-none " . $title->id() . " oncClickDisabled'><i class='img img-pencil' aria-hidden='true'></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
+                $viewbtn = "<a role='button' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='view' class='text-danger py-0 px-3 text-decoration-none view" . $title->id() . " oncClickDisabled'><i class='img img-eye' aria-hidden='true'  id='view' ></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
                 $a = action('AboutController@senddata');
                 $b = action('AboutController@printbadge');
                 $c = "<form action='" . $a . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
@@ -900,9 +942,15 @@ class AboutController extends Controller
         $mid = $request->mid;
         $snapshot = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->snapshot();
         $data = $snapshot->data();
-        return response()->json($data);
-        // dd($snapshot->data());
-        // dd($request->all());
+
+
+        if(!empty($snapshot['guestimage'])){
+
+            return response()->json(['data' => $data, 'success' => 1]);
+        }
+        else{
+            return response()->json(['data' => $data, 'success' => 0]);
+        }
     }
 
     public function updateguest(Request $request)
@@ -912,10 +960,27 @@ class AboutController extends Controller
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
+        $id = $request->id;
         $mid = $request->mid;
         $id1 = $request->id1;
         $id2 = $request->id2;
+        
+        // $snapshot = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->snapshot();
+        // dd($snapshot);
+        // $data = $snapshot->data();
+
+        
+        // if ($request->has('guestimage')) {
+        //     $image = $request->file('guestimage');
+        //     $extention = $image->getClientOriginalExtension();
+        //     $filename = time() . '.' . $extention;
+        //     $dest = public_path('imgs');
+        //     $image->move($dest, $filename);
+        // }
+
+
         $data = [
+            // 'guestimage' => ($filename) ? $filename : '',
             'type' => ($request->type) ? $request->type : '',
             'nmtitle' => ($request->nmtitle) ? $request->nmtitle : '',
             'evefirstname' => ($request->evefirstname) ? $request->evefirstname : '',
@@ -954,7 +1019,7 @@ class AboutController extends Controller
             $snap['Reg'] = $snap['Reg'] + 1;
             $snap['vip'] = $snap['vip'] - 1;
         }
-        $snap['total']=$snap['vip']+$snap['Reg'];
+        $snap['total'] = $snap['vip'] + $snap['Reg'];
         $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->set($snap);
 
         return redirect()->back();
@@ -1059,7 +1124,7 @@ class AboutController extends Controller
         //     return redirect('/login');
         // } else {
         //     $mid = $request->session()->get('uid');
-            return view('analytics');
+        return view('analytics');
         // }
     }
 
@@ -1335,12 +1400,22 @@ class AboutController extends Controller
 
         $bytes = bin2hex(random_bytes(20));
         // dd($bytes);
-        if($request->type == 'RSVP'){
-            $rsvpstatus =1;
-        }else{
-            $rsvpstatus =0;
+        if ($request->type == 'RSVP') {
+            $rsvpstatus = 1;
+        } else {
+            $rsvpstatus = 0;
+        }
+
+        if ($request->has('guestimage')) {
+            $image = $request->file('guestimage');
+            $extention = $image->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $dest = public_path('imgs');
+            $image->move($dest, $filename);
+
         }
         $data = [
+            'guestimage' => ($request->guestimage) ? $filename : '',
             'type' => ($request->type) ? $request->type : '',
             'nmtitle' => ($request->nmtitle) ? $request->nmtitle : '',
             'evefirstname' => ($request->evefirstname) ? $request->evefirstname : '',
@@ -1358,18 +1433,19 @@ class AboutController extends Controller
             'token' => $bytes,
 
         ];
+
         // dd($data);
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
-        $qryarr = explode('/',$docref->name());
+        $qryarr = explode('/', $docref->name());
         // $route = $mid.'-'.$qryarr;
-        
-        $route = $mid.'-'. end($qryarr);
+
+        $route = $mid . '-' . end($qryarr);
         // dd($route);
         // dd(end($qryarr));
-        if($rsvpstatus == 1){
+        if ($rsvpstatus == 1) {
             $status = 0;
             $url = "http://localhost/techowl7991/verify/$route/$bytes";
-        }else{
+        } else {
             $status = 1;
             $url = "";
         }
@@ -1381,7 +1457,7 @@ class AboutController extends Controller
         } else {
             $snap['Reg'] = $snap['Reg'] + 1;
         }
-        $snap['total']=$snap['vip']+$snap['Reg'];
+        $snap['total'] = $snap['vip'] + $snap['Reg'];
         $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->set($snap);
         // dd($snap);
         $token = $mid . '(**)' . $docref->id();
@@ -1391,7 +1467,7 @@ class AboutController extends Controller
         $evedata['event_name'] = $snap['event_name'];
         $evedata['status'] = 0;
         $evedata['email'] = $request->eveemail;
-        $evedata['name'] = $request->evefirstname.' '.$request->evelastname;
+        $evedata['name'] = $request->evefirstname . ' ' . $request->evelastname;
         $evedata['type'] = $request->type;
         $evedata['company'] = $request->orgenization;
         $evedata['visit'] = 'NO';
@@ -1403,40 +1479,42 @@ class AboutController extends Controller
         return redirect()->back();
     }
 
-    public function verify(Request $request ,$id,$token){
+    public function verify(Request $request, $id, $token)
+    {
         // dd($id,$token);
-        $arr = explode('-',$id);
+        $arr = explode('-', $id);
         $mid = $arr[0];
         $id = $arr[1];
-        return view('verify',compact('mid','id'));
+        return view('verify', compact('mid', 'id'));
     }
 
-    public function update_verifcation(Request $request){
+    public function update_verifcation(Request $request)
+    {
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
-        
-        $mid=$request->mid;
-        $id=$request->id;
+
+        $mid = $request->mid;
+        $id = $request->id;
         $snapshot = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->snapshot();
         $snap = $snapshot->data();
-        $data=[
-            'type' =>'verified',
+        $data = [
+            'type' => 'verified',
             'eveemail' => $snap['eveemail'],
-            'evefirstname' =>$snap['evefirstname'],
-            'evelastname' =>$snap['evelastname'],
-            'jobtitle' =>$snap['jobtitle'],
-            'linkedin' =>$snap['linkedin'],
-            'mobileno' =>$snap['mobileno'],
-            'nmtitle' =>$snap['nmtitle'],
-            'nmtype' =>$snap['nmtype'],
-            'orgenization' =>$snap['orgenization'],
-            'resvpstatus' =>$snap['resvpstatus'],
-            'tags' =>$snap['tags'],
-            'token' =>$snap['token'],
-            'twitter' =>$snap['twitter'],
-            'visit' =>'NO',            
+            'evefirstname' => $snap['evefirstname'],
+            'evelastname' => $snap['evelastname'],
+            'jobtitle' => $snap['jobtitle'],
+            'linkedin' => $snap['linkedin'],
+            'mobileno' => $snap['mobileno'],
+            'nmtitle' => $snap['nmtitle'],
+            'nmtype' => $snap['nmtype'],
+            'orgenization' => $snap['orgenization'],
+            'resvpstatus' => $snap['resvpstatus'],
+            'tags' => $snap['tags'],
+            'token' => $snap['token'],
+            'twitter' => $snap['twitter'],
+            'visit' => 'NO',
         ];
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->set($data);
         dd($docref);
@@ -1480,7 +1558,7 @@ class AboutController extends Controller
                     } else {
                         $snap['Reg'] = $snap['Reg'] + 1;
                     }
-                    $snap['total']=$snap['vip']+$snap['Reg'];
+                    $snap['total'] = $snap['vip'] + $snap['Reg'];
                     $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->set($snap);
 
                     $token = $mid . '(**)' . $docref->id();
@@ -1664,21 +1742,21 @@ class AboutController extends Controller
         // $snapshot = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->documents();
         $snapshot1 = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->documents();
         // dd($snapshot1->rows());
-        $totalguest=0;
-        $tcheckedin=0;
+        $totalguest = 0;
+        $tcheckedin = 0;
         $rsvp = 0;
-        foreach($snapshot1 as $snapss){
+        foreach ($snapshot1 as $snapss) {
             $snap = $snapss->data();
             $totalguest = $totalguest + 1;
-            if($snap['visit'] == 'yes' || $snap['visit'] == 'YES'){
+            if ($snap['visit'] == 'yes' || $snap['visit'] == 'YES') {
                 $rsvp = $rsvp + 1;
             }
-            if($snap['visit'] != 'No' && $snap['visit'] != 'NO' && $snap['visit'] != 'no' ){
+            if ($snap['visit'] != 'No' && $snap['visit'] != 'NO' && $snap['visit'] != 'no') {
                 $tcheckedin = $tcheckedin + 1;
             }
         }
-        $per = ($tcheckedin/$totalguest)*100;
-        
+        $per = ($tcheckedin / $totalguest) * 100;
+
         // foreach($snapshot as $eventdata){
         //     $eve = $eventdata->data();
         //     // $totalguest = $eve['total']+$totalguest;
@@ -1698,7 +1776,7 @@ class AboutController extends Controller
         // }
         // dd($total);
         // dd($snapshot->snapshot());
-        return view('analytics',compact('totalguest','tcheckedin','rsvp','per'));
+        return view('analytics', compact('totalguest', 'tcheckedin', 'rsvp', 'per'));
     }
     public function get_setting()
     {

@@ -97,6 +97,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
                                                 value="" name="select-all"
                                                 id="flexCheckIndeterminate"></th>
                                         <th class="text-capitalize">Title</th>
+                                        <th class="text-capitalize">Image</th>
                                         <th style="text-align:center;" class="text-capitalize">Start Date
                                         </th>
                                         <!--<th class="text-capitalize">End Date</th>-->
@@ -168,6 +169,9 @@ table.dataTable thead th, table.dataTable tbody tr td {
                 },
                 {
                     "data": "event_name"
+                },
+                {
+                    "data": "event_image"
                 },
                 {
                     "data": "event_startdate"
