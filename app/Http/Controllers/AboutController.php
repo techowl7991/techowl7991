@@ -1444,6 +1444,7 @@ class AboutController extends Controller
 
     public function add_guest_exl(Request $request)
     {
+
         $uid = $request->session()->get('uid');
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -1506,6 +1507,7 @@ class AboutController extends Controller
 
     public function viewgatekeeper(Request $request, $mid)
     {
+
         if (!empty($request->session()->get('uid'))) {
             self::$firestoreProjectId = 'guest-app-2eb59';
             self::$firestoreClient = new FirestoreClient([
@@ -1700,6 +1702,27 @@ class AboutController extends Controller
         // dd($snapshot->snapshot());
         return view('analytics',compact('totalguest','tcheckedin','rsvp','per'));
     }
+
+    public function view_web(Request $request , $id){
+        $mid = $request->session()->get('uid');
+        // dd($mid);     
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $date = date('Y-m-d');
+        $up_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document('fbfb808696e64c79af4b')->snapshot();
+        $data = $up_snapshot->data();
+        // dd($up_snapshot->data());
+        return view('viewweb',compact('data','mid','id'));
+        // $upcoming_count = iterator_count($up_snapshot);?
+
+    }
+    
+    public function add_ver_guest(Request $request){
+        dd($request->all());
+    }
+
     public function get_setting()
     {
         return view('setting');
