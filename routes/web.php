@@ -49,6 +49,7 @@ Route::any('/exportdataanalytics/{id}',[AboutController::class,'exportdataanalyt
 Route::any('useraccount/{id}',[AboutController::class,'edit_user_account'])->name('useraccount');
 Route::any('update_useraccount/{id}',[AboutController::class,'update_user_account'])->name('update_useraccount');
 Route::any('addguest',[AboutController::class,'add_guest'])->name('addguest');
+Route::any('addverguest',[AboutController::class,'add_ver_guest'])->name('addverguest');
 Route::any('addguestcsv',[AboutController::class,'add_guest_exl'])->name('addguestcsv');
 Route::any('editvisitor',[AboutController::class,'editvisitor'])->name('editvisitor');
 Route::any('viewvisitor',[AboutController::class,'viewvisitor'])->name('viewvisitor');
@@ -64,7 +65,7 @@ Route::get('analytics_booth_name',[AboutController::class,'analytics_booth_name'
 
 
 Route::any('save_new_password/{id}',[AboutController::class,'save_new_password'])->name('save_new_password');
-
+Route::any('/viewwebsite/{id}', [AboutController::class, 'view_web']);
 
 
 
