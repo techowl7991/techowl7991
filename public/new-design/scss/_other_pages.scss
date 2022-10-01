@@ -1357,6 +1357,28 @@ table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-str
 @mixin emailType-mixin-max-xl() {}
 
 
+
+.newPage {
+  & .mainSocial {
+    & a {
+      border: 1px solid $theme1;
+      transition: .5s;
+      & i {
+        transition: .3s;
+      }
+      &:hover {
+        background-color: transparent !important;
+        border: 1px solid $theme1;
+        color: $theme1 !important;
+        & i {
+          transform: rotateY(3600deg);
+        }
+      }
+    }
+  }
+}
+
+
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   @include xxxxxx-xxxxx-mixin-min-sm();

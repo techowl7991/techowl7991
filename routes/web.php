@@ -86,6 +86,7 @@ Route::any('/my-event',function(){return view('new-design/my-event');});
 Route::any('/my-account',function(){return view('new-design/my-account');});
 Route::any('/guests',function(){return view('new-design/guests');});
 Route::any('/email2',function(){return view('new-design/email2');});
+Route::any('/new-page',function(){return view('new-design/new-page');});
 
 Route::get('/viewgatekeeper/{mid}',[AboutController::class,'viewgatekeeper'])->name('viewgatekeeper');
 Route::any('/addkeeper/{mid}',[AboutController::class,'addkeeper'])->name('addkeeper');
