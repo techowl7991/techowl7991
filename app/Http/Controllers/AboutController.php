@@ -1790,7 +1790,7 @@ class AboutController extends Controller
             'projectId' => self::$firestoreProjectId,
         ]);
         $date = date('Y-m-d');
-        $up_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document('fbfb808696e64c79af4b')->snapshot();
+        $up_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->snapshot();
         $data = $up_snapshot->data();
         // dd($up_snapshot->data());
         return view('viewweb',compact('data','mid','id'));
