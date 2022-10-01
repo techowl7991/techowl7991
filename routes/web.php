@@ -40,7 +40,6 @@ Route::any('/verify/{id}/{token}', [AboutController::class, 'verify']);
 Route::any('/updateverifcation', [AboutController::class, 'update_verifcation'])->name('updateverifcation');
 
 Route::any('/addVisitor/{id}',[AboutController::class,'addVisitor'])->name('addVisitor');
-
 Route::any('/analytics',[AboutController::class,'analytics'])->name('analytics');
 Route::any('/view_analytics_dt', [AboutController::class, 'view_analytics_dt']);
 Route::get('/analyticsview/{id}',[AboutController::class,'analyticsview']);
