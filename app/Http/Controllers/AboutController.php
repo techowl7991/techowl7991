@@ -1549,61 +1549,63 @@ class AboutController extends Controller
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
-        // dd($request->eventfile);
-        $mid = $request->mid;
-        $reads = Excel::toArray(new \stdClass(), $request->eventfile);
-        $index = 0;
-        foreach ($reads as  $read) {
-            // dd($read);
-            foreach ($read as $value) {
-                if ($index == 0) {
-                } else {
-                    // dump($value);
-                    $eventData = [
-                        'nmtitle' => $value[0],
-                        'evefirstname' => $value[1],
-                        'evelastname' =>  $value[2],
-                        'eveemail' => $value[3],
-                        'jobtitle' =>  $value[4],
-                        'orgenization' => $value[5],
-                        'type' => $value[6],
-                        'tags' => $value[7],
-                        'linkedin' => $value[8],
-                        'twitter' => $value[9],
-                        'nmtype' => $value[10],
-                        'guestimage' => '',
-                        'visit' => 'No',
-                    ];
-                    // dd($eventData);
-                    $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($eventData);
-                    $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
-                    $snap = $snapshot->data();
-                    // dd($snap);
-
-                    if ($eventData['nmtype'] == 'vip' or $eventData['nmtype'] == 'VIP') {
-                        $snap['vip'] = $snap['vip'] + 1;
+        // dd($request->file1);
+        if($request->file1!=null){
+            $mid = $request->mid;
+            $reads = Excel::toArray(new \stdClass(), $request->file1);
+            $index = 0;
+            foreach ($reads as  $read) {
+                // dd($read);
+                foreach ($read as $value) {
+                    if ($index == 0) {
                     } else {
-                        $snap['Reg'] = $snap['Reg'] + 1;
+                        // dump($value);
+                        $eventData = [
+                            'nmtitle' => $value[0],
+                            'evefirstname' => $value[1],
+                            'evelastname' =>  $value[2],
+                            'eveemail' => $value[3],
+                            'jobtitle' =>  $value[4],
+                            'orgenization' => $value[5],
+                            'type' => $value[6],
+                            'tags' => $value[7],
+                            'linkedin' => $value[8],
+                            'twitter' => $value[9],
+                            'nmtype' => $value[10],
+                            'guestimage' => '',
+                            'visit' => 'No',
+                        ];
+                        // dd($eventData);
+                        $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($eventData);
+                        $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
+                        $snap = $snapshot->data();
+                        // dd($snap);
+
+                        if ($eventData['nmtype'] == 'vip' or $eventData['nmtype'] == 'VIP') {
+                            $snap['vip'] = $snap['vip'] + 1;
+                        } else {
+                            $snap['Reg'] = $snap['Reg'] + 1;
+                        }
+                        $snap['total'] = $snap['vip'] + $snap['Reg'];
+                        $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->set($snap);
+
+                        $token = $mid . '(**)' . $docref->id();
+                        $evedata['token'] = $token;
+                        $evedata['event_startdate'] = $snap['event_startdate'];
+                        $evedata['event_enddate'] = $snap['event_enddate'];
+                        $evedata['event_name'] = $snap['event_name'];
+                        // $evedata['address'] = $snap['address'];
+                        self::$firestoreClient->collection('eventsemail')->add($evedata);
+
+                        // if ($eventData['type'] == 'vip' or $eventData['type'] == 'VIP') {
+                        //     $totalvip = $totalvip + 1;
+                        // } else {
+                        //     $totalreg = $totalreg + 1;
+                        // }
+
                     }
-                    $snap['total'] = $snap['vip'] + $snap['Reg'];
-                    $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->set($snap);
-
-                    $token = $mid . '(**)' . $docref->id();
-                    $evedata['token'] = $token;
-                    $evedata['event_startdate'] = $snap['event_startdate'];
-                    $evedata['event_enddate'] = $snap['event_enddate'];
-                    $evedata['event_name'] = $snap['event_name'];
-                    // $evedata['address'] = $snap['address'];
-                    self::$firestoreClient->collection('eventsemail')->add($evedata);
-
-                    // if ($eventData['type'] == 'vip' or $eventData['type'] == 'VIP') {
-                    //     $totalvip = $totalvip + 1;
-                    // } else {
-                    //     $totalreg = $totalreg + 1;
-                    // }
-
+                    $index = $index + 1;
                 }
-                $index = $index + 1;
             }
         }
         return redirect()->back();
