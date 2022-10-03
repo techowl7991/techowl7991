@@ -50,7 +50,7 @@
 
                         <div class="col-12 mb-3 password-field position-relative">
                             <input id="enterpass" type="password" placeholder="Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('password') is-invalid @enderror" name="password" required >
-                            <span><i toggle="#enterpass" id="eye" class="shaowPass imgs img-eye position-absolute eye-icon"></i></span>
+                            <span toggle="#enterpass" id="eye" class="shaowPass position-absolute"></span>
                             <div class="invalid-feedback fs-14">
                                 Please enter your phone number or email
                             </div>
@@ -95,7 +95,7 @@
 <script>
     $(".shaowPass").click(function() {
 
-        $(this).toggleClass("img-eye img-eye-slash");
+        $(this).toggleClass("hide");
         var input4 = $($(this).attr("toggle"));
         if (input4.attr("type") == "password") {
             input4.attr("type", "text");

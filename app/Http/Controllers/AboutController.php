@@ -1781,7 +1781,8 @@ class AboutController extends Controller
         }
         $divby = ($totalguest != 0) ? $totalguest : 1;
         // dd($divby);
-        $per = ($tcheckedin / $divby) * 100;
+        $per = ($tcheckedin/$divby)*100;
+        // dd($per);
         // foreach($snapshot as $eventdata){
         //     $eve = $eventdata->data();
         //     // $totalguest = $eve['total']+$totalguest;

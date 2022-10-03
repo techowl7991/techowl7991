@@ -34,16 +34,16 @@
 <div class="container-fluid">
     <div class="row mx-0 mb-4 align-items-center">
         <div class="col mb-sm-0 mb-2">
-            <div class="fs-16 fs-sm-20 fs-md-30 fw-600 text-theme1">Analytics</div>
+            <div class="title text-theme1 fs-16 fs-sm-20 fs-md-30 fw-600 ">Analytics</div>
         </div>
-        <div class="col-sm-auto"><button class="btn btn-theme1 shadow-none border border-theme1 text-white top_right_export_btn rounded fs-14 fw-500 px-sm-4 px-3">EXPORT REPORT</button></div>
+        <div class="col-sm-auto"><button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">EXPORT REPORT</button></div>
     </div>
     <div class="row mx-0 mb-3">
         <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
                     <div class="col-auto">
-                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><img src="{{ asset('/public/new-design/img/mouse.png') }}" alt=""></div>
+                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><img class="svg-white" src="{{ asset('/public/new-design/img/icon/mouse.svg') }}" alt=""></div>
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Total Visitors</div>
@@ -69,7 +69,7 @@
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
                     <div class="col-auto">
-                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><i class="imgs img-users fs-20 rounded text-white pe-1 check-icon"></i></div>
+                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><img class="svg-white" src="{{ asset('/public/new-design/img/icon/groups.svg') }}" alt=""></div>
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">RSVP</div>
@@ -82,7 +82,7 @@
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
                     <div class="col-auto">
-                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><i class="imgr img-check fs-20 rounded text-white p1 check-icon"></i></div>
+                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><img class="svg-white" src="{{ asset('/public/new-design/img/icon/check.svg') }}"  alt=""></div>
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Checked In</div>
@@ -110,7 +110,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 fs-sm-25 fs-20 text-theme2 fw-bold mb-3">Booth Data</div>
+        <div class="col-12 fs-sm-25 fs-20 text-theme2 fw-600 mb-3">Booth Data</div>
         <div class="col-lg-10 col-12 table-responsive analytics_table">
             <table class="table ">
                 <thead>
@@ -124,17 +124,17 @@
                     <tr>
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
                         <td>20</td>
-                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><i toggle="#password-field" id="eye" class="imgs img-eye eye-icon"></i></a></td>
+                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><img class="" src="{{ asset('/public/new-design/img/icon/visibility.svg') }}"  alt=""></a></td>
                     </tr>
                     <tr>
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
                         <td>20</td>
-                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><i toggle="#password-field" id="eye" class="imgs img-eye eye-icon"></i></a></td>
+                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><img class="" src="{{ asset('/public/new-design/img/icon/visibility.svg') }}"  alt=""></a></td>
                     </tr>
                     <tr>
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
                         <td>20</td>
-                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><i toggle="#password-field" id="eye" class="imgs img-eye eye-icon"></i></a></td>
+                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><img class="" src="{{ asset('/public/new-design/img/icon/visibility.svg') }}"  alt=""></a></td>
                     </tr>
                 </tbody>
             </table>

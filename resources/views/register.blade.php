@@ -75,7 +75,7 @@
                                 <input type="password" placeholder="Create Password" id="createpassword"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('password') is-invalid @enderror" name="password"
                                     required>
-                                <span><i toggle="#createpassword" id="eye" class=" shaowPass imgs img-eye position-absolute eye-icon"></i></span>
+                                    <span toggle="#createpassword" id="eye" class="shaowPass position-absolute"></span>
                                 <div class="invalid-feedback fs-14">
                                     Create password
                                 </div>
@@ -86,7 +86,8 @@
                                 <input type="password" id="confirmpassword" placeholder="Confirm Password"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('cpassword') is-invalid @enderror" name="cpassword"
                                     required>
-                                <span><i toggle="#confirmpassword" id="eye" class="shaowPass imgs img-eye position-absolute eye-icon"></i></span>
+                                    
+                                <span toggle="#confirmpassword" id="eye" class="shaowPass position-absolute"></span>
                                 <div class="invalid-feedback fs-14">
                                     Confirm password
                                 </div>
@@ -101,11 +102,13 @@
                                 </div>
                             </div> --}}
 
-                            <div class="col-12 form-check d-flex align-items-center justify-content-center">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label fs-sm-16 fs-14" for="flexCheckDefault">
-                                    I agree to Vue's Trems of Service and Privacy Policy
-                                </label>
+                            <div class="col-12 ">
+                                <div class="d-flex form-check">
+                                    <input class="form-check-input me-2 shadow-none" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label fs-sm-16 fs-14" for="flexCheckDefault">
+                                        I agree to Vue's Trems of Service and Privacy Policy
+                                    </label>
+                                </div>
                             </div>
                             <!-- <div class="row align-items-center mx-0 CheckMe">
                                         <div class="col-auto sign_up px-0"><a href="" class="text-decoration-none fs-sm-16 fs-14">Recover Password</a> </div>
@@ -136,7 +139,7 @@
 <script>
     $(".shaowPass").click(function() {
 
-        $(this).toggleClass("img-eye img-eye-slash");
+        $(this).toggleClass("hide");
         var input4 = $($(this).attr("toggle"));
         if (input4.attr("type") == "password") {
             input4.attr("type", "text");
