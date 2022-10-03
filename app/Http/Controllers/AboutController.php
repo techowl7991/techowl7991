@@ -177,7 +177,7 @@ class AboutController extends Controller
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
             }
-
+            $filename='';
             if ($request->has('event_image')) {
                 $image = $request->file('event_image');
                 $extention = $image->getClientOriginalExtension();
@@ -518,17 +518,21 @@ class AboutController extends Controller
         $query = $snapshot->rows();
         $totalTitles = count($query);
         $totalFiltered = $totalTitles;
-
+        
         $titles = $query;
+        // dd($titles);
         if ($totalTitles != 0) {
             $data = array();
             $count = 1;
-            foreach ($titles as $title) {
+            foreach ($titles as $key => $title) {
                 $b = action('AboutController@printdata', $title->id());
                 $d = action('AboutController@viewgatekeeper', $title->id());
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
                 $img = asset('/public/eventimgs/' . $title['event_image']);
-
+                $destinationPath = public_path('/eventimgs/'.$title['event_image']);
+                if(!file_exists($destinationPath) || $title['event_image'] == ''){
+                    $img = asset('/public/img/bannerimg.jpeg');
+                }
                 $action = "<a href=" . $b . " class='btn btn-dark shadow printBtn py-1 px-3'>Detail</a>";
                 $viewgate = "<a href=" . $d . " class='btn btn-dark shadow printBtn py-1 px-3'>View</a>";
                 $actionQR = '<a class="btn btn-dark text-white shadow printBtn py-1 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close  btn bg-transparent border-0 fs-24 fw-normal p-0 text-muted shadow-none" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
@@ -1636,13 +1640,20 @@ class AboutController extends Controller
             self::$firestoreClient = new FirestoreClient([
                 'projectId' => self::$firestoreProjectId,
             ]);
-            $data = [
-                'keepername' => $request->keepername,
-                'username' => $request->username,
-                'password' => $request->password
-            ];
-            $docref = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->add($data);
-            return redirect('/viewgatekeeper/' . $mid);
+            $docref1 = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->where('username','=',$request->username)->documents();
+            // dd($docref1);
+            if(empty($docref1->rows())){
+                $data = [
+                    'keepername' => $request->keepername,
+                    'username' => $request->username,
+                    'password' => $request->password
+                ];
+                $docref = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->add($data);
+                return redirect('/viewgatekeeper/' . $mid);
+            }else{
+                return redirect()->back()->with('error', 'UserName Already Exist');
+            }
+            
         } else {
             return view('addkeeper', compact('mid'));
         }
@@ -1766,8 +1777,9 @@ class AboutController extends Controller
         // $snapshot = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->documents();
         $snapshot1 = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->documents();
         // dd($snapshot1->rows());
-        $totalguest = 0;
-        $tcheckedin = 0;
+        $totalguest=0;
+        $tcheckedin=0;
+        $tcheckedout=0;
         $rsvp = 0;
         foreach ($snapshot1 as $snapss) {
             $snap = $snapss->data();
@@ -1777,12 +1789,29 @@ class AboutController extends Controller
             }
             if ($snap['visit'] != 'No' && $snap['visit'] != 'NO' && $snap['visit'] != 'no') {
                 $tcheckedin = $tcheckedin + 1;
+            }else{
+                $tcheckedout = $tcheckedout+1;
             }
         }
         $divby = ($totalguest != 0) ? $totalguest : 1;
         // dd($divby);
         $per = ($tcheckedin/$divby)*100;
-        // dd($per);
+
+        $gatekeeper = self::$firestoreClient->collection('gatekeeper')->document($eventid)->collection('keeperdata_data')->documents();
+        $gtkeepers = $gatekeeper->rows();
+        $data = [];
+        foreach($gtkeepers as $key => $keeper){
+            $keep = explode('/',$keeper->name());
+            $keeperid = end($keep);
+            $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->documents();
+            $v_count = count($gatevisit->rows());
+            $nstdata['id'] = $key +1;
+            $nstdata['count'] = $v_count;
+            $nstdata['keepername'] = $keeper->data()['keepername'];
+            $nstdata['keeperid'] = $keeperid;
+            $data[] = $nstdata;
+        }
+        // dd($data);
         // foreach($snapshot as $eventdata){
         //     $eve = $eventdata->data();
         //     // $totalguest = $eve['total']+$totalguest;
@@ -1802,7 +1831,7 @@ class AboutController extends Controller
         // }
         // dd($total);
         // dd($snapshot->snapshot());
-        return view('analytics', compact('totalguest', 'tcheckedin', 'rsvp', 'per'));
+        return view('analytics',compact('totalguest','tcheckedin','rsvp','per','tcheckedout','data'));
     }
 
     public function view_web(Request $request, $id)

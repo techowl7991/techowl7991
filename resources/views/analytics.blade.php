@@ -52,19 +52,19 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">
+        <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
                     <div class="col-auto">
                         <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><img src="{{ asset('/public/new-design/img/user-file.png') }}" alt=""></div>
                     </div>
                     <div class="col">
-                        <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Total Page Views</div>
-                        <div class="card-text fs-20 text-theme2 fw-bold text-start">32</div>
+                        <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Check out</div>
+                        <div class="card-text fs-20 text-theme2 fw-bold text-start">{{$tcheckedout}}</div>
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
         <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
@@ -121,7 +121,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    @foreach($data as $dt)
+                        <tr>
+                            <td>{{$dt['keepername']}}</td>
+                            <td>{{$dt['count']}}</td>
+                            <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><i toggle="#password-field" id="eye" class="imgs img-eye eye-icon"></i></a></td>
+                        </tr>
+                    @endforeach
+                    <!-- <tr>
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
                         <td>20</td>
                         <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><img class="" src="{{ asset('/public/new-design/img/icon/visibility.svg') }}"  alt=""></a></td>
@@ -129,13 +136,8 @@
                     <tr>
                         <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
                         <td>20</td>
-                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><img class="" src="{{ asset('/public/new-design/img/icon/visibility.svg') }}"  alt=""></a></td>
-                    </tr>
-                    <tr>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>20</td>
-                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><img class="" src="{{ asset('/public/new-design/img/icon/visibility.svg') }}"  alt=""></a></td>
-                    </tr>
+                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><i toggle="#password-field" id="eye" class="imgs img-eye eye-icon"></i></a></td>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
