@@ -1353,14 +1353,16 @@ class AboutController extends Controller
         ]);
         $date = date('Y-m-d');
         $snapshot = self::$firestoreClient->collection('users')->document($uid)->snapshot()->data();
-        // $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
-        // $database = $factory->createDatabase();
-        // $auth = $factory->createAuth();
-        // $user = $auth->getUser($uid);
+        // dd($snapshot);
+        $factory = (new Factory)->withServiceAccount(__DIR__ . '/guest-app-2eb59-firebase-adminsdk-qfb1k-41492b265e.json');
+        $database = $factory->createDatabase();
+        $auth = $factory->createAuth();
+        $user = $auth->getUser($uid);
+        dd($user->email);
 
 
         // $up_snapshot = self::$firestoreClient->collection('events')->document($uid);
-        return view('my-account', compact('snapshot', 'id'));
+        return view('my-account', compact('snapshot', 'id', 'user'));
     }
 
     public function update_user_account(Request $request, $id)
@@ -1377,11 +1379,11 @@ class AboutController extends Controller
             ]);
             $uid = $id;
             $userProperties = [
-                'FirstName' => $request->fname,
-                'LastName' => $request->lname,
-                'email' => $request->email,
+                'FirstName' => $request->fname ? $request->fname :'',
+                'LastName' => $request->lname ? $request->lname :'',
+                'email' => $request->email ? $request->email :'',
                 'emailVerified' => false,
-                'password' => $request->password,
+                'password' => $request->password ? $request->password :'',
                 'disabled' => false,
                 'date' => date('Y-m-d'),
             ];
