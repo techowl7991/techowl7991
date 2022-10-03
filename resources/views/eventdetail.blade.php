@@ -1230,6 +1230,8 @@
 <script>
     function openmodal(id, mid) {
         // alert('yes');
+        $('input').removeAttr('disabled');
+        $('select').removeAttr('disabled');
         $('#btn11').removeClass('d-none');
         $('#viewguest').addClass('d-none');
         $('#editguest').removeClass('d-none');
@@ -1295,6 +1297,8 @@
         function viewmodal(id, mid) {
             // $('#exampleModal2').modal('toggle');
             // $('#exampleModal2').modal('show');
+            $('input').attr('disabled', 'disabled');
+            $('select').attr('disabled', 'disabled');
             $('.view' + id).addClass('active');
             $('.oncClickDisabled').addClass('disabledClick');
             $.ajax({
@@ -1328,6 +1332,24 @@
                     $('#btn11').addClass('d-none');
                     $('#editguest').addClass('d-none');
                     $('#viewguest').removeClass('d-none');
+                    $("#image1").children().remove();
+
+
+                    if (response.success == 0) {
+                        $("#image1").children().remove();
+                        fname = response.evefirstname.substr(0, 1).toUpperCase();
+                        lname = response.evelastname.substr(0, 1).toUpperCase();
+
+
+                        $("#image1").append(
+                            `<input class="d-none" type="file" name="guimage" id="guimage"><label for="guimage"><p class="">${fname}${lname} </p> </label>
+                            `
+                        );
+                    } else {
+                        $("#image1").append(
+                            `<input class="d-none" type="file" name="guimage" id="guimage" value="${response.guestimage}"><label for="guimage"><img id="imgg" src="{{ asset('public/imgs/${response.guestimage}') }}" alt="" height="65px" width="65px"></label>`
+                        );
+                    }
                     $('#exampleModal1').modal('toggle');
                     $('#exampleModal1').modal('show');
                 }

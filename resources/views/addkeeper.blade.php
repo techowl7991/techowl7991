@@ -1,4 +1,4 @@
-@extends('new-design.main4')
+@extends('main3')
 
 @push('meta')
     <title>Add Keeper</title>
@@ -57,6 +57,11 @@
             <div class="col-xxl-6 col-xl-6 col-lg-9 col-md-10 col-sm-11 col-12 Sign_Up">
                 <div class="card border-0 px-0 py-2 bg-white ">
                     <div class="row mx-0">
+                        @if (session('error'))
+                            <div class="alert alert-danger" id="err">
+                                {!! session('error') !!}
+                            </div>
+                        @endif
                         <div class="col-12 Account px-4 py-2">
                             <h4 class="m-0 heading text-theme2 fw-600 fs-md-20 fs-18">Create Keeper</h4>
                         </div>
@@ -65,7 +70,7 @@
                         </div>
                     </div>
                     <form action="{{ asset('/addkeeper/'.$mid) }}" method="post" enctype="multipart/form-data"
-                        class="needs-validation py-3" id="form2" novalidate>
+                        class="needs-validation py-3" id="form2" >
                         @csrf
                         <div class="row pb-4 px-4 ">
                             <div class="col-12 mb-3">
@@ -92,7 +97,7 @@
                         </div>
                         <div class="row mx-0">
                             <div class="col-12 text-center gap-3 d-flex justify-content-center pt-4 border-top">
-                                <button type="submit" class="btn btn-outline-dark d-flex align-items-center text-uppercase px-4 fw-600 fs-14">Cancel</button>
+                                <button type="reset" class="btn btn-outline-dark d-flex align-items-center text-uppercase px-4 fw-600 fs-14">Cancel</button>
                                 <button class="btn btn-theme1 d-flex align-items-center px-4 text-white text-uppercase fw-600 fs-14" type="submit" id="subbutton"
                                     name="submit"><span id="subbuttonSpinner"
                                         style="width :1em; height:1em;background-color:black;color:white"
@@ -111,6 +116,11 @@
     <!-- JS for searching -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
+        $(document).ready(function(){
+            setTimeout(function () {
+                     $('#err').addClass('d-none');
+                 }, 3500);
+        })
         var msg = '{{ Session::get('alert') }}';
         var exist = '{{ Session::has('alert') }}';
         if (exist) {
@@ -119,6 +129,7 @@
     </script>
 
     @push('scripts')
+        
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     @endpush
 @endsection
