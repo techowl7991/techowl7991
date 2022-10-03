@@ -1178,6 +1178,7 @@ table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-str
       }
     }
     & .dropify-wrapper {
+      border:none;
       background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23302D2FFF' stroke-width='4' stroke-dasharray='10%2c 14' stroke-dashoffset='24' stroke-linecap='square'/%3e%3c/svg%3e");
         border-radius: 6px;
         background-repeat: no-repeat;
@@ -1438,6 +1439,18 @@ table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-str
 
 
 .newPage {
+  & .customBg {
+    &.bg-theme1 {
+      --bs-bg-opacity: 0.1;
+      box-shadow: 800px 0px 0px #f3e1d9;
+    }
+    & .imgOuter {
+      & img {
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+  }
   & .mainSocial {
     & a {
       border: 1px solid $theme1;

@@ -121,7 +121,7 @@
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedin"><span>Checked In</span><span class="value">0</span></label>
                             </div>
                         </li> --}}
-                                <li class="bg-theme2"><button type="button" class="btn w-100 type rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 " data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span><img class="svg-white" src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""></button></li>
+                                <li class="bg-theme2"><button type="button" class="btn w-100 type rounded-0 py-1 py-sm-2 ps-2 ps-sm-3 pe-2 pe-sm-2 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 " data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span><img class="svg-white" src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""></button></li>
 
 
                                     <li class="pt-2 pb-1 px-3">
@@ -1120,17 +1120,6 @@
                                 <div class="modal-body p-4">
                                     @csrf
                                     <input type="hidden" name="mid" value="{{ $id }}">
-                                    <!-- <label class="input-group-text p-5 justify-content-center w-100 rounded-4 bg-white"
-                                            for="dropify-flie">
-                                            <div class="gap-3">
-                                                <div class="w-44px h-44px mx-auto">
-                                                    <img class="w-100" src="{{ asset('/public/new-design/img/icon/upload.svg') }}" alt="">
-                                                </div>
-                                                <span class="fs-30 fw-bold text-muted d-block">Drag & Drop</span>
-                                                <span class="d-block fs-18 fs-16 fs-sm-18 fs-md-25">A <span class="textHover text-primary">.csv</span> file here or click</span>
-                                                
-                                            </div>
-                                        </label> -->
                                         <input name="file1" type="file" class="dropify" id="dropify-flie" data-height="200" />
                                 </div>
                                 <div class="modal-footer pt-4 justify-content-center">
@@ -1139,7 +1128,7 @@
                                 </div>
                             </form>
                         </div>
-                        <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12"
+                        <!-- <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12"
                             enctype="multipart/form-data">
                             <div class="modal-body p-4">
                                 @csrf
@@ -1169,7 +1158,7 @@
                                 <button type="submit"
                                     class="btn btn-theme1 fs-14 text-white fw-500 px-4 text-uppercase">Import</button>
                             </div>
-                        </form>
+                        </form> -->
                     </div>
                 </div>
             </div>
