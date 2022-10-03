@@ -1225,6 +1225,14 @@
         .disabledClick {
             pointer-events: none
         }
+        label .guestAddImg:nth-of-type(1n + 1) {
+            background: lightblue;
+        }
+        .guestAddImg img{
+            object-fit: cover;
+            object-position: center;
+        }
+
     </style>
 
 <script>
@@ -1277,12 +1285,16 @@
 
 
                         $("#image1").append(
-                            `<input class="d-none" type="file" name="guimage" id="guimage"><label for="guimage"><p class="">${fname}${lname} </p> </label>
+                            `<input class="d-none" type="file" name="guimage" id="guimage"><label for="guimage">
+                                <div class="guestAddImg w-80px h-80px rounded-pill overflow-hidden align-items-center d-flex justify-content-center"><p class="m-0 fs-24 fw-bold">${fname}${lname} </p> </div>
+                                </label>
                             `
                         );
                     } else {
                         $("#image1").append(
-                            `<input class="d-none" type="file" name="guimage" id="guimage" value="${response.data.guestimage}"><label for="guimage"><img id="imgg" src="{{ asset('public/imgs/${response.data.guestimage}') }}" alt="" height="65px" width="65px"></label>`
+                            `<input class="d-none" type="file" name="guimage" id="guimage" value="${response.data.guestimage}"><label for="guimage">
+                                <div class="guestAddImg w-80px h-80px rounded-pill overflow-hidden align-items-center d-flex justify-content-center"><img id="imgg" class="w-100 h-100" src="{{ asset('public/imgs/${response.data.guestimage}') }}" alt="" height="65px" width="65px"> </div>
+                                </label>`
                         );
                     }
 
