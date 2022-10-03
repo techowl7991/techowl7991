@@ -125,6 +125,7 @@ class AboutController extends Controller
             // dd($snapshot1);
             $date = date('m/d/Y h:i:s A', strtotime($snapshot1['event_startdate']));
             $snapshot = self::$firestoreClient->collection('visitor')->document($id)->collection('visitor_details')->documents();
+            // dd(count($snapshot->rows()));
             $cdefine = self::$firestoreClient->collection('visitor')->document($id)->collection('visitor_details');
             $sidedata['checkedin'] = $cdefine->where('visit', '=', 'Yes')->documents()->rows();
             $sidedata['notattending'] = $cdefine->where('visit', '=', 'No')->documents()->rows();
@@ -659,6 +660,7 @@ class AboutController extends Controller
 
         $snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->snapshot()->data();
         // $docref1 = self::$firestoreClient->collection('visitor')->document($id)->collection('visitor_details')->documents();
+        // dd($snapshot);
         return view('editevent', compact('snapshot', 'id', 'data'));
     }
 
@@ -689,7 +691,9 @@ class AboutController extends Controller
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
             }
-
+            if(!$request->event_image){
+                $filename = $request->hidden_event_image;
+            }
 
             if ($request->has('event_image')) {
 
@@ -1517,7 +1521,7 @@ class AboutController extends Controller
             'tags' =>$snap['tags'],
             'token' =>$snap['token'],
             'twitter' =>$snap['twitter'],
-            'visit' =>'NO',            
+            'visit' =>'No',            
         ];
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->document($id)->set($data);
         // dd($docref);
@@ -1760,8 +1764,9 @@ class AboutController extends Controller
                 $tcheckedin = $tcheckedin + 1;
             }
         }
-        // $per = ($tcheckedin/($totalguest != 0)?$totalguest:1)*100;
-        // dd($per);
+        $divby = ($totalguest != 0)?$totalguest:1;
+        // dd($divby);
+        $per = ($tcheckedin/$divby)*100;
         // foreach($snapshot as $eventdata){
         //     $eve = $eventdata->data();
         //     // $totalguest = $eve['total']+$totalguest;
@@ -1781,7 +1786,7 @@ class AboutController extends Controller
         // }
         // dd($total);
         // dd($snapshot->snapshot());
-        return view('analytics',compact('totalguest','tcheckedin','rsvp'));
+        return view('analytics',compact('totalguest','tcheckedin','rsvp','per'));
     }
 
     public function view_web(Request $request , $id){
@@ -1801,7 +1806,46 @@ class AboutController extends Controller
     }
     
     public function add_ver_guest(Request $request){
-        dd($request->all());
+        // dd($request->all());
+        $uid = $request->session()->get('uid');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $id = $request->id;
+        if ($request->type == 'RSVP') {
+            $rsvpstatus = 1;
+        } else {
+            $rsvpstatus = 0;
+        }
+
+        if ($request->has('guestimage')) {
+            $image = $request->file('guestimage');
+            $extention = $image->getClientOriginalExtension();
+            $filename = time() . '.' . $extention;
+            $dest = public_path('imgs');
+            $image->move($dest, $filename);
+        }
+        $data = [
+            'guestimage' => ($request->guestimage) ? $filename : '',
+            'type' => ($request->type) ? $request->type : '',
+            'nmtitle' => ($request->nmtitle) ? $request->nmtitle : '',
+            'evefirstname' => ($request->evefirstname) ? $request->evefirstname : '',
+            'evelastname' => ($request->evelastname) ? $request->evelastname : '',
+            'eveemail' => ($request->eveemail) ? $request->eveemail : '',
+            'jobtitle' => ($request->jobtitle) ? $request->jobtitle : '',
+            'orgenization' => ($request->orgenization) ? $request->orgenization : '',
+            'mobileno' => ($request->mobileno) ? $request->mobileno : '',
+            'tags' => ($request->tags) ? $request->tags : '',
+            'linkedin' => ($request->linkedin) ? $request->linkedin : '',
+            'twitter' => ($request->twitter) ? $request->twitter : '',
+            'nmtype' => ($request->nmtype) ? $request->nmtype : '',
+            'visit' => 'No',
+            'resvpstatus' => $rsvpstatus,
+
+        ];
+        $docref = self::$firestoreClient->collection('visitor')->document($id)->collection('visitor_details')->add($data);
+        return redirect()->back()->with('message','Data Added Successfully');
     }
 
     public function get_setting()

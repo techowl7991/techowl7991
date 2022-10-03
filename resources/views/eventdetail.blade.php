@@ -108,17 +108,13 @@
                                                     echo 'checked';
                                                 } ?>>
 
-                                            <input type="radio" id="customcheckbox22" name="visit" value="NO"
-                                                class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
-                                                <?php if ($visit == 'No') {
-                                                    echo 'checked';
-                                                } ?>>
-                                            <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14"
-                                                for="customcheckbox22"><span>Not Attendding</span><span
-                                                    class="value">{{ count($sidedata['notattending']) }}</span></label>
-                                        </div>
-                                    </li>
-                                    {{-- <li class="py-1 px-3">
+                                        <input type="radio" id="customcheckbox22" name="visit" value="No" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') {
+                                                                                                                                                                                                                    echo 'checked';
+                                                                                                                                                                                                                } ?>>
+                                        <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox22"><span>Not Attendding</span><span class="value">{{count($sidedata['notattending'])}}</span></label>
+                                    </div>
+                                </li>
+                                {{-- <li class="py-1 px-3">
                             <div class="form-check">
                                 <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="checkedin">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedin"><span>Checked In</span><span class="value">0</span></label>
@@ -565,9 +561,9 @@
                                                 </div>
                                                 <div class="col-12">
                                                     <select class="form-control basicSelect" id="select2-data-1-m5lt" name="tags" multiple="multiple">
-                                                        <option>orange</option>
-                                                        <option>white</option>
-                                                        <option>purple</option>
+                                                        <option value="orange">orange</option>
+                                                        <option value="white">white</option>
+                                                        <option value="purple">purple</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1231,18 +1227,17 @@
         }
     </style>
 
-    <script>
-        function openmodal(id, mid) {
-            // alert('yes');
-            $('#btn11').removeClass('d-none');
-            $('#viewguest').addClass('d-none');
-            $('#editguest').removeClass('d-none');
-            $('.' + id).addClass('active');
-            $('.oncClickDisabled').addClass('disabledClick');
-            console.log('hello');
-            $('#id1').val(id);
-            $('#id2').val(mid);
-            $.ajax({
+<script>
+    function openmodal(id, mid) {
+        // alert('yes');
+        $('#btn11').removeClass('d-none');
+        $('#viewguest').addClass('d-none');
+        $('#editguest').removeClass('d-none');
+        $('.' + id).addClass('active');
+        $('.oncClickDisabled').addClass('disabledClick');
+        $('#id1').val(id);
+        $('#id2').val(mid);
+        $.ajax({
 
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
@@ -1257,7 +1252,6 @@
                     $('.' + id).removeClass('active');
                     $('.oncClickDisabled').removeClass('disabledClick');
 
-                    console.log(response);
                     $('#twiiter1').val(response.data.twitter);
                     $('#linkedin1').val(response.data.linkedin);
 
@@ -1277,11 +1271,9 @@
 
 
                     if (response.success == 0) {
-                        console.log(response.guestimage == '');
                         $("#image1").children().remove();
                         fname = response.data.evefirstname.substr(0, 1).toUpperCase();
                         lname = response.data.evelastname.substr(0, 1).toUpperCase();
-                        console.log(fname, lname);
 
 
                         $("#image1").append(

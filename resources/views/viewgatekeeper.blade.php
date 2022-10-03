@@ -51,7 +51,7 @@ table.dataTable thead th, table.dataTable tbody tr td {
                 </div>
                 <div class="col-auto">
                     <a class="btn createEventBtn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white me-3" href="{{route('index',[session()->get('uid')])}}"> Back</a>
-                    <a class="btn createEventBtn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white" href="{{ route('addkeeper',[$mid]) }}" data-bs-toggle="modal" data-bs-target="#addkeeper"> Create Gate Keeper </a>
+                    <a class="btn createEventBtn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white" href="{{ route('addkeeper',[$mid]) }}"> Create Gate Keeper </a>
                 </div>
             </div>
         </div>
