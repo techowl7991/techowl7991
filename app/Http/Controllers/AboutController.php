@@ -177,7 +177,7 @@ class AboutController extends Controller
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
             }
-
+            $filename='';
             if ($request->has('event_image')) {
                 $image = $request->file('event_image');
                 $extention = $image->getClientOriginalExtension();
@@ -522,7 +522,7 @@ class AboutController extends Controller
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
                 $img = asset('/public/eventimgs/' . $title['event_image']);
                 $destinationPath = public_path('/eventimgs/'.$title['event_image']);
-                if(!file_exists($destinationPath)){
+                if(!file_exists($destinationPath) || $title['event_image'] == ''){
                     $img = asset('/public/img/bannerimg.jpeg');
                 }
                 $action = "<a href=" . $b . " class='btn btn-dark shadow printBtn py-1 px-3'>Detail</a>";
