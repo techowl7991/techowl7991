@@ -125,19 +125,9 @@
                         <tr>
                             <td>{{$dt['keepername']}}</td>
                             <td>{{$dt['count']}}</td>
-                            <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><i toggle="#password-field" id="eye" class="imgs img-eye eye-icon"></i></a></td>
+                            <td><a class="text-decoration-none text-dark" href="{{url('analytics_booth_name/'.$dt['keeperid'])}}"><i toggle="#password-field" id="eye" class="imgs img-eye eye-icon"></i></a></td>
                         </tr>
                     @endforeach
-                    <!-- <tr>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>20</td>
-                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><img class="" src="{{ asset('/public/new-design/img/icon/visibility.svg') }}"  alt=""></a></td>
-                    </tr>
-                    <tr>
-                        <td>Lorem ipsum dolor sit amet consectetur adipisicing elit.</td>
-                        <td>20</td>
-                        <td><a class="text-decoration-none text-dark" href="{{route('analytics_booth_name')}}"><i toggle="#password-field" id="eye" class="imgs img-eye eye-icon"></i></a></td>
-                    </tr> -->
                 </tbody>
             </table>
         </div>

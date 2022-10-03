@@ -401,7 +401,7 @@ class AboutController extends Controller
                 <div>
                 <p>Date  ' . date('d-M-Y') . '</p>
                 <p>Dear ' . $eventdata['name'] . ',</p> 
-                <p>In-person Invitation to the ' . $eventdata['event_name'] . '  - You’re In!</p> 
+                <p>In-person Invitation to the ' . $eventdata['event_name'] . '  - Youâ€™re In!</p> 
                 <p>Thank you for registering for the ' . $eventdata['event_name'] . '. This is a reminder that this event will be happening ' . date('d-m-y', strtotime($eventdata['event_startdate'])) . ', from ' . date('h:i:s A', strtotime($eventdata['event_startdate'])) . ' to ' . date('h:i:s A', strtotime($eventdata['event_enddate'])) . ', held at .</p> 
                 <p><a href="' . $eventdata['url'] . '">click here</a> to verify</p>
                 <p>Please bring your mobile device for check-in purposes. Your device will also be used to log in to the virtual platform to participate in live chats, Q&A and polls.</p>
@@ -908,7 +908,7 @@ class AboutController extends Controller
                 <input type='hidden' name='qrvalue' value='" . $_GET['id'] . '(**)' . $title->id() . "'>
                 <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
                 <input type='submit' class='btn btn-dark text-uppercase fw-semibold' style='float:left'
-                    value='🖶 Print Ticket'>
+                    value='ðŸ–¶ Print Ticket'>
                 </form>
                 <form action='" . $b . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
                     <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
@@ -917,7 +917,7 @@ class AboutController extends Controller
                     <input type='hidden' name='qrvalue' value='" . $_GET['id'] . '(**)' . $title->id() . "'>
                     <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
                     <input type='submit' class='btn btn-dark text-uppercase fw-semibold' style='margin-left: 13px;'
-                        value='🖶 Print Badge'>
+                        value='ðŸ–¶ Print Badge'>
                 </form>";
 
                 $nestedData['id'] = $count;
@@ -1570,9 +1570,9 @@ class AboutController extends Controller
             'projectId' => self::$firestoreProjectId,
         ]);
         // dd($request->file1);
-        if($request->file1!=null){
+        if($request->eventfile!=null){
             $mid = $request->mid;
-            $reads = Excel::toArray(new \stdClass(), $request->file1);
+            $reads = Excel::toArray(new \stdClass(), $request->eventfile);
             $index = 0;
             foreach ($reads as  $read) {
                 // dd($read);
@@ -1825,7 +1825,8 @@ class AboutController extends Controller
         foreach($gtkeepers as $key => $keeper){
             $keep = explode('/',$keeper->name());
             $keeperid = end($keep);
-            $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->documents();
+            $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeper->id())->collection('visitor_entry')->documents();
+            // dd($gatevisit);
             $v_count = count($gatevisit->rows());
             $nstdata['id'] = $key +1;
             $nstdata['count'] = $v_count;
@@ -1924,9 +1925,26 @@ class AboutController extends Controller
         return view('setting');
     }
 
-    public function analytics_booth_name()
+    public function analytics_booth_name(Request $request,$keeperid)
     {
-        return view('analytics-booth-name');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $eventid = $request->session()->get('eventid');
+        $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeperid)->collection('visitor_entry')->documents();
+        $data=[];
+        $i=0;
+        foreach($gatevisit as $visitor){
+            $snapshot = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->document($visitor['id'])->snapshot();
+            $data[$i]['evefirstname']=$snapshot['evefirstname'];
+            $data[$i]['evelastname']=$snapshot['evelastname'];
+            $data[$i]['jobtitle']=$snapshot['jobtitle'];
+            $data[$i]['orgenization']=$snapshot['orgenization'];
+            $data[$i]['datetime']=date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
+            $i++;
+        }
+        return view('analytics-booth-name',compact('data'));
     }
 
     public function view_web_users(Request $request, $uid,$id)
