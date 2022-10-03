@@ -99,7 +99,7 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                                                                                                                                                                                                             echo 'checked';
                                                                                                                                                                                                                         } ?>>
 
-                                        <input type="radio" id="customcheckbox22" name="visit" value="NO" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') {
+                                        <input type="radio" id="customcheckbox22" name="visit" value="No" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') {
                                                                                                                                                                                                                     echo 'checked';
                                                                                                                                                                                                                 } ?>>
                                         <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox22"><span>Not Attendding</span><span class="value">{{count($sidedata['notattending'])}}</span></label>
@@ -537,9 +537,9 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                                                 </div>
                                                 <div class="col-12">
                                                     <select class="form-control basicSelect" id="select2-data-1-m5lt" name="tags" multiple="multiple">
-                                                        <option>orange</option>
-                                                        <option>white</option>
-                                                        <option>purple</option>
+                                                        <option value="orange">orange</option>
+                                                        <option value="white">white</option>
+                                                        <option value="purple">purple</option>
                                                     </select>
                                                 </div>
 
@@ -1141,7 +1141,6 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
         $('#editguest').removeClass('d-none');
         $('.' + id).addClass('active');
         $('.oncClickDisabled').addClass('disabledClick');
-        console.log('hello');
         $('#id1').val(id);
         $('#id2').val(mid);
         $.ajax({
@@ -1159,7 +1158,6 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
                     $('.' + id).removeClass('active');
                     $('.oncClickDisabled').removeClass('disabledClick');
 
-                    console.log(response);
                     $('#twiiter1').val(response.data.twitter);
                     $('#linkedin1').val(response.data.linkedin);
 
@@ -1178,11 +1176,9 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
 
 
                     if (response.success == 0) {
-                        console.log(response.guestimage == '');
                         $("#image1").children().remove();
                         fname = response.data.evefirstname.substr(0, 1).toUpperCase();
                         lname = response.data.evelastname.substr(0, 1).toUpperCase();
-                        console.log(fname, lname);
 
 
                         $("#image1").append(
@@ -1343,14 +1339,11 @@ if (($allval == 'Yes' or $allval == '') && (!in_array($type, ['Reg', 'VIP']) && 
         });
 
         $('.delbtn').on('click', function() {
-            alert('hekf');
             var vid = '';
             var arr = $("input[name='id[]']:checked").map(function() {
                 vid = $(this).data('mid');
                 return this.value;
             }).get();
-            console.log(vid);
-            console.log(arr);
             if (arr.length != 0) {
                 $.ajax({
                     type: "POST",
