@@ -108,13 +108,17 @@
                                                     echo 'checked';
                                                 } ?>>
 
-                                        <input type="radio" id="customcheckbox22" name="visit" value="No" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') {
-                                                                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                                                                } ?>>
-                                        <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox22"><span>Not Attendding</span><span class="value">{{count($sidedata['notattending'])}}</span></label>
-                                    </div>
-                                </li>
-                                {{-- <li class="py-1 px-3">
+                                            <input type="radio" id="customcheckbox22" name="visit" value="No"
+                                                class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
+                                                <?php if ($visit == 'No') {
+                                                    echo 'checked';
+                                                } ?>>
+                                            <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14"
+                                                for="customcheckbox22"><span>Not Attendding</span><span
+                                                    class="value">{{ count($sidedata['notattending']) }}</span></label>
+                                        </div>
+                                    </li>
+                                    {{-- <li class="py-1 px-3">
                             <div class="form-check">
                                 <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="checkedin">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedin"><span>Checked In</span><span class="value">0</span></label>
@@ -235,31 +239,31 @@
                     </div>
                     <div class="col-12">
                         <!-- <table id="example" class="table mt-0 table-striped dt-responsive nowrap" style="width:100%">
-                                            <thead>
-                                                <tr class="even">
-                                                    <th class="select-checkbox"></th>
-                                                    <th>Frist Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Organisation</th>
-                                                    <th>Status</th>
-                                                    <th class="text-center">Edit</th>
-                                                    <th class="text-center">View</th>
-                                                    <th class="text-center">Badge</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class=""><span class="select-checkbox"></span></td>
-                                                    <td>Eugene</td>
-                                                    <td class="">Wong</td>
-                                                    <td>Now Comms Asia</td>
-                                                    <td>Verified</td>
-                                                    <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
-                                                    <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
-                                                    <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
-                                                </tr>
-                                            </tbody>
-                                        </table> -->
+                                                <thead>
+                                                    <tr class="even">
+                                                        <th class="select-checkbox"></th>
+                                                        <th>Frist Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>Organisation</th>
+                                                        <th>Status</th>
+                                                        <th class="text-center">Edit</th>
+                                                        <th class="text-center">View</th>
+                                                        <th class="text-center">Badge</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class=""><span class="select-checkbox"></span></td>
+                                                        <td>Eugene</td>
+                                                        <td class="">Wong</td>
+                                                        <td>Now Comms Asia</td>
+                                                        <td>Verified</td>
+                                                        <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
+                                                        <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
+                                                        <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> -->
                         <table
                             class="table table-bordered mt-0 table-striped table-hover text-nowrap  dt-responsive nowrap"
                             id="allmatches_datatable" width="100%" cellspacing="0">
@@ -817,12 +821,12 @@
                                                                     class="fs-12 ps-4">Organisation</label>
                                                             </div>
                                                             <!-- <div class="col-12 mb-2 form-floating Tel_Input_group">
-                                                                                                            <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
-                                                                                                            <label for="phone" class="fs-12 ps-4">Organisation</label>
-                                                                                                        </div> -->
+                                                                                                                <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
+                                                                                                                <label for="phone" class="fs-12 ps-4">Organisation</label>
+                                                                                                            </div> -->
                                                             <!-- <div class="col-12">
-                                                                                                            <input type="tel" id="phone">
-                                                                                                        </div> -->
+                                                                                                                <input type="tel" id="phone">
+                                                                                                            </div> -->
                                                             <div class="col-6 mb-2 form-floating">
                                                                 <input type="number"
                                                                     class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal"
@@ -865,15 +869,13 @@
                                                         </h4>
                                                     </div>
                                                     <div class="col-12 mb-3">
-                                                        <input type="text" placeholder="LinkedIn"
-                                                            name="linkedin"
+                                                        <input type="text" placeholder="LinkedIn" name="linkedin"
                                                             class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                             autocomplete="off">
                                                     </div>
 
                                                     <div class="col-12 mb-3">
-                                                        <input type="text" placeholder="Twitter"
-                                                            name="twitter"
+                                                        <input type="text" placeholder="Twitter" name="twitter"
                                                             class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                             autocomplete="off">
                                                     </div>
@@ -895,9 +897,9 @@
 
 
                                     <!-- <div class="modal-footer justify-content-center">
-                                                                                    <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                                                                    <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                                                                                </div> -->
+                                                                                        <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                                                        <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                                                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -1073,15 +1075,15 @@
                                                         </h4>
                                                     </div>
                                                     <div class="col-12 mb-3">
-                                                        <input type="text" placeholder="LinkedIn"
-                                                            id="linkedin1" name="linkedin"
+                                                        <input type="text" placeholder="LinkedIn" id="linkedin1"
+                                                            name="linkedin"
                                                             class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                             autocomplete="off">
                                                     </div>
 
                                                     <div class="col-12 mb-3">
-                                                        <input type="text" placeholder="Twitter"
-                                                            id="twiiter1" name="twitter"
+                                                        <input type="text" placeholder="Twitter" id="twiiter1"
+                                                            name="twitter"
                                                             class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                             autocomplete="off">
                                                     </div>
@@ -1110,9 +1112,9 @@
 
 
                             <!-- <div class="modal-footer justify-content-center">
-                                                                                    <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                                                                    <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                                                                                </div> -->
+                                                                                        <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                                                        <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                                                                    </div> -->
                         </div>
                         <!-- edit guest end-->
                     </div>
@@ -1171,14 +1173,14 @@
 
         <div class="row" style="border:none">
             <!-- <div class="col-3" style="border:none">
-                                                                            <div class="card mb-3">
-                                                                                <div class="card-heading p-3">
-                                                                                    <input type="hidden" value="{{ $id }}" id="id">
-                                                                                   
-                                                                                    
+                                                                                <div class="card mb-3">
+                                                                                    <div class="card-heading p-3">
+                                                                                        <input type="hidden" value="{{ $id }}" id="id">
+                                                                                       
+                                                                                        
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </div> -->
+                                                                            </div> -->
 
             <div class="col-9">
 
@@ -1200,7 +1202,7 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
-                                                        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
+                                                            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
     <style>
         .oncClickDisabled {
             display: grid;
@@ -1227,19 +1229,19 @@
         }
     </style>
 
-<script>
-    function openmodal(id, mid) {
-        // alert('yes');
-        $('input').removeAttr('disabled');
-        $('select').removeAttr('disabled');
-        $('#btn11').removeClass('d-none');
-        $('#viewguest').addClass('d-none');
-        $('#editguest').removeClass('d-none');
-        $('.' + id).addClass('active');
-        $('.oncClickDisabled').addClass('disabledClick');
-        $('#id1').val(id);
-        $('#id2').val(mid);
-        $.ajax({
+    <script>
+        function openmodal(id, mid) {
+            // alert('yes');
+            $('input').removeAttr('disabled');
+            $('select').removeAttr('disabled');
+            $('#btn11').removeClass('d-none');
+            $('#viewguest').addClass('d-none');
+            $('#editguest').removeClass('d-none');
+            $('.' + id).addClass('active');
+            $('.oncClickDisabled').addClass('disabledClick');
+            $('#id1').val(id);
+            $('#id2').val(mid);
+            $.ajax({
 
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
@@ -1551,5 +1553,22 @@
         window.intlTelInput(input, {
             // any initialisation options go here
         });
+    </script>
+    <script>
+        function myFunction() {
+            const str = document.getElementById('item-to-copy').innerText
+            const el = document.createElement('textarea')
+            el.value = str
+            el.setAttribute('readonly', '')
+            el.style.position = 'absolute'
+            el.style.left = '-9999px'
+            document.body.appendChild(el)
+            el.select()
+            document.execCommand('copy')
+            document.body.removeChild(el)
+
+            // Alert the copied text
+            alert("Copied Url");
+        }
     </script>
 @endpush

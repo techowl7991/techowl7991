@@ -140,7 +140,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="mapOuter rounded-15 overflow-hidden">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14306.984751985208!2d73.050178!3d26.302326899999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1664601449114!5m2!1sen!2sin" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                            <iframe src="{{$mapurl}}" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                         </div>
                                     </div>
                                     <div class="col-11 mx-auto position-absolute start-0 end-0 bottom-20px">

@@ -67,7 +67,7 @@ Route::any('save_new_password/{id}',[AboutController::class,'save_new_password']
 Route::any('/viewwebsite/{id}', [AboutController::class, 'view_web']);
 
 
-
+Route::any('/viewwebsiteusers/{uid}/{id}', [AboutController::class, 'view_web_users'])->name('viewwebsiteusers');
 // Route::get('/login',function(){});
 
 Route::any('/new',function(){return view('new-design/index');});

@@ -20,6 +20,7 @@ use GPBMetadata\Google\Firestore\V1Beta1\Firestore;
 use Illuminate\Support\Arr;
 use Kreait\Auth\Request\UpdateUser;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Http;
 
 class AboutController extends Controller
 {
@@ -174,8 +175,25 @@ class AboutController extends Controller
             $data = [];
             if ($request->eventtype == 'online') {
                 $dat = ($request->eventurl != null) ? $request->eventurl : '';
+                $lat = '';
+                $lng ='';
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
+                $address = urlencode($request->eventlocation);
+                $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w";
+                // $response = Http::accept('application/json')->get($url);
+                // echo "<pre>";print_r($url);die;
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                $response = curl_exec($ch);
+                curl_close($ch);
+                $response = json_decode($response);
+                $response = $response->results;
+                // echo "<pre>";dd($response[0]->geometry->location);die;
+                $lat = $response[0]->geometry->location->lat;
+                $lng = $response[0]->geometry->location->lng;
             }
             $filename='';
             if ($request->has('event_image')) {
@@ -201,6 +219,8 @@ class AboutController extends Controller
                 'event_organizer' => $request->eventorganizer,
                 'event_description' => $request->eventdesc,
                 'event_image' => $filename,
+                'lat' => $lat,
+                'lng' => $lng,
             ];
             // dd($data);
 
@@ -1848,7 +1868,9 @@ class AboutController extends Controller
         $up_snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($id)->snapshot();
         $data = $up_snapshot->data();
         // dd($up_snapshot->data());
-        return view('viewweb', compact('data', 'mid', 'id'));
+        $mapurl = "https://www.google.com/maps/embed/v1/place?key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w&q=$data[event_sub_type]";
+        // dd($mapurl);
+        return view('viewweb', compact('data', 'mid', 'id','mapurl'));
         // $upcoming_count = iterator_count($up_snapshot);?
 
     }
@@ -1905,5 +1927,24 @@ class AboutController extends Controller
     public function analytics_booth_name()
     {
         return view('analytics-booth-name');
+    }
+
+    public function view_web_users(Request $request, $uid,$id)
+    {
+        $mid = $request->session()->get('uid');
+        // dd($mid);     
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $date = date('Y-m-d');
+        $up_snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($id)->snapshot();
+        $data = $up_snapshot->data();
+        // dd($up_snapshot->data());
+        $mapurl = "https://www.google.com/maps/embed/v1/place?key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w&q=$data[event_sub_type]";
+        // dd($mapurl);
+        return view('viewweb_users', compact('data', 'mid', 'id','mapurl'));
+        // $upcoming_count = iterator_count($up_snapshot);?
+
     }
 }
