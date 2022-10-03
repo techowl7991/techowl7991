@@ -75,7 +75,7 @@
                                 <input type="password" placeholder="Create Password" id="createpassword"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('password') is-invalid @enderror" name="password"
                                     required>
-                                <span><i toggle="#createpassword" id="eye" class=" shaowPass imgs img-eye position-absolute eye-icon"></i></span>
+                                    <span toggle="#createpassword" id="eye" class="shaowPass position-absolute"></span>
                                 <div class="invalid-feedback fs-14">
                                     Create password
                                 </div>
@@ -86,7 +86,8 @@
                                 <input type="password" id="confirmpassword" placeholder="Confirm Password"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('cpassword') is-invalid @enderror" name="cpassword"
                                     required>
-                                <span><i toggle="#confirmpassword" id="eye" class="shaowPass imgs img-eye position-absolute eye-icon"></i></span>
+                                    
+                                <span toggle="#confirmpassword" id="eye" class="shaowPass position-absolute"></span>
                                 <div class="invalid-feedback fs-14">
                                     Confirm password
                                 </div>
@@ -136,7 +137,7 @@
 <script>
     $(".shaowPass").click(function() {
 
-        $(this).toggleClass("img-eye img-eye-slash");
+        $(this).toggleClass("hide");
         var input4 = $($(this).attr("toggle"));
         if (input4.attr("type") == "password") {
             input4.attr("type", "text");

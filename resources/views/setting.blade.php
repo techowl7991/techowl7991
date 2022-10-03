@@ -35,16 +35,16 @@
 <div class="container-fluid">
     <div class="row mx-0 mb-4 align-items-center">
         <div class="col">
-            <div class="fs-sm-30 fs-20 fw-bold text-theme1">Setting</div>
+            <div class="fs-sm-30 fs-20 fw-600 text-theme1">Setting</div>
         </div>
         <div class="col-auto">
-            <button class="shadow-none border-0 text-white top_right_export_btn bg-theme1 rounded fs-14 fw-500 px-sm-4 px-3  py-sm-2 py-1">SAVE CHANGES</button>
+            <button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">SAVE CHANGES</button>
         </div>
     </div>
     <div class="row mx-0 Campaign_page pb-4">
-        <div class="col-sm-10 mb-3 text-theme2 fw-bold fs-sm-25 fs-16">Event Information</div>
+        <div class="col-sm-10 mb-3 text-theme2 fw-600 fs-sm-25 fs-16">Event Information</div>
         <div class="col-sm-10 comman-form">
-            <form action="">
+            <form action="" class="needs-validation" novalidate>
                 <div class="row">
                     <div class="col-12 mb-3">
                         <input type="text" placeholder="Event Title" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0  fs-16 fw-normal" autocomplete="off" required>
@@ -156,5 +156,26 @@
             copyText.classList.remove("active");
         }, 2500);
     });
+</script>
+<script>
+    (function () {
+    'use strict'
+  
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    var forms = document.querySelectorAll('.needs-validation')
+  
+    // Loop over them and prevent submission
+    Array.prototype.slice.call(forms)
+      .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+          }
+  
+          form.classList.add('was-validated')
+        }, false)
+      })
+  })()
 </script>
 @endpush

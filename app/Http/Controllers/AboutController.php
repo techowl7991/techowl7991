@@ -1758,7 +1758,9 @@ class AboutController extends Controller
                 $tcheckedin = $tcheckedin + 1;
             }
         }
-        // $per = ($tcheckedin/($totalguest != 0)?$totalguest:1)*100;
+        $divby = ($totalguest != 0)?$totalguest:1;
+        // dd($divby);
+        $per = ($tcheckedin/$divby)*100;
         // dd($per);
         // foreach($snapshot as $eventdata){
         //     $eve = $eventdata->data();
@@ -1779,7 +1781,7 @@ class AboutController extends Controller
         // }
         // dd($total);
         // dd($snapshot->snapshot());
-        return view('analytics',compact('totalguest','tcheckedin','rsvp'));
+        return view('analytics',compact('totalguest','tcheckedin','rsvp','per'));
     }
 
     public function view_web(Request $request , $id){

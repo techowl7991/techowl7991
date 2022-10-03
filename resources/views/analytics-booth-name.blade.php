@@ -37,8 +37,8 @@
             <div class="fs-16 fs-sm-20 fs-md-30 fw-bold text-theme1">Booth Name</div>
         </div>
         <div class="col-sm-auto d-flex align-items-center gap-2">
-            <button class=" shadow-none rounded cancle_btn fs-14 fw-bold px-sm-4 px-3 py-2">CANCEL</button>
-            <button class="shadow-none border border-theme1 text-white top_right_export_btn bg-theme1 rounded fs-14 fw-500 px-sm-4 px-3  py-2 ">EXPORT REPORT</button>
+            <button class="btn btn-outline-theme2 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase cancle_btn ">CANCEL</button>
+            <button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">EXPORT REPORT</button>
         </div>
     </div>
     <div class="row mx-0 mb-4">
@@ -46,7 +46,7 @@
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
                     <div class="col-auto">
-                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><i class="imgs img-users fs-20 rounded text-white pe-1 check-icon"></i></div>
+                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><img class="svg-white" src="{{ asset('/public/new-design/img/icon/groups.svg') }}" alt=""></div>
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Invited Guests</div>
@@ -57,7 +57,7 @@
         </div>
     </div>
     <div class="row mx-0">
-        <div class="col-12 fs-sm-25 fs-20 text-theme2 fw-bold mb-3">Breakdown</div>
+        <div class="col-12 fs-sm-25 fs-20 text-theme2 fw-600 mb-3">Breakdown</div>
         <div class="col-lg-10 col-12 table-responsive analytics_table">
             <table class="table ">
                 <thead>

@@ -188,11 +188,8 @@ body {
           & .calendar {
             background-repeat: no-repeat;
             background-position: center right 0.63em;
-            background-size: 1.2em;
-          }
-
-          & .calendar {
-            background-image: url(../img/calendar.png);
+            background-size: auto;
+            background-image: url(../img/icon/calendar.svg);
           }
 
           & .clock {
@@ -200,8 +197,13 @@ body {
           }
 
           & .clock::-webkit-calendar-picker-indicator {
-            background-image: url(../img/clock.png);
-            background-size: 1.2em;
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-position: center right;
+            background-size: auto;
+            background-image: url(../img/icon/watch.svg);
+            background-size: auto;
             cursor: pointer;
           }
 
@@ -300,6 +302,14 @@ body {
       & ~ label {
         color: $dark;
       }
+    }
+  }
+  & .form-select {
+    &:valid {
+      background-image: none;
+    }
+    &:invalid {
+      
     }
   }
 }
@@ -515,8 +525,8 @@ body {
     }
 
     & circle:last-of-type {
-      stroke-dasharray: 625px;
-      stroke-dashoffset: calc(625px - (625px * var(--percent)) / 100);
+      stroke-dasharray: 312px;
+      stroke-dashoffset: calc(312px - (312px * var(--percent)) / 100);
       stroke: #3498db;
 
     }
@@ -1154,7 +1164,7 @@ table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-str
       &.input-group-text{
         // border: 1px dashed $theme2;
         background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23302D2FFF' stroke-width='4' stroke-dasharray='10%2c 14' stroke-dashoffset='24' stroke-linecap='square'/%3e%3c/svg%3e");
-border-radius: 6px;
+        border-radius: 6px;
         cursor: pointer;
         & img {
           filter: contrast(0.08);
@@ -1163,6 +1173,30 @@ border-radius: 6px;
           transition: all .3s;
           &:hover{
             color: $primary;
+          }
+        }
+      }
+    }
+    & .dropify-wrapper {
+      background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' rx='6' ry='6' stroke='%23302D2FFF' stroke-width='4' stroke-dasharray='10%2c 14' stroke-dashoffset='24' stroke-linecap='square'/%3e%3c/svg%3e");
+        border-radius: 6px;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        &:hover {
+          animation: none;
+          background-repeat: no-repeat;
+          background-size: 100%;
+        }
+      & .dropify-message {
+        & .file-icon {
+          &:before {
+            content: '';
+            background-image: url(../../new-design/img/icon/upload.svg) !important;
+            display: block;
+            width: 65px;
+            height: 65px;
+            margin: auto;
+            background-size: 100%;
           }
         }
       }
@@ -1430,7 +1464,24 @@ border-radius: 6px;
   }
 }
 
-
+.svg-white {
+  filter: invert(1) !important;
+}
+.shaowPass {
+  width: 20px;
+  height: 20px;
+  background-image: url(../img/icon/visibility.svg);
+  background-repeat: no-repeat;
+  display: block;
+  background-size: contain;
+  top: 0;
+  right: 20px;
+  bottom: 0;
+  margin: auto;
+  &.hide {
+    background-image: url(../img/icon/visibility_off.svg);
+  }
+}
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
   @include xxxxxx-xxxxx-mixin-min-sm();
