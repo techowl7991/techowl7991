@@ -50,7 +50,7 @@
 
                         <div class="col-12 mb-3 password-field position-relative">
                             <input id="enterpass" type="password" placeholder="Password" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal @error('password') is-invalid @enderror" name="password" required >
-                            <span toggle="#password-field" id="eye" class="shaowPass position-absolute"></span>
+                            <span toggle="#enterpass" id="eye" class="shaowPass position-absolute"></span>
                             <div class="invalid-feedback fs-14">
                                 Please enter your phone number or email
                             </div>

@@ -126,9 +126,13 @@ body {
                 &:valid {
                   border-color: $dark;
                   &:checked {
-                    background-color: $primary;
-                    border-color: $primary;
+                    background-color: $theme1;
+                    border-color: $theme1;
+                    & ~ label {
+                      color: $theme1 !important;
+                    }
                   }
+                  
                 }
                 & ~ label {
                   color: $dark;
@@ -623,21 +627,24 @@ body {
       & .calendar {
         background-repeat: no-repeat;
         background-position: center right 0.63em;
-        background-size: 1.2em;
+        background-size: auto;
+        background-image: url(../img/icon/calendar.svg);
       }
 
-      & .calendar {
-        background-image: url(../img/calendar.png);
-      }
 
       & .clock {
         position: relative;
       }
 
       & .clock::-webkit-calendar-picker-indicator {
-        background-image: url(../img/clock.png);
-        background-size: 1.2em;
-        cursor: pointer;
+          width: 20px;
+          height: 20px;
+          background-repeat: no-repeat;
+          background-position: center right;
+          background-size: auto;
+          background-image: url(../img/icon/watch.svg);
+          background-size: auto;
+          cursor: pointer;
       }
       & .form_select_non_icon {
         background:  #fff !important;
@@ -1487,10 +1494,8 @@ table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-str
   background-repeat: no-repeat;
   display: block;
   background-size: contain;
-  top: 0;
+  top: 12px;
   right: 20px;
-  bottom: 0;
-  margin: auto;
   &.hide {
     background-image: url(../img/icon/visibility_off.svg);
   }

@@ -102,11 +102,13 @@
                                 </div>
                             </div> --}}
 
-                            <div class="col-12 form-check d-flex align-items-center justify-content-center">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label fs-sm-16 fs-14" for="flexCheckDefault">
-                                    I agree to Vue's Trems of Service and Privacy Policy
-                                </label>
+                            <div class="col-12 ">
+                                <div class="d-flex form-check">
+                                    <input class="form-check-input me-2 shadow-none" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label fs-sm-16 fs-14" for="flexCheckDefault">
+                                        I agree to Vue's Trems of Service and Privacy Policy
+                                    </label>
+                                </div>
                             </div>
                             <!-- <div class="row align-items-center mx-0 CheckMe">
                                         <div class="col-auto sign_up px-0"><a href="" class="text-decoration-none fs-sm-16 fs-14">Recover Password</a> </div>
