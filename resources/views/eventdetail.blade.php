@@ -27,9 +27,8 @@
     <link rel="canonical" href="{{ asset('/') }}" />
 @endpush
 @push('styles')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.css') }}">
-<link rel="stylesheet" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.css') }}">
 @endpush
 @section('content')
     <input type="hidden" value="{{ $id }}" id="id">
@@ -121,7 +120,12 @@
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedin"><span>Checked In</span><span class="value">0</span></label>
                             </div>
                         </li> --}}
-                                <li class="bg-theme2"><button type="button" class="btn w-100 type rounded-0 py-1 py-sm-2 ps-2 ps-sm-3 pe-2 pe-sm-2 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 " data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span><img class="svg-white" src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""></button></li>
+                                    <li class="bg-theme2"><button type="button"
+                                            class="btn w-100 type rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 "
+                                            data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span> <i
+                                                class="imgr img-plus fs-15 fs-sm-18"></i>
+                                            <!-- <img src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""> --></button>
+                                    </li>
 
 
                                     <li class="pt-2 pb-1 px-3">
@@ -186,7 +190,11 @@
                                 <div class="col-12 col-sm mt-3 mt-sm-0 d-flex gap-3 justify-content-sm-end">
                                     <!-- <div><button type="btn" class="btn historyBtn btn-outline-light fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase">History</button></div> -->
                                     <div class="dropdown">
-                                        <button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="me-1">Add guests</span><img class="svg-white" src="{{ asset('/public/new-design/img/icon/expand.svg') }}" alt=""></button>
+                                        <button
+                                            class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white"
+                                            type="button" data-bs-toggle="dropdown" aria-expanded="false"><span
+                                                class="me-3">Add guests</span><i
+                                                class="imgr img-chevron-down"></i></button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item fs-12 fs-sm-14" href="#"
                                                     data-bs-toggle="modal" data-bs-target="#exampleModal">One by one</a>
@@ -585,26 +593,34 @@
                 </div>
             </div> --}}
 
-            <!-- <div class="modal fade Create-Guest-modal" id="viewguestinfo" data-bs-backdrop="static" tabindex="-1" aria-labelledby="viewguestinfoLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                    <div class="modal-content">
-
-                        <div class="modal-header py-3">
-                            <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Choose a file</h5>
-                            <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
-                        </div>
-                        <form action="{{route('addguestcsv')}}" method="post" class="modal-form col-12 mt-3" enctype="multipart/form-data">
-                            <div class="modal-body">
-                                @csrf
-                                <input type="hidden" name="mid" value="{{$id}}">
-                                <div class="input-group">
-                                    <label class="input-group-text p-5 justify-content-center w-100 rounded-8" for="inputGroupFile01">
-                                        <div class="gap-3">
-                                            <i class="imgr img-arrow-to-bottom fs-36 d-block"></i>
-                                            <span class="d-block fs-18 mb-n2 textHover my-3 fs-16 fs-sm-18 fs-md-22">Choose a file</span>
-                                        </div>
-                                    </label>
-                                    <input type="file" class="form-control d-none" name="eventfile" id="inputGroupFile01">
+                <div class="modal fade Create-Guest-modal" id="viewguestinfo" data-bs-backdrop="static" tabindex="-1"
+                    aria-labelledby="viewguestinfoLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header py-3">
+                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Choose a file
+                                </h5>
+                                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal"
+                                    aria-label="Close"></i>
+                            </div>
+                            <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12 mt-3"
+                                enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    @csrf
+                                    <input type="hidden" name="mid" value="{{ $id }}">
+                                    <div class="input-group">
+                                        <label class="input-group-text p-5 justify-content-center w-100 rounded-8"
+                                            for="inputGroupFile01">
+                                            <div class="gap-3">
+                                                <i class="imgr img-arrow-to-bottom fs-36 d-block"></i>
+                                                <span
+                                                    class="d-block fs-18 mb-n2 textHover my-3 fs-16 fs-sm-18 fs-md-22">Choose
+                                                    a file</span>
+                                            </div>
+                                        </label>
+                                        <input type="file" class="form-control d-none" name="eventfile"
+                                            id="inputGroupFile01">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit"
@@ -614,9 +630,8 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
-        </div>
-        </section>
+            </div>
+            </section>
 
 
             {{-- <input type="hidden" value="{{$mid}}" id="mid"> --}}
@@ -1109,26 +1124,12 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
 
-                            <div class="modal-header py-2 px-4">
-                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Import CSV File
-                                </h5>
-                                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal"
-                                    aria-label="Close"></i>
-                            </div>
-                            <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12"
-                                enctype="multipart/form-data">
-                                <div class="modal-body p-4">
-                                    @csrf
-                                    <input type="hidden" name="mid" value="{{ $id }}">
-                                        <input name="file1" type="file" class="dropify" id="dropify-flie" data-height="200" />
-                                </div>
-                                <div class="modal-footer pt-4 justify-content-center">
-                                    <button type="submit" class="btn btn-outline-dark fs-14 fw-500 px-4 text-uppercase">Cancel</button>
-                                    <button type="submit" class="btn btn-theme1 fs-14 text-white fw-500 px-4 text-uppercase">Import</button>
-                                </div>
-                            </form>
+                        <div class="modal-header py-2 px-4">
+                            <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Import CSV File
+                            </h5>
+                            <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
-                        <!-- <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12"
+                        <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12"
                             enctype="multipart/form-data">
                             <div class="modal-body p-4">
                                 @csrf
@@ -1158,7 +1159,7 @@
                                 <button type="submit"
                                     class="btn btn-theme1 fs-14 text-white fw-500 px-4 text-uppercase">Import</button>
                             </div>
-                        </form> -->
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1224,14 +1225,6 @@
         .disabledClick {
             pointer-events: none
         }
-        label .guestAddImg:nth-of-type(1n + 1) {
-            background: lightblue;
-        }
-        .guestAddImg img{
-            object-fit: cover;
-            object-position: center;
-        }
-
     </style>
 
 <script>
@@ -1286,16 +1279,12 @@
 
 
                         $("#image1").append(
-                            `<input class="d-none" type="file" name="guimage" id="guimage"><label for="guimage">
-                                <div class="guestAddImg w-80px h-80px rounded-pill overflow-hidden align-items-center d-flex justify-content-center"><p class="m-0 fs-24 fw-bold">${fname}${lname} </p> </div>
-                                </label>
+                            `<input class="d-none" type="file" name="guimage" id="guimage"><label for="guimage"><p class="">${fname}${lname} </p> </label>
                             `
                         );
                     } else {
                         $("#image1").append(
-                            `<input class="d-none" type="file" name="guimage" id="guimage" value="${response.data.guestimage}"><label for="guimage">
-                                <div class="guestAddImg w-80px h-80px rounded-pill overflow-hidden align-items-center d-flex justify-content-center"><img id="imgg" class="w-100 h-100" src="{{ asset('public/imgs/${response.data.guestimage}') }}" alt="" height="65px" width="65px"> </div>
-                                </label>`
+                            `<input class="d-none" type="file" name="guimage" id="guimage" value="${response.data.guestimage}"><label for="guimage"><img id="imgg" src="{{ asset('public/imgs/${response.data.guestimage}') }}" alt="" height="65px" width="65px"></label>`
                         );
                     }
 
@@ -1324,7 +1313,6 @@
                     mid: mid,
                 },
                 success: function(response) {
-                    console.log(response);
                     $('.view' + id).removeClass('active');
                     $('.oncClickDisabled').removeClass('disabledClick');
                     $('#twiiter1').val(response.twitter);
@@ -1527,25 +1515,24 @@
 </script> --}}
 @endsection
 @push('scripts')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.js') }}"></script>
-<script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            columnDefs: [{
-                orderable: false,
-                className: 'select-checkbox',
-                targets: 0
-            }],
-            select: {
-                style: 'os',
-                selector: 'td:first-child'
-            },
-            order: [
-                [1, 'asc']
-            ]
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                columnDefs: [{
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0
+                }],
+                select: {
+                    style: 'os',
+                    selector: 'td:first-child'
+                },
+                order: [
+                    [1, 'asc']
+                ]
+            });
         });
     </script>
 
@@ -1564,20 +1551,5 @@
         window.intlTelInput(input, {
             // any initialisation options go here
         });
-    });
-</script>
-<script>
-    var input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-        // any initialisation options go here
-    });
-</script>
-<script>
-    $('.dropify').dropify({
-        messages: {
-            default: '<span class="fs-30 fw-bold text-muted d-block">Drag & Drop</span><span class="d-block fs-18 fs-16 fs-sm-18 fs-md-25 mt-3">A <span class="textHover text-primary">.csv</span> file here or click</span>',
-        }
-    });
-
-</script>
+    </script>
 @endpush
