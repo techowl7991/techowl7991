@@ -91,15 +91,27 @@
                             </div>
 
                             <div class="mb-3">
-                                <textarea name="eventdesc" placeholder="Event Description" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" value="{{ $snapshot['event_description'] }}" rows="3">{{ $snapshot['event_description'] }}</textarea>
+                                <textarea name="eventdesc" placeholder="Event Description"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    value="{{ $snapshot['event_description'] }}" rows="3">{{ $snapshot['event_description'] }}</textarea>
                             </div>
 
                             <div class="col-12 mb-3">
-                                <input type="hidden" name="hidden_event_image" value="{{$snapshot['event_image']}}">
-                                <input type="file" name="event_image"
-                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
-                                    autocomplete="off" required> <br>
-                                    <img src="{{asset('public/eventimgs/'.$snapshot['event_image'])}}" alt="" width="70px" height="70px">
+                                @if (file_exists(public_path() . '/eventimgs/' . $snapshot['event_image']))
+                                    <input type="hidden" name="hidden_event_image" value="{{ $snapshot['event_image'] }}">
+                                    <input type="file" name="event_image"
+                                        class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                        autocomplete="off" required> <br>
+                                    <img src="{{ asset('public/eventimgs/' . $snapshot['event_image']) }}" alt=""
+                                        width="70px" height="70px">
+                                    {{-- <img src="{{ asset('img/' . $product->sku) }}"> --}}
+
+
+                                    
+                                @else
+                                    <img src="{{ asset('img/upeve.png') }}">
+                                @endif
+
                             </div>
 
                             <div class="col-12 text-theme2 fs-16 fw-bold mb-3">Event Type</div>
@@ -180,70 +192,70 @@
                                 </select>
                             </div>
                             <!-- <div class="col-12 text-theme2 fs-16 fw-bold mb-3">Add Attendees List</div>
-                                        <div class="col-12 mb-3 d-flex align-items-center gap-2">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
-                                                <label class="form-check-label fw-normal text-theme2" for="flexRadioDefault1">
-                                                    Excel File
-                                                </label>
-                                            </div>
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                                                <label class="form-check-label fw-normal text-theme2" for="flexRadioDefault2">
-                                                    Manually
-                                                </label>
-                                            </div>
-                                        </div> -->
+                                                <div class="col-12 mb-3 d-flex align-items-center gap-2">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                                        <label class="form-check-label fw-normal text-theme2" for="flexRadioDefault1">
+                                                            Excel File
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                                        <label class="form-check-label fw-normal text-theme2" for="flexRadioDefault2">
+                                                            Manually
+                                                        </label>
+                                                    </div>
+                                                </div> -->
 
                             <!-- <div class="col-12 mb-3" id="show1">
-                                            <input class="form-control d-none" type="file" id="chooseFile">
-                                            <label for="chooseFile" class="bg-theme2 chooseFile px-4 py-2 text-white fw-bold rounded text-uppercase fs-14">Upload File</label>
-                                        </div> -->
+                                                    <input class="form-control d-none" type="file" id="chooseFile">
+                                                    <label for="chooseFile" class="bg-theme2 chooseFile px-4 py-2 text-white fw-bold rounded text-uppercase fs-14">Upload File</label>
+                                                </div> -->
 
                             <!-- <div class="col-12 manually_tab d-none" id="show2">
-                                            <div class="row">
-                                                <div class="col-12 table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col" class="p-2 fs-16 fw-bold">First Name</th>
-                                                                <th scope="col" class="p-2 fs-16 fw-bold">Last Name</th>
-                                                                <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
-                                                                <th scope="col" class="p-2 fs-16 fw-bold">Organisation</th>
-                                                                <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
-                                                                <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
-                                                               <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
-                                                                <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
-                                                                <td>
-                                                                    <div class="input-group">
-                                                                        <select class="form-select shadow-none border-0 w-140px h-30px rounded" id="inputGroupSelect01">
-                                                                            <option class="choose py-1" selected></option>
-                                                                            <option class="choose py-1" value="1">One</option>
-                                                                            <option class="choose py-1" value="2">Two</option>
-                                                                            <option class="choose py-1" value="3">Three</option>
-                                                                        </select>
-                                                                    </div>
-                                                                </td>
-                                                                <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
-                                                                <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
-                                                                <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
-                                                               <td> <input type="text" class="form-control border-0 shadow-none h-30px w-115px rounded " id="fasttd" placeholder="com"></td>
-                                                            
-                                                            </tr>
+                                                    <div class="row">
+                                                        <div class="col-12 table-responsive">
+                                                            <table class="table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th scope="col" class="p-2 fs-16 fw-bold">First Name</th>
+                                                                        <th scope="col" class="p-2 fs-16 fw-bold">Last Name</th>
+                                                                        <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
+                                                                        <th scope="col" class="p-2 fs-16 fw-bold">Organisation</th>
+                                                                        <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
+                                                                        <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
+                                                                       <th scope="col" class="p-2 fs-16 fw-bold">Type</th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
+                                                                        <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
+                                                                        <td>
+                                                                            <div class="input-group">
+                                                                                <select class="form-select shadow-none border-0 w-140px h-30px rounded" id="inputGroupSelect01">
+                                                                                    <option class="choose py-1" selected></option>
+                                                                                    <option class="choose py-1" value="1">One</option>
+                                                                                    <option class="choose py-1" value="2">Two</option>
+                                                                                    <option class="choose py-1" value="3">Three</option>
+                                                                                </select>
+                                                                            </div>
+                                                                        </td>
+                                                                        <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
+                                                                        <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
+                                                                        <td> <input type="text" class="form-control border-0 shadow-none h-30px w-110px rounded " id="fasttd" placeholder="com"></td>
+                                                                       <td> <input type="text" class="form-control border-0 shadow-none h-30px w-115px rounded " id="fasttd" placeholder="com"></td>
+                                                                    
+                                                                    </tr>
 
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                                <div class="col-12">
-                                                    <button class="bg-theme2 shadow-none border-0 px-4 py-2 text-white fw-bold rounded text-uppercase fs-14">ADD ROW</button>
-                                                </div>
-                                            </div>
-                                        </div> -->
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="col-12">
+                                                            <button class="bg-theme2 shadow-none border-0 px-4 py-2 text-white fw-bold rounded text-uppercase fs-14">ADD ROW</button>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
                             <div class="col-12">
                                 <button class="btn btn-dark d-flex align-items-center" type="submit" id="subbutton"
                                     name="submit"><span id="subbuttonSpinner"
@@ -399,7 +411,7 @@
         <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
         <script>
             $(".shaowPass").click(function() {
-        
+
                 $(this).toggleClass("img-eye img-eye-slash");
                 var input4 = $($(this).attr("toggle"));
                 if (input4.attr("type") == "password") {
