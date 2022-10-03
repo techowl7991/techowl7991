@@ -95,6 +95,7 @@
                             </div>
 
                             <div class="col-12 mb-3">
+                                <input type="hidden" name="hidden_event_image" value="{{$snapshot['event_image']}}">
                                 <input type="file" name="event_image"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                     autocomplete="off" required> <br>

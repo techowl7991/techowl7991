@@ -242,7 +242,6 @@ table.dataTable thead th, table.dataTable tbody tr td {
         var arr = $("input[name='id[]']:checked").map(function() {
             return this.value;
         }).get();
-        console.log(arr);
         // return false;
         if(arr.length != 0){
             $.ajax({

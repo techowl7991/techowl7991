@@ -28,6 +28,7 @@
 
 @endpush
 @push('styles')
+<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 @endpush
 @section('content')
 
@@ -38,8 +39,8 @@
                 <div class="row">
                     <div class="col-7">
                         <div class="imgOuter w-100 rounded-15 overflow-hidden" style="    height: 260px;">
-                            <img class="w-100" src="{{ asset('/public/new-design/img/new-demo-img.jpg') }}" alt="">
-                           {{-- <img class="w-100" src="{{ asset('/public/new-design/img/'.$data['event_image']) }}" alt="">--}}
+                            {{-- <img class="w-100" src="{{ asset('/public/new-design/img/new-demo-img.jpg') }}" alt="">--}}
+                           <img class="w-100" src="{{ asset('/public/eventimgs/'.$data['event_image']) }}" alt="">
 
                         </div>
                     </div>
@@ -111,7 +112,7 @@
                                         <div class="card-header p-3 bg-white border-0">
                                             <div class="row">
                                                 <div class="col-auto">
-                                                        <div class="w-50px h-50px rounded-5 border align-items-center d-flex justify-content-center"><img src="{{ asset('/public/new-design/img/icon/calendar.svg') }}" alt=""></div>
+                                                        <div class="w-50px h-50px rounded-5 border align-items-center d-flex justify-content-center"><img src="{{ asset('/public/new-design/img/guests.png') }}" alt=""></div>
                                                 </div>
                                                 <div class="col">
                                                     <div class="fs-14 text-muted">Hosted by</div>
@@ -243,9 +244,9 @@
                                     </div>
                                     <div class="col-12">
                                         <select class="form-control basicSelect" multiple="multiple">
-                                            <option selected="selected">orange</option>
+                                            <option >orange</option>
                                             <option>white</option>
-                                            <option selected="selected">purple</option>
+                                            <option >purple</option>
                                         </select>
                                     </div>
 
@@ -290,8 +291,7 @@
                                 <div class="col-12 Account event_info px-0 py-2">
                                     <h4 class="m-0 heading fw-bold text-white px-3 fs-16">Guest Information</h4>
                                 </div>
-                                <form action="{{ route('addverguest') }}" method="post" class="modal-form col-12 mt-3"
-                                    enctype="multipart/form-data">
+                                <form action="{{ route('addverguest') }}" method="post" class="modal-form col-12 mt-3" enctype="multipart/form-data">
                                     @csrf
                                     <input type="hidden" name="id" value="{{ $id }}">
                                     <input type="hidden" name="mid" value="{{ $mid }}">
@@ -336,7 +336,7 @@
                                                 <div class="col-12 form-floating mb-2">
                                                     <select class="form-select h-50px shadow-none Inpt border-0"
                                                         id="floatingSelect" name="type"
-                                                        aria-label="Floating label select example">
+                                                        aria-label="Floating label select example" readonly>
                                                         <!-- <option lass="choose py-1">Open this select menu</option> -->
                                                         <option lass="choose py-1" value="verified">Verified</option>
                                                         <!-- <option lass="choose py-1" value="RSVP">RSVP</option> -->
@@ -424,9 +424,9 @@
                                                 <div class="col-12">
                                                     <select class="form-control basicSelect" name="tags"
                                                         multiple="multiple">
-                                                        <option selected="selected">orange</option>
+                                                        <option >orange</option>
                                                         <option>white</option>
-                                                        <option selected="selected">purple</option>
+                                                        <option >purple</option>
                                                     </select>
                                                 </div>
 
@@ -475,4 +475,14 @@
 
 @endsection
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        
+        $('.basicSelect').select2({
+        tags: true,
+        });
+    });
+</script>
 @endpush
