@@ -41,7 +41,7 @@
             <button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">EXPORT REPORT</button>
         </div>
     </div>
-    <div class="row mx-0 mb-4">
+    {{-- <div class="row mx-0 mb-4">
         <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
@@ -55,7 +55,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="row mx-0">
         <div class="col-12 fs-sm-25 fs-20 text-theme2 fw-600 mb-3">Breakdown</div>
         <div class="col-lg-10 col-12 table-responsive analytics_table">
@@ -66,27 +66,19 @@
                         <th scope="col" class="fs-16 fw-bold text-theme2">Last Name</th>
                         <th scope="col" class="fs-16 fw-bold text-theme2">Job Title</th>
                         <th scope="col" class="fs-16 fw-bold text-theme2">Organisation</th>
+                        <th scope="col" class="fs-16 fw-bold text-theme2">Date Time</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($data as $user)
                     <tr>
-                        <td>user</td>
-                        <td>Tok</td>
-                        <td>Platform Lead</td>
-                        <td>Now Comms Asia</td>
+                        <td>{{$user['evefirstname']}}</td>
+                        <td>{{$user['evelastname']}}</td>
+                        <td>{{$user['jobtitle']}}</td>
+                        <td>{{$user['orgenization']}}</td>
+                        <td>{{$user['datetime']}}</td>
                     </tr>
-                    <tr>
-                        <td>user</td>
-                        <td>Ton</td>
-                        <td>Platform Lead</td>
-                        <td>Now Comms Asia</td>
-                    </tr>
-                    <tr>
-                        <td>user</td>
-                        <td>Tok</td>
-                        <td>Platform Lead</td>
-                        <td>Now Comms Asia</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
