@@ -58,34 +58,31 @@
                             <div class="row">
 
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" placeholder="Frist Name" value="{{ $snapshot['FirstName'] }}"
+                                    <input type="text" placeholder="Frist Name" value="<?php echo ($snapshot) ? $snapshot['FirstName']:''?>" 
                                         name="fname"
-                                        class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
-                                        required>
+                                        class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
                                 </div>
 
                                 <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                    <input type="text" placeholder="Last Name" value="{{ $snapshot['LastName'] }}"
+                                    <input type="text" placeholder="Last Name" value="<?php echo ($snapshot) ? $snapshot['LastName']:''?>"
                                         name="lname"
-                                        class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
-                                        required>
+                                        class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
                                 </div>
 
                                 <div class="col-12 mt-3">
-                                    <input type="email" placeholder="Example@gmail.com" value="{{ $snapshot['email'] }}"
+                                    <input type="email" placeholder="Example@gmail.com" value=" <?php echo ($snapshot) ? $snapshot['email']:''?>"
                                         readonly name="email"
-                                        class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
-                                        required>
+                                        class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
                                 </div>
                                 <div class="col-12 mb-2 mt-3 mt-sm-4">
                                     <div class="title text-dark fs-15 fs-sm-18 fs-md-25 fw-600 ">Password</div>
                                 </div>
                                 <div class="col-12">
                                     <div class="password-field position-relative">
-                                        <input type="password" placeholder="Password" value="{{ $snapshot['password'] }}"
+                                        <input type="password" placeholder="Password" value="<?php echo ($snapshot) ? $snapshot['password']:''?>"
                                             readonly name="password"
                                             class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-16 fw-normal"
-                                            id="password-field4" required>
+                                            id="password-field4">
                                         <span><i toggle="#password-field4" id="eye4"
                                                 class=" shaowPass imgs img-eye position-absolute eye-icon"></i></span>
                                         <div class="invalid-feedback fs-14">
@@ -144,7 +141,7 @@
 
                     </div>
                     <div class="activeDate fs-11 fs-sm-14 fs-md-15 text-muted fw-500 mt-1">
-                        Acitve since {{ $snapshot['date'] }}
+                        Acitve since {{ ($snapshot)?$snapshot['date']:'' }}
                     </div>
                 </div>
             </div>
@@ -170,19 +167,19 @@
                         @csrf
                         <div class="row">
                             <div class="col-12 col-sm-6">
-                                <input type="hidden" placeholder="Frist Name" value="{{ $snapshot['FirstName'] }}"
+                                <input type="hidden" placeholder="Frist Name" value="<?php echo ($snapshot) ? $snapshot['FirstName']:''?>"
                                     id="fname-{{ session()->get('uid') }}" name="fname"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
                             </div>
 
                             <div class="col-12 col-sm-6 mt-3 mt-sm-0">
-                                <input type="hidden" placeholder="Last Name" value="{{ $snapshot['LastName'] }}"
+                                <input type="hidden" placeholder="Last Name" value="<?php echo ($snapshot) ? $snapshot['LastName']:''?>"
                                     id="lname-{{ session()->get('uid') }}" name="lname"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
                             </div>
 
                             <div class="col-12">
-                                <input type="hidden" placeholder="Example@gmail.com" value="{{ $snapshot['email'] }}"
+                                <input type="hidden" placeholder="Example@gmail.com" value="<?php echo ($snapshot) ? $snapshot['email']:''?>"
                                     id="email-{{ session()->get('uid') }}" readonly name="email"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
                             </div>
