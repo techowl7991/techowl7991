@@ -70,7 +70,7 @@
                                 </div>
 
                                 <div class="col-12 mt-3">
-                                    <input type="email" placeholder="Example@gmail.com" value=" <?php echo ($snapshot) ? $snapshot['email']:''?>"
+                                    <input type="email" placeholder="Example@gmail.com" value=" <?php echo $user->email?>"
                                         readonly name="email"
                                         class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal">
                                 </div>
