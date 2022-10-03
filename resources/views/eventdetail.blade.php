@@ -1308,6 +1308,7 @@
                     mid: mid,
                 },
                 success: function(response) {
+                    console.log(response);
                     $('.view' + id).removeClass('active');
                     $('.oncClickDisabled').removeClass('disabledClick');
                     $('#twiiter1').val(response.twitter);
