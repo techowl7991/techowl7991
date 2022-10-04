@@ -7,6 +7,7 @@ body {
   font-family: "Poppins", sans-serif !important;
 }
 
+
 .comman-form {
   & form {
     & .eye-icon {
@@ -1459,9 +1460,16 @@ table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-str
       }
     }
   }
+  // & .card, & .imgOuter, & .mapOuter  {
+  //   transition: all .5s;
+  //   &:hover {
+  //     box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%) !important;
+  //   }
+  // }
   & .mainSocial {
     & a {
       border: 1px solid $theme1;
+      border-radius: 15px 0;
       transition: .5s;
       & i {
         transition: .3s;
@@ -1470,6 +1478,7 @@ table.dataTable.table-striped>tbody>tr.odd.selected>*, table.dataTable.table-str
         background-color: transparent !important;
         border: 1px solid $theme1;
         color: $theme1 !important;
+        border-radius: 0 15px;
         & i {
           transform: rotateY(3600deg);
         }

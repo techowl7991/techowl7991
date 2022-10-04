@@ -56,7 +56,7 @@
             <div class="card border-0 rounded">
                 <div class="card-body row mx-0">
                     <div class="col-auto">
-                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><img src="{{ asset('/public/new-design/img/user-file.png') }}" alt=""></div>
+                        <div class="card-title h-40px w-40px rounded-circle bg-theme2 d-flex align-items-center justify-content-center"><img src="{{ asset('/public/new-design/img/icon/check-out.svg') }}" alt=""></div>
                     </div>
                     <div class="col">
                         <div class="card-subtitle text-start lh-1 pt-1 fs-16 text-theme2 fw-normal">Check out</div>
