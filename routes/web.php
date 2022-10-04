@@ -60,14 +60,14 @@ Route::get('get_setting',[AboutController::class,'get_setting'])->name('get_sett
 Route::get('email',[AboutController::class,'email'])->name('email');
 Route::get('view_email',[AboutController::class,'view_email'])->name('view_email');
 Route::get('campaign_information',[AboutController::class,'campaign_information'])->name('campaign_information');
-Route::get('analytics_booth_name',[AboutController::class,'analytics_booth_name'])->name('analytics_booth_name');
+Route::get('analytics_booth_name/{id}',[AboutController::class,'analytics_booth_name']);
 
 
 Route::any('save_new_password/{id}',[AboutController::class,'save_new_password'])->name('save_new_password');
 Route::any('/viewwebsite/{id}', [AboutController::class, 'view_web']);
 
 
-
+Route::any('/viewwebsiteusers/{uid}/{id}', [AboutController::class, 'view_web_users'])->name('viewwebsiteusers');
 // Route::get('/login',function(){});
 
 Route::any('/new',function(){return view('new-design/index');});

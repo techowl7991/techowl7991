@@ -27,9 +27,8 @@
     <link rel="canonical" href="{{ asset('/') }}" />
 @endpush
 @push('styles')
-<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-<link rel="stylesheet" href="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.css') }}">
-<link rel="stylesheet" href="https://jeremyfagis.github.io/dropify/dist/css/dropify.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.css') }}">
 @endpush
 @section('content')
     <input type="hidden" value="{{ $id }}" id="id">
@@ -109,19 +108,28 @@
                                                     echo 'checked';
                                                 } ?>>
 
-                                        <input type="radio" id="customcheckbox22" name="visit" value="No" class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" <?php if ($visit == 'No') {
-                                                                                                                                                                                                                    echo 'checked';
-                                                                                                                                                                                                                } ?>>
-                                        <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="customcheckbox22"><span>Not Attendding</span><span class="value">{{count($sidedata['notattending'])}}</span></label>
-                                    </div>
-                                </li>
-                                {{-- <li class="py-1 px-3">
+                                            <input type="radio" id="customcheckbox22" name="visit" value="No"
+                                                class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
+                                                <?php if ($visit == 'No') {
+                                                    echo 'checked';
+                                                } ?>>
+                                            <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14"
+                                                for="customcheckbox22"><span>Not Attendding</span><span
+                                                    class="value">{{ count($sidedata['notattending']) }}</span></label>
+                                        </div>
+                                    </li>
+                                    {{-- <li class="py-1 px-3">
                             <div class="form-check">
                                 <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="status" id="checkedin">
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedin"><span>Checked In</span><span class="value">0</span></label>
                             </div>
                         </li> --}}
-                                <li class="bg-theme2"><button type="button" class="btn w-100 type rounded-0 py-1 py-sm-2 ps-2 ps-sm-3 pe-2 pe-sm-2 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 " data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span><img class="svg-white" src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""></button></li>
+                                    <li class="bg-theme2"><button type="button"
+                                            class="btn w-100 type rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 "
+                                            data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span> <i
+                                                class="imgr img-plus fs-15 fs-sm-18"></i>
+                                            <!-- <img src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""> --></button>
+                                    </li>
 
 
                                     <li class="pt-2 pb-1 px-3">
@@ -186,7 +194,11 @@
                                 <div class="col-12 col-sm mt-3 mt-sm-0 d-flex gap-3 justify-content-sm-end">
                                     <!-- <div><button type="btn" class="btn historyBtn btn-outline-light fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase">History</button></div> -->
                                     <div class="dropdown">
-                                        <button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false"><span class="me-1">Add guests</span><img class="svg-white" src="{{ asset('/public/new-design/img/icon/expand.svg') }}" alt=""></button>
+                                        <button
+                                            class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white"
+                                            type="button" data-bs-toggle="dropdown" aria-expanded="false"><span
+                                                class="me-3">Add guests</span><i
+                                                class="imgr img-chevron-down"></i></button>
                                         <ul class="dropdown-menu">
                                             <li><a class="dropdown-item fs-12 fs-sm-14" href="#"
                                                     data-bs-toggle="modal" data-bs-target="#exampleModal">One by one</a>
@@ -227,31 +239,31 @@
                     </div>
                     <div class="col-12">
                         <!-- <table id="example" class="table mt-0 table-striped dt-responsive nowrap" style="width:100%">
-                                            <thead>
-                                                <tr class="even">
-                                                    <th class="select-checkbox"></th>
-                                                    <th>Frist Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Organisation</th>
-                                                    <th>Status</th>
-                                                    <th class="text-center">Edit</th>
-                                                    <th class="text-center">View</th>
-                                                    <th class="text-center">Badge</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <td class=""><span class="select-checkbox"></span></td>
-                                                    <td>Eugene</td>
-                                                    <td class="">Wong</td>
-                                                    <td>Now Comms Asia</td>
-                                                    <td>Verified</td>
-                                                    <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
-                                                    <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
-                                                    <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
-                                                </tr>
-                                            </tbody>
-                                        </table> -->
+                                                <thead>
+                                                    <tr class="even">
+                                                        <th class="select-checkbox"></th>
+                                                        <th>Frist Name</th>
+                                                        <th>Last Name</th>
+                                                        <th>Organisation</th>
+                                                        <th>Status</th>
+                                                        <th class="text-center">Edit</th>
+                                                        <th class="text-center">View</th>
+                                                        <th class="text-center">Badge</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td class=""><span class="select-checkbox"></span></td>
+                                                        <td>Eugene</td>
+                                                        <td class="">Wong</td>
+                                                        <td>Now Comms Asia</td>
+                                                        <td>Verified</td>
+                                                        <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
+                                                        <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
+                                                        <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table> -->
                         <table
                             class="table table-bordered mt-0 table-striped table-hover text-nowrap  dt-responsive nowrap"
                             id="allmatches_datatable" width="100%" cellspacing="0">
@@ -585,26 +597,34 @@
                 </div>
             </div> --}}
 
-            <!-- <div class="modal fade Create-Guest-modal" id="viewguestinfo" data-bs-backdrop="static" tabindex="-1" aria-labelledby="viewguestinfoLabel" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                    <div class="modal-content">
-
-                        <div class="modal-header py-3">
-                            <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Choose a file</h5>
-                            <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
-                        </div>
-                        <form action="{{route('addguestcsv')}}" method="post" class="modal-form col-12 mt-3" enctype="multipart/form-data">
-                            <div class="modal-body">
-                                @csrf
-                                <input type="hidden" name="mid" value="{{$id}}">
-                                <div class="input-group">
-                                    <label class="input-group-text p-5 justify-content-center w-100 rounded-8" for="inputGroupFile01">
-                                        <div class="gap-3">
-                                            <i class="imgr img-arrow-to-bottom fs-36 d-block"></i>
-                                            <span class="d-block fs-18 mb-n2 textHover my-3 fs-16 fs-sm-18 fs-md-22">Choose a file</span>
-                                        </div>
-                                    </label>
-                                    <input type="file" class="form-control d-none" name="eventfile" id="inputGroupFile01">
+                <div class="modal fade Create-Guest-modal" id="viewguestinfo" data-bs-backdrop="static" tabindex="-1"
+                    aria-labelledby="viewguestinfoLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header py-3">
+                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Choose a file
+                                </h5>
+                                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal"
+                                    aria-label="Close"></i>
+                            </div>
+                            <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12 mt-3"
+                                enctype="multipart/form-data">
+                                <div class="modal-body">
+                                    @csrf
+                                    <input type="hidden" name="mid" value="{{ $id }}">
+                                    <div class="input-group">
+                                        <label class="input-group-text p-5 justify-content-center w-100 rounded-8"
+                                            for="inputGroupFile01">
+                                            <div class="gap-3">
+                                                <i class="imgr img-arrow-to-bottom fs-36 d-block"></i>
+                                                <span
+                                                    class="d-block fs-18 mb-n2 textHover my-3 fs-16 fs-sm-18 fs-md-22">Choose
+                                                    a file</span>
+                                            </div>
+                                        </label>
+                                        <input type="file" class="form-control d-none" name="eventfile"
+                                            id="inputGroupFile01">
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button type="submit"
@@ -614,9 +634,8 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
-        </div>
-        </section>
+            </div>
+            </section>
 
 
             {{-- <input type="hidden" value="{{$mid}}" id="mid"> --}}
@@ -802,12 +821,12 @@
                                                                     class="fs-12 ps-4">Organisation</label>
                                                             </div>
                                                             <!-- <div class="col-12 mb-2 form-floating Tel_Input_group">
-                                                                                                            <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
-                                                                                                            <label for="phone" class="fs-12 ps-4">Organisation</label>
-                                                                                                        </div> -->
+                                                                                                                <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
+                                                                                                                <label for="phone" class="fs-12 ps-4">Organisation</label>
+                                                                                                            </div> -->
                                                             <!-- <div class="col-12">
-                                                                                                            <input type="tel" id="phone">
-                                                                                                        </div> -->
+                                                                                                                <input type="tel" id="phone">
+                                                                                                            </div> -->
                                                             <div class="col-6 mb-2 form-floating">
                                                                 <input type="number"
                                                                     class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal"
@@ -850,15 +869,13 @@
                                                         </h4>
                                                     </div>
                                                     <div class="col-12 mb-3">
-                                                        <input type="text" placeholder="LinkedIn"
-                                                            name="linkedin"
+                                                        <input type="text" placeholder="LinkedIn" name="linkedin"
                                                             class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                             autocomplete="off">
                                                     </div>
 
                                                     <div class="col-12 mb-3">
-                                                        <input type="text" placeholder="Twitter"
-                                                            name="twitter"
+                                                        <input type="text" placeholder="Twitter" name="twitter"
                                                             class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                             autocomplete="off">
                                                     </div>
@@ -880,9 +897,9 @@
 
 
                                     <!-- <div class="modal-footer justify-content-center">
-                                                                                    <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                                                                    <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                                                                                </div> -->
+                                                                                        <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                                                        <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                                                                    </div> -->
                                 </div>
                             </div>
                         </div>
@@ -1058,15 +1075,15 @@
                                                         </h4>
                                                     </div>
                                                     <div class="col-12 mb-3">
-                                                        <input type="text" placeholder="LinkedIn"
-                                                            id="linkedin1" name="linkedin"
+                                                        <input type="text" placeholder="LinkedIn" id="linkedin1"
+                                                            name="linkedin"
                                                             class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                             autocomplete="off">
                                                     </div>
 
                                                     <div class="col-12 mb-3">
-                                                        <input type="text" placeholder="Twitter"
-                                                            id="twiiter1" name="twitter"
+                                                        <input type="text" placeholder="Twitter" id="twiiter1"
+                                                            name="twitter"
                                                             class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
                                                             autocomplete="off">
                                                     </div>
@@ -1095,9 +1112,9 @@
 
 
                             <!-- <div class="modal-footer justify-content-center">
-                                                                                    <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                                                                    <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                                                                                </div> -->
+                                                                                        <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                                                        <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                                                                    </div> -->
                         </div>
                         <!-- edit guest end-->
                     </div>
@@ -1109,26 +1126,12 @@
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
 
-                            <div class="modal-header py-2 px-4">
-                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Import CSV File
-                                </h5>
-                                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal"
-                                    aria-label="Close"></i>
-                            </div>
-                            <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12"
-                                enctype="multipart/form-data">
-                                <div class="modal-body p-4">
-                                    @csrf
-                                    <input type="hidden" name="mid" value="{{ $id }}">
-                                        <input name="file1" type="file" class="dropify" id="dropify-flie" data-height="200" />
-                                </div>
-                                <div class="modal-footer pt-4 justify-content-center">
-                                    <button type="submit" class="btn btn-outline-dark fs-14 fw-500 px-4 text-uppercase">Cancel</button>
-                                    <button type="submit" class="btn btn-theme1 fs-14 text-white fw-500 px-4 text-uppercase">Import</button>
-                                </div>
-                            </form>
+                        <div class="modal-header py-2 px-4">
+                            <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Import CSV File
+                            </h5>
+                            <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
-                        <!-- <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12"
+                        <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12"
                             enctype="multipart/form-data">
                             <div class="modal-body p-4">
                                 @csrf
@@ -1158,7 +1161,7 @@
                                 <button type="submit"
                                     class="btn btn-theme1 fs-14 text-white fw-500 px-4 text-uppercase">Import</button>
                             </div>
-                        </form> -->
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1170,14 +1173,14 @@
 
         <div class="row" style="border:none">
             <!-- <div class="col-3" style="border:none">
-                                                                            <div class="card mb-3">
-                                                                                <div class="card-heading p-3">
-                                                                                    <input type="hidden" value="{{ $id }}" id="id">
-                                                                                   
-                                                                                    
+                                                                                <div class="card mb-3">
+                                                                                    <div class="card-heading p-3">
+                                                                                        <input type="hidden" value="{{ $id }}" id="id">
+                                                                                       
+                                                                                        
+                                                                                    </div>
                                                                                 </div>
-                                                                            </div>
-                                                                        </div> -->
+                                                                            </div> -->
 
             <div class="col-9">
 
@@ -1199,7 +1202,7 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
-                                                        <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
+                                                            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
     <style>
         .oncClickDisabled {
             display: grid;
@@ -1226,17 +1229,19 @@
         }
     </style>
 
-<script>
-    function openmodal(id, mid) {
-        // alert('yes');
-        $('#btn11').removeClass('d-none');
-        $('#viewguest').addClass('d-none');
-        $('#editguest').removeClass('d-none');
-        $('.' + id).addClass('active');
-        $('.oncClickDisabled').addClass('disabledClick');
-        $('#id1').val(id);
-        $('#id2').val(mid);
-        $.ajax({
+    <script>
+        function openmodal(id, mid) {
+            // alert('yes');
+            $('input').removeAttr('disabled');
+            $('select').removeAttr('disabled');
+            $('#btn11').removeClass('d-none');
+            $('#viewguest').addClass('d-none');
+            $('#editguest').removeClass('d-none');
+            $('.' + id).addClass('active');
+            $('.oncClickDisabled').addClass('disabledClick');
+            $('#id1').val(id);
+            $('#id2').val(mid);
+            $.ajax({
 
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
@@ -1294,6 +1299,8 @@
         function viewmodal(id, mid) {
             // $('#exampleModal2').modal('toggle');
             // $('#exampleModal2').modal('show');
+            $('input').attr('disabled', 'disabled');
+            $('select').attr('disabled', 'disabled');
             $('.view' + id).addClass('active');
             $('.oncClickDisabled').addClass('disabledClick');
             $.ajax({
@@ -1308,7 +1315,6 @@
                     mid: mid,
                 },
                 success: function(response) {
-                    console.log(response);
                     $('.view' + id).removeClass('active');
                     $('.oncClickDisabled').removeClass('disabledClick');
                     $('#twiiter1').val(response.twitter);
@@ -1328,6 +1334,24 @@
                     $('#btn11').addClass('d-none');
                     $('#editguest').addClass('d-none');
                     $('#viewguest').removeClass('d-none');
+                    $("#image1").children().remove();
+
+
+                    if (response.success == 0) {
+                        $("#image1").children().remove();
+                        fname = response.evefirstname.substr(0, 1).toUpperCase();
+                        lname = response.evelastname.substr(0, 1).toUpperCase();
+
+
+                        $("#image1").append(
+                            `<input class="d-none" type="file" name="guimage" id="guimage"><label for="guimage"><p class="">${fname}${lname} </p> </label>
+                            `
+                        );
+                    } else {
+                        $("#image1").append(
+                            `<input class="d-none" type="file" name="guimage" id="guimage" value="${response.guestimage}"><label for="guimage"><img id="imgg" src="{{ asset('public/imgs/${response.guestimage}') }}" alt="" height="65px" width="65px"></label>`
+                        );
+                    }
                     $('#exampleModal1').modal('toggle');
                     $('#exampleModal1').modal('show');
                 }
@@ -1493,25 +1517,24 @@
 </script> --}}
 @endsection
 @push('scripts')
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.js') }}"></script>
-<script type="text/javascript" src="https://jeremyfagis.github.io/dropify/dist/js/dropify.min.js"></script>
-<script>
-    $(document).ready(function() {
-        $('#example').DataTable({
-            columnDefs: [{
-                orderable: false,
-                className: 'select-checkbox',
-                targets: 0
-            }],
-            select: {
-                style: 'os',
-                selector: 'td:first-child'
-            },
-            order: [
-                [1, 'asc']
-            ]
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{ asset('/public/new-design/libs/intel-tel-input/intlTelInput.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable({
+                columnDefs: [{
+                    orderable: false,
+                    className: 'select-checkbox',
+                    targets: 0
+                }],
+                select: {
+                    style: 'os',
+                    selector: 'td:first-child'
+                },
+                order: [
+                    [1, 'asc']
+                ]
+            });
         });
     </script>
 
@@ -1530,20 +1553,22 @@
         window.intlTelInput(input, {
             // any initialisation options go here
         });
-    });
-</script>
-<script>
-    var input = document.querySelector("#phone");
-    window.intlTelInput(input, {
-        // any initialisation options go here
-    });
-</script>
-<script>
-    $('.dropify').dropify({
-        messages: {
-            default: '<span class="fs-30 fw-bold text-muted d-block">Drag & Drop</span><span class="d-block fs-18 fs-16 fs-sm-18 fs-md-25 mt-3">A <span class="textHover text-primary">.csv</span> file here or click</span>',
-        }
-    });
+    </script>
+    <script>
+        function myFunction() {
+            const str = document.getElementById('item-to-copy').innerText
+            const el = document.createElement('textarea')
+            el.value = str
+            el.setAttribute('readonly', '')
+            el.style.position = 'absolute'
+            el.style.left = '-9999px'
+            document.body.appendChild(el)
+            el.select()
+            document.execCommand('copy')
+            document.body.removeChild(el)
 
-</script>
+            // Alert the copied text
+            alert("Copied Url");
+        }
+    </script>
 @endpush
