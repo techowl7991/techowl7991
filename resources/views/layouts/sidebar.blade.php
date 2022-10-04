@@ -24,7 +24,7 @@
                     class="fs-16 fs-normal">Setting</span> </a></li>
         <li><a class="{{ 'viewwebsite/'.$sess == request()->path() ? 'active' : '' }} text-decoration-none mb-1  text-white rounded p-2 d-flex justify-content-start align-items-center gap-2"
         href="{{route('viewwebsite',[$sess])}}"><img class="svg-white" src="{{ asset('/public/new-design/img/icon/people.svg') }}" alt=""
-        class="w-22px"><span class="fs-16 fs-normal">Micro Website</span> </a></li>
+        class="w-22px"><span class="fs-16 fs-normal">Microsite</span> </a></li>
         {{-- @if('printdata/'.$sess == request()->path()) --}}
         <p id="item-to-copy" style="display: none">{{route('viewwebsiteusers',[session()->get('uid'),$sess])}}</p>
         <button class="text-decoration-none mb-1  text-white rounded p-2 d-flex justify-content-start align-items-center gap-2" style=" background: #3b863b;width: 50%;margin: 30px;" onclick="myFunction()"

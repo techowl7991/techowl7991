@@ -193,21 +193,30 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-12 position-relative">
-                                                <div class="row">
-                                                    <div class="col-12">
-                                                        <div class="mapOuter rounded-15 overflow-hidden">
-                                                            <iframe src="{{$mapurl}}" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                            @if($data['event_type'] == 'offline')
+                                                <div class="col-12 position-relative">
+                                                    <div class="row">
+                                                        <div class="col-12">
+                                                            <div class="mapOuter rounded-15 overflow-hidden">
+                                                                <iframe src="{{$mapurl}}" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-11 mx-auto position-absolute start-0 end-0 bottom-20px">
+                                                            <div class="card border-0 p-2">
+                                                                <!-- <div class="cardTitle fs-14">The Mermaid</div> -->
+                                                                <span class="fs-12 text-muted">{{$data['event_sub_type']}}</span>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <div class="col-11 mx-auto position-absolute start-0 end-0 bottom-20px">
-                                                        <div class="card border-0 p-2">
-                                                            <!-- <div class="cardTitle fs-14">The Mermaid</div> -->
-                                                            <span class="fs-12 text-muted">{{$data['event_sub_type']}}</span>
-                                                        </div>
-                                                    </div>
+                                                
                                                 </div>
-                                            </div>
+                                            @else
+                                                <div class="col-12 row">
+                                                        <div class="col-12">
+                                                            <a href="{{$data['event_sub_type']}}" class="text-decoration-none btn d-flex align-items-center justify-content-between bg-white fs-16 w-100" target="_blank">{{$data['event_sub_type']}} <span><i class="imgl img-hand-pointer fs-20"></i></span></a>
+                                                        </div>
+                                                </div>
+                                            @endif
                                             <div class="col-12">
                                                 <div class="fs-14 text-muted">Share on</div>
                                                 <ul class="p-0 m-0 list-unstyled d-flex gap-3 mainSocial mt-1">
