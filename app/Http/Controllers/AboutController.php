@@ -558,6 +558,9 @@ class AboutController extends Controller
                 $actionQR = '<a class="btn btn-dark text-white shadow printBtn py-1 px-3" data-bs-toggle="modal" data-bs-target="#exampleModal' . $title->id() . '">View QR</a><div class="modal fade" id="exampleModal' . $title->id() . '" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"><div class="modal-dialog modal-dialog-centered modal-sm"><div class="modal-content"><div class="modal-header"><h5 class="modal-title"id="exampleModalLabel">QR Code</h5><button type="button" class="close  btn bg-transparent border-0 fs-24 fw-normal p-0 text-muted shadow-none" data-bs-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="modal-body"><style>svg {width:100%;height:100%;}</style>' . $c . '</div></div></div></div>';
 
                 // $image = "<a href="">Image</a>";
+                // $date = '19:24:15'; 
+                $starttime = date('h:i:s A', strtotime($title['event_starttime']));
+                $endtime = date('h:i:s A', strtotime($title['event_endtime']));
 
                 $route = action('AboutController@singledelete', $title->id());
                 $editroute = action('AboutController@edit', $title->id());
@@ -569,8 +572,8 @@ class AboutController extends Controller
                 $nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
                 $nestedData['event_image'] = '<img src="' . $img . '" alt="" width="70px" height="65px">';
                 $nestedData['event_name'] = $title['event_name'];
-                $nestedData['event_startdate'] = date('m/d/Y h:i:s A', strtotime($title['event_startdate']));
-                $nestedData['event_enddate'] = date('m/d/Y h:i:s A', strtotime($title['event_enddate']));
+                $nestedData['event_startdate'] = date('m/d/Y', strtotime($title['event_startdate'])).' '.$starttime;
+                $nestedData['event_enddate'] = date('m/d/Y', strtotime($title['event_enddate']));
                 $nestedData['address'] = $edtbtn;
                 $nestedData['total'] = $title['total'];
                 $nestedData['vip'] = $title['vip'];
@@ -1876,6 +1879,46 @@ class AboutController extends Controller
 
     }
 
+    public function exportkeeperdata(Request $request){
+        // dd('gkisfisdgfs');
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $eventid = $request->session()->get('eventid');
+        // dd($eventid);
+        $USERID = $request->session()->get('uid');
+        $gatekeeper = self::$firestoreClient->collection('gatekeeper')->document($eventid)->collection('keeperdata_data')->documents();
+        $gtkeepers = $gatekeeper->rows();
+        $data = [];
+        foreach($gtkeepers as $key => $keeper){
+            $keep = explode('/',$keeper->name());
+            $keeperid = end($keep);
+            $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeper->id())->collection('visitor_entry')->documents();
+            // dd($gatevisit);
+            $v_count = count($gatevisit->rows());
+            $nstdata['id'] = $key +1;
+            $nstdata['count'] = $v_count;
+            $nstdata['keepername'] = $keeper->data()['keepername'];
+            $nstdata['keeperid'] = $keeperid;
+            $data[] = $nstdata;
+        }
+        $fileName = "Gatekeeper_export_" . date('Ymd') . ".xls";
+        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$fileName\"");
+        $showColoumn = false;
+        if (!empty($data)) {
+            foreach ($data as $developerInfo) {
+                if (!$showColoumn) {
+                    echo implode("\t", array_keys($developerInfo)) . "\n";
+                    $showColoumn = true;
+                }
+                echo implode("\t", array_values($developerInfo)) . "\n";
+            }
+        }
+        exit;
+    }
+
     public function add_ver_guest(Request $request)
     {
         // dd($request->all());
@@ -1944,7 +1987,41 @@ class AboutController extends Controller
             $data[$i]['datetime']=date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
             $i++;
         }
-        return view('analytics-booth-name',compact('data'));
+        return view('analytics-booth-name',compact('data','keeperid'));
+    }
+
+    public function exportcheckindata(Request $request , $keeperid){
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $eventid = $request->session()->get('eventid');
+        $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeperid)->collection('visitor_entry')->documents();
+        $data=[];
+        $i=0;
+        foreach($gatevisit as $visitor){
+            $snapshot = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->document($visitor['id'])->snapshot();
+            $data[$i]['evefirstname']=$snapshot['evefirstname'];
+            $data[$i]['evelastname']=$snapshot['evelastname'];
+            $data[$i]['jobtitle']=$snapshot['jobtitle'];
+            $data[$i]['orgenization']=$snapshot['orgenization'];
+            $data[$i]['datetime']=date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
+            $i++;
+        }
+        $fileName = "visitor_export_" . date('Ymd') . ".xls";
+        header("Content-Type: application/vnd.ms-excel");
+        header("Content-Disposition: attachment; filename=\"$fileName\"");
+        $showColoumn = false;
+        if (!empty($data)) {
+            foreach ($data as $developerInfo) {
+                if (!$showColoumn) {
+                    echo implode("\t", array_keys($developerInfo)) . "\n";
+                    $showColoumn = true;
+                }
+                echo implode("\t", array_values($developerInfo)) . "\n";
+            }
+        }
+        exit;
     }
 
     public function view_web_users(Request $request, $uid,$id)

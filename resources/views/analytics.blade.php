@@ -36,7 +36,7 @@
         <div class="col mb-sm-0 mb-2">
             <div class="title text-theme1 fs-16 fs-sm-20 fs-md-30 fw-600 ">Analytics</div>
         </div>
-        <div class="col-sm-auto"><button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">EXPORT REPORT</button></div>
+        <div class="col-sm-auto"><a href="{{ url('/exportkeeperdata/') }}" class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">EXPORT REPORT</a></div>
     </div>
     <div class="row mx-0 mb-3">
         <div class="col-xxl-3 col-xl-4 col-lg-5 col-sm-6 col-12 mb-4">

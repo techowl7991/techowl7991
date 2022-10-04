@@ -55,6 +55,8 @@ Route::any('viewvisitor',[AboutController::class,'viewvisitor'])->name('viewvisi
 Route::any('updateguest',[AboutController::class,'updateguest'])->name('updateguest');
 
 Route::get('get_analytics',[AboutController::class,'get_analytics'])->name('get_analytics');
+Route::any('exportkeeperdata',[AboutController::class,'exportkeeperdata']);
+Route::any('exportcheckindata/{id}',[AboutController::class,'exportcheckindata']);
 Route::get('get_setting',[AboutController::class,'get_setting'])->name('get_setting');
 
 Route::get('email',[AboutController::class,'email'])->name('email');
