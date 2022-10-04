@@ -910,8 +910,7 @@ class AboutController extends Controller
                 <input type='hidden' name='email' value='" . $title['eveemail'] . "'>
                 <input type='hidden' name='qrvalue' value='" . $_GET['id'] . '(**)' . $title->id() . "'>
                 <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
-                <input type='submit' class='btn btn-dark text-uppercase fw-semibold' style='float:left'
-                    value='ðŸ–¶ Print Ticket'>
+                
                 </form>
                 <form action='" . $b . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
                     <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
