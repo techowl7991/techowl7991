@@ -7,12 +7,12 @@
         <div class="nav-body d-flex align-items-center" id="navbarSupportedContent">
             <!-- SideClick Button -->
             @if (request()->is('campaign_information'))
-                <div class="me-3">
+                <!-- <div class="me-3">
                     <button id="SideClick"
                         class="show_sidebar_btn shadow-none border-0 rounded bg-theme2 d-flex  justify-content-center align-items-center d-none"><i
                             class="imgs img-bars fs-sm-25 fs-20 text-white"></i>
                     </button>
-                </div>
+                </div> -->
                 
                 <a href="{{route('email')}}"
                     class="btn btn-light shadow-none border-0 text-decoration-none text-theme2 fs-14 fw-600 top_right_export_btn text-uppercase rounded-5">Back</a>
@@ -20,12 +20,12 @@
                     class="btn btn-theme1 shadow-none border-0 text-decoration-none text-white fs-14 fw-600 top_right_export_btn text-uppercase rounded-5 ms-3">Save
                     Changes</a>
             @else
-                <div class="me-3">
+                <!-- <div class="me-3">
                     <button id="SideClick"
                         class="show_sidebar_btn shadow-none border-0 rounded bg-theme2 d-flex  justify-content-center align-items-center"><i
                             class="imgs img-bars fs-sm-25 fs-20 text-white"></i>
                     </button>
-                </div>
+                </div> -->
                 <ul class="navbar-nav me-auto mb-0">
                     <li class="nav-item dropdown">
                         <a class="nav-link h-sm-35px h-30px w-sm-35px w-30px  rounded-circle bg-white d-flex justify-content-center align-items-center ms-auto"

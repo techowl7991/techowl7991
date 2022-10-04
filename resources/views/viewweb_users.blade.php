@@ -83,11 +83,11 @@
     
     <link rel="stylesheet" href="{{ asset('public/new-design/css/style.min.css') }}" />
 </head>
-<body class="vh-100 overflow-hidden nonDashBoardSection">
+<body class=" overflow-hidden nonDashBoardSection">
     {{-- @include('layouts.preloader') --}}
     <div class="d-flex flex-column">
     {{-- @include('layouts.header2') --}}
-    <div class="bodyScrollPart d-flex" id="bodyScrollPart">
+    <div class="bodyScrollPart d-flex h-100" id="bodyScrollPart">
             <main class="main-scrollbar w-100 p-4 Without_scroll_content">
                 <div class="container-fluid newPage vh-100 m-n4">
                     <div class="row">
@@ -220,11 +220,11 @@
                                             <div class="col-12">
                                                 <div class="fs-14 text-muted">Share on</div>
                                                 <ul class="p-0 m-0 list-unstyled d-flex gap-3 mainSocial mt-1">
-                                                    <li><a class="text-white w-40px h-40px bg-theme1 rounded-pill d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgb img-linkedin-in"></i></a></li>
-                                                    <li><a class="text-white w-40px h-40px bg-theme1 rounded-pill d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgb img-facebook-f"></i></a></li>
-                                                    <li><a class="text-white w-40px h-40px bg-theme1 rounded-pill d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgb img-twitter"></i></a></li>
-                                                    <li><a class="text-white w-40px h-40px bg-theme1 rounded-pill d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgl img-comment-alt-dots"></i></a></li>
-                                                    <li><a class="text-white w-40px h-40px bg-theme1 rounded-pill d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgb img-whatsapp"></i></a></li>
+                                                    <li><a class="text-white w-36px h-36px bg-theme1 d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgb img-linkedin-in"></i></a></li>
+                                                    <li><a class="text-white w-36px h-36px bg-theme1 d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgb img-facebook-f"></i></a></li>
+                                                    <li><a class="text-white w-36px h-36px bg-theme1 d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgb img-twitter"></i></a></li>
+                                                    <li><a class="text-white w-36px h-36px bg-theme1 d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgl img-comment-alt-dots"></i></a></li>
+                                                    <li><a class="text-white w-36px h-36px bg-theme1 d-block align-items-center d-flex justify-content-center text-decoration-none" href=""><i class="imgb img-whatsapp"></i></a></li>
                                                 </ul>
                                             </div>
                                         </div>

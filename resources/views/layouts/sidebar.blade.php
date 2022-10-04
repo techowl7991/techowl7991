@@ -1,5 +1,11 @@
 <div class="sidebar">
-    <ul class="py-2 px-1">
+    <ul class="py-2 px-1 position-relative">
+        <li>
+            <button type="button" id="SideClick" class="btn btn-theme1 shadow-none p-0 rounded-pill w-24px h-24px align-items-center d-flex justify-content-center ms-auto position-absolute end-n12px">
+                <img class="svg-white leftIcon" src="{{ asset('/public/new-design/img/icon/chevron-left.svg') }}" alt="">
+                <img class="svg-white d-none rightIcon" src="{{ asset('/public/new-design/img/icon/chevron-right.svg') }}" alt="">
+            </button>
+        </li>
         <li><a class="text-decoration-none mb-1 text-white rounded p-2 d-flex justify-content-start         align-items-center gap-2"
                 href="#"><img class="svg-white " src="{{ asset('/public/new-design/img/icon/dashboard.svg') }}"
                     alt="" class="w-18px"><span class="fs-16 fs-normal">Dashboard</span> </a></li>

@@ -83,8 +83,7 @@
                                             readonly name="password"
                                             class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-16 fw-normal"
                                             id="password-field4">
-                                        <span><i toggle="#password-field4" id="eye4"
-                                                class=" shaowPass imgs img-eye position-absolute eye-icon"></i></span>
+                                            <span toggle="#password-field4" id="eye" class="shaowPass position-absolute"></span>
                                         <div class="invalid-feedback fs-14">
                                             Please enter your phone number or email
                                         </div>
@@ -190,8 +189,7 @@
                                         value=""
                                         class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
                                         required>
-                                    <span><i toggle="#newpassword" id="eye"
-                                            class="shaowPass imgs img-eye position-absolute eye-icon"></i></span>
+                                        <span toggle="#newpassword" id="eye" class="shaowPass position-absolute"></span>
                                 </div>
                             </div>
                             <div class="col-12 mb-3">
@@ -200,8 +198,7 @@
                                         value="" id="confirmpassword"
                                         class="form-control shadow-none rouded-0 mb-1 Inpt w-100 border-0 p-2 px-3 fs-13 fs-sm-15 fs-md-16 fw-normal"
                                         required>
-                                    <span><i toggle="#confirmpassword" id="eye"
-                                            class="shaowPass imgs img-eye position-absolute eye-icon"></i></span>
+                                        <span toggle="#confirmpassword" id="eye" class="shaowPass position-absolute"></span>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -260,7 +257,7 @@
     <script>
         $(".shaowPass").click(function() {
 
-            $(this).toggleClass("img-eye img-eye-slash");
+            $(this).toggleClass("hide");
             var input4 = $($(this).attr("toggle"));
             if (input4.attr("type") == "password") {
                 input4.attr("type", "text");

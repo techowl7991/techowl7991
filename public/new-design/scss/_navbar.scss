@@ -20,6 +20,35 @@
     }
 }
 
+
+.bodyScrollPart {
+    &.show {
+      & .sidebar {
+        & #SideClick {
+          width: 44px !important;
+          right: -24px !important;
+          justify-content: end !important;
+          z-index: 0;
+          transition: .5s;
+          transition-delay: .5s;
+          &:hover {
+            right: -30px !important;
+            transition: .3s;
+            transition-delay: unset !important;
+          }
+          & .leftIcon {
+            display: none !important;
+            transition: all .3s;
+          }
+          & .rightIcon {
+            display: block !important;
+            transition: all .3s;
+          }
+        }
+      }
+    }
+  }
+
 .sidebar {
     border-top: 1px solid #ccc;
     & ul {
