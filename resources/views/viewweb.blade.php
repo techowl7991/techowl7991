@@ -40,7 +40,14 @@
                     <div class="col-7">
                         <div class="imgOuter w-100 rounded-15 overflow-hidden border bg-white" style="    height: 240px;">
                                 {{-- <img class="w-100" src="{{ asset('/public/new-design/img/new-demo-img.jpg') }}" alt="">--}}
-                                <img class="w-100 h-100" src="{{ asset('/public/eventimgs/'.$data['event_image']) }}" alt="">
+                                @php
+                                    $destinationPath = public_path('/eventimgs/' . $data['event_image']);
+                                @endphp
+                                @if (!file_exists($destinationPath) || $data['event_image'] == '')
+                                    <img class="w-100 h-100" src="{{ asset('public/img/bannerimg.jpeg') }}" alt="">
+                                @else
+                                    <img class="w-100 h-100" src="{{ asset('/public/eventimgs/'.$data['event_image']) }}" alt="">
+                                @endif
                                 
                             </div>
                         </div>
@@ -136,6 +143,7 @@
                                     </div>
                                 </div>
                             </div>
+                            @if($data['event_type'] == 'offline')
                             <div class="col-12 position-relative">
                                 <div class="row">
                                     <div class="col-12">
@@ -150,7 +158,15 @@
                                         </div>
                                     </div>
                                 </div>
+                               
                             </div>
+                            @else
+                            <div class="col-12 row">
+                                    <div class="col-12">
+                                        <a href="{{$data['event_sub_type']}}" class="text-decoration-none btn d-flex align-items-center justify-content-between bg-white fs-16 w-100" target="_blank">{{$data['event_sub_type']}} <span><i class="imgl img-hand-pointer fs-20"></i></span></a>
+                                    </div>
+                            </div>
+                            @endif
                             <div class="col-12">
                                 <div class="fs-14 text-muted">Share on</div>
                                 <ul class="p-0 m-0 list-unstyled d-flex gap-3 mainSocial mt-1">

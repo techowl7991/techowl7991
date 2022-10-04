@@ -37,8 +37,8 @@
             <div class="fs-16 fs-sm-20 fs-md-30 fw-bold text-theme1">Booth Name</div>
         </div>
         <div class="col-sm-auto d-flex align-items-center gap-2">
-            <button class="btn btn-outline-theme2 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase cancle_btn ">CANCEL</button>
-            <button class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">EXPORT REPORT</button>
+            <a href="{{url('/get_analytics')}}" class="btn btn-outline-theme2 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase cancle_btn ">CANCEL</a>
+            <a href="{{ url('/exportcheckindata/' . $keeperid) }}" class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">EXPORT REPORT</a>
         </div>
     </div>
     {{-- <div class="row mx-0 mb-4">

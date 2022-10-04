@@ -109,7 +109,7 @@
                                                 } ?>>
 
                                             <input type="radio" id="customcheckbox22" name="visit" value="No"
-                                                class="form-check-input visit border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
+                                                class="form-check-input visit border unselec border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
                                                 <?php if ($visit == 'No') {
                                                     echo 'checked';
                                                 } ?>>
@@ -135,7 +135,7 @@
                                     <li class="pt-2 pb-1 px-3">
                                         <div class="form-check">
                                             <input
-                                                class="form-check-input type border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
+                                                class="form-check-input type unselec border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
                                                 type="radio" name="type" value="VIP" id="customcheckbox73"
                                                 <?php if ($type == 'VIP') {
                                                     echo 'checked';
@@ -150,7 +150,7 @@
                                         <div class="form-check">
                                             <!-- <input class="form-check-input border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0" type="radio" name="groups" id="brown"> -->
                                             <input
-                                                class="form-check-input type border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
+                                                class="form-check-input type unselec border border-2 border-theme2 w-18px h-18px shadow-none rounded-4 mt-0"
                                                 type="radio" name="type" value="Reg" id="customcheckbox72"
                                                 <?php if ($type == 'Reg') {
                                                     echo 'checked';
@@ -474,7 +474,7 @@
                             <h5 class="modal-title fs-20 text-theme2 fw-bold" id="editguest">Edit Guest Information</h5>
                             <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguest">View Guest Information</h5>
                             <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                            <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
+                            <i class="imgr img-times fs-20"data-bs-dismiss="modal" aria-label="Close"></i>
                         </div>
                         <div class="modal-body p-0">
                             <div class="row px-0 mx-0">
@@ -597,7 +597,7 @@
                 </div>
             </div> --}}
 
-                <div class="modal fade Create-Guest-modal" id="viewguestinfo" data-bs-backdrop="static" tabindex="-1"
+                <!-- <div class="modal fade Create-Guest-modal" id="viewguestinfo" data-bs-backdrop="static" tabindex="-1"
                     aria-labelledby="viewguestinfoLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
                         <div class="modal-content">
@@ -633,7 +633,7 @@
                             </form>
                         </div>
                     </div>
-                </div>
+                </div> -->
             </div>
             </section>
 
@@ -918,7 +918,7 @@
                                             Information
                                         </h5>
                                         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                                        <i class="imgr img-times fs-20" data-bs-dismiss="modal" aria-label="Close"></i>
+                                        <i class="imgr img-times fs-20"  id="viewclose"  data-bs-dismiss="modal" aria-label="Close"></i>
                                     </div>
                                     <div class="modal-body p-0">
                                         <div class="row px-0 mx-0">
@@ -1315,6 +1315,7 @@
                     mid: mid,
                 },
                 success: function(response) {
+                    // console.log(response);
                     $('.view' + id).removeClass('active');
                     $('.oncClickDisabled').removeClass('disabledClick');
                     $('#twiiter1').val(response.twitter);
@@ -1337,7 +1338,7 @@
                     $("#image1").children().remove();
 
 
-                    if (response.success == 0) {
+                    if (response.guestimage == '') {
                         $("#image1").children().remove();
                         fname = response.evefirstname.substr(0, 1).toUpperCase();
                         lname = response.evelastname.substr(0, 1).toUpperCase();
@@ -1357,12 +1358,31 @@
                 }
             })
         }
+
+        $('#viewclose').on('click', function(){
+            $('input').removeAttr('disabled');
+            $('select').removeAttr('disabled');
+        })
     </script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script>
 
 
-    <script></script>
+    <script>
+
+        $(`#customcheckbox1`).on('change' ,function(){
+            if($(this).prop('checked', true)){
+                $(`.unselec`).prop('checked', false);
+            }
+            
+        })
+        $(`.unselec`).on('change' ,function(){
+            if($(this).prop('checked', true)){
+                $(`#customcheckbox1`).prop('checked', false);
+            }
+            
+        })
+    </script>
 
     <script type="text/javascript">
         $(document).ready(function() {
