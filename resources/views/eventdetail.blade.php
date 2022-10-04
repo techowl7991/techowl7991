@@ -124,12 +124,15 @@
                                 <label class="form-check-label justify-content-between d-flex fs-12 fs-sm-14" for="checkedin"><span>Checked In</span><span class="value">0</span></label>
                             </div>
                         </li> --}}
-                                    <li class="bg-theme2"><button type="button"
+
+                                    <li class="py-1 py-sm-2 px-2 px-sm-3 bg-theme2 text-white fs-13 fs-sm-14">Groups</li>
+                                    {{-- <li class="bg-theme2"><button type="button"
                                             class="btn w-100 type rounded-0 py-1 py-sm-2 px-2 px-sm-3 justify-content-between align-items-center d-flex text-white text-decoration-none fs-13 fs-sm-14 "
                                             data-bs-toggle="modal" data-bs-target="#grouping"><span>Groups</span> <i
-                                                class="imgr img-plus fs-15 fs-sm-18"></i>
-                                            <!-- <img src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""> --></button>
-                                    </li>
+                                                class="imgr img-plus fs-15 fs-sm-18"></i> --}}
+                                    <!-- <img src="{{ asset('/public/new-design/img/icon/add.svg') }}" alt=""> -->
+                                    {{-- </button>
+                                    </li> --}}
 
 
                                     <li class="pt-2 pb-1 px-3">
@@ -239,31 +242,31 @@
                     </div>
                     <div class="col-12">
                         <!-- <table id="example" class="table mt-0 table-striped dt-responsive nowrap" style="width:100%">
-                                                <thead>
-                                                    <tr class="even">
-                                                        <th class="select-checkbox"></th>
-                                                        <th>Frist Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Organisation</th>
-                                                        <th>Status</th>
-                                                        <th class="text-center">Edit</th>
-                                                        <th class="text-center">View</th>
-                                                        <th class="text-center">Badge</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td class=""><span class="select-checkbox"></span></td>
-                                                        <td>Eugene</td>
-                                                        <td class="">Wong</td>
-                                                        <td>Now Comms Asia</td>
-                                                        <td>Verified</td>
-                                                        <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
-                                                        <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
-                                                        <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table> -->
+                                                        <thead>
+                                                            <tr class="even">
+                                                                <th class="select-checkbox"></th>
+                                                                <th>Frist Name</th>
+                                                                <th>Last Name</th>
+                                                                <th>Organisation</th>
+                                                                <th>Status</th>
+                                                                <th class="text-center">Edit</th>
+                                                                <th class="text-center">View</th>
+                                                                <th class="text-center">Badge</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class=""><span class="select-checkbox"></span></td>
+                                                                <td>Eugene</td>
+                                                                <td class="">Wong</td>
+                                                                <td>Now Comms Asia</td>
+                                                                <td>Verified</td>
+                                                                <td class="text-center"><i class="imgs img-pen text-secondary"></i></td>
+                                                                <td class="text-center"><i class="imgs img-eye text-secondary"></i></td>
+                                                                <td class="text-center"><Button type="button" class="btn btn-dark text-uppercase fs-14 fw-500">PRINT BADGE</Button></td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table> -->
                         <table
                             class="table table-bordered mt-0 table-striped table-hover text-nowrap  dt-responsive nowrap"
                             id="allmatches_datatable" width="100%" cellspacing="0">
@@ -598,42 +601,42 @@
             </div> --}}
 
                 <!-- <div class="modal fade Create-Guest-modal" id="viewguestinfo" data-bs-backdrop="static" tabindex="-1"
-                    aria-labelledby="viewguestinfoLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
-                        <div class="modal-content">
-                            <div class="modal-header py-3">
-                                <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Choose a file
-                                </h5>
-                                <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal"
-                                    aria-label="Close"></i>
-                            </div>
-                            <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12 mt-3"
-                                enctype="multipart/form-data">
-                                <div class="modal-body">
-                                    @csrf
-                                    <input type="hidden" name="mid" value="{{ $id }}">
-                                    <div class="input-group">
-                                        <label class="input-group-text p-5 justify-content-center w-100 rounded-8"
-                                            for="inputGroupFile01">
-                                            <div class="gap-3">
-                                                <i class="imgr img-arrow-to-bottom fs-36 d-block"></i>
-                                                <span
-                                                    class="d-block fs-18 mb-n2 textHover my-3 fs-16 fs-sm-18 fs-md-22">Choose
-                                                    a file</span>
-                                            </div>
-                                        </label>
-                                        <input type="file" class="form-control d-none" name="eventfile"
-                                            id="inputGroupFile01">
+                            aria-labelledby="viewguestinfoLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header py-3">
+                                        <h5 class="modal-title fs-20 text-theme2 fw-bold" id="viewguestinfoLabel">Choose a file
+                                        </h5>
+                                        <i class="imgr img-times fs-20 text-theme2" data-bs-dismiss="modal"
+                                            aria-label="Close"></i>
                                     </div>
+                                    <form action="{{ route('addguestcsv') }}" method="post" class="modal-form col-12 mt-3"
+                                        enctype="multipart/form-data">
+                                        <div class="modal-body">
+                                            @csrf
+                                            <input type="hidden" name="mid" value="{{ $id }}">
+                                            <div class="input-group">
+                                                <label class="input-group-text p-5 justify-content-center w-100 rounded-8"
+                                                    for="inputGroupFile01">
+                                                    <div class="gap-3">
+                                                        <i class="imgr img-arrow-to-bottom fs-36 d-block"></i>
+                                                        <span
+                                                            class="d-block fs-18 mb-n2 textHover my-3 fs-16 fs-sm-18 fs-md-22">Choose
+                                                            a file</span>
+                                                    </div>
+                                                </label>
+                                                <input type="file" class="form-control d-none" name="eventfile"
+                                                    id="inputGroupFile01">
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="submit"
+                                                class="btn btn-theme1 fs-16 text-white fw-500 px-3">Submit</button>
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="modal-footer">
-                                    <button type="submit"
-                                        class="btn btn-theme1 fs-16 text-white fw-500 px-3">Submit</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div> -->
+                            </div>
+                        </div> -->
             </div>
             </section>
 
@@ -821,12 +824,12 @@
                                                                     class="fs-12 ps-4">Organisation</label>
                                                             </div>
                                                             <!-- <div class="col-12 mb-2 form-floating Tel_Input_group">
-                                                                                                                <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
-                                                                                                                <label for="phone" class="fs-12 ps-4">Organisation</label>
-                                                                                                            </div> -->
+                                                                                                                        <input type="tel" class="form-control h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" id="phone" placeholder="Now Comms Asia">
+                                                                                                                        <label for="phone" class="fs-12 ps-4">Organisation</label>
+                                                                                                                    </div> -->
                                                             <!-- <div class="col-12">
-                                                                                                                <input type="tel" id="phone">
-                                                                                                            </div> -->
+                                                                                                                        <input type="tel" id="phone">
+                                                                                                                    </div> -->
                                                             <div class="col-6 mb-2 form-floating">
                                                                 <input type="number"
                                                                     class="form-control w-100 h-50px shadow-none rouded-0 Inpt w-100 border-0 p-2 pt-4 fs-16 fw-normal"
@@ -897,9 +900,9 @@
 
 
                                     <!-- <div class="modal-footer justify-content-center">
-                                                                                        <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                                                                        <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                                                                                    </div> -->
+                                                                                                <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                                                                <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                                                                            </div> -->
                                 </div>
                             </div>
                         </div>
@@ -918,7 +921,8 @@
                                             Information
                                         </h5>
                                         <!-- <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
-                                        <i class="imgr img-times fs-20"  id="viewclose"  data-bs-dismiss="modal" aria-label="Close"></i>
+                                        <i class="imgr img-times fs-20" id="viewclose" data-bs-dismiss="modal"
+                                            aria-label="Close"></i>
                                     </div>
                                     <div class="modal-body p-0">
                                         <div class="row px-0 mx-0">
@@ -1112,9 +1116,9 @@
 
 
                             <!-- <div class="modal-footer justify-content-center">
-                                                                                        <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
-                                                                                        <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
-                                                                                    </div> -->
+                                                                                                <button type="button" class="btn shadow-none rounded cancle_btn fs-14 fw-bold px-4 py-2" data-bs-dismiss="modal">CANCEL</button>
+                                                                                                <button type="button" class="btn shadow-none border-0 text-white bg-theme1 rounded fs-14 fw-bold px-4 py-2">SAVE CHANGES</button>
+                                                                                            </div> -->
                         </div>
                         <!-- edit guest end-->
                     </div>
@@ -1173,14 +1177,14 @@
 
         <div class="row" style="border:none">
             <!-- <div class="col-3" style="border:none">
-                                                                                <div class="card mb-3">
-                                                                                    <div class="card-heading p-3">
-                                                                                        <input type="hidden" value="{{ $id }}" id="id">
-                                                                                       
-                                                                                        
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div> -->
+                                                                                        <div class="card mb-3">
+                                                                                            <div class="card-heading p-3">
+                                                                                                <input type="hidden" value="{{ $id }}" id="id">
+                                                                                               
+                                                                                                
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div> -->
 
             <div class="col-9">
 
@@ -1202,7 +1206,7 @@
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous">
     </script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
-                                                            <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
+                                                                    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.16/r-2.2.1/datatables.min.js"></script> -->
     <style>
         .oncClickDisabled {
             display: grid;
@@ -1359,7 +1363,7 @@
             })
         }
 
-        $('#viewclose').on('click', function(){
+        $('#viewclose').on('click', function() {
             $('input').removeAttr('disabled');
             $('select').removeAttr('disabled');
         })
@@ -1369,18 +1373,17 @@
 
 
     <script>
-
-        $(`#customcheckbox1`).on('change' ,function(){
-            if($(this).prop('checked', true)){
+        $(`#customcheckbox1`).on('change', function() {
+            if ($(this).prop('checked', true)) {
                 $(`.unselec`).prop('checked', false);
             }
-            
+
         })
-        $(`.unselec`).on('change' ,function(){
-            if($(this).prop('checked', true)){
+        $(`.unselec`).on('change', function() {
+            if ($(this).prop('checked', true)) {
                 $(`#customcheckbox1`).prop('checked', false);
             }
-            
+
         })
     </script>
 
