@@ -64,8 +64,16 @@
                             <h4 class="m-0 heading fw-bold text-white fs-16">Event Information</h4>
                         </div>
                     </div>
+
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {!! session('error') !!}
+                        </div>
+                    @endif
+
+
                     <form action="{{ asset('/addEvent') }}" method="post" enctype="multipart/form-data"
-                        class="needs-validation px-4 py-3" id="form2" novalidate>
+                        class="needs-validation px-4 py-3" id="form2">
                         @csrf
                         <div class="row">
                             <div class="col-12 mb-3">
@@ -91,7 +99,8 @@
                             </div>
 
                             <div class="mb-3">
-                                <textarea name="eventdesc" placeholder="Event Description" class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" rows="3"></textarea>
+                                <textarea name="eventdesc" placeholder="Event Description"
+                                    class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal" rows="3" required></textarea>
                             </div>
 
                             <div class="col-12 mb-3">
@@ -107,6 +116,9 @@
                             </div> --}}
 
                             <div class="col-12 text-theme2 fs-16 fw-bold mb-3">Event Type</div>
+                            {{-- @error('eventlocation')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror --}}
                             <div class="col-12 mb-3 d-flex align-items-center gap-2">
                                 <div class="form-check">
                                     <input class="form-check-input" type="radio" name="eventtype" value="online"
@@ -123,6 +135,7 @@
                                     </label>
                                 </div>
                             </div>
+
                             <div class="col-12 input-group mb-3 d-none" id="displaytable1">
                                 <input type="url" name="eventurl"
                                     class="form-control shadow-none rouded-0 Inpt border-0 p-2 fs-16 fw-normal"
@@ -131,6 +144,7 @@
                                 <span class="input-group-text Inpt border-0 fs-16 Url_example"
                                     id="basic-addon2">.nowvue.com</span>
                             </div>
+
 
                             <div class="d-none col-12 mb-3" id="displaytable">
                                 <input type="text" placeholder="Enter Location" name="eventlocation"
@@ -189,7 +203,7 @@
                             </div>
                             <div class="col-12 input-group mb-3 timeZoneSelect">
                                 <select class="form-select shadow-none Inpt border-0 test" name="eventtimezone"
-                                    id="inputGroupSelect01">
+                                    id="inputGroupSelect01" required>
                                     <option class="choose py-1" selected>Select Timezone</option>
                                     @foreach ($data as $timez)
                                         <option class="choose py-1" value="{{ $timez['timezonename'] }}">

@@ -63,8 +63,14 @@
                             <h4 class="m-0 heading fw-bold text-white fs-16">Event Information</h4>
                         </div>
                     </div>
+
+                    @if (session('error'))
+                        <div class="alert alert-danger">
+                            {!! session('error') !!}
+                        </div>
+                    @endif
                     <form id="subform" action="{{ route('update', $id) }}" method="post" enctype="multipart/form-data"
-                        class="needs-validation px-4 py-3" novalidate>
+                        class="needs-validation px-4 py-3">
                         @csrf
                         @method('PUT')
                         <div class="row">
@@ -93,7 +99,7 @@
                             <div class="mb-3">
                                 <textarea name="eventdesc" placeholder="Event Description"
                                     class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
-                                    value="{{ $snapshot['event_description'] }}" rows="3">{{ $snapshot['event_description'] }}</textarea>
+                                    value="{{ $snapshot['event_description'] }}" rows="3" required>{{ $snapshot['event_description'] }}</textarea>
                             </div>
 
                             @php
@@ -183,8 +189,8 @@
 
                             <div class="col-12 input-group mb-3 timeZoneSelect">
                                 <select class="form-select shadow-none Inpt border-0 test" name="eventtimezone"
-                                    id="inputGroupSelect01">
-                                    <option class="choose py-1" selected>Select Timezone</option>
+                                    id="inputGroupSelect01" required>
+                                    <option class="choose py-1" selected disabled>Select Timezone</option>
                                     @foreach ($data as $timez)
                                         <option class="choose py-1" value="{{ $timez['timezonename'] }}"
                                             <?php echo $snapshot['event_timezone'] == $timez['timezonename'] ? 'selected' : ''; ?>>
