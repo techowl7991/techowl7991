@@ -178,6 +178,9 @@ class AboutController extends Controller
                 $lat = '';
                 $lng ='';
             } else {
+                // if($request->eventlocation == null || $request->eventlocation = ''){
+                //     return redirect()->back()->with('error', 'Enter Existing location');
+                // }
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
                 $address = urlencode($request->eventlocation);
                 $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w";
@@ -191,7 +194,11 @@ class AboutController extends Controller
                 curl_close($ch);
                 $response = json_decode($response);
                 $response = $response->results;
-                // echo "<pre>";dd($response[0]->geometry->location);die;
+
+                if(empty($response)){
+                    return redirect()->back()->with('error', 'Please Enter Valid location');
+                }
+                // dd($response);
                 $lat = $response[0]->geometry->location->lat;
                 $lng = $response[0]->geometry->location->lng;
             }
@@ -222,6 +229,7 @@ class AboutController extends Controller
                 'lat' => $lat,
                 'lng' => $lng,
             ];
+
             // dd($data);
 
             $geteventid = self::$firestoreClient->collection('eventidupdate')->documents();
@@ -479,6 +487,7 @@ class AboutController extends Controller
             $alldata['twitter'] = $value['twitter'];
             $alldata['nmtype'] = $value['nmtype'];
             $alldata['guestimage'] = $value['guestimage'];
+            $alldata['mobileno'] = $value['mobileno'];
             $alldata['visit'] = $value['visit'];
             $alldata['qrcode'] = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=' . $request->id . '(**)' . $value->id();
             $dta[] = $alldata;
@@ -723,8 +732,28 @@ class AboutController extends Controller
             $data1 = [];
             if ($request->eventtype == 'online') {
                 $dat = ($request->eventurl != null) ? $request->eventurl : '';
+                $lat = '';
+                $lng ='';
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
+                $address = urlencode($request->eventlocation);
+                $url = "https://maps.googleapis.com/maps/api/geocode/json?address=$address&key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w";
+
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_HEADER, 0);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                $response = curl_exec($ch);
+                curl_close($ch);
+                $response = json_decode($response);
+                $response = $response->results;
+
+                if(empty($response)){
+                    return redirect()->back()->with('error', 'Please Enter Valid location');
+                }
+                // dd($response);
+                $lat = $response[0]->geometry->location->lat;
+                $lng = $response[0]->geometry->location->lng;
             }
             if (!$request->event_image) {
                 $filename = $request->hidden_event_image;
@@ -764,6 +793,8 @@ class AboutController extends Controller
                 'event_image' => $filename,
 
             ];
+            // dd($data1);
+
             // $data1 = [
             //     'event_startdate' => $request->eventstartdate,
             //     'event_enddate' => $request->eventenddate,
@@ -1476,8 +1507,6 @@ class AboutController extends Controller
             'token' => $bytes,
 
         ];
-
-        // dd($data);
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
         $qryarr = explode('/', $docref->name());
         // $route = $mid.'-'.$qryarr;
@@ -1581,6 +1610,12 @@ class AboutController extends Controller
                 foreach ($read as $value) {
                     if ($index == 0) {
                     } else {
+                        // $bytes = bin2hex(random_bytes(20));
+                        if ($request->type == 'RSVP') {
+                            $rsvpstatus = 1;
+                        } else {
+                            $rsvpstatus = 0;
+                        }
                         // dump($value);
                         $eventData = [
                             'nmtitle' => $value[0],
@@ -1594,10 +1629,13 @@ class AboutController extends Controller
                             'linkedin' => $value[8],
                             'twitter' => $value[9],
                             'nmtype' => $value[10],
+                            'mobileno' => $value[11],
+                            'resvpstatus' => $rsvpstatus,
                             'guestimage' => '',
                             'visit' => 'No',
+                            // 'token' => $bytes,
                         ];
-                        // dd($eventData);
+
                         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($eventData);
                         $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
                         $snap = $snapshot->data();
