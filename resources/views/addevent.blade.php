@@ -155,6 +155,22 @@
                                     Please enter your phone number or email
                                 </div>
                             </div>
+                            <!-- <div class="col-sm-6 mb-3 flatpickr ">
+                                <input type="text" placeholder="Start Date" name="eventstartdate"
+                                    class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    id="basicDate" required>
+                                <div class="invalid-feedback fs-14">
+                                    Please enter your phone number or email
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-3 flatpickr ">
+                                <input type="text" placeholder="End Date" name="eventenddate"
+                                    class="form-control calendar shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
+                                    id="endDate" required>
+                                <div class="invalid-feedback fs-14">
+                                    Please enter your phone number or email
+                                </div>
+                            </div> -->
                             <div class="col-sm-6 mb-3">
                                 <input type="time" placeholder="Start Time" name="eventstarttime"
                                     class="form-control clock shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
@@ -372,6 +388,16 @@
                 } else {
                     input4.attr("type", "password");
                 }
+            });
+        </script>
+        <script>
+            $("#basicDate").flatpickr({
+                dateFormat: "Y-m-d",
+                disableMobile: "true"
+            });
+            $("#endDate").flatpickr({
+                dateFormat: "Y-m-d",
+                disableMobile: "true"
             });
         </script>
     @endpush
