@@ -339,6 +339,7 @@
             $('.test').select2();
         });
     </script>
+    
 
     <script>
         let subform = document.getElementById('subform');
@@ -422,5 +423,15 @@
                 }
             });
         </script>
+        <script>
+        $("#basicDate").flatpickr({
+            dateFormat: "Y-m-d",
+            disableMobile: "true"
+        });
+        $("#endDate").flatpickr({
+            dateFormat: "Y-m-d",
+            disableMobile: "true"
+        });
+    </script>
     @endpush
 @endsection
