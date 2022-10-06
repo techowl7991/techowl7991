@@ -113,7 +113,7 @@
                                     <input type="hidden" name="hidden_event_image" value="{{ $snapshot['event_image'] }}">
                                     <input type="file" name="event_image"
                                         class="form-control shadow-none rouded-0 Inpt w-100 border-0 p-2 fs-16 fw-normal"
-                                        autocomplete="off" required> <br>
+                                        autocomplete="off"> <br>
                                     <img src="{{ asset('public/eventimgs/' . $snapshot['event_image']) }}" alt=""
                                         width="70px" height="70px">
                                     {{-- <img src="{{ asset('img/' . $product->sku) }}"> --}}

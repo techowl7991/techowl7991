@@ -486,7 +486,7 @@ class AboutController extends Controller
             $alldata['linkedin'] = $value['linkedin'];
             $alldata['twitter'] = $value['twitter'];
             $alldata['nmtype'] = $value['nmtype'];
-            $alldata['guestimage'] = $value['guestimage'];
+            // $alldata['guestimage'] = $value['guestimage'];
             $alldata['mobileno'] = $value['mobileno'];
             $alldata['visit'] = $value['visit'];
             $alldata['qrcode'] = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=' . $request->id . '(**)' . $value->id();
@@ -1506,6 +1506,8 @@ class AboutController extends Controller
             'token' => $bytes,
 
         ];
+
+        // dd($data);
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
         $qryarr = explode('/', $docref->name());
         // $route = $mid.'-'.$qryarr;
@@ -1628,12 +1630,13 @@ class AboutController extends Controller
                             'linkedin' => $value[8],
                             'twitter' => $value[9],
                             'nmtype' => $value[10],
+                            // 'guestimage' =>'',
                             'mobileno' => $value[11],
-                            'resvpstatus' => $rsvpstatus,
-                            'guestimage' => '',
                             'visit' => 'No',
+                            // 'resvpstatus' => $rsvpstatus,
                             // 'token' => $bytes,
                         ];
+                        // dd($eventData);
 
                         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($eventData);
                         $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
