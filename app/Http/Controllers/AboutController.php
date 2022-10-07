@@ -176,7 +176,7 @@ class AboutController extends Controller
             if ($request->eventtype == 'online') {
                 $dat = ($request->eventurl != null) ? $request->eventurl : '';
                 $lat = '';
-                $lng ='';
+                $lng = '';
             } else {
                 // if($request->eventlocation == null || $request->eventlocation = ''){
                 //     return redirect()->back()->with('error', 'Enter Existing location');
@@ -195,14 +195,14 @@ class AboutController extends Controller
                 $response = json_decode($response);
                 $response = $response->results;
 
-                if(empty($response)){
+                if (empty($response)) {
                     return redirect()->back()->with('error', 'Please Enter Valid location');
                 }
                 // dd($response);
                 $lat = $response[0]->geometry->location->lat;
                 $lng = $response[0]->geometry->location->lng;
             }
-            $filename='';
+            $filename = '';
             if ($request->has('event_image')) {
                 $image = $request->file('event_image');
                 $extention = $image->getClientOriginalExtension();
@@ -547,7 +547,7 @@ class AboutController extends Controller
         $query = $snapshot->rows();
         $totalTitles = count($query);
         $totalFiltered = $totalTitles;
-        
+
         $titles = $query;
         // dd($titles);
         if ($totalTitles != 0) {
@@ -558,8 +558,8 @@ class AboutController extends Controller
                 $d = action('AboutController@viewgatekeeper', $title->id());
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
                 $img = asset('/public/eventimgs/' . $title['event_image']);
-                $destinationPath = public_path('/eventimgs/'.$title['event_image']);
-                if(!file_exists($destinationPath) || $title['event_image'] == ''){
+                $destinationPath = public_path('/eventimgs/' . $title['event_image']);
+                if (!file_exists($destinationPath) || $title['event_image'] == '') {
                     $img = asset('/public/img/bannerimg.jpeg');
                 }
                 $action = "<a href=" . $b . " class='btn btn-dark shadow printBtn py-1 px-3'>Detail</a>";
@@ -581,7 +581,7 @@ class AboutController extends Controller
                 $nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
                 $nestedData['event_image'] = '<img src="' . $img . '" alt="" width="70px" height="65px">';
                 $nestedData['event_name'] = $title['event_name'];
-                $nestedData['event_startdate'] = date('m/d/Y', strtotime($title['event_startdate'])).' '.$starttime;
+                $nestedData['event_startdate'] = date('m/d/Y', strtotime($title['event_startdate'])) . ' ' . $starttime;
                 $nestedData['event_enddate'] = date('m/d/Y', strtotime($title['event_enddate']));
                 $nestedData['address'] = $edtbtn;
                 $nestedData['total'] = $title['total'];
@@ -733,7 +733,7 @@ class AboutController extends Controller
             if ($request->eventtype == 'online') {
                 $dat = ($request->eventurl != null) ? $request->eventurl : '';
                 $lat = '';
-                $lng ='';
+                $lng = '';
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
                 $address = urlencode($request->eventlocation);
@@ -748,7 +748,7 @@ class AboutController extends Controller
                 $response = json_decode($response);
                 $response = $response->results;
 
-                if(empty($response)){
+                if (empty($response)) {
                     return redirect()->back()->with('error', 'Please Enter Valid location');
                 }
                 // dd($response);
@@ -1504,8 +1504,8 @@ class AboutController extends Controller
             'visit' => 'No',
             'resvpstatus' => $rsvpstatus,
             'token' => $bytes,
-
         ];
+        // dd($data);
 
         // dd($data);
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
@@ -1602,10 +1602,10 @@ class AboutController extends Controller
             'projectId' => self::$firestoreProjectId,
         ]);
         // dd($request->file1);
-        if($request->eventfile!=null){
+        if ($request->eventfile != null) {
             $mid = $request->mid;
             $reads = Excel::toArray(new \stdClass(), $request->eventfile);
-            $index = 0;
+            $index = 0;            
             foreach ($reads as  $read) {
                 // dd($read);
                 foreach ($read as $value) {
@@ -1618,23 +1618,24 @@ class AboutController extends Controller
                             $rsvpstatus = 0;
                         }
                         // dump($value);
+                        $bytes = bin2hex(random_bytes(20));
                         $eventData = [
-                            'nmtitle' => $value[0],
-                            'evefirstname' => $value[1],
-                            'evelastname' =>  $value[2],
-                            'eveemail' => $value[3],
-                            'jobtitle' =>  $value[4],
-                            'orgenization' => $value[5],
-                            'type' => $value[6],
-                            'tags' => $value[7],
-                            'linkedin' => $value[8],
-                            'twitter' => $value[9],
-                            'nmtype' => $value[10],
-                            // 'guestimage' =>'',
-                            'mobileno' => $value[11],
-                            'visit' => 'No',
-                            // 'resvpstatus' => $rsvpstatus,
-                            // 'token' => $bytes,
+                            'nmtitle' => $value[0] ? $value[0] : '',
+                            'evefirstname' => $value[1] ? $value[1] : '',
+                            'evelastname' =>  $value[2] ? $value[2] : '',
+                            'eveemail' => $value[3] ? $value[3] : '',
+                            'jobtitle' =>  $value[4] ? $value[4] : '',
+                            'orgenization' => $value[5] ? $value[5] : '',
+                            'type' => $value[6] ? $value[6] : '',
+                            'tags' => $value[7] ? $value[7] : '',
+                            'linkedin' => $value[8] ? $value[8] : '',
+                            'twitter' => $value[9] ? $value[9] : '',
+                            'nmtype' => $value[10] ? $value[10] : '',
+                            'mobileno' => $value[11] ? $value[11] : '',
+                            'visit' => $value[12] ? $value[12] : 'No',
+                            'guestimage' =>'',
+                            'resvpstatus' => $rsvpstatus,
+                            'token' => $bytes,
                         ];
                         // dd($eventData);
 
@@ -1704,9 +1705,9 @@ class AboutController extends Controller
             self::$firestoreClient = new FirestoreClient([
                 'projectId' => self::$firestoreProjectId,
             ]);
-            $docref1 = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->where('username','=',$request->username)->documents();
+            $docref1 = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->where('username', '=', $request->username)->documents();
             // dd($docref1);
-            if(empty($docref1->rows())){
+            if (empty($docref1->rows())) {
                 $data = [
                     'keepername' => $request->keepername,
                     'username' => $request->username,
@@ -1714,10 +1715,9 @@ class AboutController extends Controller
                 ];
                 $docref = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->add($data);
                 return redirect('/viewgatekeeper/' . $mid);
-            }else{
+            } else {
                 return redirect()->back()->with('error', 'UserName Already Exist');
             }
-            
         } else {
             return view('addkeeper', compact('mid'));
         }
@@ -1841,9 +1841,9 @@ class AboutController extends Controller
         // $snapshot = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->documents();
         $snapshot1 = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->documents();
         // dd($snapshot1->rows());
-        $totalguest=0;
-        $tcheckedin=0;
-        $tcheckedout=0;
+        $totalguest = 0;
+        $tcheckedin = 0;
+        $tcheckedout = 0;
         $rsvp = 0;
         foreach ($snapshot1 as $snapss) {
             $snap = $snapss->data();
@@ -1853,24 +1853,24 @@ class AboutController extends Controller
             }
             if ($snap['visit'] != 'No' && $snap['visit'] != 'NO' && $snap['visit'] != 'no') {
                 $tcheckedin = $tcheckedin + 1;
-            }else{
-                $tcheckedout = $tcheckedout+1;
+            } else {
+                $tcheckedout = $tcheckedout + 1;
             }
         }
         $divby = ($totalguest != 0) ? $totalguest : 1;
         // dd($divby);
-        $per = ($tcheckedin/$divby)*100;
+        $per = ($tcheckedin / $divby) * 100;
 
         $gatekeeper = self::$firestoreClient->collection('gatekeeper')->document($eventid)->collection('keeperdata_data')->documents();
         $gtkeepers = $gatekeeper->rows();
         $data = [];
-        foreach($gtkeepers as $key => $keeper){
-            $keep = explode('/',$keeper->name());
+        foreach ($gtkeepers as $key => $keeper) {
+            $keep = explode('/', $keeper->name());
             $keeperid = end($keep);
             $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeper->id())->collection('visitor_entry')->documents();
             // dd($gatevisit);
             $v_count = count($gatevisit->rows());
-            $nstdata['id'] = $key +1;
+            $nstdata['id'] = $key + 1;
             $nstdata['count'] = $v_count;
             $nstdata['keepername'] = $keeper->data()['keepername'];
             $nstdata['keeperid'] = $keeperid;
@@ -1896,7 +1896,7 @@ class AboutController extends Controller
         // }
         // dd($total);
         // dd($snapshot->snapshot());
-        return view('analytics',compact('totalguest','tcheckedin','rsvp','per','tcheckedout','data'));
+        return view('analytics', compact('totalguest', 'tcheckedin', 'rsvp', 'per', 'tcheckedout', 'data'));
     }
 
     public function view_web(Request $request, $id)
@@ -1913,12 +1913,13 @@ class AboutController extends Controller
         // dd($up_snapshot->data());
         $mapurl = "https://www.google.com/maps/embed/v1/place?key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w&q=$data[event_sub_type]";
         // dd($mapurl);
-        return view('viewweb', compact('data', 'mid', 'id','mapurl'));
+        return view('viewweb', compact('data', 'mid', 'id', 'mapurl'));
         // $upcoming_count = iterator_count($up_snapshot);?
 
     }
 
-    public function exportkeeperdata(Request $request){
+    public function exportkeeperdata(Request $request)
+    {
         // dd('gkisfisdgfs');
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -1930,13 +1931,13 @@ class AboutController extends Controller
         $gatekeeper = self::$firestoreClient->collection('gatekeeper')->document($eventid)->collection('keeperdata_data')->documents();
         $gtkeepers = $gatekeeper->rows();
         $data = [];
-        foreach($gtkeepers as $key => $keeper){
-            $keep = explode('/',$keeper->name());
+        foreach ($gtkeepers as $key => $keeper) {
+            $keep = explode('/', $keeper->name());
             $keeperid = end($keep);
             $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeper->id())->collection('visitor_entry')->documents();
             // dd($gatevisit);
             $v_count = count($gatevisit->rows());
-            $nstdata['id'] = $key +1;
+            $nstdata['id'] = $key + 1;
             $nstdata['count'] = $v_count;
             $nstdata['keepername'] = $keeper->data()['keepername'];
             $nstdata['keeperid'] = $keeperid;
@@ -2007,7 +2008,7 @@ class AboutController extends Controller
         return view('setting');
     }
 
-    public function analytics_booth_name(Request $request,$keeperid)
+    public function analytics_booth_name(Request $request, $keeperid)
     {
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -2015,36 +2016,37 @@ class AboutController extends Controller
         ]);
         $eventid = $request->session()->get('eventid');
         $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeperid)->collection('visitor_entry')->documents();
-        $data=[];
-        $i=0;
-        foreach($gatevisit as $visitor){
+        $data = [];
+        $i = 0;
+        foreach ($gatevisit as $visitor) {
             $snapshot = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->document($visitor['id'])->snapshot();
-            $data[$i]['evefirstname']=$snapshot['evefirstname'];
-            $data[$i]['evelastname']=$snapshot['evelastname'];
-            $data[$i]['jobtitle']=$snapshot['jobtitle'];
-            $data[$i]['orgenization']=$snapshot['orgenization'];
-            $data[$i]['datetime']=date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
+            $data[$i]['evefirstname'] = $snapshot['evefirstname'];
+            $data[$i]['evelastname'] = $snapshot['evelastname'];
+            $data[$i]['jobtitle'] = $snapshot['jobtitle'];
+            $data[$i]['orgenization'] = $snapshot['orgenization'];
+            $data[$i]['datetime'] = date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
             $i++;
         }
-        return view('analytics-booth-name',compact('data','keeperid'));
+        return view('analytics-booth-name', compact('data', 'keeperid'));
     }
 
-    public function exportcheckindata(Request $request , $keeperid){
+    public function exportcheckindata(Request $request, $keeperid)
+    {
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
         $eventid = $request->session()->get('eventid');
         $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeperid)->collection('visitor_entry')->documents();
-        $data=[];
-        $i=0;
-        foreach($gatevisit as $visitor){
+        $data = [];
+        $i = 0;
+        foreach ($gatevisit as $visitor) {
             $snapshot = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->document($visitor['id'])->snapshot();
-            $data[$i]['evefirstname']=$snapshot['evefirstname'];
-            $data[$i]['evelastname']=$snapshot['evelastname'];
-            $data[$i]['jobtitle']=$snapshot['jobtitle'];
-            $data[$i]['orgenization']=$snapshot['orgenization'];
-            $data[$i]['datetime']=date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
+            $data[$i]['evefirstname'] = $snapshot['evefirstname'];
+            $data[$i]['evelastname'] = $snapshot['evelastname'];
+            $data[$i]['jobtitle'] = $snapshot['jobtitle'];
+            $data[$i]['orgenization'] = $snapshot['orgenization'];
+            $data[$i]['datetime'] = date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
             $i++;
         }
         $fileName = "visitor_export_" . date('Ymd') . ".xls";
@@ -2063,7 +2065,7 @@ class AboutController extends Controller
         exit;
     }
 
-    public function view_web_users(Request $request, $uid,$id)
+    public function view_web_users(Request $request, $uid, $id)
     {
         $mid = $request->session()->get('uid');
         // dd($mid);     
@@ -2077,7 +2079,7 @@ class AboutController extends Controller
         // dd($up_snapshot->data());
         $mapurl = "https://www.google.com/maps/embed/v1/place?key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w&q=$data[event_sub_type]";
         // dd($mapurl);
-        return view('viewweb_users', compact('data', 'mid', 'id','mapurl'));
+        return view('viewweb_users', compact('data', 'mid', 'id', 'mapurl'));
         // $upcoming_count = iterator_count($up_snapshot);?
 
     }
