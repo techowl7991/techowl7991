@@ -858,11 +858,20 @@
                                                             <div class="col-12">
                                                                 <select class="form-control basicSelect" name="tags"
                                                                     multiple="multiple">
+                                                                    <option value="orange" selected="selected">orange</option>
+                                                                    <option value="white">white</option>
+                                                                    <option value="purple">purple</option>
+                                                                </select>
+                                                            </div>
+
+                                                            {{-- <div class="col-12">
+                                                                <select class="form-control basicSelect" name="tags"
+                                                                    multiple="multiple">
                                                                     <option selected="selected">orange</option>
                                                                     <option>white</option>
                                                                     <option selected="selected">purple</option>
                                                                 </select>
-                                                            </div>
+                                                            </div> --}}
 
                                                         </div>
                                                     </div>
@@ -1065,11 +1074,20 @@
                                                             <div class="col-12">
                                                                 <select class="form-control basicSelect" id="tags1"
                                                                     name="tags" multiple="multiple">
+                                                                    <option value="orange" selected="selected">orange</option>
+                                                                    <option value="white">white</option>
+                                                                    <option value="purple">purple</option>
+                                                                </select>
+                                                            </div>
+
+                                                            {{-- <div class="col-12">
+                                                                <select class="form-control basicSelect" id="tags1"
+                                                                    name="tags" multiple="multiple">
                                                                     <option selected="selected">orange</option>
                                                                     <option>white</option>
                                                                     <option selected="selected">purple</option>
                                                                 </select>
-                                                            </div>
+                                                            </div> --}}
 
                                                         </div>
                                                     </div>
