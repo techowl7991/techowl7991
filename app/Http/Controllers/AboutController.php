@@ -463,6 +463,19 @@ class AboutController extends Controller
         return view('printbadge', compact('input', 'snapshot'));
     }
 
+    public function printbadgemobile(Request $request)
+    {
+        // dd($request->all());
+        $input = $request->all();
+        $data = explode('(**)',$input['qrvalue']);
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $snapshot = self::$firestoreClient->collection('visitor')->document($data[0])->collection('visitor_details')->document($data[1])->snapshot()->data();
+        return view('printbadgemobile', compact('input','snapshot'));
+    }
+
     public function exportdata(Request $request)
     {
 

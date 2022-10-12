@@ -31,10 +31,10 @@ tr:nth-child(even) {
     <div  class="justify-content-center d-grid align-items-center" style=" transform: rotate(180deg);">
      <div  class="row justify-content-center align-items-center" style="width: 90mm;height: 70mm;font-size: 25px;padding: 5px;text-align: center;">
          
-               <p class="fw-bold mb-1">{{$input['fname'].' '.$input['lname']}}</p>
-               <p class="fw-bold mb-1" style="margin-top: 15px;">{{$input['company']}}</p>
+               <p class="fw-bold mb-1">{{$snapshot['evefirstname'].' '.$snapshot['evelastname']}}</p>
+               <p class="fw-bold mb-1" style="margin-top: 15px;">{{$snapshot['orgenization']}}</p>
                <div style="text-align: center;margin: 23px;">{!! QrCode::size(80)->generate($input['qrvalue']); !!}</div>
-               <p class="fw-bold mb-1">{{$input['type']}}</p>
+               <p class="fw-bold mb-1">{{$snapshot['type']}}</p>
           </div>
          
       </div>
