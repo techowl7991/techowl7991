@@ -949,6 +949,7 @@ class AboutController extends Controller
                 $a = action('AboutController@senddata');
                 $b = action('AboutController@printbadge');
                 $c = "<form action='" . $a . "' method='post' target='_blank'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='fname' value='" . $title['evefirstname'] . "'>
+
                 <input type='hidden' name='lname' value='" . $title['evelastname'] . "'>
                 <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
                 <input type='hidden' name='type' value='" . $title['type'] . "'>
@@ -959,6 +960,7 @@ class AboutController extends Controller
                 
                 </form>
                 <form action='" . $b . "' method='post' target='_blank'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='fname' value='" . $title['evefirstname'] . "'>
+
                     <input type='hidden' name='lname' value='" . $title['evelastname'] . "'>
                     <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
                     <input type='hidden' name='type' value='" . $title['type'] . "'>
