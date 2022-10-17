@@ -189,6 +189,8 @@
                         <div class="searchBar px-4 py-3 bg-white border-bottom border-2">
                             <div class="row">
                                 <div class="col-12 col-sm-4">
+                                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search By names..">
+                                    <input type="text" id="myInput1" onkeyup="myFunction1()" placeholder="Search By organization..">
                                     <!-- <div class="input-group border border-1 rounded-5"> -->
                                     <!-- <botton type="button" class="btn border-0 shadow-none bg-white p-0 searchbtn fs-14 px-2 align-items-center d-flex"><i class="imgr img-search fw-600"></i></botton> -->
                                     <!-- <input type="text" class="form-control shadow-none border-0 ps-1 py-1 h-29px h-lg-31 h-xl-35px" id="searchguest" placeholder="Search Guests" aria-label="Example text with button addon" aria-describedby="button-addon1"> -->
@@ -858,20 +860,11 @@
                                                             <div class="col-12">
                                                                 <select class="form-control basicSelect" name="tags"
                                                                     multiple="multiple">
-                                                                    <option value="orange" selected="selected">orange</option>
-                                                                    <option value="white">white</option>
-                                                                    <option value="purple">purple</option>
-                                                                </select>
-                                                            </div>
-
-                                                            {{-- <div class="col-12">
-                                                                <select class="form-control basicSelect" name="tags"
-                                                                    multiple="multiple">
                                                                     <option selected="selected">orange</option>
                                                                     <option>white</option>
                                                                     <option selected="selected">purple</option>
                                                                 </select>
-                                                            </div> --}}
+                                                            </div>
 
                                                         </div>
                                                     </div>
@@ -1074,20 +1067,11 @@
                                                             <div class="col-12">
                                                                 <select class="form-control basicSelect" id="tags1"
                                                                     name="tags" multiple="multiple">
-                                                                    <option value="orange" selected="selected">orange</option>
-                                                                    <option value="white">white</option>
-                                                                    <option value="purple">purple</option>
-                                                                </select>
-                                                            </div>
-
-                                                            {{-- <div class="col-12">
-                                                                <select class="form-control basicSelect" id="tags1"
-                                                                    name="tags" multiple="multiple">
                                                                     <option selected="selected">orange</option>
                                                                     <option>white</option>
                                                                     <option selected="selected">purple</option>
                                                                 </select>
-                                                            </div> --}}
+                                                            </div>
 
                                                         </div>
                                                     </div>
@@ -1422,7 +1406,7 @@
                 var visit = $("input[type='radio'].visit:checked").val();
                 var type = $("input[type='radio'].type:checked").val();
                 $('#allmatches_datatable').DataTable({
-                    'bFilter': false,
+                    'bFilter': true,
                     "processing": true,
                     "serverSide": true,
                     "searching": false,
@@ -1457,6 +1441,7 @@
                         },
                         {
                             "data": "name"
+                             
                         },
                         {
                             "data": "company"
@@ -1543,7 +1528,52 @@
 
         });
     </script>
-
+    <script>
+    function myFunction() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("allmatches_datatable");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[2];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          console.log(txtValue);
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
+    <script>
+         function myFunction1() {
+      // Declare variables
+      var input, filter, table, tr, td, i, txtValue;
+      input = document.getElementById("myInput1");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("allmatches_datatable");
+      tr = table.getElementsByTagName("tr");
+      // Loop through all table rows, and hide those who don't match the search query
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[3];
+        if (td) {
+          txtValue = td.textContent || td.innerText;
+          console.log(txtValue);
+          if (txtValue.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }
+      }
+    }
+    </script>
 
     {{-- <script type="text/javascript">
     function PrintDiv(id) {
@@ -1555,6 +1585,7 @@
             divToPrint.innerHTML + '</html>');
         popupWin.document.close();
     }
+    
 </script> --}}
 @endsection
 @push('scripts')
@@ -1594,5 +1625,12 @@
         window.intlTelInput(input, {
             // any initialisation options go here
         });
+        
+        function NameSearch() {
+    $('#allmatches_datatable').DataTable().search(
+    $('#searchdata').val()      
+    ).draw();
+               }  
+        
     </script>
 @endpush

@@ -53,15 +53,15 @@
         </div>
         <div class="row mx-0">
             <div class="col-12 fs-sm-25 fs-20 text-theme2 fw-600 mb-3">Breakdown</div>
-            <div class="col-lg-10 col-12 table-responsive analytics_table">
+            <div class="col-lg-10 col-12 table-responsive tabletabletabletable">
                 {{-- @dd($snapshot2) --}}
-                <table class="table ">
+                
+                <table class="table" >
                     <thead>
                         <tr>
                             <th scope="col" class="fs-16 fw-bold text-theme2">First Name</th>
                             <th scope="col" class="fs-16 fw-bold text-theme2">Last Name</th>
                             <th scope="col" class="fs-16 fw-bold text-theme2">Organisation</th>
-                            <th scope="col" class="fs-16 fw-bold text-theme2">QRcode</th>
                             <th scope="col" class="fs-16 fw-bold text-theme2">type</th>
                             <th scope="col" class="fs-16 fw-bold text-theme2">Date Time</th>
                         </tr>
@@ -73,7 +73,6 @@
                                 <td>{{ $snap2['evefirstname'] }}</td>
                                 <td>{{ $snap2['evelastname'] }}</td>
                                 <td>{{ $snap2['orgenization'] }}</td>
-                                <td>{{ $snap2['qrvalue'] }}</td>
                                 <td>{{ $snap2['type'] }}</td>
                                 <td>{{ $snap2['date'] }}</td>
                             </tr>
@@ -226,6 +225,7 @@
             }
         })
     </script> --}}
+   
     </body>
 
     </html>

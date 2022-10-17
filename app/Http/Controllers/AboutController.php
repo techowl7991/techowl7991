@@ -176,7 +176,7 @@ class AboutController extends Controller
             if ($request->eventtype == 'online') {
                 $dat = ($request->eventurl != null) ? $request->eventurl : '';
                 $lat = '';
-                $lng = '';
+                $lng ='';
             } else {
                 // if($request->eventlocation == null || $request->eventlocation = ''){
                 //     return redirect()->back()->with('error', 'Enter Existing location');
@@ -195,14 +195,14 @@ class AboutController extends Controller
                 $response = json_decode($response);
                 $response = $response->results;
 
-                if (empty($response)) {
+                if(empty($response)){
                     return redirect()->back()->with('error', 'Please Enter Valid location');
                 }
                 // dd($response);
                 $lat = $response[0]->geometry->location->lat;
                 $lng = $response[0]->geometry->location->lng;
             }
-            $filename = '';
+            $filename='';
             if ($request->has('event_image')) {
                 $image = $request->file('event_image');
                 $extention = $image->getClientOriginalExtension();
@@ -462,7 +462,7 @@ class AboutController extends Controller
         $snapshot = self::$firestoreClient->collection('events')->document($mid)->collection('events_data')->document($request->mnid)->snapshot()->data();
         return view('printbadge', compact('input', 'snapshot'));
     }
-
+    
     public function printbadgemobile(Request $request)
     {
         // dd('fj');
@@ -591,7 +591,7 @@ class AboutController extends Controller
         $query = $snapshot->rows();
         $totalTitles = count($query);
         $totalFiltered = $totalTitles;
-
+        
         $titles = $query;
         // dd($titles);
         if ($totalTitles != 0) {
@@ -777,7 +777,7 @@ class AboutController extends Controller
             if ($request->eventtype == 'online') {
                 $dat = ($request->eventurl != null) ? $request->eventurl : '';
                 $lat = '';
-                $lng = '';
+                $lng ='';
             } else {
                 $dat = ($request->eventlocation != null) ? $request->eventlocation : '';
                 $address = urlencode($request->eventlocation);
@@ -792,7 +792,7 @@ class AboutController extends Controller
                 $response = json_decode($response);
                 $response = $response->results;
 
-                if (empty($response)) {
+                if(empty($response)){
                     return redirect()->back()->with('error', 'Please Enter Valid location');
                 }
                 // dd($response);
@@ -1548,10 +1548,8 @@ class AboutController extends Controller
             'visit' => 'No',
             'resvpstatus' => $rsvpstatus,
             'token' => $bytes,
-        ];
-        // dd($data);
 
-        // dd($data);
+        ];
         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($data);
         $qryarr = explode('/', $docref->name());
         // $route = $mid.'-'.$qryarr;
@@ -1646,7 +1644,7 @@ class AboutController extends Controller
             'projectId' => self::$firestoreProjectId,
         ]);
         // dd($request->file1);
-        if ($request->eventfile != null) {
+        if($request->eventfile!=null){
             $mid = $request->mid;
             $reads = Excel::toArray(new \stdClass(), $request->eventfile);
             $index = 0;
@@ -1677,11 +1675,10 @@ class AboutController extends Controller
                             'nmtype' => $value[10] ? $value[10] : '',
                             'mobileno' => $value[11] ? $value[11] : '',
                             'visit' => $value[12] ? $value[12] : 'No',
-                            'guestimage' => '',
+                            'guestimage' =>'',
                             'resvpstatus' => $rsvpstatus,
                             'token' => $bytes,
                         ];
-                        // dd($eventData);
 
                         $docref = self::$firestoreClient->collection('visitor')->document($mid)->collection('visitor_details')->add($eventData);
                         $snapshot = self::$firestoreClient->collection('events')->document($uid)->collection('events_data')->document($mid)->snapshot();
@@ -1759,9 +1756,10 @@ class AboutController extends Controller
                 ];
                 $docref = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->add($data);
                 return redirect('/viewgatekeeper/' . $mid);
-            } else {
+            }else{
                 return redirect()->back()->with('error', 'UserName Already Exist');
             }
+            
         } else {
             return view('addkeeper', compact('mid'));
         }
@@ -2071,12 +2069,14 @@ class AboutController extends Controller
         $vistent =[];
         $k=0;
         foreach ($gatevisit as $visitor) {
-            if(!array_key_exists($visitor['id'],$vistent)){
-                $vistent[$visitor['id']]['id']= $visitor['id'];
-                $vistent[$visitor['id']]['timestamp']= $visitor['timestamp'];
-                $vistent[$visitor['id']]['uniq']= 0;
+            if(array_search($visitor['id'], array_column($vistent, 'id')) == FALSE){
+                $vistent[$k]['id']= $visitor['id'];
+                $vistent[$k]['id']['timestamp']= $visitor['timestamp'];
+                $vistent[$k]['id']['uniq']= 0;
             }else{
-                $vistent[$visitor['id']]['uniq']= 1;
+                $vistent[$k]['id']['id']= $visitor['id'];
+                $vistent[$k]['id']['timestamp']= $visitor['timestamp'];
+                $vistent[$k]['id']['uniq']= 1;
             }
         }
         $data = [];
