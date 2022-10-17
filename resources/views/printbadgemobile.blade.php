@@ -28,13 +28,13 @@ tr:nth-child(even) {
 <div class="container-fluid">
   <div class="row">
  
-    <div  class="justify-content-center d-grid align-items-center" style=" transform: rotate(180deg);">
+    <div  class="justify-content-center d-grid align-items-center" style=" transform: rotate(180deg);margin-top: 80px;">
      <div  class="row justify-content-center align-items-center" style="width: 90mm;height: 70mm;font-size: 25px;padding: 5px;text-align: center;">
          
                <p class="fw-bold mb-1">{{$snapshot['evefirstname'].' '.$snapshot['evelastname']}}</p>
                <p class="fw-bold mb-1" style="margin-top: 15px;">{{$snapshot['orgenization']}}</p>
                <div style="text-align: center;margin: 23px;">{!! QrCode::size(80)->generate($input['qrvalue']); !!}</div>
-               <p class="fw-bold mb-1">{{$snapshot['type']}}</p>
+               <p class="fw-bold mb-1">{{$snapshot['nmtype']}}</p>
           </div>
          
       </div>
@@ -45,8 +45,17 @@ tr:nth-child(even) {
   <script type="text/javascript">
 
     $(document).ready(function () {
+        // window.print();window.location.href='https://gate.techowl.in/testcode/';
+        // window.onafterprint = window.close;
+        // window.print();
+        
+        function back() {
+            window.history.back();
+        }
+        window.onafterprint = back;
         window.print();
     });
+    
 
     </script>
   </html>
