@@ -61,11 +61,13 @@
     <div class="row mx-0">
         <div class="col-12 fs-sm-25 fs-20 text-theme2 fw-600 mb-3">Breakdown</div>
         {{-- <input type="text" id="myInput"  placeholder="Search By names.."> --}}
+        <div class="col-md-4">
         <label for="cars">Choose a Unique:</label>
         <select name="uniq" id="myInput" onchange="myFunction()">
-            <option value="yes">Yes</option>
-            <option value="no">No</option>
+            <option value="no">Yes</option>
+            <option value="yes">No</option>
         </select>
+        </div>
         <div class="col-lg-10 col-12 table-responsive analytics_table">
             <table class="table" id="allmatches_datatable">
                 <thead>
@@ -75,7 +77,7 @@
                         <th scope="col" class="fs-16 fw-bold text-theme2">Job Title</th>
                         <th scope="col" class="fs-16 fw-bold text-theme2">Organisation</th>
                         <th scope="col" class="fs-16 fw-bold text-theme2">Date Time</th>
-                        <th scope="col" class="fs-16 fw-bold text-theme2">Uniq</th>
+                        <th scope="col" class="fs-16 fw-bold text-theme2" style="display: none">Uniq</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -86,7 +88,7 @@
                                 <td>{{ $user['jobtitle'] }}</td>
                                 <td>{{ $user['orgenization'] }}</td>
                                 <td>{{ $user['datetime'] }}</td>
-                                <td>{{ $user['uniq'] }}</td>
+                                <td style="display: none">{{ $user['uniq'] }}</td>
                             </tr>
                         @endforeach
                 </tbody>
