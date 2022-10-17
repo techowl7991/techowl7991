@@ -465,15 +465,46 @@ class AboutController extends Controller
     
     public function printbadgemobile(Request $request)
     {
+        // dd('fj');
         // dd($request->all());
         $input = $request->all();
-        $data = explode('(**)',$input['qrvalue']);
+        $mid = $request->session()->get('uid');
+        $eventid = $request->session()->get('eventid');
+        // dd($mid);
+        $data = explode('(**)', $input['qrvalue']);
+        // dd($data);
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
         $snapshot = self::$firestoreClient->collection('visitor')->document($data[0])->collection('visitor_details')->document($data[1])->snapshot()->data();
-        return view('printbadgemobile', compact('input','snapshot'));
+        // dd($snapshot);
+        $ticketdata = [
+            'evefirstname' => $snapshot['evefirstname'],
+            'evelastname' => $snapshot['evelastname'],
+            'orgenization' => $snapshot['orgenization'],
+            'qrvalue' => $request->qrvalue,
+            'type' => $snapshot['type'],
+            'date'       => date("d/m/Y H:i:s"),
+        ];
+        // dd($ticketdata);
+        $docref = self::$firestoreClient->collection('ticketprint')->document($eventid)->collection('tickets')->add($ticketdata);
+        return view('printbadgemobile', compact('input', 'snapshot'));
+    }
+
+    public function ticketprintdata(Request $request)
+    {
+        self::$firestoreProjectId = 'guest-app-2eb59';
+        self::$firestoreClient = new FirestoreClient([
+            'projectId' => self::$firestoreProjectId,
+        ]);
+        $eventid = $request->session()->get('eventid');
+
+        // $snapshot2 = self::$firestoreClient->collection('ticketprint')->documents();
+        $snapshot2 = self::$firestoreClient->collection('ticketprint')->document($eventid)->collection('tickets')->documents();
+
+        // dd($snapshot2);
+        return view('ticketprint', compact('snapshot2'));
     }
 
     public function exportdata(Request $request)
@@ -1851,15 +1882,24 @@ class AboutController extends Controller
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
+        $mid = $request->session()->get('uid');
         $eventid = $request->session()->get('eventid');
-        // dd($eventid);
+        // dd($mid);
         $USERID = $request->session()->get('uid');
         // $snapshot = self::$firestoreClient->collection('events')->document($USERID)->collection('events_data')->documents();
         $snapshot1 = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->documents();
         // dd($snapshot1->rows());
-        $totalguest=0;
-        $tcheckedin=0;
-        $tcheckedout=0;
+        // $snapshot2 = self::$firestoreClient->collection('ticketprint')->documents();
+        $snapshot2 = self::$firestoreClient->collection('ticketprint')->document($eventid)->collection('tickets')->documents();
+        // dd($snapshot2->rows());
+
+        // $docref = self::$firestoreClient->collection('ticketprint')->document($mid)->collection('tickets')->add($ticketdata);
+        // dd(count($snapshot2->rows()));
+
+
+        $totalguest = 0;
+        $tcheckedin = count($snapshot2->rows());
+        $tcheckedout = 0;
         $rsvp = 0;
         foreach ($snapshot1 as $snapss) {
             $snap = $snapss->data();
@@ -1868,9 +1908,9 @@ class AboutController extends Controller
                 $rsvp = $rsvp + 1;
             }
             if ($snap['visit'] != 'No' && $snap['visit'] != 'NO' && $snap['visit'] != 'no') {
-                $tcheckedin = $tcheckedin + 1;
-            }else{
-                $tcheckedout = $tcheckedout+1;
+
+            } else {
+                $tcheckedout = $tcheckedout + 1;
             }
         }
         $divby = ($totalguest != 0) ? $totalguest : 1;
@@ -2031,18 +2071,41 @@ class AboutController extends Controller
         ]);
         $eventid = $request->session()->get('eventid');
         $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeperid)->collection('visitor_entry')->documents();
-        $data=[];
-        $i=0;
-        foreach($gatevisit as $visitor){
+
+        $vistent =[];
+        $k=0;
+        foreach ($gatevisit as $visitor) {
+            if(array_search($visitor['id'], array_column($vistent, 'id')) == FALSE){
+                $vistent[$k]['id']= $visitor['id'];
+                $vistent[$k]['id']['timestamp']= $visitor['timestamp'];
+                $vistent[$k]['id']['uniq']= 0;
+            }else{
+                $vistent[$k]['id']['id']= $visitor['id'];
+                $vistent[$k]['id']['timestamp']= $visitor['timestamp'];
+                $vistent[$k]['id']['uniq']= 1;
+            }
+        }
+        $data = [];
+        $i = 0;
+        foreach ($vistent as $visitor) {
             $snapshot = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->document($visitor['id'])->snapshot();
-            $data[$i]['evefirstname']=$snapshot['evefirstname'];
-            $data[$i]['evelastname']=$snapshot['evelastname'];
-            $data[$i]['jobtitle']=$snapshot['jobtitle'];
-            $data[$i]['orgenization']=$snapshot['orgenization'];
-            $data[$i]['datetime']=date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
+            // dd($snapshot);
+            $data[$i]['evefirstname'] = $snapshot['evefirstname'];
+            if($visitor['uniq']==0){
+                $data[$i]['uniq'] = 'no';
+            }else{
+                $data[$i]['uniq'] = 'yes';
+            }
+            $data[$i]['evelastname'] = $snapshot['evelastname'];
+            $data[$i]['jobtitle'] = $snapshot['jobtitle'];
+            $data[$i]['orgenization'] = $snapshot['orgenization'];
+            $data[$i]['datetime'] = date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
             $i++;
         }
-        return view('analytics-booth-name',compact('data','keeperid'));
+        // dd($data);
+        
+        return view('analytics-booth-name', compact('data', 'keeperid'));
+
     }
 
     public function exportcheckindata(Request $request , $keeperid){

@@ -37,8 +37,10 @@
             <div class="fs-16 fs-sm-20 fs-md-30 fw-bold text-theme1">Booth Name</div>
         </div>
         <div class="col-sm-auto d-flex align-items-center gap-2">
-            <a href="{{url('/get_analytics')}}" class="btn btn-outline-theme2 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase cancle_btn ">CANCEL</a>
-            <a href="{{ url('/exportcheckindata/' . $keeperid) }}" class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">EXPORT REPORT</a>
+            <a href="{{ url('/get_analytics') }}"
+                class="btn btn-outline-theme2 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase cancle_btn ">CANCEL</a>
+            <a href="{{ url('/exportcheckindata/' . $keeperid) }}"
+                class="btn btn-theme1 fs-10 fs-lg-11 fs-xl-14 fw-600 text-uppercase text-white">EXPORT REPORT</a>
         </div>
     </div>
     {{-- <div class="row mx-0 mb-4">
@@ -58,8 +60,14 @@
     </div> --}}
     <div class="row mx-0">
         <div class="col-12 fs-sm-25 fs-20 text-theme2 fw-600 mb-3">Breakdown</div>
+        {{-- <input type="text" id="myInput"  placeholder="Search By names.."> --}}
+        <label for="cars">Choose a Unique:</label>
+        <select name="uniq" id="myInput" onchange="myFunction()">
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+        </select>
         <div class="col-lg-10 col-12 table-responsive analytics_table">
-            <table class="table ">
+            <table class="table" id="allmatches_datatable">
                 <thead>
                     <tr>
                         <th scope="col" class="fs-16 fw-bold text-theme2">First Name</th>
@@ -67,23 +75,48 @@
                         <th scope="col" class="fs-16 fw-bold text-theme2">Job Title</th>
                         <th scope="col" class="fs-16 fw-bold text-theme2">Organisation</th>
                         <th scope="col" class="fs-16 fw-bold text-theme2">Date Time</th>
+                        <th scope="col" class="fs-16 fw-bold text-theme2">Uniq</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($data as $user)
-                    <tr>
-                        <td>{{$user['evefirstname']}}</td>
-                        <td>{{$user['evelastname']}}</td>
-                        <td>{{$user['jobtitle']}}</td>
-                        <td>{{$user['orgenization']}}</td>
-                        <td>{{$user['datetime']}}</td>
-                    </tr>
-                    @endforeach
+                    @foreach ($data as $user)
+                            <tr>
+                                <td>{{ $user['evefirstname'] }}</td>
+                                <td>{{ $user['evelastname'] }}</td>
+                                <td>{{ $user['jobtitle'] }}</td>
+                                <td>{{ $user['orgenization'] }}</td>
+                                <td>{{ $user['datetime'] }}</td>
+                                <td>{{ $user['uniq'] }}</td>
+                            </tr>
+                        @endforeach
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+<script>
+    function myFunction() {
+  // Declare variables
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("allmatches_datatable");
+  tr = table.getElementsByTagName("tr");
+  // Loop through all table rows, and hide those who don't match the search query
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[5];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      console.log(txtValue);
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 @endsection
 @push('scripts')
 @endpush

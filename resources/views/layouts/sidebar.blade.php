@@ -6,8 +6,11 @@
                 <img class="svg-white d-none rightIcon" src="{{ asset('/public/new-design/img/icon/chevron-right.svg') }}" alt="">
             </button>
         </li>
-        <li><a class="text-decoration-none mb-1 text-white rounded p-2 d-flex justify-content-start         align-items-center gap-2"
-                href="#"><img class="svg-white " src="{{ asset('/public/new-design/img/icon/dashboard.svg') }}"
+        @php
+            $dash = session()->get('uid') ? session()->get('uid') : 0
+        @endphp
+        <li><a class="{{ 'index/' . $dash == request()->path() ? 'active' : '' }} text-decoration-none mb-1 text-white rounded p-2 d-flex justify-content-start align-items-center gap-2"
+                href="{{route('index' , $dash)}}"><img class="svg-white " src="{{ asset('/public/new-design/img/icon/dashboard.svg') }}"
                     alt="" class="w-18px"><span class="fs-16 fs-normal">Dashboard</span> </a></li>
         @php
             $sess = session()->get('eventid') ? session()->get('eventid') : 0;
