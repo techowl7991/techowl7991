@@ -979,7 +979,8 @@ class AboutController extends Controller
                 $viewbtn = "<a role='button' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='view' class='text-danger py-0 px-3 text-decoration-none view" . $title->id() . " oncClickDisabled'><i class='img img-eye text-secondary' aria-hidden='true'  id='view' ></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
                 $a = action('AboutController@senddata');
                 $b = action('AboutController@printbadge');
-                $c = "<form action='" . $a . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
+                $c = "<form action='" . $a . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='fname' value='" . $title['evefirstname'] . "'>
+                <input type='hidden' name='lname' value='" . $title['evelastname'] . "'>
                 <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
                 <input type='hidden' name='type' value='" . $title['type'] . "'>
                 <input type='hidden' name='email' value='" . $title['eveemail'] . "'>
@@ -987,7 +988,8 @@ class AboutController extends Controller
                 <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
                 
                 </form>
-                <form action='" . $b . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='name' value='" . $title['evefirstname'] . "'>
+                <form action='" . $b . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='fname' value='" . $title['evefirstname'] . "'>
+                    <input type='hidden' name='lname' value='" . $title['evelastname'] . "'>
                     <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
                     <input type='hidden' name='type' value='" . $title['type'] . "'>
                     <input type='hidden' name='email' value='" . $title['eveemail'] . "'>
