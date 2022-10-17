@@ -2071,20 +2071,22 @@ class AboutController extends Controller
         ]);
         $eventid = $request->session()->get('eventid');
         $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeperid)->collection('visitor_entry')->documents();
-
+        // dd($gatevisit);
         $vistent =[];
         $k=0;
         foreach ($gatevisit as $visitor) {
             if(array_search($visitor['id'], array_column($vistent, 'id')) == FALSE){
                 $vistent[$k]['id']= $visitor['id'];
-                $vistent[$k]['id']['timestamp']= $visitor['timestamp'];
-                $vistent[$k]['id']['uniq']= 0;
+                $vistent[$k]['timestamp']= date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));;
+                $vistent[$k]['uniq']= 0;
             }else{
-                $vistent[$k]['id']['id']= $visitor['id'];
-                $vistent[$k]['id']['timestamp']= $visitor['timestamp'];
-                $vistent[$k]['id']['uniq']= 1;
+                $vistent[$k]['id']= $visitor['id'];
+                $vistent[$k]['timestamp']= date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));;
+                $vistent[$k]['uniq']= 1;
             }
+            $k++;
         }
+        // dd($vistent);
         $data = [];
         $i = 0;
         foreach ($vistent as $visitor) {
@@ -2099,7 +2101,7 @@ class AboutController extends Controller
             $data[$i]['evelastname'] = $snapshot['evelastname'];
             $data[$i]['jobtitle'] = $snapshot['jobtitle'];
             $data[$i]['orgenization'] = $snapshot['orgenization'];
-            $data[$i]['datetime'] = date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
+            $data[$i]['datetime'] = date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));;
             $i++;
         }
         // dd($data);
