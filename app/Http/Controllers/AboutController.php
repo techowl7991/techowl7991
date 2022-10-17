@@ -530,7 +530,7 @@ class AboutController extends Controller
             $alldata['linkedin'] = $value['linkedin'];
             $alldata['twitter'] = $value['twitter'];
             $alldata['nmtype'] = $value['nmtype'];
-            // $alldata['guestimage'] = $value['guestimage'];
+            $alldata['guestimage'] = $value['guestimage'];
             $alldata['mobileno'] = $value['mobileno'];
             $alldata['visit'] = $value['visit'];
             $alldata['qrcode'] = 'https://chart.googleapis.com/chart?cht=qr&chs=200x200&chl=' . $request->id . '(**)' . $value->id();
@@ -602,8 +602,8 @@ class AboutController extends Controller
                 $d = action('AboutController@viewgatekeeper', $title->id());
                 $c = QrCode::size(75)->generate($_GET['mid'] . '(**)' . $title->id());
                 $img = asset('/public/eventimgs/' . $title['event_image']);
-                $destinationPath = public_path('/eventimgs/' . $title['event_image']);
-                if (!file_exists($destinationPath) || $title['event_image'] == '') {
+                $destinationPath = public_path('/eventimgs/'.$title['event_image']);
+                if(!file_exists($destinationPath) || $title['event_image'] == ''){
                     $img = asset('/public/img/bannerimg.jpeg');
                 }
                 $action = "<a href=" . $b . " class='btn btn-dark shadow printBtn py-1 px-3'>Detail</a>";
@@ -625,7 +625,7 @@ class AboutController extends Controller
                 $nestedData['uniqueid'] = $_GET['mid'] . '(**)' . $title->id();
                 $nestedData['event_image'] = '<img src="' . $img . '" alt="" width="70px" height="65px">';
                 $nestedData['event_name'] = $title['event_name'];
-                $nestedData['event_startdate'] = date('m/d/Y', strtotime($title['event_startdate'])) . ' ' . $starttime;
+                $nestedData['event_startdate'] = date('m/d/Y', strtotime($title['event_startdate'])).' '.$starttime;
                 $nestedData['event_enddate'] = date('m/d/Y', strtotime($title['event_enddate']));
                 $nestedData['address'] = $edtbtn;
                 $nestedData['total'] = $title['total'];
@@ -979,19 +979,23 @@ class AboutController extends Controller
                 $viewbtn = "<a role='button' onclick='viewmodal(`" . $title->id() . "`,`" . $chid . "`)' data-act='view' class='text-danger py-0 px-3 text-decoration-none view" . $title->id() . " oncClickDisabled'><i class='img img-eye text-secondary' aria-hidden='true'  id='view' ></i><span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span></a>";
                 $a = action('AboutController@senddata');
                 $b = action('AboutController@printbadge');
-                $c = "<form action='" . $a . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='fname' value='" . $title['evefirstname'] . "'>
+                $c = "<form action='" . $a . "' method='post' target='_blank'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='fname' value='" . $title['evefirstname'] . "'>
+
                 <input type='hidden' name='lname' value='" . $title['evelastname'] . "'>
                 <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
                 <input type='hidden' name='type' value='" . $title['type'] . "'>
+                <input type='hidden' name='nmtype' value='" . $title['nmtype'] . "'>
                 <input type='hidden' name='email' value='" . $title['eveemail'] . "'>
                 <input type='hidden' name='qrvalue' value='" . $_GET['id'] . '(**)' . $title->id() . "'>
                 <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
                 
                 </form>
-                <form action='" . $b . "' method='post'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='fname' value='" . $title['evefirstname'] . "'>
+                <form action='" . $b . "' method='post' target='_blank'><input type='hidden' name='id' value='" . $title->id() . "'><input type='hidden' name='mnid' value='" . $_GET['id'] . "'><input type='hidden' name='fname' value='" . $title['evefirstname'] . "'>
+
                     <input type='hidden' name='lname' value='" . $title['evelastname'] . "'>
                     <input type='hidden' name='company' value='" . $title['orgenization'] . "'>
                     <input type='hidden' name='type' value='" . $title['type'] . "'>
+                    <input type='hidden' name='nmtype' value='" . $title['nmtype'] . "'>
                     <input type='hidden' name='email' value='" . $title['eveemail'] . "'>
                     <input type='hidden' name='qrvalue' value='" . $_GET['id'] . '(**)' . $title->id() . "'>
                     <input type='hidden' name='date' value='" . date('d M Y', strtotime($date)) . "'>
@@ -1655,14 +1659,13 @@ class AboutController extends Controller
                 foreach ($read as $value) {
                     if ($index == 0) {
                     } else {
-                        // $bytes = bin2hex(random_bytes(20));
+                        $bytes = bin2hex(random_bytes(20));
                         if ($request->type == 'RSVP') {
                             $rsvpstatus = 1;
                         } else {
                             $rsvpstatus = 0;
                         }
                         // dump($value);
-                        $bytes = bin2hex(random_bytes(20));
                         $eventData = [
                             'nmtitle' => $value[0] ? $value[0] : '',
                             'evefirstname' => $value[1] ? $value[1] : '',
@@ -1748,9 +1751,9 @@ class AboutController extends Controller
             self::$firestoreClient = new FirestoreClient([
                 'projectId' => self::$firestoreProjectId,
             ]);
-            $docref1 = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->where('username', '=', $request->username)->documents();
+            $docref1 = self::$firestoreClient->collection('gatekeeper')->document($mid)->collection('keeperdata_data')->where('username','=',$request->username)->documents();
             // dd($docref1);
-            if (empty($docref1->rows())) {
+            if(empty($docref1->rows())){
                 $data = [
                     'keepername' => $request->keepername,
                     'username' => $request->username,
@@ -1905,24 +1908,25 @@ class AboutController extends Controller
                 $rsvp = $rsvp + 1;
             }
             if ($snap['visit'] != 'No' && $snap['visit'] != 'NO' && $snap['visit'] != 'no') {
+
             } else {
                 $tcheckedout = $tcheckedout + 1;
             }
         }
         $divby = ($totalguest != 0) ? $totalguest : 1;
         // dd($divby);
-        $per = ($tcheckedin / $divby) * 100;
+        $per = ($tcheckedin/$divby)*100;
 
         $gatekeeper = self::$firestoreClient->collection('gatekeeper')->document($eventid)->collection('keeperdata_data')->documents();
         $gtkeepers = $gatekeeper->rows();
         $data = [];
-        foreach ($gtkeepers as $key => $keeper) {
-            $keep = explode('/', $keeper->name());
+        foreach($gtkeepers as $key => $keeper){
+            $keep = explode('/',$keeper->name());
             $keeperid = end($keep);
             $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeper->id())->collection('visitor_entry')->documents();
             // dd($gatevisit);
             $v_count = count($gatevisit->rows());
-            $nstdata['id'] = $key + 1;
+            $nstdata['id'] = $key +1;
             $nstdata['count'] = $v_count;
             $nstdata['keepername'] = $keeper->data()['keepername'];
             $nstdata['keeperid'] = $keeperid;
@@ -1948,7 +1952,7 @@ class AboutController extends Controller
         // }
         // dd($total);
         // dd($snapshot->snapshot());
-        return view('analytics', compact('totalguest', 'tcheckedin', 'rsvp', 'per', 'tcheckedout', 'data'));
+        return view('analytics',compact('totalguest','tcheckedin','rsvp','per','tcheckedout','data'));
     }
 
     public function view_web(Request $request, $id)
@@ -1965,13 +1969,12 @@ class AboutController extends Controller
         // dd($up_snapshot->data());
         $mapurl = "https://www.google.com/maps/embed/v1/place?key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w&q=$data[event_sub_type]";
         // dd($mapurl);
-        return view('viewweb', compact('data', 'mid', 'id', 'mapurl'));
+        return view('viewweb', compact('data', 'mid', 'id','mapurl'));
         // $upcoming_count = iterator_count($up_snapshot);?
 
     }
 
-    public function exportkeeperdata(Request $request)
-    {
+    public function exportkeeperdata(Request $request){
         // dd('gkisfisdgfs');
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -1983,13 +1986,13 @@ class AboutController extends Controller
         $gatekeeper = self::$firestoreClient->collection('gatekeeper')->document($eventid)->collection('keeperdata_data')->documents();
         $gtkeepers = $gatekeeper->rows();
         $data = [];
-        foreach ($gtkeepers as $key => $keeper) {
-            $keep = explode('/', $keeper->name());
+        foreach($gtkeepers as $key => $keeper){
+            $keep = explode('/',$keeper->name());
             $keeperid = end($keep);
             $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeper->id())->collection('visitor_entry')->documents();
             // dd($gatevisit);
             $v_count = count($gatevisit->rows());
-            $nstdata['id'] = $key + 1;
+            $nstdata['id'] = $key +1;
             $nstdata['count'] = $v_count;
             $nstdata['keepername'] = $keeper->data()['keepername'];
             $nstdata['keeperid'] = $keeperid;
@@ -2060,7 +2063,7 @@ class AboutController extends Controller
         return view('setting');
     }
 
-    public function analytics_booth_name(Request $request, $keeperid)
+    public function analytics_booth_name(Request $request,$keeperid)
     {
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
@@ -2068,6 +2071,7 @@ class AboutController extends Controller
         ]);
         $eventid = $request->session()->get('eventid');
         $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeperid)->collection('visitor_entry')->documents();
+
         $vistent =[];
         $k=0;
         foreach ($gatevisit as $visitor) {
@@ -2101,25 +2105,25 @@ class AboutController extends Controller
         // dd($data);
         
         return view('analytics-booth-name', compact('data', 'keeperid'));
+
     }
 
-    public function exportcheckindata(Request $request, $keeperid)
-    {
+    public function exportcheckindata(Request $request , $keeperid){
         self::$firestoreProjectId = 'guest-app-2eb59';
         self::$firestoreClient = new FirestoreClient([
             'projectId' => self::$firestoreProjectId,
         ]);
         $eventid = $request->session()->get('eventid');
         $gatevisit = self::$firestoreClient->collection('boothdata')->document($eventid)->collection('gatekeeper')->document($keeperid)->collection('visitor_entry')->documents();
-        $data = [];
-        $i = 0;
-        foreach ($gatevisit as $visitor) {
+        $data=[];
+        $i=0;
+        foreach($gatevisit as $visitor){
             $snapshot = self::$firestoreClient->collection('visitor')->document($eventid)->collection('visitor_details')->document($visitor['id'])->snapshot();
-            $data[$i]['evefirstname'] = $snapshot['evefirstname'];
-            $data[$i]['evelastname'] = $snapshot['evelastname'];
-            $data[$i]['jobtitle'] = $snapshot['jobtitle'];
-            $data[$i]['orgenization'] = $snapshot['orgenization'];
-            $data[$i]['datetime'] = date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
+            $data[$i]['evefirstname']=$snapshot['evefirstname'];
+            $data[$i]['evelastname']=$snapshot['evelastname'];
+            $data[$i]['jobtitle']=$snapshot['jobtitle'];
+            $data[$i]['orgenization']=$snapshot['orgenization'];
+            $data[$i]['datetime']=date('m/d/Y h:i:s A', strtotime($visitor['timestamp']));
             $i++;
         }
         $fileName = "visitor_export_" . date('Ymd') . ".xls";
@@ -2138,7 +2142,7 @@ class AboutController extends Controller
         exit;
     }
 
-    public function view_web_users(Request $request, $uid, $id)
+    public function view_web_users(Request $request, $uid,$id)
     {
         $mid = $request->session()->get('uid');
         // dd($mid);     
@@ -2152,7 +2156,7 @@ class AboutController extends Controller
         // dd($up_snapshot->data());
         $mapurl = "https://www.google.com/maps/embed/v1/place?key=AIzaSyB_NvJAAj9qH0da7iBnfxZvvsD1dsmar3w&q=$data[event_sub_type]";
         // dd($mapurl);
-        return view('viewweb_users', compact('data', 'mid', 'id', 'mapurl'));
+        return view('viewweb_users', compact('data', 'mid', 'id','mapurl'));
         // $upcoming_count = iterator_count($up_snapshot);?
 
     }

@@ -108,6 +108,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row mx-0">
             <div class="col-xxl-6 col-xl-7 col-lg-9 col-md-9 col-12 mb-5">
                 <div class="card border-0 rounded">
@@ -127,6 +128,8 @@
                                     style="--percent:{{ $dd }}"></circle>
                             </svg>
                         </div>
+
+
                     </div>
                 </div>
             </div>
