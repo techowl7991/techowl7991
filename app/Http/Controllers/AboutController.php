@@ -468,9 +468,6 @@ class AboutController extends Controller
         // dd('fj');
         // dd($request->all());
         $input = $request->all();
-        $mid = $request->session()->get('uid');
-        $eventid = $request->session()->get('eventid');
-        // dd($mid);
         $data = explode('(**)', $input['qrvalue']);
         // dd($data);
         self::$firestoreProjectId = 'guest-app-2eb59';
@@ -485,10 +482,10 @@ class AboutController extends Controller
             'orgenization' => $snapshot['orgenization'],
             'qrvalue' => $request->qrvalue,
             'type' => $snapshot['type'],
-            'date'       => date("d/m/Y H:i:s"),
+            'date'=> date("d/m/Y H:i:s"),
         ];
-        // dd($ticketdata);
-        $docref = self::$firestoreClient->collection('ticketprint')->document($eventid)->collection('tickets')->add($ticketdata);
+        
+        $docref = self::$firestoreClient->collection('ticketprint')->document($data[0])->collection('tickets')->add($ticketdata);
         return view('printbadgemobile', compact('input', 'snapshot'));
     }
 
