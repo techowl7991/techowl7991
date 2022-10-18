@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-theme2 fixedHeader">
     <div class="container-fluid">
-        <a class="navbar-brand w-sm-60px w-45px py-0" href="#"><img
+        <a class="navbar-brand w-sm-60px w-45px py-0" href="https://console.techowl.in/guest/index/{{session()->get('uid')}}"><img
                 src="{{ asset('/public/new-design/img/logo-white.svg') }}" alt="" class="w-100"></a>
 
         <!-- Right Side Start -->
